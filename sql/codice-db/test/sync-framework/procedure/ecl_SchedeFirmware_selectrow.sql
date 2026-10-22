@@ -1,0 +1,8 @@
+CREATE PROCEDURE [ecl_SchedeFirmware_selectrow]
+	@P_1 VarChar(17),
+	@sync_scope_local_id Int,
+	@sync_scope_restore_count Int
+AS
+BEGIN
+SELECT [side].[macaddress], [base].[tipoScheda], [base].[tipoFirmware], [base].[dataAggiornamento], [base].[device], [base].[requestedVersion], [base].[detectedVersion], [base].[dataVerifica], [base].[bidetectedVersion], [base].[status], [side].[sync_row_is_tombstone], [side].[local_update_peer_timestamp] as sync_row_timestamp, case when ([side].[update_scope_local_id] is null or [side].[update_scope_local_id] <> @sync_scope_local_id) then COALESCE([side].[restore_timestamp], [side].[local_update_peer_timestamp]) else [side].[scope_update_peer_timestamp] end as sync_update_peer_timestamp, case when ([side].[update_scope_local_id] is null or [side].[update_scope_local_id] <> @sync_scope_local_id) then case when ([side].[local_update_peer_key] > @sync_scope_restore_count) then @sync_scope_restore_count else [side].[local_update_peer_key] end else [side].[scope_update_peer_key] end as sync_update_peer_key, case when ([side].[create_scope_local_id] is null or [side].[create_scope_local_id] <> @sync_scope_local_id) then [side].[local_create_peer_timestamp] else [side].[scope_create_peer_timestamp] end as sync_create_peer_timestamp, case when ([side].[create_scope_local_id] is null or [side].[create_scope_local_id] <> @sync_scope_local_id) then case when ([side].[local_create_peer_key] > @sync_scope_restore_count) then @sync_scope_restore_count else [side].[local_create_peer_key] end else [side].[scope_create_peer_key] end as sync_create_peer_key from [ecl_SchedeFirmware] [base] right join [ecl_SchedeFirmware_tracking] [side] on [base].[macaddress] = [side].[macaddress] WHERE [side].[macaddress] = @P_1
+END

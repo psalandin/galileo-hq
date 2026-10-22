@@ -1,0 +1,36 @@
+CREATE PROCEDURE [Prenotaz_insert]
+	@P_1 Decimal(5,0),
+	@P_2 BigInt,
+	@P_3 VarChar(50),
+	@P_4 VarChar(255),
+	@P_5 Money,
+	@P_6 Decimal(10,0),
+	@P_7 VarChar(255),
+	@P_8 VarChar(100),
+	@P_9 VarChar(100),
+	@P_10 VarChar(50),
+	@P_11 DateTime,
+	@P_12 DateTime,
+	@P_13 Bit,
+	@P_14 Decimal(5,0),
+	@P_15 Decimal(10,0),
+	@P_16 Decimal(15,0),
+	@P_17 Bit,
+	@P_18 Bit,
+	@P_19 Int,
+	@P_20 Bit,
+	@P_21 DateTime,
+	@P_22 Bit,
+	@P_23 VarChar(100),
+	@P_24 Int,
+	@P_25 DateTime,
+	@P_26 Bit,
+	@P_27 VarChar(100),
+	@P_28 Int,
+	@P_29 DateTime,
+	@P_30 UniqueIdentifier,
+	@sync_row_count Int OUTPUT
+AS
+BEGIN
+SET @sync_row_count = 0; IF NOT EXISTS (SELECT * FROM [Prenotaz_tracking] WHERE [Keys] = @P_30) BEGIN INSERT INTO [Prenotaz]([IdOp], [IdCli], [Codice], [Descrizione], [Costo], [N_Tickets], [Fornitore], [NomeC], [CognomeC], [Tel], [Data], [DataCon], [Cons], [IdOpCo], [Quantita], [SerNum], [Conf], [MsgInv], [NImp], [Annul], [DataConf], [F0], [T0], [N0], [D0], [F1], [T1], [N1], [D1], [Keys]) VALUES (@P_1, @P_2, @P_3, @P_4, @P_5, @P_6, @P_7, @P_8, @P_9, @P_10, @P_11, @P_12, @P_13, @P_14, @P_15, @P_16, @P_17, @P_18, @P_19, @P_20, @P_21, @P_22, @P_23, @P_24, @P_25, @P_26, @P_27, @P_28, @P_29, @P_30);  SET @sync_row_count = @@rowcount;  END 
+END

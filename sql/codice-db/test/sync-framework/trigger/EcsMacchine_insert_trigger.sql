@@ -1,0 +1,3 @@
+CREATE TRIGGER [EcsMacchine_insert_trigger] ON [EcsMacchine] FOR INSERT AS
+UPDATE [side] SET [sync_row_is_tombstone] = 0, [local_update_peer_key] = 0, [restore_timestamp] = NULL, [update_scope_local_id] = NULL, [last_change_datetime] = GETDATE() FROM [EcsMacchine_tracking] [side] JOIN INSERTED AS [i] ON [side].[CodMac] = [i].[CodMac]
+INSERT INTO [EcsMacchine_tracking] ([i].[CodMac], [create_scope_local_id], [local_create_peer_key], [local_create_peer_timestamp], [update_scope_local_id], [local_update_peer_key], [sync_row_is_tombstone], [last_change_datetime], [restore_timestamp]) SELECT [i].[CodMac], NULL, 0, @@DBTS+1, NULL, 0, 0, GETDATE() , NULL FROM INSERTED AS [i] LEFT JOIN [EcsMacchine_tracking] [side] ON [side].[CodMac] = [i].[CodMac] WHERE [side].[CodMac] IS NULL

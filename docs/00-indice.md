@@ -20,6 +20,7 @@
 | [`db/db-04-risultati-02.md`](db/db-04-risultati-02.md) | Risultati delle query Q11–Q20 | Basato su DB di **test** |
 | [`db/db-05-produzione-01.md`](db/db-05-produzione-01.md) | DB di **produzione** (copia del 14/07/2026): Q01–Q10, volumi e crescita | In corso |
 | [`db/db-06-produzione-02.md`](db/db-06-produzione-02.md) | DB di **produzione**: Q11–Q17, postazioni della sala (Central Park, Rimini), identificativi card, livelli; correzioni a DB 04 | In corso |
+| [`db/db-07-confronto-test-produzione.md`](db/db-07-confronto-test-produzione.md) | Confronto della **struttura** tra test e produzione: perimetro di sync, codice divergente, nomi di DB fissi nel codice, indici, dizionario `Setup_Descriptions` | In corso |
 
 ## Riunioni
 
@@ -27,7 +28,7 @@
 |------|------|------|
 | 07/10 | [`trascrizione`](riunioni/2026-10-07_riunione_trascrizione.txt), [`sommario`](riunioni/2026-10-07_riunione_sommario.md) | Riunione esplorativa; sommario Plaud |
 | 12/10 | [`trascrizione`](riunioni/2026-10-12_riunione_trascrizione.txt) | Riunione operativa |
-| 19/10 | [`traccia`](riunioni/2026-10-19_riunione_traccia.md), [`trascrizione`](riunioni/2026-10-19_riunione_trascrizione.txt), [`riassunto`](riunioni/2026-10-19_riunione_riassunto.md) | Traccia preparata per la riunione (copia del Claude Doc); riassunto Plaud. Trascrizione Whisper C++ attesa |
+| 19/10 | [`traccia`](riunioni/2026-10-19_riunione_traccia.md), [`trascrizione`](riunioni/2026-10-19_riunione_trascrizione.txt), [`riassunto`](riunioni/2026-10-19_riunione_riassunto.md), [`riassunto originale`](riunioni/2026-10-19_riunione_riassunto.txt) | Traccia preparata per la riunione (copia del Claude Doc); riassunto Plaud, rivisto (`.md`) e così come esportato, senza nomi (`.txt`). Trascrizione Whisper C++ attesa |
 
 ## Fonti
 
@@ -37,7 +38,11 @@
 
 ## Kit di query (nel repository, non in KB)
 
-In [`../sql/queries/`](../sql/queries/): `db-query-01.sql`, `-02.sql`, `-03.sql` e le versioni `-prod`, riutilizzabili anche sul DB di HQ. I risultati di produzione sono in [`../sql/risultati/`](../sql/risultati/).
+In [`../sql/queries/`](../sql/queries/): `db-query-01.sql`, `-02.sql`, `-03.sql` e le versioni `-prod`, riutilizzabili anche sul DB di HQ. `db-query-04-struttura.sql` estrae il catalogo completo della struttura di un database, per confrontare sale diverse, test e produzione, sala e HQ. I risultati sono in [`../sql/risultati/`](../sql/risultati/).
+
+[`../sql/codice-db/`](../sql/codice-db/) contiene il codice SQL di procedure, funzioni, viste e trigger dei DB di test e di produzione. Quello applicativo è separato da quello generato da Sync Framework (vedi il README della cartella).
+
+[`../sql/esegui-query.ps1`](../sql/esegui-query.ps1) esegue i kit da PowerShell senza SSMS. Legge server e credenziali dal file `.env` nella radice del repository, escluso da git.
 
 ## Materiale ricevuto il 19/10, da analizzare
 

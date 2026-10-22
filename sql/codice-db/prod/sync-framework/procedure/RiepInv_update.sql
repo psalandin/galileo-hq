@@ -1,0 +1,37 @@
+CREATE PROCEDURE [RiepInv_update]
+	@P_1 DateTime,
+	@P_2 Money,
+	@P_3 Money,
+	@P_4 Money,
+	@P_5 Money,
+	@P_6 Money,
+	@P_7 Money,
+	@P_8 Money,
+	@P_9 Money,
+	@P_10 Money,
+	@P_11 Money,
+	@P_12 Decimal(6,2),
+	@P_13 Decimal(6,2),
+	@P_14 Decimal(6,2),
+	@P_15 Decimal(6,2),
+	@P_16 Decimal(6,2),
+	@P_17 Int,
+	@P_18 Money,
+	@P_19 Int,
+	@P_20 Bit,
+	@P_21 VarChar(100),
+	@P_22 Int,
+	@P_23 DateTime,
+	@P_24 VarBinary(max),
+	@P_25 Bit,
+	@P_26 VarChar(100),
+	@P_27 Int,
+	@P_28 DateTime,
+	@P_29 UniqueIdentifier,
+	@sync_force_write Int,
+	@sync_min_timestamp BigInt,
+	@sync_row_count Int OUTPUT
+AS
+BEGIN
+SET @sync_row_count = 0; UPDATE [RiepInv] SET [Data] = @P_1, [VVend] = @P_2, [VCons] = @P_3, [VGru] = @P_4, [VRott] = @P_5, [VEvents] = @P_6, [TVPre] = @P_7, [IncRed] = @P_8, [IncGru] = @P_9, [IncAlt] = @P_10, [IncPush] = @P_11, [RedPer] = @P_12, [GruPer] = @P_13, [ConPer] = @P_14, [RotPer] = @P_15, [TotPer] = @P_16, [QDiff] = @P_17, [VarVal] = @P_18, [NImp] = @P_19, [F0] = @P_20, [T0] = @P_21, [N0] = @P_22, [D0] = @P_23, [Mdb] = @P_24, [F1] = @P_25, [T1] = @P_26, [N1] = @P_27, [D1] = @P_28 FROM [RiepInv] [base] JOIN [RiepInv_tracking] [side] ON [base].[Keys] = [side].[Keys] WHERE ([side].[local_update_peer_timestamp] <= @sync_min_timestamp OR @sync_force_write = 1) AND ([base].[Keys] = @P_29); SET @sync_row_count = @@ROWCOUNT;
+END

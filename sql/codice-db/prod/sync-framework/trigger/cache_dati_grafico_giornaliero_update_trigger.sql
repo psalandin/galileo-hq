@@ -1,0 +1,2 @@
+CREATE TRIGGER [cache_dati_grafico_giornaliero_update_trigger] ON [cache_dati_grafico_giornaliero] FOR UPDATE AS
+UPDATE [side] SET [local_update_peer_key] = 0, [restore_timestamp] = NULL, [update_scope_local_id] = NULL, [last_change_datetime] = GETDATE() FROM [cache_dati_grafico_giornaliero_tracking] [side] JOIN INSERTED AS [i] ON [side].[CodMac] = [i].[CodMac] AND [side].[DataRil] = [i].[DataRil]

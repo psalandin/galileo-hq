@@ -1,0 +1,3 @@
+CREATE TRIGGER [Owners_insert_trigger] ON [Owners] FOR INSERT AS
+UPDATE [side] SET [sync_row_is_tombstone] = 0, [local_update_peer_key] = 0, [restore_timestamp] = NULL, [update_scope_local_id] = NULL, [last_change_datetime] = GETDATE() FROM [Owners_tracking] [side] JOIN INSERTED AS [i] ON [side].[Id] = [i].[Id]
+INSERT INTO [Owners_tracking] ([i].[Id], [create_scope_local_id], [local_create_peer_key], [local_create_peer_timestamp], [update_scope_local_id], [local_update_peer_key], [sync_row_is_tombstone], [last_change_datetime], [restore_timestamp]) SELECT [i].[Id], NULL, 0, @@DBTS+1, NULL, 0, 0, GETDATE() , NULL FROM INSERTED AS [i] LEFT JOIN [Owners_tracking] [side] ON [side].[Id] = [i].[Id] WHERE [side].[Id] IS NULL

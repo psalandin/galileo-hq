@@ -1,0 +1,38 @@
+CREATE PROCEDURE [Prenotaz_update]
+	@P_1 Decimal(5,0),
+	@P_2 BigInt,
+	@P_3 VarChar(50),
+	@P_4 VarChar(255),
+	@P_5 Money,
+	@P_6 Decimal(10,0),
+	@P_7 VarChar(255),
+	@P_8 VarChar(100),
+	@P_9 VarChar(100),
+	@P_10 VarChar(50),
+	@P_11 DateTime,
+	@P_12 DateTime,
+	@P_13 Bit,
+	@P_14 Decimal(5,0),
+	@P_15 Decimal(10,0),
+	@P_16 Decimal(15,0),
+	@P_17 Bit,
+	@P_18 Bit,
+	@P_19 Int,
+	@P_20 Bit,
+	@P_21 DateTime,
+	@P_22 Bit,
+	@P_23 VarChar(100),
+	@P_24 Int,
+	@P_25 DateTime,
+	@P_26 Bit,
+	@P_27 VarChar(100),
+	@P_28 Int,
+	@P_29 DateTime,
+	@P_30 UniqueIdentifier,
+	@sync_force_write Int,
+	@sync_min_timestamp BigInt,
+	@sync_row_count Int OUTPUT
+AS
+BEGIN
+SET @sync_row_count = 0; UPDATE [Prenotaz] SET [IdOp] = @P_1, [IdCli] = @P_2, [Codice] = @P_3, [Descrizione] = @P_4, [Costo] = @P_5, [N_Tickets] = @P_6, [Fornitore] = @P_7, [NomeC] = @P_8, [CognomeC] = @P_9, [Tel] = @P_10, [Data] = @P_11, [DataCon] = @P_12, [Cons] = @P_13, [IdOpCo] = @P_14, [Quantita] = @P_15, [SerNum] = @P_16, [Conf] = @P_17, [MsgInv] = @P_18, [NImp] = @P_19, [Annul] = @P_20, [DataConf] = @P_21, [F0] = @P_22, [T0] = @P_23, [N0] = @P_24, [D0] = @P_25, [F1] = @P_26, [T1] = @P_27, [N1] = @P_28, [D1] = @P_29 FROM [Prenotaz] [base] JOIN [Prenotaz_tracking] [side] ON [base].[Keys] = [side].[Keys] WHERE ([side].[local_update_peer_timestamp] <= @sync_min_timestamp OR @sync_force_write = 1) AND ([base].[Keys] = @P_30); SET @sync_row_count = @@ROWCOUNT;
+END

@@ -1,0 +1,179 @@
+Chiave	NomeCampo	Gruppo	Descrizione
+>110	T0	Campi Jolly (Setup/>110)	Nome della raccolta card a cui si riferisce il record
+>110	T1	Campi Jolly (Setup/>110)	Valori delle serie separati da |
+>110	T2	Campi Jolly (Setup/>110)	Flags che indicano quali cards fanno parte delle serie
+>110	T6	Campi Jolly (Setup/>110)	Nomi delle serie separati da |
+>110	T7	Campi Jolly (Setup/>110)	Valori delle card separati da |
+101	CanPO	Acquisti	Se vero, abilita il pulsante Cancella Ordine di Acquisto
+101	NoOAcq	Acquisti	Se vero, nasconde tutti i menu relativi agli ordini di acquisto
+101	POMan	Acquisti	Se vero, abilita ordini di acquisto per i manager
+101	AutoConv	Automazione	Convalida automatica
+101	AutoNT	Automazione	Abilita calcolo automatico del numero di tickets
+101	NTMolt	Automazione	Moltiplicatore per numero tickets automatico
+101	D1	Campi Jolly (Setup/101)	Data/ora ultimo sincronismo generale
+101	D2	Campi Jolly (Setup/101)	Data/ora ultimo sincronismo clienti multi locale
+101	D3	Campi Jolly (Setup/101)	Data/ora dell’ultima email di servizio inviata
+101	F0	Campi Jolly (Setup/101)	Abilitazione menu reparti per operatore. Se TOTEM, abilitazione Prenotazione Premi
+101	F1	Campi Jolly (Setup/101)	Se vero, la postazione è un Totem
+101	F2	Campi Jolly (Setup/101)	Abilitazione controllo sincronismo sul server cloud
+101	F3	Campi Jolly (Setup/101)	Abilitazione sovrascrittura Codice dei premi con Barcode
+101	F4	Campi Jolly (Setup/101)	Abilitazione modifica descrizione dei premi per il manager
+101	F5	Campi Jolly (Setup/101)	Abilitazione modifica barcode dei premi per il manager
+101	F6	Campi Jolly (Setup/101)	Disabilitazione del messaggio di avviso di premio con quantità negativa
+101	F7	Campi Jolly (Setup/101)	Disabilitazione del messaggio di avviso di punti abbuonati
+101	F8	Campi Jolly (Setup/101)	Settato quando il sistema deve inviare un messaggio all’amministratore
+101	N0	Campi Jolly (Setup/101)	Intervallo sincronismo in secondi
+101	N1	Campi Jolly (Setup/101)	Numero identificativo della versione del database
+101	N2	Campi Jolly (Setup/101)	Numero porta comm del lettore di Tags RFID
+101	N3	Campi Jolly (Setup/101)	0=visualizza quantità macchine in inventario, 1=non la visualizza
+101	N4	Campi Jolly (Setup/101)	Colore dello sfondo della finestra principale
+101	N5	Campi Jolly (Setup/101)	Limite di punti per gli scontrini manuali o da reparto (0=nessun limite)
+101	N6	Campi Jolly (Setup/101)	Abilitazione prenotazioni senza card (0=disabilitata, 1=abilitata)
+101	N7	Campi Jolly (Setup/101)	MsiteMode
+101	N8	Campi Jolly (Setup/101)	Ritardo in millisecondi tra due letture dello scanner
+101	N9	Campi Jolly (Setup/101)	Limite di valore dei premi ottenibili con scontrini cartacei (0=nessun limite)
+101	T0	Campi Jolly (Setup/101)	Nome utente admin per la consolle web app
+101	T1	Campi Jolly (Setup/101)	Password utente admin per la consolle web app
+101	T7	Campi Jolly (Setup/101)	Configurazione server per database clienti multi-locale
+101	DataEnd	Eventi	Data fine concorso
+101	DataIni	Eventi	Data inizio concorso
+101	IniConc	Eventi	Data inizio nuovo concorso
+101	NConc	Eventi	Nome del concorso
+101	NewConc	Eventi	Se vero, calcola in rapporto i tickets pagati del vecchio concorso
+101	CBarC	Fiscale	Barcode obbligatorio sulle card
+101	GCassa	Fiscale	Se vero, abilita la gestione della cassa
+101	IncDay	Fiscale	Giorno della settimana per la registrazione incassi (0=Lunedì)
+101	IncIva	Fiscale	Percentuale IVA sugli incassi
+101	LastInc	Fiscale	Data ultima registrazione incassi
+101	NtickRic	Fiscale	Valore minimo per stampa ricevuta premio
+101	PInter	Fiscale	Percentuale interesse annua
+101	Pre25	Fiscale	Prezzo minimo per registrazione fiscale
+101	RegInc	Fiscale	Se vero, obbliga la registrazione settimanale degli incassi
+101	Ric25	Fiscale	Abilitazione ricevuta premio > 25 euro
+101	ScoMan	Fiscale	Abilitazione scontrino manuale
+101	TicStat	Fiscale	Riconoscimento scontrini ticket station
+101	ValGett	Fiscale	Valore gettone
+101	ValTick	Fiscale	Valore ticket
+101	VCassa	Fiscale	Valore della cassa
+101	ManAdd	Gestione articoli	Se vero, il manager può aggiungere nuovi articoli
+101	FornMan	Gestione fornitori	Se vero, menu fornitori visibile anche ai manager
+101	OpALOff	Gestione operatori	Se vero, dopo ogni consegna esegue il log off
+101	OpAppL	Gestione operatori	Se vero, opzioni lista approvata visibili anche ai manager
+101	OpCli	Gestione operatori	Abilita pulsante CLIENTI per l’operatore
+101	OpMPremi	Gestione operatori	Abilitazione menu premi per l’operatore
+101	OpRapp	Gestione operatori	Se vero, abilita menu rapporto per l’operatore
+101	OpResi	Gestione operatori	Abilitazione resi per operatori
+101	OpScoMan	Gestione operatori	Abilita scontrino manuale per l’operatore
+101	NCogn	Gestione utenti	Nome e cognome obbligatorio
+101	OpRig	Gestione utenti	Operatore può rigenerare le cards
+101	CardReader	Hardware	Tipo di lettore card (0=MSR106, 1=MSR206HiCo, 2=MSR206LoCo)
+101	NTrack	Hardware	Numero traccia card reader
+101	SecMonX	Hardware	Risoluzione orizzontale secondo monitor
+101	SecMonY	Hardware	Risoluzione verticale secondo monitor
+101	TypePrt	Hardware	Stampante installata (0=Neos, 1=STP-103, etc.)
+101	cittaLocale	Informazioni azienda	Città del locale
+101	indiLocale	Informazioni azienda	Indirizzo del locale
+101	NomeLocale	Informazioni azienda	Nome del locale
+101	provLocale	Informazioni azienda	Provincia del locale
+101	telLocale	Informazioni azienda	Telefono del locale
+101	AbOrInv	Inventario	Abilita ora prefissata per inizio inventario
+101	Inv0	Inventario	Se vero, le quantità reali in inventario vengono azzerate
+101	InvPass	Inventario	Se vero, la password manager può concludere l’inventario
+101	OrInv	Inventario	Ora prefissata per inizio inventario
+101	TmClose	Orari	Ora di chiusura
+101	TmOpen	Orari	Ora di apertura
+101	numcommBR	Porte di comunicazione	Numero porta barcode reader
+101	numcommCR	Porte di comunicazione	Numero porta lettore card
+101	numcommEN	Porte di comunicazione	Numero porta lettore RFID
+101	numcommMT1	Porte di comunicazione	Numero porta mangia tickets 1
+101	numcommMT2	Porte di comunicazione	Numero porta mangia tickets 2
+101	numcommMT3	Porte di comunicazione	Numero porta mangia tickets 3
+101	numcommMT4	Porte di comunicazione	Numero porta mangia tickets 4
+101	numcommMT5	Porte di comunicazione	Numero porta mangia tickets 5
+101	numcommPR	Porte di comunicazione	Numero porta stampante
+101	Fforza	Premi	Abilitazione forzatura premio
+101	FPpremio	Premi	Abilitazione stampa scontrino premio consegnato
+101	FPrCr	Premi	Flag stampa scontrino promemoria card
+101	FPrPr	Premi	Flag prenotazione premi
+101	MolPun	Premi	Moltiplicatore tickets per conversione in punti
+101	MQPrem	Premi	Abilita colonna quantità nei premi
+101	NTAbb	Premi	Numero massimo tickets abbuono
+101	PercAbb	Premi	Percentuale abbuono sul valore del premio
+101	AbBT	Promozioni	Abilitazione bonus tickets
+101	AbPr	Promozioni	Abilitazione promozioni
+101	AddSP	Promozioni	Somma sconto VIP alle promozioni
+101	BTDom	Promozioni	Bonus tickets domenica
+101	BTGio	Promozioni	Bonus tickets giovedì
+101	BTLun	Promozioni	Bonus tickets lunedì
+101	BTMar	Promozioni	Bonus tickets martedì
+101	BTMer	Promozioni	Bonus tickets mercoledì
+101	BTSab	Promozioni	Bonus tickets sabato
+101	BTVen	Promozioni	Bonus tickets venerdì
+101	DataBEnd	Promozioni	Data fine bonus tickets
+101	DataBIni	Promozioni	Data inizio bonus tickets
+101	DataPEnd	Promozioni	Data fine promozione
+101	DataPIni	Promozioni	Data inizio promozione
+101	FT24H	Promozioni	Tickets omaggio 24 ore
+101	FTBDay	Promozioni	Tickets omaggio per compleanno
+101	FTNew	Promozioni	Numero tickets omaggio per nuova card
+101	NT24H	Promozioni	Tickets minimi per omaggio 24 ore
+101	OraBEnd	Promozioni	Ora fine bonus tickets
+101	OraBIni	Promozioni	Ora inizio bonus tickets
+101	OraPEnd	Promozioni	Ora fine promozione
+101	OraPIni	Promozioni	Ora inizio promozione
+101	PBonus	Promozioni	Abilitazione bonus
+101	PrNoSc	Promozioni	Disabilita sconto VIP durante la promozione
+101	PTBon	Promozioni	Percentuale tickets bonus
+101	ScDom	Promozioni	Promozione domenica
+101	ScGio	Promozioni	Promozione giovedì
+101	ScLun	Promozioni	Promozione lunedì
+101	ScMar	Promozioni	Promozione martedì
+101	ScMer	Promozioni	Promozione mercoledì
+101	ScPromo	Promozioni	Percentuale sconto promozioni
+101	ScSab	Promozioni	Promozione sabato
+101	ScVen	Promozioni	Promozione venerdì
+101	FndCod	Ricerca	Se vero, ricerca su codice; altrimenti su codice originale
+101	BandaMag	Sicurezza	Se vero, obbliga scrittura banda magnetica per generare la card
+101	Passw	Sicurezza	Password
+101	PasswSM	Sicurezza	Obbligo password per scontrino manuale
+101	TagRd	Sicurezza	Se vero, obbliga l’uso del TAG RFID
+101	BkDisk	Sistema	Disco di backup
+101	BkpOk	Sistema	Se settato, ultimo backup eseguito correttamente
+101	CodEcs	Sistema	Codice ECSNET
+101	CRaw	Sistema	Tracce raw sulla card
+101	Easys	Sistema	Se vero, sistema facilitato
+101	FtpAppL	Sistema	Se vero, lista approvata scaricata e da importare
+101	FtpCranes	Sistema	Invia i dati di WinMTCranes a FTP server
+101	FTPDir	Sistema	Nome del folder FTP per l’invio dei dati
+101	ImgRem	Sistema	Se vero, le foto vengono prese dal server
+101	Lang	Sistema	Lingua (0=Italiano, 1=Inglese)
+101	Logging	Sistema	Flag logging attivato
+101	Master	Sistema	Flag programma locale o remoto
+101	MdbSaveInt	Sistema	Numero di minuti di intervallo per il salvataggio MDB
+101	Multiuser	Sistema	Abilitazione multiutenza
+101	Nimp	Sistema	Codice impianto
+101	NoAnnAPl	Sistema	Se vero, nasconde il pulsante Annulla in frmCAppL
+101	TotTick	Statistiche	Totale tickets contati
+101	HideList	Visualizzazione	Se vero, non visualizza lista premi su monitor secondario
+101	HideMov	Visualizzazione	Se vero, non visualizza menu movimenti in premi
+101	NoInatt	Visualizzazione	Se vero, non visualizza premi inattivi in Premi e Inventario
+101	VelDia	Visualizzazione	Velocità avanzamento diapositive
+101	VinPrInatt	Visualizzazione	Se vero, visualizza premi inattivi anche in vincite
+101	VisNome	Visualizzazione	Visualizza nome cliente su monitor secondario
+101	VisP0	Visualizzazione	Visualizza premi con quantità = 0
+102	D0	Campi Jolly (Setup/102)	Data scadenza abbonamento
+102	F0	Campi Jolly (Setup/102)	Abilitazione Privacy
+102	N0	Campi Jolly (Setup/102)	Tipo di abbonamento
+102	N1	Campi Jolly (Setup/102)	Numero anni di validità della tessera (0 = non scade mai)
+102	T7	Campi Jolly (Setup/102)	Configurazione accesso a database remoto ECL
+102-110	Arep2	Campi Jolly (Setup/102-110)	abilitazione server secondario
+102-110	F1	Campi Jolly (Setup/102-110)	isKiosk: settato se la postazione è un totem. Caricato in KioskExists da CaricaGen che diventa Vero se almeno un F1=1 (serve per visualizzare il pulsante “Kiosk Orders”)
+102-110	F2	Campi Jolly (Setup/102-110)	IErrPOS: se settato (dal Setup di TotemECL) l’errore del POS viene ignorato e il Totem funziona comunque
+102-110	NRep2	Campi Jolly (Setup/102-110)	IP server attivo (xxx.xxx.xxx.xxx)
+102-110	NRep3	Campi Jolly (Setup/102-110)	IP server di backup (xxx.xxx.xxx.xxx)
+102-110	NRep4	Campi Jolly (Setup/102-110)	secondi di attesa prima dello switch tra i 2 server
+110	F0	Campi Jolly (Setup/110)	Abilitazione dello Split Screen che prevarica la chiave
+110	F1	Campi Jolly (Setup/110)	1=Licenza valida, 0=Licenza scaduta o invalida
+110	T0	Campi Jolly (Setup/110)	Encpassword (super password)
+110	T1	Campi Jolly (Setup/110)	Tipo di licenza
+

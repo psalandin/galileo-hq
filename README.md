@@ -13,7 +13,8 @@ Analisi per la riprogettazione di WinMT e del sistema HQ: gestione cloud di sale
 | `docs/use-case/` | Un file per use case, a partire da `_modello-use-case.md` |
 | `docs/riunioni/` | Verbali, sommari e trascrizioni delle riunioni |
 | `docs/fonti/` | Materiale ricevuto e convertito in testo (es. manuale WinMT). Non si modifica |
-| `sql/` | Script e kit di query riutilizzabili sui DB di sala e di HQ |
+| `sql/` | Kit di query riutilizzabili sui DB di sala e di HQ (`queries/`), risultati (`risultati/`), script di esecuzione |
+| `sql/codice-db/` | Codice SQL (procedure, funzioni, viste, trigger) estratto dai DB di sala, applicativo separato da Sync Framework |
 
 L'indice ragionato dei documenti è in [`docs/00-indice.md`](docs/00-indice.md).
 

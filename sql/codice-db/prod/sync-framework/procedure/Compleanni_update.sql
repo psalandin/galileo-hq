@@ -1,0 +1,35 @@
+CREATE PROCEDURE [Compleanni_update]
+	@P_1 BigInt,
+	@P_2 VarChar(255),
+	@P_3 DateTime,
+	@P_4 DateTime,
+	@P_5 Char(1),
+	@P_6 Int,
+	@P_7 Int,
+	@P_8 Int,
+	@P_9 Int,
+	@P_10 Int,
+	@P_11 Int,
+	@P_12 VarChar(16),
+	@P_13 BigInt,
+	@P_14 Decimal(10,2),
+	@P_15 Decimal(10,2),
+	@P_16 Decimal(10,2),
+	@P_17 VarChar(128),
+	@P_18 VarChar(128),
+	@P_19 VarChar(15),
+	@P_20 VarChar(15),
+	@P_21 NVarChar(max),
+	@P_22 BigInt,
+	@P_23 DateTime2,
+	@P_24 BigInt,
+	@P_25 DateTime2,
+	@P_26 Int,
+	@P_27 BigInt,
+	@sync_force_write Int,
+	@sync_min_timestamp BigInt,
+	@sync_row_count Int OUTPUT
+AS
+BEGIN
+SET @sync_row_count = 0; UPDATE [Compleanni] SET [Titolo] = @P_2, [DallaData] = @P_3, [AllaData] = @P_4, [ModalitaTickets] = @P_5, [MaxPartitePerCard] = @P_6, [PartiteConsecutive] = @P_7, [NrSecondiResetConsecutive] = @P_8, [Partecipanti] = @P_9, [PartecipantiExtra] = @P_10, [ValorePrecaricatoCrediti] = @P_11, [CardId] = @P_12, [IdContatto] = @P_13, [ImportoCompleanno] = @P_14, [ImportoExtra] = @P_15, [AccontoVersato] = @P_16, [EmailGenitore1] = @P_17, [EmailGenitore2] = @P_18, [CellulareGenitore1] = @P_19, [CellulareGenitore2] = @P_20, [Note] = @P_21, [CreatedBy] = @P_22, [CreatedAt] = @P_23, [UpdatedBy] = @P_24, [UpdatedAt] = @P_25, [ValorePrecaricatoBonus] = @P_26, [IdRicarica] = @P_27 FROM [Compleanni] [base] JOIN [Compleanni_tracking] [side] ON [base].[IdCompleanno] = [side].[IdCompleanno] WHERE ([side].[local_update_peer_timestamp] <= @sync_min_timestamp OR @sync_force_write = 1) AND ([base].[IdCompleanno] = @P_1); SET @sync_row_count = @@ROWCOUNT;
+END

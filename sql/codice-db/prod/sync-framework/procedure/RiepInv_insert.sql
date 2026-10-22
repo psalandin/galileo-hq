@@ -1,0 +1,35 @@
+CREATE PROCEDURE [RiepInv_insert]
+	@P_1 DateTime,
+	@P_2 Money,
+	@P_3 Money,
+	@P_4 Money,
+	@P_5 Money,
+	@P_6 Money,
+	@P_7 Money,
+	@P_8 Money,
+	@P_9 Money,
+	@P_10 Money,
+	@P_11 Money,
+	@P_12 Decimal(6,2),
+	@P_13 Decimal(6,2),
+	@P_14 Decimal(6,2),
+	@P_15 Decimal(6,2),
+	@P_16 Decimal(6,2),
+	@P_17 Int,
+	@P_18 Money,
+	@P_19 Int,
+	@P_20 Bit,
+	@P_21 VarChar(100),
+	@P_22 Int,
+	@P_23 DateTime,
+	@P_24 VarBinary(max),
+	@P_25 Bit,
+	@P_26 VarChar(100),
+	@P_27 Int,
+	@P_28 DateTime,
+	@P_29 UniqueIdentifier,
+	@sync_row_count Int OUTPUT
+AS
+BEGIN
+SET @sync_row_count = 0; IF NOT EXISTS (SELECT * FROM [RiepInv_tracking] WHERE [Keys] = @P_29) BEGIN INSERT INTO [RiepInv]([Data], [VVend], [VCons], [VGru], [VRott], [VEvents], [TVPre], [IncRed], [IncGru], [IncAlt], [IncPush], [RedPer], [GruPer], [ConPer], [RotPer], [TotPer], [QDiff], [VarVal], [NImp], [F0], [T0], [N0], [D0], [Mdb], [F1], [T1], [N1], [D1], [Keys]) VALUES (@P_1, @P_2, @P_3, @P_4, @P_5, @P_6, @P_7, @P_8, @P_9, @P_10, @P_11, @P_12, @P_13, @P_14, @P_15, @P_16, @P_17, @P_18, @P_19, @P_20, @P_21, @P_22, @P_23, @P_24, @P_25, @P_26, @P_27, @P_28, @P_29);  SET @sync_row_count = @@rowcount;  END 
+END

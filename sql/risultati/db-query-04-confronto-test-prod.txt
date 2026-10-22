@@ -1,0 +1,237 @@
+# Oggetti per tipo
+
+tipo	test	prod	solo_test	solo_prod	(di cui sync: test/prod)
+C	5	5	0	0	0/0
+D	175	172	8	5	0/0
+F	3	3	0	0	0/0
+FN	13	13	0	0	0/0
+IF	4	4	0	0	0/0
+P	466	692	5	231	440/671
+PK	109	133	2	26	40/61
+TF	8	8	0	0	0/0
+TR	125	188	0	63	120/183
+U	124	138	8	22	43/64
+UQ	3	3	0	0	0/0
+V	14	14	0	0	0/0
+
+## Tabelle
+solo test (applicativi, 8): Nayax, Setup_Descriptions, TransCard_Consolidamento_Backup, TransCard_Consolidamento_Log, TransCard_Consolidamento_Map, UltimoInventario, pos_request, pos_transaction
+solo prod (applicativi, 1): SetupNew
+solo test (sync, 0): -
+solo prod (sync, 21): AuditLog_tracking, BEConfig_tracking, CoinlessImages_tracking, CoinlessLogEventiBlacklist_tracking, Coinless_sbuilder_page_provisioning_tracking, Compleanni_tracking, GruMagazzinoDettaglio_tracking, GruMagazzino_tracking, GruMovimenti_tracking, LogTransazioniPos_tracking, Ospiti_tracking, PartiteOspiti_tracking, RedeemCodes_tracking, Setup2_tracking, TipoRicaricheCompleanni_tracking, cache_dati_grafico_giornaliero_tracking, coinless_sbuilder_pages_tracking, coinless_sbuilder_templates_svg_tracking, ecl_DeviceProvisioning_tracking, promozioni_cards_tracking, promozioni_tracking
+
+## Viste
+solo test (applicativi, 0): -
+solo prod (applicativi, 0): -
+solo test (sync, 0): -
+solo prod (sync, 0): -
+
+## Procedure
+solo test (applicativi, 5): GetSetupAsTable, PrizeHub_MoveToSlot, sp_consolida_transcard_sessioni_cash, sp_generacache_old, sp_redeem_verify_pin
+solo prod (applicativi, 0): -
+solo test (sync, 0): -
+solo prod (sync, 231): AuditLog_bulkdelete, AuditLog_bulkinsert, AuditLog_bulkupdate, AuditLog_delete, AuditLog_deletemetadata, AuditLog_insert, AuditLog_insertmetadata, AuditLog_selectchanges, AuditLog_selectrow, AuditLog_update, AuditLog_updatemetadata, BEConfig_bulkdelete, BEConfig_bulkinsert, BEConfig_bulkupdate, BEConfig_delete, BEConfig_deletemetadata, BEConfig_insert, BEConfig_insertmetadata, BEConfig_selectchanges, BEConfig_selectrow, BEConfig_update, BEConfig_updatemetadata, CoinlessImages_bulkdelete, CoinlessImages_bulkinsert, CoinlessImages_bulkupdate, CoinlessImages_delete, CoinlessImages_deletemetadata, CoinlessImages_insert, CoinlessImages_insertmetadata, CoinlessImages_selectchanges, CoinlessImages_selectrow, CoinlessImages_update, CoinlessImages_updatemetadata, CoinlessLogEventiBlacklist_bulkdelete, CoinlessLogEventiBlacklist_bulkinsert, CoinlessLogEventiBlacklist_bulkupdate, CoinlessLogEventiBlacklist_delete, CoinlessLogEventiBlacklist_deletemetadata, CoinlessLogEventiBlacklist_insert, CoinlessLogEventiBlacklist_insertmetadata, CoinlessLogEventiBlacklist_selectchanges, CoinlessLogEventiBlacklist_selectrow, CoinlessLogEventiBlacklist_update, CoinlessLogEventiBlacklist_updatemetadata, Coinless_sbuilder_page_provisioning_bulkdelete, Coinless_sbuilder_page_provisioning_bulkinsert, Coinless_sbuilder_page_provisioning_bulkupdate, Coinless_sbuilder_page_provisioning_delete, Coinless_sbuilder_page_provisioning_deletemetadata, Coinless_sbuilder_page_provisioning_insert, Coinless_sbuilder_page_provisioning_insertmetadata, Coinless_sbuilder_page_provisioning_selectchanges, Coinless_sbuilder_page_provisioning_selectrow, Coinless_sbuilder_page_provisioning_update, Coinless_sbuilder_page_provisioning_updatemetadata, Compleanni_bulkdelete, Compleanni_bulkinsert, Compleanni_bulkupdate, Compleanni_delete, Compleanni_deletemetadata, Compleanni_insert, Compleanni_insertmetadata, Compleanni_selectchanges, Compleanni_selectrow, Compleanni_update, Compleanni_updatemetadata, GruMagazzinoDettaglio_bulkdelete, GruMagazzinoDettaglio_bulkinsert, GruMagazzinoDettaglio_bulkupdate, GruMagazzinoDettaglio_delete, GruMagazzinoDettaglio_deletemetadata, GruMagazzinoDettaglio_insert, GruMagazzinoDettaglio_insertmetadata, GruMagazzinoDettaglio_selectchanges, GruMagazzinoDettaglio_selectrow, GruMagazzinoDettaglio_update, GruMagazzinoDettaglio_updatemetadata, GruMagazzino_bulkdelete, GruMagazzino_bulkinsert, GruMagazzino_bulkupdate, GruMagazzino_delete, GruMagazzino_deletemetadata, GruMagazzino_insert, GruMagazzino_insertmetadata, GruMagazzino_selectchanges, GruMagazzino_selectrow, GruMagazzino_update, GruMagazzino_updatemetadata, GruMovimenti_bulkdelete, GruMovimenti_bulkinsert, GruMovimenti_bulkupdate, GruMovimenti_delete, GruMovimenti_deletemetadata, GruMovimenti_insert, GruMovimenti_insertmetadata, GruMovimenti_selectchanges, GruMovimenti_selectrow, GruMovimenti_update, GruMovimenti_updatemetadata, LogTransazioniPos_bulkdelete, LogTransazioniPos_bulkinsert, LogTransazioniPos_bulkupdate, LogTransazioniPos_delete, LogTransazioniPos_deletemetadata, LogTransazioniPos_insert, LogTransazioniPos_insertmetadata, LogTransazioniPos_selectchanges, LogTransazioniPos_selectrow, LogTransazioniPos_update, LogTransazioniPos_updatemetadata, Ospiti_bulkdelete, Ospiti_bulkinsert, Ospiti_bulkupdate, Ospiti_delete, Ospiti_deletemetadata, Ospiti_insert, Ospiti_insertmetadata, Ospiti_selectchanges, Ospiti_selectrow, Ospiti_update, Ospiti_updatemetadata, PartiteOspiti_bulkdelete, PartiteOspiti_bulkinsert, PartiteOspiti_bulkupdate, PartiteOspiti_delete, PartiteOspiti_deletemetadata, PartiteOspiti_insert, PartiteOspiti_insertmetadata, PartiteOspiti_selectchanges, PartiteOspiti_selectrow, PartiteOspiti_update, PartiteOspiti_updatemetadata, RedeemCodes_bulkdelete, RedeemCodes_bulkinsert, RedeemCodes_bulkupdate, RedeemCodes_delete, RedeemCodes_deletemetadata, RedeemCodes_insert, RedeemCodes_insertmetadata, RedeemCodes_selectchanges, RedeemCodes_selectrow, RedeemCodes_update, RedeemCodes_updatemetadata, Setup2_bulkdelete, Setup2_bulkinsert, Setup2_bulkupdate, Setup2_delete, Setup2_deletemetadata, Setup2_insert, Setup2_insertmetadata, Setup2_selectchanges, Setup2_selectrow, Setup2_update, Setup2_updatemetadata, TipoRicaricheCompleanni_bulkdelete, TipoRicaricheCompleanni_bulkinsert, TipoRicaricheCompleanni_bulkupdate, TipoRicaricheCompleanni_delete, TipoRicaricheCompleanni_deletemetadata, TipoRicaricheCompleanni_insert, TipoRicaricheCompleanni_insertmetadata, TipoRicaricheCompleanni_selectchanges, TipoRicaricheCompleanni_selectrow, TipoRicaricheCompleanni_update, TipoRicaricheCompleanni_updatemetadata, cache_dati_grafico_giornaliero_bulkdelete, cache_dati_grafico_giornaliero_bulkinsert, cache_dati_grafico_giornaliero_bulkupdate, cache_dati_grafico_giornaliero_delete, cache_dati_grafico_giornaliero_deletemetadata, cache_dati_grafico_giornaliero_insert, cache_dati_grafico_giornaliero_insertmetadata, cache_dati_grafico_giornaliero_selectchanges, cache_dati_grafico_giornaliero_selectrow, cache_dati_grafico_giornaliero_update, cache_dati_grafico_giornaliero_updatemetadata, coinless_sbuilder_pages_bulkdelete, coinless_sbuilder_pages_bulkinsert, coinless_sbuilder_pages_bulkupdate, coinless_sbuilder_pages_delete, coinless_sbuilder_pages_deletemetadata, coinless_sbuilder_pages_insert, coinless_sbuilder_pages_insertmetadata, coinless_sbuilder_pages_selectchanges, coinless_sbuilder_pages_selectrow, coinless_sbuilder_pages_update, coinless_sbuilder_pages_updatemetadata, coinless_sbuilder_templates_svg_bulkdelete, coinless_sbuilder_templates_svg_bulkinsert, coinless_sbuilder_templates_svg_bulkupdate, coinless_sbuilder_templates_svg_delete, coinless_sbuilder_templates_svg_deletemetadata, coinless_sbuilder_templates_svg_insert, coinless_sbuilder_templates_svg_insertmetadata, coinless_sbuilder_templates_svg_selectchanges, coinless_sbuilder_templates_svg_selectrow, coinless_sbuilder_templates_svg_update, coinless_sbuilder_templates_svg_updatemetadata, ecl_DeviceProvisioning_bulkdelete, ecl_DeviceProvisioning_bulkinsert, ecl_DeviceProvisioning_bulkupdate, ecl_DeviceProvisioning_delete, ecl_DeviceProvisioning_deletemetadata, ecl_DeviceProvisioning_insert, ecl_DeviceProvisioning_insertmetadata, ecl_DeviceProvisioning_selectchanges, ecl_DeviceProvisioning_selectrow, ecl_DeviceProvisioning_update, ecl_DeviceProvisioning_updatemetadata, promozioni_bulkdelete, promozioni_bulkinsert, promozioni_bulkupdate, promozioni_cards_bulkdelete, promozioni_cards_bulkinsert, promozioni_cards_bulkupdate, promozioni_cards_delete, promozioni_cards_deletemetadata, promozioni_cards_insert, promozioni_cards_insertmetadata, promozioni_cards_selectchanges, promozioni_cards_selectrow, promozioni_cards_update, promozioni_cards_updatemetadata, promozioni_delete, promozioni_deletemetadata, promozioni_insert, promozioni_insertmetadata, promozioni_selectchanges, promozioni_selectrow, promozioni_update, promozioni_updatemetadata
+
+## Funzioni scalari
+solo test (applicativi, 0): -
+solo prod (applicativi, 0): -
+solo test (sync, 0): -
+solo prod (sync, 0): -
+
+## Funzioni inline
+solo test (applicativi, 0): -
+solo prod (applicativi, 0): -
+solo test (sync, 0): -
+solo prod (sync, 0): -
+
+## Funzioni tabellari
+solo test (applicativi, 0): -
+solo prod (applicativi, 0): -
+solo test (sync, 0): -
+solo prod (sync, 0): -
+
+## Trigger
+solo test (applicativi, 0): -
+solo prod (applicativi, 0): -
+solo test (sync, 0): -
+solo prod (sync, 63): AuditLog_delete_trigger, AuditLog_insert_trigger, AuditLog_update_trigger, BEConfig_delete_trigger, BEConfig_insert_trigger, BEConfig_update_trigger, CoinlessImages_delete_trigger, CoinlessImages_insert_trigger, CoinlessImages_update_trigger, CoinlessLogEventiBlacklist_delete_trigger, CoinlessLogEventiBlacklist_insert_trigger, CoinlessLogEventiBlacklist_update_trigger, Coinless_sbuilder_page_provisioning_delete_trigger, Coinless_sbuilder_page_provisioning_insert_trigger, Coinless_sbuilder_page_provisioning_update_trigger, Compleanni_delete_trigger, Compleanni_insert_trigger, Compleanni_update_trigger, GruMagazzinoDettaglio_delete_trigger, GruMagazzinoDettaglio_insert_trigger, GruMagazzinoDettaglio_update_trigger, GruMagazzino_delete_trigger, GruMagazzino_insert_trigger, GruMagazzino_update_trigger, GruMovimenti_delete_trigger, GruMovimenti_insert_trigger, GruMovimenti_update_trigger, LogTransazioniPos_delete_trigger, LogTransazioniPos_insert_trigger, LogTransazioniPos_update_trigger, Ospiti_delete_trigger, Ospiti_insert_trigger, Ospiti_update_trigger, PartiteOspiti_delete_trigger, PartiteOspiti_insert_trigger, PartiteOspiti_update_trigger, RedeemCodes_delete_trigger, RedeemCodes_insert_trigger, RedeemCodes_update_trigger, Setup2_delete_trigger, Setup2_insert_trigger, Setup2_update_trigger, TipoRicaricheCompleanni_delete_trigger, TipoRicaricheCompleanni_insert_trigger, TipoRicaricheCompleanni_update_trigger, cache_dati_grafico_giornaliero_delete_trigger, cache_dati_grafico_giornaliero_insert_trigger, cache_dati_grafico_giornaliero_update_trigger, coinless_sbuilder_pages_delete_trigger, coinless_sbuilder_pages_insert_trigger, coinless_sbuilder_pages_update_trigger, coinless_sbuilder_templates_svg_delete_trigger, coinless_sbuilder_templates_svg_insert_trigger, coinless_sbuilder_templates_svg_update_trigger, ecl_DeviceProvisioning_delete_trigger, ecl_DeviceProvisioning_insert_trigger, ecl_DeviceProvisioning_update_trigger, promozioni_cards_delete_trigger, promozioni_cards_insert_trigger, promozioni_cards_update_trigger, promozioni_delete_trigger, promozioni_insert_trigger, promozioni_update_trigger
+
+## Tipi tabella
+solo test (applicativi, 0): -
+solo prod (applicativi, 0): -
+solo test (sync, 0): -
+solo prod (sync, 0): -
+
+# Tabelle solo in un DB, con righe
+
+solo test	Nayax	18018 righe	30 col	creata 2025-12-18 11:41:19
+solo test	Setup_Descriptions	177 righe	4 col	creata 2025-02-27 16:11:52
+solo test	TransCard_Consolidamento_Backup	4124 righe	21 col	creata 2026-04-01 15:26:30
+solo test	TransCard_Consolidamento_Log	1 righe	11 col	creata 2026-04-01 15:26:30
+solo test	TransCard_Consolidamento_Map	6378 righe	9 col	creata 2026-04-01 15:26:30
+solo test	UltimoInventario	0 righe	31 col	creata 2024-12-12 11:48:19
+solo test	pos_request	1083 righe	7 col	creata 2025-12-18 10:53:54
+solo test	pos_transaction	1083 righe	21 col	creata 2025-12-18 10:53:54
+solo prod	AuditLog_tracking	4408 righe	14 col	creata 2026-06-03 11:19:07
+solo prod	BEConfig_tracking	81 righe	14 col	creata 2026-06-03 11:19:07
+solo prod	CoinlessImages_tracking	14 righe	14 col	creata 2026-06-03 11:19:07
+solo prod	CoinlessLogEventiBlacklist_tracking	332 righe	14 col	creata 2026-06-03 11:19:07
+solo prod	Coinless_sbuilder_page_provisioning_tracking	252 righe	14 col	creata 2026-06-03 11:19:27
+solo prod	Compleanni_tracking	160 righe	14 col	creata 2026-06-03 11:19:08
+solo prod	GruMagazzinoDettaglio_tracking	27 righe	15 col	creata 2026-06-03 11:19:28
+solo prod	GruMagazzino_tracking	9 righe	14 col	creata 2026-06-03 11:19:28
+solo prod	GruMovimenti_tracking	0 righe	14 col	creata 2026-06-03 11:19:28
+solo prod	LogTransazioniPos_tracking	0 righe	14 col	creata 2026-06-03 11:19:27
+solo prod	Ospiti_tracking	1892 righe	14 col	creata 2026-06-03 11:19:17
+solo prod	PartiteOspiti_tracking	14512 righe	14 col	creata 2026-06-03 11:19:17
+solo prod	RedeemCodes_tracking	0 righe	14 col	creata 2026-06-03 11:19:17
+solo prod	Setup2_tracking	11 righe	15 col	creata 2026-06-03 11:19:18
+solo prod	SetupNew	0 righe	8 col	creata 2026-06-03 10:30:42
+solo prod	TipoRicaricheCompleanni_tracking	1 righe	14 col	creata 2026-06-03 11:19:21
+solo prod	cache_dati_grafico_giornaliero_tracking	59873 righe	15 col	creata 2026-06-03 11:19:07
+solo prod	coinless_sbuilder_pages_tracking	259 righe	14 col	creata 2026-06-03 11:19:27
+solo prod	coinless_sbuilder_templates_svg_tracking	4 righe	14 col	creata 2026-06-03 11:19:27
+solo prod	ecl_DeviceProvisioning_tracking	8 righe	14 col	creata 2026-06-03 11:19:08
+solo prod	promozioni_cards_tracking	45 righe	14 col	creata 2026-06-03 11:19:27
+solo prod	promozioni_tracking	1 righe	14 col	creata 2026-06-03 11:19:27
+
+# Tabelle comuni: differenze di PK / clustered / n. colonne
+
+AuditLog	ha_pk: 0 -> 1; ha_clustered: 0 -> 1
+CoinlessCards	n_colonne: 11 -> 9
+PartiteOspiti	n_colonne: 10 -> 11; ha_pk: 0 -> 1; ha_clustered: 0 -> 1
+cache_dati_grafico_giornaliero	ha_pk: 0 -> 1; ha_clustered: 0 -> 1
+ecl_DeviceProvisioning	ha_pk: 0 -> 1; ha_clustered: 0 -> 1
+
+# Colonne: differenze sugli oggetti comuni (tabelle e viste)
+
+U CoinlessCards
+  - solo test: TentativiNonConfermati int() null=False default=((0))
+  - solo test: UltimoN0NonConfermato int() null=True default=NULL
+U LogTransazioniPos
+  ! ordine delle colonne diverso
+U PartiteOspiti
+  + solo prod: id bigint() null=False default=NULL
+U Premi
+  ~ PDis1: lunghezza: 100 -> 255
+  ~ PDis2: lunghezza: 100 -> 255
+  ~ PDis3: lunghezza: 100 -> 255
+  ~ PDis4: lunghezza: 100 -> 255
+  ~ PDis5: lunghezza: 100 -> 255
+  ~ PDis6: lunghezza: 100 -> 255
+  ~ PDis7: lunghezza: 100 -> 255
+  ~ PDis8: lunghezza: 100 -> 255
+U cache_dati_grafico_giornaliero
+  ~ CodMac: is_nullable: True -> False
+  ~ DataRil: is_nullable: True -> False
+oggetti con differenze di colonne: 5
+
+# Indici (tabelle comuni, escluse _tracking)
+
+solo test	EcsDati	IX_EcsDati_DataRil	NONCLUSTERED uniq=False	(DataRil) incl(NULL)	0.38 MB
+solo test	TransCard	IX_TransCard_IdCli_Data_N0	NONCLUSTERED uniq=False	(IdCli, Data, N0) incl(NULL)	1.26 MB
+solo test	TransCard	IX_TransCard_NImp_Data	NONCLUSTERED uniq=False	(NImp, Data) incl(NULL)	1.01 MB
+solo test	cache_dati_grafico_giornaliero	IX_cache_dati_grafico_giornaliero_DataRil	NONCLUSTERED uniq=False	(DataRil) incl(NULL)	0.13 MB
+solo test	cache_dati_grafico_giornaliero	IX_cache_dati_grafico_giornaliero_DataRil_CodMac_Tipo	NONCLUSTERED uniq=False	(DataRil, CodMac, tipo) incl(NULL)	0.20 MB
+solo prod	AuditLog	PK_AuditLog	CLUSTERED uniq=True	(id) incl(NULL)	0.64 MB
+solo prod	PartiteOspiti	PK_PartiteOspiti	CLUSTERED uniq=True	(id) incl(NULL)	1.52 MB
+solo prod	TransCard	idx_TransCard_NImp_WinMt_Data_ValoreOperazione	NONCLUSTERED uniq=False	(NImp, WinMt, Data, ValoreOperazione) incl(NULL)	55.02 MB
+solo prod	TransCard	idx_TransCard_NImp_WinMt_Data_ValoreOperazione_IdCli_Operatore	NONCLUSTERED uniq=False	(NImp, WinMt, Data, ValoreOperazione) incl(IdCli, Operatore)	70.77 MB
+solo prod	TransCard	idx_TransCard_NImp_WinMt_Data_ValoreOperazione_IdCli_Operatore_ValoreCassa	NONCLUSTERED uniq=False	(NImp, WinMt, Data, ValoreOperazione) incl(IdCli, Operatore, ValoreCassa)	80.83 MB
+solo prod	TransCard	idx_TransCard_NImp_WinMt_Data_ValoreOperazione_IdCli_ValoreCassa	NONCLUSTERED uniq=False	(NImp, WinMt, Data, ValoreOperazione) incl(IdCli, ValoreCassa)	75.77 MB
+solo prod	TransCard	idx_TransCard_NImp_WinMt_Data_ValoreOperazione_Operatore_ValoreCassa	NONCLUSTERED uniq=False	(NImp, WinMt, Data, ValoreOperazione) incl(Operatore, ValoreCassa)	69.83 MB
+solo prod	TransCard	idx_TransCard_NImp_WinMt_Data_ValoreOperazione_ValoreCassa	NONCLUSTERED uniq=False	(NImp, WinMt, Data, ValoreOperazione) incl(ValoreCassa)	65.02 MB
+solo prod	cache_dati_grafico_giornaliero	PK_cache_dati_grafico_giornaliero	CLUSTERED uniq=True	(CodMac, DataRil) incl(NULL)	7.07 MB
+solo prod	ecl_DeviceProvisioning	PK_ecl_DeviceProvisioning	CLUSTERED uniq=True	(macaddress) incl(NULL)	0.07 MB
+diverso	CoinlessDati	idx1	test: ('NONCLUSTERED', 'True', 'False', 'cmd, cnt, hmac', 'NULL', 'NULL')	prod: ('NONCLUSTERED', 'True', 'False', 'device, cmd, cnt, hmac', 'NULL', 'NULL')
+
+Indici per tabella (tabelle comuni con numero diverso):
+  AuditLog: 0 -> 1
+  EcsDati: 6 -> 5
+  PartiteOspiti: 0 -> 1
+  TransCard: 25 -> 29
+  cache_dati_grafico_giornaliero: 2 -> 1
+  ecl_DeviceProvisioning: 0 -> 1
+
+# Chiavi esterne
+
+uguale	FK_GruMagazzinoDettaglio_GruMagazzino	test: GruMagazzinoDettaglio(CodMac) -> GruMagazzino(CodMac) del=NO_ACTION dis=False untrusted=False	prod: GruMagazzinoDettaglio(CodMac) -> GruMagazzino(CodMac) del=NO_ACTION dis=False untrusted=False
+uguale	FK_GruMovimenti_GruMagazzino	test: GruMovimenti(CodMac) -> GruMagazzino(CodMac) del=NO_ACTION dis=False untrusted=False	prod: GruMovimenti(CodMac) -> GruMagazzino(CodMac) del=NO_ACTION dis=False untrusted=False
+uguale	fkcardid	test: promozioni_cards(idpromozione) -> promozioni(id) del=NO_ACTION dis=False untrusted=False	prod: promozioni_cards(idpromozione) -> promozioni(id) del=NO_ACTION dis=False untrusted=False
+
+# Vincoli CHECK
+
+uguale	CK_GruMagazzinoDettaglio_AvgValue	test: GruMagazzinoDettaglio ([AvgValue]>=(0)) dis=False	prod: GruMagazzinoDettaglio ([AvgValue]>=(0)) dis=False
+uguale	CK_GruMagazzinoDettaglio_QtyCurrent	test: GruMagazzinoDettaglio ([QtyCurrent]>=(0)) dis=False	prod: GruMagazzinoDettaglio ([QtyCurrent]>=(0)) dis=False
+uguale	CK_GruMagazzinoDettaglio_SlotNo	test: GruMagazzinoDettaglio ([SlotNo]=(3) OR [SlotNo]=(2) OR [SlotNo]=(1)) dis=False	prod: GruMagazzinoDettaglio ([SlotNo]=(3) OR [SlotNo]=(2) OR [SlotNo]=(1)) dis=False
+DIVERSO	CK_GruMovimenti_MovementType	test: GruMovimenti ([MovementType]='ADJUST-' OR [MovementType]='ADJUST+' OR [MovementType]='WIN' OR [MovementType]='UNLOAD' OR [MovementType]='LOAD') dis=False	prod: GruMovimenti ([MovementType]='ADJUST-' OR [MovementType]='ADJUST+' OR [MovementType]='UNLOAD' OR [MovementType]='WIN' OR [MovementType]='LOAD') dis=False
+uguale	CK_GruMovimenti_SlotNo	test: GruMovimenti ([SlotNo]=(3) OR [SlotNo]=(2) OR [SlotNo]=(1)) dis=False	prod: GruMovimenti ([SlotNo]=(3) OR [SlotNo]=(2) OR [SlotNo]=(1)) dis=False
+
+# Trigger applicativi (esclusi quelli di sync)
+
+CoinlessClonedCards.bannaUtente	CODICE DIVERSO	test: dis=False instead=False INSERT mod=2024-12-12 11:48:19 len=526	prod: dis=False instead=False INSERT mod=2026-06-03 10:30:39 len=411
+CoinlessDati.decodifica_flusso	codice uguale	test: dis=False instead=False INSERT mod=2024-12-12 11:48:19 len=946	prod: dis=False instead=False INSERT mod=2026-06-03 10:30:39 len=946
+CoinlessDecodedData.inseriscesuECS	CODICE DIVERSO	test: dis=False instead=False INSERT mod=2025-05-22 18:14:39 len=1120	prod: dis=False instead=False INSERT mod=2026-06-03 10:30:39 len=1072
+CoinlessDecodedData.insertrecordWINMT	codice uguale	test: dis=True instead=True INSERT mod=2024-12-12 11:48:19 len=4989	prod: dis=True instead=True INSERT mod=2026-06-03 10:30:39 len=4989
+CoinlessTransazioniCards.aggiornaCard	CODICE DIVERSO	test: dis=False instead=False INSERT mod=2024-12-23 12:17:51 len=599	prod: dis=False instead=False INSERT mod=2026-06-03 10:30:39 len=600
+trigger di sync: {'uguali': 120, 'solo prod': 63}
+
+# Codice dei moduli comuni (procedure, funzioni, viste, trigger)
+
+app	diverso	24
+app	uguale	41
+sync	diverso	8
+sync	uguale	552
+
+Moduli comuni con codice diverso:
+  SQL_SCALAR_FUNCTION	CreditToCurrency	test len=297 mod=2025-03-14 16:07:08	prod len=277 mod=2026-06-03 10:30:43	righe diff=0
+  SQL_STORED_PROCEDURE	FinalizeUidCodbar	test len=323 mod=2026-02-05 10:21:27	prod len=306 mod=2026-06-03 10:30:47	righe diff=2
+  SQL_STORED_PROCEDURE	GetFreeUidCodbar	test len=1816 mod=2026-02-05 10:20:54	prod len=1746 mod=2026-06-03 10:30:47	righe diff=1
+  SQL_STORED_PROCEDURE	Premi_insert	test len=1694 mod=2025-02-04 12:20:50	prod len=1702 mod=2026-06-03 11:19:17	righe diff=16
+  SQL_STORED_PROCEDURE	Premi_update	test len=1891 mod=2025-02-04 12:20:50	prod len=1899 mod=2026-06-03 11:19:17	righe diff=16
+  SQL_TABLE_VALUED_FUNCTION	SplitStrings_CTE	test len=1228 mod=2024-12-12 11:48:20	prod len=1240 mod=2026-06-03 10:30:43	righe diff=1
+  SQL_STORED_PROCEDURE	UID_Ammessi_bulkinsert	test len=1693 mod=2025-02-04 12:20:51	prod len=1777 mod=2026-06-03 11:19:27	righe diff=2
+  SQL_STORED_PROCEDURE	UID_Ammessi_bulkupdate	test len=1564 mod=2025-02-04 12:20:51	prod len=1650 mod=2026-06-03 11:19:27	righe diff=2
+  SQL_STORED_PROCEDURE	UID_Ammessi_insert	test len=324 mod=2025-02-04 12:20:51	prod len=398 mod=2026-06-03 11:19:27	righe diff=4
+  SQL_STORED_PROCEDURE	UID_Ammessi_selectchanges	test len=1823 mod=2025-02-04 12:20:51	prod len=1871 mod=2026-06-03 11:19:27	righe diff=2
+  SQL_STORED_PROCEDURE	UID_Ammessi_selectrow	test len=1519 mod=2025-02-04 12:20:51	prod len=1567 mod=2026-06-03 11:19:27	righe diff=2
+  SQL_STORED_PROCEDURE	UID_Ammessi_update	test len=481 mod=2025-02-04 12:20:51	prod len=557 mod=2026-06-03 11:19:27	righe diff=4
+  SQL_TRIGGER	aggiornaCard	test len=599 mod=2024-12-23 12:17:51	prod len=600 mod=2026-06-03 10:30:39	righe diff=3
+  SQL_TRIGGER	bannaUtente	test len=526 mod=2024-12-12 11:48:19	prod len=411 mod=2026-06-03 10:30:39	righe diff=4
+  SQL_STORED_PROCEDURE	decodifica_record	test len=30230 mod=2026-10-07 16:16:07	prod len=26283 mod=2026-06-03 10:30:47	righe diff=61
+  SQL_SCALAR_FUNCTION	fn_CambiaBase	test len=622 mod=2024-12-12 11:48:19	prod len=632 mod=2026-06-03 10:30:43	righe diff=1
+  SQL_INLINE_TABLE_VALUED_FUNCTION	fn_RicalcolaContatoriGiornalieri	test len=1356 mod=2024-12-12 11:48:20	prod len=1367 mod=2026-06-03 10:30:43	righe diff=2
+  SQL_INLINE_TABLE_VALUED_FUNCTION	fn_RicalcolaContatoriOrari	test len=1506 mod=2025-02-21 17:21:11	prod len=1522 mod=2026-06-03 10:30:43	righe diff=61
+  SQL_TABLE_VALUED_FUNCTION	fn_dati_grafico_giornaliero	test len=7994 mod=2026-04-07 12:35:14	prod len=7707 mod=2026-06-03 10:30:43	righe diff=24
+  SQL_SCALAR_FUNCTION	fn_decode_mt_bitmask	test len=2410 mod=2026-10-12 15:56:03	prod len=2685 mod=2026-06-03 10:30:43	righe diff=48
+  SQL_TABLE_VALUED_FUNCTION	fn_dettaglio_incassi	test len=5905 mod=2026-04-07 14:05:37	prod len=5709 mod=2026-06-03 10:30:43	righe diff=10
+  SQL_INLINE_TABLE_VALUED_FUNCTION	fn_generateDateTable	test len=2000 mod=2024-12-12 11:48:19	prod len=2000 mod=2026-06-03 10:30:43	righe diff=2
+  SQL_TRIGGER	inseriscesuECS	test len=1120 mod=2025-05-22 18:14:39	prod len=1072 mod=2026-06-03 10:30:39	righe diff=6
+  SQL_STORED_PROCEDURE	scriviTicketsAutomatici	test len=5010 mod=2025-03-12 16:09:25	prod len=4652 mod=2026-06-03 10:30:47	righe diff=1
+  SQL_STORED_PROCEDURE	scriviTransazioneCard	test len=886 mod=2025-05-30 14:32:35	prod len=849 mod=2026-06-03 10:30:47	righe diff=0
+  SQL_STORED_PROCEDURE	sp_crane_ensure_records	test len=1358 mod=2026-04-27 10:58:40	prod len=1305 mod=2026-06-03 10:30:47	righe diff=2
+  SQL_STORED_PROCEDURE	sp_crane_force_avg_value	test len=1449 mod=2026-06-01 12:09:16	prod len=1389 mod=2026-06-03 10:30:47	righe diff=14
+  SQL_STORED_PROCEDURE	sp_generacache	test len=7595 mod=2026-04-16 15:56:06	prod len=7372 mod=2026-06-03 10:30:47	righe diff=2
+  SQL_STORED_PROCEDURE	sp_redeem_cancel	test len=818 mod=2026-09-10 16:54:28	prod len=617 mod=2026-06-03 10:30:47	righe diff=14
+  SQL_STORED_PROCEDURE	sp_redeem_check_and_reserve_no_pin	test len=2787 mod=2026-09-10 16:52:45	prod len=1852 mod=2026-06-03 10:30:47	righe diff=42
+  SQL_STORED_PROCEDURE	sp_redeem_confirm	test len=1595 mod=2026-09-10 16:54:51	prod len=1325 mod=2026-06-03 10:30:47	righe diff=24
+  SQL_INLINE_TABLE_VALUED_FUNCTION	udf-Str-Parse-8K	test len=769 mod=2024-12-12 11:48:20	prod len=779 mod=2026-06-03 10:30:43	righe diff=2
+
+# Sync: tabelle per scope
+
+LocalSync: test 40 tabelle, prod 61
+  solo prod: [AuditLog], [BEConfig], [CoinlessImages], [CoinlessLogEventiBlacklist], [Coinless_sbuilder_page_provisioning], [Compleanni], [GruMagazzinoDettaglio], [GruMagazzino], [GruMovimenti], [LogTransazioniPos], [Ospiti], [PartiteOspiti], [RedeemCodes], [Setup2], [TipoRicaricheCompleanni], [cache_dati_grafico_giornaliero], [coinless_sbuilder_pages], [coinless_sbuilder_templates_svg], [ecl_DeviceProvisioning], [promozioni], [promozioni_cards]
+  solo test: -
+  colonne sincronizzate diverse: [UID_Ammessi] 2->4
+  filtri in prod: -
+WinMtSync: test 40 tabelle, prod 61
+  solo prod: [AuditLog], [BEConfig], [CoinlessImages], [CoinlessLogEventiBlacklist], [Coinless_sbuilder_page_provisioning], [Compleanni], [GruMagazzinoDettaglio], [GruMagazzino], [GruMovimenti], [LogTransazioniPos], [Ospiti], [PartiteOspiti], [RedeemCodes], [Setup2], [TipoRicaricheCompleanni], [cache_dati_grafico_giornaliero], [coinless_sbuilder_pages], [coinless_sbuilder_templates_svg], [ecl_DeviceProvisioning], [promozioni], [promozioni_cards]
+  solo test: -
+  colonne sincronizzate diverse: [UID_Ammessi] 2->4
+  filtri in prod: -
+
+# Parametri dei moduli comuni applicativi
+
+  sp_redeem_cancel: test [('@DbName', 'varchar', '6', 'False', 'False'), ('@Codice', 'varchar', '15', 'False', 'False')]  prod [('@DbName', 'varchar', '6', 'False', 'False'), ('@Codice', 'varchar', '15', 'False', 'False'), ('@ErrKey', 'varchar', '50', 'True', 'False')]
+  sp_redeem_check_and_reserve_no_pin: test [('@DbName', 'varchar', '6', 'False', 'False'), ('@Codice', 'varchar', '15', 'False', 'False'), ('@IsLogged', 'bit', '1', 'False', 'False'), ('@IdContatto', 'bigint', '8', 'False', 'False'), ('@PostId', 'int', '4', 'False', 'False'), ('@DeviceId', 'varchar', '50', 'False', 'False'), ('@MinutesToExpire', 'int', '4', 'False', 'False')]  prod [('@DbName', 'varchar', '6', 'False', 'False'), ('@Codice', 'varchar', '15', 'False', 'False'), ('@IsLogged', 'bit', '1', 'False', 'False'), ('@IdContatto', 'bigint', '8', 'False', 'False'), ('@PostId', 'int', '4', 'False', 'False'), ('@DeviceId', 'varchar', '50', 'False', 'False'), ('@MinutesToExpire', 'int', '4', 'False', 'False'), ('@ErrKey', 'varchar', '50', 'True', 'False')]
+  sp_redeem_confirm: test [('@DbName', 'varchar', '6', 'False', 'False'), ('@Codice', 'varchar', '15', 'False', 'False'), ('@UsedBy', 'bigint', '8', 'False', 'False'), ('@UsedOnPost', 'int', '4', 'False', 'False'), ('@UsedOnDevice', 'varchar', '50', 'False', 'False')]  prod [('@DbName', 'varchar', '6', 'False', 'False'), ('@Codice', 'varchar', '15', 'False', 'False'), ('@UsedBy', 'bigint', '8', 'False', 'False'), ('@UsedOnPost', 'int', '4', 'False', 'False'), ('@UsedOnDevice', 'varchar', '50', 'False', 'False'), ('@ErrKey', 'varchar', '50', 'True', 'False')]

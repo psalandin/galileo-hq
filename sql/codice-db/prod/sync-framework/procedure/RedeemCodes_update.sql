@@ -1,0 +1,36 @@
+CREATE PROCEDURE [RedeemCodes_update]
+	@P_1 BigInt,
+	@P_2 VarChar(6),
+	@P_3 VarChar(15),
+	@P_4 VarChar(20),
+	@P_5 Money,
+	@P_6 Money,
+	@P_7 Int,
+	@P_8 BigInt,
+	@P_9 BigInt,
+	@P_10 BigInt,
+	@P_11 VarChar(255),
+	@P_12 Int,
+	@P_13 VarChar(4),
+	@P_14 DateTime,
+	@P_15 DateTime,
+	@P_16 BigInt,
+	@P_17 DateTime,
+	@P_18 BigInt,
+	@P_19 DateTime,
+	@P_20 Int,
+	@P_21 VarChar(50),
+	@P_22 DateTime,
+	@P_23 BigInt,
+	@P_24 DateTime,
+	@P_25 Int,
+	@P_26 VarChar(50),
+	@P_27 VarChar(200),
+	@P_28 VarBinary(max),
+	@sync_force_write Int,
+	@sync_min_timestamp BigInt,
+	@sync_row_count Int OUTPUT
+AS
+BEGIN
+SET @sync_row_count = 0; UPDATE [RedeemCodes] SET [DbName] = @P_2, [Codice] = @P_3, [Azione] = @P_4, [Valore] = @P_5, [Bonus] = @P_6, [Tickets] = @P_7, [IdPromozione] = @P_8, [IdCompleanno] = @P_9, [IdContatto] = @P_10, [MailDestinatario] = @P_11, [CardLevel] = @P_12, [Pin] = @P_13, [ValidFrom] = @P_14, [ValidTo] = @P_15, [CreatedBy] = @P_16, [CreatedAt] = @P_17, [ReservedBy] = @P_18, [ReservedAt] = @P_19, [ReservedOnPost] = @P_20, [ReservedOnDevice] = @P_21, [ReservationExpiresAt] = @P_22, [UsedBy] = @P_23, [UsedAt] = @P_24, [UsedOnPost] = @P_25, [UsedOnDevice] = @P_26, [Note] = @P_27, [QRCode] = @P_28 FROM [RedeemCodes] [base] JOIN [RedeemCodes_tracking] [side] ON [base].[Id] = [side].[Id] WHERE ([side].[local_update_peer_timestamp] <= @sync_min_timestamp OR @sync_force_write = 1) AND ([base].[Id] = @P_1); SET @sync_row_count = @@ROWCOUNT;
+END
