@@ -8,7 +8,7 @@ Analisi per la riprogettazione di WinMT e del sistema HQ: gestione cloud di sale
 
 | Cartella | Contenuto |
 |----------|-----------|
-| `docs/analisi/` | Documenti di analisi e di sintesi (`galileo-analisi-NN-…`) |
+| `docs/analisi/` | Documenti di analisi e di sintesi (`analisi-NN-…`) |
 | `docs/db/` | Analisi del database esistente: schema, catalogo, risultati delle query |
 | `docs/use-case/` | Un file per use case, a partire da `_modello-use-case.md` |
 | `docs/riunioni/` | Verbali, sommari e trascrizioni delle riunioni |

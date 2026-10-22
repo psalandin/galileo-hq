@@ -1,0 +1,4 @@
+﻿ipotesi	righe_nonnull	trovate
+TransCard.IdCli -> Clienti.IdContatto (testo)	1272353	1272299
+TransCard.IdCli -> CoinlessCards.cardid (maiuscolo, senza spazi)	1272353	0
+TransCard.CodMac (WinMt=1) -> Setup.MName senza |	134506	127168

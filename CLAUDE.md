@@ -6,7 +6,7 @@ Istruzioni condivise per Claude Code. Valgono per tutti i membri del team; le pr
 
 Riprogettazione di **WinMT** (gestionale di sala, monolite VB6) e di **HQ** (gestione centralizzata) in un sistema cloud con configurazione remota delle macchine e gestione multisala.
 
-**Dominio:** sale giochi di intrattenimento con meccanica *redemption*. **Non è gioco d'azzardo.** I clienti giocano con gettoni, crediti o card ricaricabili; le vincite sono ticket o punti senza valore fuori dalla sala, riscattabili in premi o partite. Il glossario è in `docs/analisi/galileo-analisi-00-prima-lettura.md` (§ 5).
+**Dominio:** sale giochi di intrattenimento con meccanica *redemption*. **Non è gioco d'azzardo.** I clienti giocano con gettoni, crediti o card ricaricabili; le vincite sono ticket o punti senza valore fuori dalla sala, riscattabili in premi o partite. Il glossario è in `docs/analisi/analisi-00-prima-lettura.md` (§ 5).
 
 **Fase attuale:** 1 — analisi. Prodotti attesi: modello dati logico, censimento e pesatura dei flussi, architettura sala–cloud, stima della fase 2 con variabilità fino al ±30%.
 

@@ -1,0 +1,5 @@
+﻿tabella	colonna	righe	nonnull	cifre_13_19	con_mascheratura	altro	errore
+LogTransazioniPos	PAN	0	0	NULL	NULL	NULL	NULL
+LogTransazioniTotem	PAN	4040	252	0	0	252	NULL
+pos_transaction	masked_pan	NULL	NULL	NULL	NULL	NULL	Il nome di oggetto 'dbo.pos_transaction' non è valido.
+Nayax	Numero carta	NULL	NULL	NULL	NULL	NULL	Il nome di oggetto 'dbo.Nayax' non è valido.

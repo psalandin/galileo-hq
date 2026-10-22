@@ -1,0 +1,2 @@
+﻿tabella	forma	lunghezza	righe
+LogTransazioniTotem		0	252

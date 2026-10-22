@@ -1,0 +1,10 @@
+﻿figlio	col_figlio	padre	col_padre	righe_figlio	nonnull_figlio	orfani	orfani_distinti	righe_padre	distinti_padre	errore
+TransCard	IdCli	Clienti	T0	1272353	1272353	1272353	37422	39437	24095	NULL
+CoinlessCards	cardid	Clienti	T0	23716	23716	23716	23716	39437	24095	NULL
+CoinlessTransazioniCards	cardid	Clienti	T0	62816	62816	62816	2410	39437	24095	NULL
+UID_Ammessi	UID	Clienti	T0	50010	50010	25921	25921	39437	24095	NULL
+TransCard	IdCli	UID_Ammessi	UID	1272353	1272353	1272353	37422	50010	50010	NULL
+CoinlessCards	cardid	UID_Ammessi	UID	23716	23716	23716	23716	50010	50010	NULL
+CoinlessClonedCards	cardid	Clienti	T0	165	165	165	36	39437	24095	NULL
+LogTransazioniPos	IdCli	Clienti	IdContatto	0	0	0	0	39437	39437	NULL
+TransCard	CodMac	Setup	MName	1272353	1272353	1272353	92	11	8	NULL

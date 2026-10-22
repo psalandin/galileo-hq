@@ -1,6 +1,8 @@
 # Galileo HQ — Analisi 00: prima lettura delle fonti
 
-**Stato:** bozza di lavoro · **Data:** 18/10/2026 · **Fonti:** riunione esplorativa 07/10/2026 (trascrizione e sommario Plaud), riunione operativa 12/10/2026 (trascrizione con relatori), manuale WinMtSql (ELMAC II s.r.l.)
+**Stato:** bozza · **Responsabile:** Piero · **Aggiornato:** 2026-10-18
+
+**Fonti:** riunione esplorativa 07/10/2026 (trascrizione e sommario Plaud), riunione operativa 12/10/2026 (trascrizione con relatori), manuale WinMtSql (ELMAC II s.r.l.)
 
 Questo documento non è ancora l'analisi funzionale. Fissa ciò che le fonti dicono, ciò che danno per scontato e ciò che è in contraddizione, per orientare le interviste successive.
 

@@ -1,0 +1,62 @@
+﻿tabella_tracking	righe	tombstone	prima_cancellazione	ultima_cancellazione
+TransCard_tracking	1273167	814	2026-06-03 15:42:26.290	2026-07-14 00:36:09.990
+CoinlessMacchineHappyHour_tracking	192	160	2026-06-06 19:04:27.630	2026-07-05 10:27:59.917
+coinless_sbuilder_pages_tracking	259	32	2026-06-06 19:04:27.620	2026-07-05 10:27:54.247
+ecl_Provisioning_tracking	1031	26	2026-06-17 12:16:02.420	2026-06-17 12:16:02.700
+CoinlessTestataHappyHour_tracking	12	10	2026-06-06 19:04:27.510	2026-07-05 10:27:59.847
+Vincite_tracking	242769	9	2026-06-06 00:38:56.003	2026-07-12 20:04:57.857
+Coinless_sbuilder_page_provisioning_tracking	252	8	2026-06-17 12:16:02.430	2026-06-17 12:16:02.703
+CoinlessLogEventiBlacklist_tracking	332	2	2026-06-11 23:27:58.367	2026-06-11 23:27:58.370
+CoinlessImages_tracking	14	2	2026-06-03 11:45:24.233	2026-06-03 11:45:24.263
+ecl_SchedeFirmware_tracking	87	1	2026-06-17 14:42:50.717	2026-06-17 14:42:50.717
+CoinlessClonedCards_tracking	166	1	2026-06-11 23:27:58.330	2026-06-11 23:27:58.330
+EcsModuli_tracking	86	0	NULL	NULL
+MovMag_tracking	317	0	NULL	NULL
+Tickets_tracking	840959	0	NULL	NULL
+coinless_sbuilder_templates_svg_tracking	4	0	NULL	NULL
+Clienti_tracking	39437	0	NULL	NULL
+EcsMacchine_tracking	98	0	NULL	NULL
+Premi_tracking	522	0	NULL	NULL
+cache_dati_grafico_giornaliero_tracking	59873	0	NULL	NULL
+Type_tracking	19	0	NULL	NULL
+Setup_tracking	11	0	NULL	NULL
+Compleanni_tracking	160	0	NULL	NULL
+Mistral_tracking	74	0	NULL	NULL
+Setup2_tracking	11	0	NULL	NULL
+Ospiti_tracking	1892	0	NULL	NULL
+promozioni_cards_tracking	45	0	NULL	NULL
+BEConfig_tracking	81	0	NULL	NULL
+EcsDati_tracking	2273972	0	NULL	NULL
+promozioni_tracking	1	0	NULL	NULL
+AuditLog_tracking	4408	0	NULL	NULL
+Fornitori_tracking	37	0	NULL	NULL
+Resi_tracking	1379	0	NULL	NULL
+CoinlessLanguages_tracking	243	0	NULL	NULL
+PartiteOspiti_tracking	14512	0	NULL	NULL
+Abbuoni_tracking	2386	0	NULL	NULL
+UID_Ammessi_tracking	50010	0	NULL	NULL
+ecl_DeviceProvisioning_tracking	8	0	NULL	NULL
+TicketsCan_tracking	32499	0	NULL	NULL
+LogTransazioniTotem_tracking	4040	0	NULL	NULL
+ecl_firmware_tracking	27	0	NULL	NULL
+Operatori_tracking	18	0	NULL	NULL
+TickRep_tracking	232	0	NULL	NULL
+GruMagazzinoDettaglio_tracking	27	0	NULL	NULL
+TipoRicaricheCompleanni_tracking	1	0	NULL	NULL
+GruMagazzino_tracking	9	0	NULL	NULL
+Ordini_tracking	0	NULL	NULL	NULL
+GruMovimenti_tracking	0	NULL	NULL	NULL
+MovOut_tracking	0	NULL	NULL	NULL
+Figli_tracking	0	NULL	NULL	NULL
+RedeemCodes_tracking	0	NULL	NULL	NULL
+LogTransazioniPos_tracking	0	NULL	NULL	NULL
+Incassi_tracking	0	NULL	NULL	NULL
+RiepInv_tracking	0	NULL	NULL	NULL
+Machines_tracking	0	NULL	NULL	NULL
+ScoCard_tracking	0	NULL	NULL	NULL
+Owners_tracking	0	NULL	NULL	NULL
+Manuf_tracking	0	NULL	NULL	NULL
+EcsErr_tracking	0	NULL	NULL	NULL
+Vincite25_tracking	0	NULL	NULL	NULL
+Differ_tracking	0	NULL	NULL	NULL
+Prenotaz_tracking	0	NULL	NULL	NULL

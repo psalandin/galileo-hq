@@ -1,7 +1,8 @@
 # Galileo HQ — DB 03: risultati del kit di query 01
 
-**Stato:** bozza di lavoro · **Data:** 18/10/2026 · **Fonte:** copia locale di `[WinMtSqlDB]` (dati fino al 15/10/2026), query Q01–Q10
-**Collegati:** `galileo-db-01-schema.md`, `galileo-db-02-catalogo.md`, `galileo-db-query-02.sql`
+**Stato:** bozza · **Responsabile:** Piero · **Aggiornato:** 2026-10-18
+
+**Fonte:** copia locale di `[WinMtSqlDB]` (dati fino al 15/10/2026), query Q01–Q10 · **Collegati:** `db-01-schema.md`, `db-02-catalogo.md`, `db-query-02.sql`
 
 Questo documento corregge o precisa alcune affermazioni di DB 01, segnalate di volta in volta.
 

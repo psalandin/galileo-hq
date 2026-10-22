@@ -1,5 +1,7 @@
 # Galileo HQ — DB 02: catalogo tabelle di [WinMtSqlDB]
 
+**Stato:** bozza · **Responsabile:** Piero · **Aggiornato:** 2026-10-18
+
 Generato dallo script SSMS del 18/10/2026. Esclude le 40 tabelle `_tracking` di Sync Framework.
 Legenda: **PK** chiave primaria (C = clustered), *ident* = IDENTITY, `?` = ammette NULL, **SYNC** = tabella sincronizzata.
 

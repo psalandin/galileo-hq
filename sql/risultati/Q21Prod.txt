@@ -1,0 +1,4 @@
+﻿verifica	card	corrispondenti
+cardid = LEFT(Clienti.T0, 8), stesso cliente	23715	21907
+cardid presente come LEFT(UID_Ammessi.UID, 8)	23716	23710
+Valori distinti delle ultime 8 cifre di UID_Ammessi.UID	50010	1

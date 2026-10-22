@@ -1,0 +1,7 @@
+﻿tabella	colonna	nonnull	distinti	len_min	len_max	aspetto_hash	valori_default
+Clienti	Password	624	167	0	8	0	0
+Operatori	Password	17	3	0	21	0	0
+Setup	AdmPass	10	2	15	28	0	0
+Setup	InvPass	10	1	1	1	0	0
+Setup	Passw	10	2	2	8	0	0
+Setup	PasswSM	10	1	1	1	0	0

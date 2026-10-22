@@ -1,10 +1,13 @@
 # Galileo HQ — DB 04: risultati del kit di query 02
 
-**Stato:** bozza di lavoro · **Data:** 18/10/2026 · **Fonte:** copia locale di `[WinMtSqlDB]` da `.bak`, query Q11–Q17
-**Collegati:** `galileo-db-03-risultati-01.md` (le correzioni sono segnalate qui), `galileo-db-query-03.sql`
+**Stato:** bozza · **Responsabile:** Piero · **Aggiornato:** 2026-10-18
+
+**Fonte:** copia locale di `[WinMtSqlDB]` da `.bak`, query Q11–Q17 · **Collegati:** `db-03-risultati-01.md` (le correzioni sono segnalate qui), `db-query-03.sql`
 
 
 > **Nota del 20/10/2026:** il database analizzato è stato confermato come **database di test**, non di produzione. Le osservazioni sullo schema restano valide; volumi, date e statistiche vanno riverificati sul database di produzione (6–7 GB) e su quello di HQ, attesi a breve.
+
+> **Nota del 22/10/2026:** alcune conclusioni di questo documento sono corrette da `db-06-produzione-02.md` (cancellazioni massive, `Clienti.T0`, livelli card): erano artefatti del database di test.
 ---
 
 ## 1. Il database non è solo di produzione

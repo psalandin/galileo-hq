@@ -1,7 +1,8 @@
 # Galileo HQ — DB 01: analisi dello schema del database di sala
 
-**Stato:** bozza di lavoro · **Data:** 18/10/2026 · **Fonte:** script SSMS di `[WinMtSqlDB]` generato il 18/10/2026 (1,18 milioni di caratteri; originale in UTF-16)
-**Collegati:** `galileo-analisi-00-prima-lettura.md` (zone concettuali), `galileo-db-query-01.sql` (verifiche sui dati, Q01–Q10)
+**Stato:** bozza · **Responsabile:** Piero · **Aggiornato:** 2026-10-18
+
+**Fonte:** script SSMS di `[WinMtSqlDB]` generato il 18/10/2026 (1,18 milioni di caratteri; originale in UTF-16) · **Collegati:** `analisi-00-prima-lettura.md` (zone concettuali), `db-query-01.sql` (verifiche sui dati, Q01–Q10)
 
 Questa è un'analisi del **solo schema**. Le affermazioni sull'uso effettivo dei dati sono ipotesi, da confermare con le query Q01–Q10.
 
