@@ -1,0 +1,45 @@
+# --- Database: dump, backup e file dati (mai nel repository) ---
+*.bak
+*.bacpac
+*.dacpac
+*.mdf
+*.ldf
+*.ndf
+*.mdb
+*.accdb
+
+# --- Archivi e materiale voluminoso ---
+*.zip
+*.7z
+*.rar
+*.tar
+*.gz
+
+# --- Audio delle riunioni (nel repository vanno solo trascrizioni e verbali) ---
+*.mp3
+*.m4a
+*.wav
+*.ogg
+
+# --- Sorgenti di terzi ricevuti (WinMT VB6, B4J, .NET): tenuti fuori ---
+legacy/
+sorgenti/
+
+# --- Credenziali e configurazioni locali ---
+.env
+.env.*
+*.local.*
+*.secret.*
+secrets/
+
+# --- Claude Code: impostazioni personali ---
+.claude/settings.local.json
+
+# --- Sistema operativo ed editor ---
+Thumbs.db
+desktop.ini
+.DS_Store
+~$*
+*.tmp
+.vscode/
+.idea/

@@ -1,0 +1,21 @@
+# Normalizzazione dei fine riga: LF nel repository, conversione automatica in checkout
+* text=auto
+
+*.md   text
+*.txt  text
+*.sql  text
+*.csv  text
+*.json text
+*.yml  text
+*.yaml text
+
+# Binari: nessuna conversione, nessun diff testuale
+*.pdf  binary
+*.docx binary
+*.xlsx binary
+*.pptx binary
+*.png  binary
+*.jpg  binary
+*.jpeg binary
+*.gif  binary
+*.svg  binary
