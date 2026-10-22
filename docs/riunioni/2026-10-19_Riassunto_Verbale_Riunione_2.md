@@ -1,0 +1,91 @@
+# Verbale Integrato della Riunione
+## Informazioni sulla Riunione
+> **Data:** 2026-10-19 18:20:17
+> **Luogo:** Padova, Via Riccoboni 2 - Sede Vitamina PI
+> **Partecipanti:** Piero, Fabrizio, Antonio
+---
+## Note e Punti di Discussione
+### 1. Architettura di Sistema, Stack Tecnologico e Governance
+- **Semplificazione dello Stack:** Urgenza di minimizzare e standardizzare linguaggi e framework di sviluppo per evitare la dispersione tecnologica ("ramificazione") e ridurre la complessità manutentiva.
+- **Transizione Frontend e Backoffice:**
+  - Valutata la riscrittura dei frontend di cassa e totem tramite Flutter, supportati da API esposte da server Laravel (scelta da finalizzare tra Laravel MVC puro e API Laravel + frontend Flutter).
+  - Netta distinzione architetturale tra HQ (piattaforma cloud per dashboard e multisala) e backoffice di sala (configurazioni e operatività locale).
+  - La cassa e il nuovo WinMT dialogheranno con un layer astratto/microserver via API anziché tramite accessi diretti al DB.
+- **Topologia di Rete e Broker MQTT:**
+  - Utilizzo di una doppia architettura di broker: un broker locale di sala e un broker in Cloud/HQ.
+  - Per ragioni di sicurezza della rete locale, la sala agisce sempre come client effettuando connessioni solo in uscita verso il cloud.
+  - I topic MQTT vengono instradati e identificati dinamicamente (es. credenziali o QR di sala per le PWA dei clienti).
+### 2. Dispositivi di Cassa, Periferiche e Hardware di Sala
+- **WinMT e Gestione Periferiche:**
+  - WinMT opera storicamente come monolite su PC di cassa. Per le stampanti termiche (Custom) è stato impiegato l'accesso diretto a basso livello via seriale per funzioni specifiche (loghi, comandi raw); si valuta la transizione ai driver OS in vista di una possibile migrazione delle casse a Linux.
+  - Il motore hardware già sviluppato in Python per i totem (QR, RFID, stampanti) è isolato, cross-platform e riusabile come microserver locale su cassa.
+- **Mangiaticket:**
+  - I moduli tradizionali (fino a 4 per cassa via multiseriale) vengono aggiornati con schede dotate di chip ESP32 per abilitare la connettività di rete via MQTT, disaccoppiandosi dalla dipendenza fisica/seriale di WinMT.
+  - Modalità operative supportate: connesse alla cassa, in rete su broker di sala o stand-alone (con validazione e distruzione scontrini compatibili standard Deltronic/Prize Hub).
+- **Architettura Giochi (Schede B ed Elettronica BE/ABN):**
+  - **Scheda BE:** Dotata di display, LED, memoria interna e lettore/scrittore RFID; comunica con il server di sala via MQTT.
+  - **Scheda B:** Connessa alla BE via seriale, fa da interfaccia I/O con il gioco (emulazione gettoniera/impulsi e ticket).
+  - **POS e Terminali di Pagamento:** I dispositivi comunicano con il servizio centrale `POSHandler` sul server di sala, che funge da fonte di verità per le transazioni finanziarie (es. in caso di crash del totem).
+### 3. Flusso Card, Riconciliazione Transazioni e Modalità Offline
+- **Nuovo Flusso di Gioco (Anti-perdita progressivi):**
+  - All'appoggio della card: lettura del supporto $\rightarrow$ verifica/riconciliazione con il server $\rightarrow$ scrittura progressivi aggiornati sulla card $\rightarrow$ sblocco partita (latenza stimata ~400 ms).
+- **Operatività Offline e Sincronizzazione:**
+  - In caso di assenza di rete, le transazioni e i ticket vengono salvati nella memoria interna della scheda BE/ABN e sulla card tramite contatori progressivi (a 32 bit).
+  - Le ricariche monetarie e le operazioni di cassa/distributori premi richiedono tassativamente la connessione attiva al server.
+  - Alla riconnessione o alla presentazione della card in cassa, i contatori vengono riconciliati e scaricati sul database centrale.
+- **Bufferizzazione Ticket e Telemetria Macchine:**
+  - Durante l'erogazione dei ticket, le schede inviano pacchetti parziali via MQTT a un buffer temporaneo sul server; dopo 10 secondi di inattività, la sessione viene consolidata in un singolo record definitivo nella tabella tickets.
+  - Monitoraggio costante tramite tabella telemetria (`ICS dati`), che traccia data, ora, progressivi e 9 contatori operativi (impulsi meccanici/elettronici, gettoni, banconote, tap totali, ticket ausiliari).
+### 4. Database, Sincronizzazione Sala-Cloud e Architettura Dati
+- **Struttura Multi-Sala:**
+  - Architettura a DB locale per sala, DB di sincronizzazione Cloud HQ e DB "cappello" (di coordinamento tra istanze).
+  - In modalità offline, la card può spendere solo i ticket generati localmente; in modalità online, procedure dedicate consentono l'aggregazione dei ticket fra più sale del medesimo circuito/gruppo.
+- **Prestazioni DB e Modello ID:**
+  - Evidenziati rallentamenti sistemici e problemi di indicizzazione clustered legati all'uso disordinato di UUID/GUID casuali.
+  - Scelta di adottare ID progressivi generati in isolamento lato sala, con successiva sincronizzazione verso il Cloud.
+- **Tracciabilità dei Movimenti:**
+  - Superamento della modifica diretta dei record storici e dei campi binari: passaggio a una tabella `movimenti` per una rigorosa tracciabilità di ticket, carichi/scarichi magazzino premi e logica delle gru.
+### 5. Razionalizzazione Funzionale, Migrazione Card e Legacy
+- **Livelli Card e Migrazione:**
+  - Rettifica del valore di default dei livelli card: impostazione su **Silver** (anziché Platinum). I livelli saranno codificati in maniera ordinale (0, 1, 2, 3...) per future estensioni.
+  - Progettazione di un meccanismo di conversione trasparente (*on-the-fly*) per le card legacy al loro primo passaggio (tap).
+- **Borsellini Multipli e PWA Clienti:**
+  - Web app orientata al modello account/famiglia (un profilo con più card/borsellini associati in cascata) per superare i vincoli di associazione 1:1 e gestire agevolmente profili per minorenni.
+- **Dismissione Funzionalità Obsolete:**
+  - Eliminazione progressiva delle personalizzazioni legacy ingestibili (~200 fork storici privi di sorgenti), del "sistema a quattro utenti" a schermo diviso e delle connessioni SQL dirette non mediate da API.
+- **Gestione Sale "Easy":**
+  - Mantenimento di flussi snelli per le sale semplificate basate su utente ID Zero, compravendita rapida di ticket e generazione di scontrini non anonimi per conformità fiscale.
+### 6. Codice Sorgente, Accessi e Tempistiche di Analisi
+- **Stato Accessi:** Sorgenti WinMT disponibili; previsto accesso a Dotnet (20 ottobre 2026) e richiesta a Fabrizio per sorgenti B for J e database reali (DB sala ~6-7 GB e DB HQ).
+- **Stima Attività:** L'impegno complessivo di analisi architetturale e decodifica campi jolly/flussi è stimato tra **240 e 450 ore** (6–12 settimane).
+- **Scadenze:** La scadenza preliminare del 21 ottobre 2026 è considerata non realistica; richiesta di proroga formale alla direzione.
+---
+## Prossimi Accordi e Azioni
+- [ ] **Accessi e Risorse:**
+  - [ ] Richiedere l'accesso al codice sorgente Dotnet (scadenza: 20 ottobre 2026).
+  - [ ] Sollecitare Fabrizio per i sorgenti B for J e la consegna dei dump database (sala reale 6–7 GB e HQ).
+  - [ ] Inviare comunicazione alla direzione sullo stato avanzamento lavori e formalizzare lo slittamento della consegna oltre il 21 ottobre 2026.
+- [ ] **Architettura e API:**
+  - [ ] Definire lo stack standard (Laravel MVC vs API Laravel + Flutter) e definire il protocollo di comunicazione microserver/WinMT/POSHandler.
+  - [ ] Sviluppare il servizio di backend/server di sala per l'ingestione dei messaggi MQTT e la scrittura su DB.
+  - [ ] Disegnare le specifiche per il nuovo protocollo di sincronizzazione cloud $\leftrightarrow$ sala superando i vecchi file MDB.
+  - [ ] Progettare lo schema logico della tabella `movimenti` per ticket e magazzino.
+- [ ] **Hardware e Dispositivi:**
+  - [ ] Redigere l'inventario completo e la gerarchia di comunicazione dei device (barcode, stampanti, lettori RFID, ESP32 mangiaticket, schede B/BE).
+  - [ ] Definire l'architettura autonoma via MQTT per i moduli mangiaticket.
+  - [ ] Valutare la migrazione delle casse a Linux e l'impatto sui driver delle stampanti Custom.
+- [ ] **Dati, Flussi e Legacy:**
+  - [ ] Impostare il livello Silver come default DB per le card e definire l'algoritmo di conversione *on-the-fly* delle tessere legacy.
+  - [ ] Decodificare i campi jolly legacy e documentare i codici NIMP e Z1 (~40 ore stimate).
+  - [ ] Formalizzare la dismissione del "sistema a quattro utenti" e mappare le dipendenze da eliminare (MT-Link, multiseriale).
+  - [ ] Definire il modello a borsellini multipli per la PWA e strutturare i flussi delle promozioni.
+  - [ ] Documentare le funzionalità complessive del server di sala (assegnato a [Speaker 2]) e pianificare le sessioni di analisi successive (10–15 ore).
+---
+## Suggerimenti AI
+> L'IA ha evidenziato le seguenti criticità aperte e prive di completa definizione operativa su cui prestare attenzione:
+> 
+> 1. **Dettaglio Architetturale Backend/MQTT:** Mancano le specifiche tecniche definitive del modulo di backend per l'ingestione MQTT su database (formati payload, naming dei topic, sicurezza e gestione dell'alta frequenza durante vincite massive).
+> 2. **Specifica Astrazione POS:** Mancano le specifiche formali per il layer intermedio di astrazione che disaccoppia Flutter, WinMT e il servizio `POSHandler`.
+> 3. **Gestione Errori e Riconciliazione Card Incongruenti:** Necessità di definire i protocolli operativi in cassa nel caso in cui una card venga letta mentre i dispositivi periferici (BE) sono ancora offline, oppure qualora la card presenti dati strutturalmente corrotti.
+> 4. **Definizione Flussi Multi-Sala e Business Rules:** Mancano linee guida formalizzate sulle regole commerciali relative all'incasso dei ticket accumulati in sale diverse dello stesso gruppo e la chiarificazione dell'area di dominio definita "valore a circuito chiuso".
+> 5. **Formalizzazione Conoscenza Storica e Fork Legacy:** Rischio operativo legato all'assenza di codice sorgente per circa 200 personalizzazioni storiche e alla dipendenza dalla conoscenza di figure esterne (es. Toby); serve stabilire una matrice di requisiti per colmare i gap documentali.

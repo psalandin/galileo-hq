@@ -1,0 +1,650 @@
+00:00:01 Speaker 1
+Quando ci imbarchiamo in questo progetto, non vorrei farlo come abbiamo fatto finora. Loro hanno funzionato da maintenance, tutto come una squadra.
+00:00:15 Speaker 1
+Vorrei viverla più come progetto con un inizio e una fine, con anche la manutenzione dell'esistente sotto. Sappiamo che principalmente Fabrizio, ma anche Antonio, saranno comunque dedicati a mantenere tutte le altre installazioni che abbiamo già fatto. La parte nuova vorremmo viverla un po' più come progetto perché
+00:00:38 Speaker 1
+Parlo per mio papà.
+00:00:40 Speaker 1
+È l'ultima chance che vuole dare a questo progetto, quindi lo facciamo bene o è un investimento all'infinito.
+00:00:50 Speaker 1
+I competitor ci hanno già sorpassato nel tempo, non ce lo possiamo più permettere. Siccome ci crediamo che è un bel prodotto che può funzionare.
+00:01:01 Speaker 1
+Ci proviamo a investire, ma in modalità progetto. Per cui mi serviranno a valle di questo incontro una stima, perché non sappiamo che funziona, però di tempi e costi per quanto potrebbe costare, quanto potremmo metterci per farlo fare. Che cosa dice Fabrizio?
+00:01:23 Speaker 2
+Fare una cosa importante è prendere il DB, che già più o meno hai visto in qualche modo.
+00:01:30 Speaker 2
+E ricostruirlo in modo corrente, perché adesso ha alcune lacune che bisogna estrapolare e capire.
+00:01:41 Speaker 2
+Bisogna entrare anche nella mentalità del target, cioè delle sale giochi e nel modo di lavorare che hanno le sale giochi, che è una delle cose importanti, soprattutto su quello che era la gestione del magazzino. Te l'avevo già accennato mesi fa questa cosa perché con lui abbiamo parlato.
+00:02:02 Speaker 1
+Non sei nuovo del contesto.
+00:02:06 Speaker 1
+E.
+00:02:08 Speaker 2
+Però volevamo mettere in ordine bene la cosa e farlo fare a chi fa di mestiere questo lavoro tutti i giorni.
+00:02:15 Speaker 2
+In sostanza è il suo lavoro, come ti avevamo già detto.
+00:02:20 Speaker 2
+A questo però dobbiamo anche aggiungere una parte che faremo noi, cioè andare a modificare il front-end, il programma monolitico che è scritto in WB6 adesso, e andare a modificare i firmware che stanno girando all'interno delle schede. In modo da risolvere i bug conosciuti che ci sono nel sistema e che stanno lì, girano, stanno in piedi perché più o meno ci sono delle pezze.
+00:02:52 Speaker 2
+Togliere le pezze in modo da rendere quello. L'idea, il concetto, c'è tutto, il come funziona.
+00:02:59 Speaker 2
+L'abbiamo capito bene, fa anche delle cose che i nostri competitor non fanno così. E quindi fa delle cose anche più interessanti. Una delle cose più interessanti che facciamo noi è riuscire a funzionare, a non fermare la sala se per caso manca la connettività locale in wireless.
+00:03:19 Speaker 2
+Perché tutti questi sistemi sono attaccati utilizzando il wireless. Quando va giù il sistema, il nostro perlomeno non ferma la sala.
+00:03:28 Speaker 2
+Nei nostri competitor si ferma la sala. È un problema relativo? Sì, perché il WiFi va sempre bene e tutto quanto.
+00:03:36 Speaker 1
+A volte succede che non va bene il prodotto e le sue funzionalità di base, quindi non va scritto da zero
+00:03:50 Speaker 1
+Però ripensate alcune cose.
+00:03:52 Speaker 2
+Ci sono alcuni punti per come è strutturata anche la base dati, che è nata da un progetto scritto in Access.
+00:04:01 Speaker 2
+Per cui si porta dietro tutte le cose di Access. L'ultima cosa che è uscita poco tempo fa è stata che usando le chiavi con gli ID, invece di avere numerici progressivi, si usa una chiave a 32 bit e un hash.
+00:04:20 Speaker 2
+Questo ha creato poi su archivi con più di 2 milioni di record dei problemi di prestazioni.
+00:04:27 Speaker 2
+La scalabilità va ripensata, va rivista la scalabilità con i numeri che abbiamo adesso, perché adesso abbiamo dei numeri tangibili.
+00:04:39 Speaker 2
+Quindi probabilmente a suo tempo non è stato mai pensato così, non è stato valutato nel modo corretto e quindi. E poi è stato sempre trascinato, portato avanti sempre col concetto: l'esistente teniamolo lì.
+00:04:56 Speaker 2
+Adesso l'esistente resta lì.
+00:04:59 Speaker 2
+Rifacciamo una cosa nuova che funziona
+00:05:02 Speaker 2
+Che risolve i problemi. Quindi una parte del tuo compito è analizzare e dire 'no, qui c'è un problema e dobbiamo risolverlo in questo modo'.
+00:05:11 Speaker 2
+La cosa che dobbiamo dirti noi è perché l'abbiamo affrontato in quel modo, a suo tempo, in modo che si facciano delle valutazioni.
+00:05:20 Speaker 3
+A che cosa? Quanta parte di fiducia è stata documentata adesso?
+00:05:25 Speaker 2
+Ci sono delle cose documentate, ce ne sono altre che sono all'interno del codice o nella nostra testa. Più o meno tutto si trova all'interno del codice come note, oppure ci sono anche dei documenti scritti.
+00:05:43 Speaker 2
+Le argomentazioni del perché è stato fatto così, quello è nella nostra testa.
+00:05:49 Speaker 3
+Sono interessanti a volte per evitare.
+00:05:52 Speaker 2
+Diciamo così, perché quando parliamo di magazzino io devo parlare con Giannina e chiedere perché a suo tempo avete scelto di fare le liste distribuite con un file che viene spedito tramite una chiavetta USB o cose simili?
+00:06:13 Speaker 2
+C'è un motivo e bisogna valutare se quel motivo ha ancora senso di esistere oppure no.
+00:06:22 Speaker 1
+Quindi, scusami Mauro
+00:06:24 Speaker 2
+Per chiudere il tuo discorso
+00:06:28 Speaker 1
+Poi ti lascio senza che entriamo in ciascun topic. Scusami, no, il punto è: tu gli stai chiedendo quindi di guardare al.
+00:06:42 Speaker 2
+Il compito suo sarà quello di prendere in mano il database, capire perché è strutturato così e proporci le soluzioni, come deve essere il database 3.0.
+00:06:54 Speaker 1
+Ma per funzionare a quali funzionalità?
+00:06:58 Speaker 4
+Deve avere anche il multilocale.
+00:07:01 Speaker 2
+Ma quello sono i dettagli
+00:07:04 Speaker 2
+Perché ci sarà una prima fase di intervista
+00:07:09 Speaker 1
+Esatto, immaginati che secondo me ci deve essere uno studio della documentazione e una.
+00:07:19 Speaker 1
+Si deve guardare il prodotto, come funziona. Non so cosa può essere più utile vederlo in azione in una sala qui a Rubano.
+00:07:28 Speaker 1
+In laboratorio. Bastano anche 10 minuti al bowling di Rubano e secondo me capisci cosa deve fare questo software.
+00:07:35 Speaker 3
+Sì, per capire il contesto, ma poi il funzionamento del software si può tranquillamente dedurre o spiegare in laboratorio.
+00:07:46 Speaker 3
+Poi capire sì, se c'è, che tipo di caos si trova, che tipo di problemi ci possono essere, che tipo di eccezioni. Ma in realtà il grosso, diciamo, la linea.
+00:08:01 Speaker 2
+Tu hai un caso d'uso, una modalità d'uso dove hai una sala che è data in affitto con i giochi a noleggio.
+00:08:11 Speaker 2
+C'è il proprietario dei giochi, c'è il proprietario della sala e c'è un tipo di gestione.
+00:08:16 Speaker 2
+Ad Albarella abbiamo un altro esempio dove gestore e proprietario sono la stessa entità.
+00:08:25 Speaker 2
+A Vicenza abbiamo un'altra situazione dove c'è un proprietario e gestore e però integrato con un altro software che è quello del proprietario.
+00:08:37 Speaker 1
+Come fai a spiegargli che tipo di
+00:08:42 Speaker 2
+Vedrai che lui comincerà a farmi le domande.
+00:08:44 Speaker 1
+La struttura va supportata?
+00:08:46 Speaker 2
+Sì, ma fa parte dell'intervista, dell'analisi.
+00:08:49 Speaker 3
+In realtà la struttura che va supportata non è una struttura che deve essere supportata, è un insieme di funzionalità che devono essere supportate. Guardo il database e lo trasformo, il database da solo non mi dice quasi nulla, mi dice un po' di cose, ma non tantissime, proprio perché conosco poi.
+00:09:09 Speaker 3
+Chi ha in parte progettato il database e spesso ha avuto delle scorciatoie, per cui il database non ti dice proprio bene quello che in realtà deve fare. Per questo sappiamo che bisogna partire un po' prima, bisogna partire dalle funzionalità.
+00:09:26 Speaker 3
+Dopodiché si progetta una base dati.
+00:09:36 Speaker 4
+Un'analisi così non esiste.
+00:09:39 Speaker 4
+Non è mai stata fatta un'analisi consapevole di dove siamo e dove vogliamo andare. Non lo so, come vorremmo funzionasse. Partiamo dal DP, come dice Fabrizio, anzi Pit. Uno va addirittura a livello. All'epoca sicuramente sono state prese delle.
+00:10:05 Speaker 3
+Delle strade per risolvere determinati problemi, chiaro, però non dobbiamo partire con questi presupposti. Secondo me bisogna partire senza preconcetti, cercando di guardare più alle funzionalità che alla struttura attuale del database, perché la struttura del database comunque è nascosta all'utente. È nascosta anche al
+00:10:33 Speaker 3
+Allo strato di funzionalità non gliene frega niente a una funzionalità se il database fa una cosa o un'altra, l'importante è che la faccia. Quindi la progettazione del database non va fatta guardando quello vecchio, ma guardando quello che ci serve.
+00:10:45 Speaker 3
+Esatto, è chiaro che cosa serve.
+00:10:46 Speaker 1
+Dove lo vedi?
+00:10:48 Speaker 3
+Quello che ci serve, qualcuno lo dovrà raccontare.
+00:10:53 Speaker 4
+C'è una serie di interviste che non esiste una cosa descrittiva.
+00:11:02 Speaker 2
+Dettagliato di tutto no
+00:11:03 Speaker 1
+Di vari pezzi.
+00:11:08 Speaker 2
+Ma li fa con il linguaggio dell'utente finale dell'operatore che non è propriamente.
+00:11:17 Speaker 1
+Però è più un qualcosa di manuale del prodotto, cioè comunque.
+00:11:25 Speaker 1
+Alla fine è quello che diamo in mano, deve fare il prodotto.
+00:11:32 Speaker 4
+No? Una cosa schematica.
+00:11:38 Speaker 1
+Cosa fa l'HQ rispetto a un DB?
+00:11:40 Speaker 3
+Si comporta come si muove.
+00:11:41 Speaker 4
+Cosa fa l'HQ?
+00:11:42 Speaker 1
+Cosa fa l'HQ
+00:11:44 Speaker 3
+Esatto. Cosa vogliamo fare noi con l'HQ?
+00:11:50 Speaker 3
+Tutto si può fare.
+00:11:51 Speaker 1
+Io vado dentro.
+00:11:54 Speaker 1
+È questa la Carrefour, no?
+00:11:58 Speaker 1
+Che abbiamoci, no? È questo.
+00:12:07 Speaker 1
+No? Che quindi ha la sezione report, la sezione dello status delle macchine.
+00:12:13 Speaker 2
+No, guarda, ha una prima sezione che tu non hai neanche valutato, il fatto di darti un vincolo sulla visibilità. Su cosa tu puoi vedere quando ti sei loggato. Quindi c'è la gestione di.
+00:12:26 Speaker 1
+Super admin, tutta la parte di ruoli
+00:12:31 Speaker 1
+L'admin super admin.
+00:12:33 Speaker 2
+E io ti devo spiegare.
+00:12:35 Speaker 1
+Ma quello è sì
+00:12:38 Speaker 2
+Il motivo è che sono gestiti direttamente sui permessi del database.
+00:12:45 Speaker 1
+Esatto, quindi la gestione dei ruoli è una funzionalità che non c'è ma va aggiunta. È un rischio, ma si può fare.
+00:12:53 Speaker 3
+Devi comunque farlo anche sullo shell, per cui si fa un'altra cosa, una modifica lì devi farla due volte, devi farla anche sul debito. Bisogna capire il costo effettivo di questo, il rapporto costi e benefici di questa scelta.
+00:13:14 Speaker 1
+Di spostare la gestione dei ruoli.
+00:13:16 Speaker 3
+La gestione dei ruoli c'è, comunque, a quello che ho capito, una gestione dei ruoli parallela c'è anche all'interno del database.
+00:13:23 Speaker 3
+OK, non soltanto a livello di applicazione. Questo comporta che se io devo modificare un ruolo.
+00:13:31 Speaker 3
+Devo farlo due volte, cioè devo farlo sia nell'applicazione perché ci sarà di sicuro una struttura dati che ti dice che quell'utente fa parte di quel ruolo e quel ruolo adesso può fare questa cosa qua. Se va anche non solo scritto nel database come tabelle, ma va anche scritto perché ci sono anche i ruoli del database che danno l'accesso o meno, quindi la visibilità o meno ai vari database, come ti dicevo nel nostro hq nel cloud.
+00:14:00 Speaker 2
+Vengono replicati tutti i vari database che si trovano nei locali delle sale. Sono clonati ogni x secondi o minuti sul sistema.
+00:14:13 Speaker 2
+Però non tutti hanno accesso a tutto
+00:14:16 Speaker 2
+Quindi l'utente con cui ti loghi sul sistema operativo decide.
+00:14:22 Speaker 2
+Perché è integrato in quel caso con l'utente del sistema operativo.
+00:14:26 Speaker 3
+Poi c'è bisogna fare bello andrebbe un po' superata perché come sai io lavoro a RP in cui i ruoli degli utenti dell'applicazione sono applicati tutti negli utenti del database, quindi so di cosa stai parlando. Però per esempio noi abbiamo scelto che in ogni caso a livello di DB gli utenti hanno tutti lo stesso accesso alle tabelle, tranne un paio. E poi è attraverso l'applicazione che decidi i ruoli.
+00:14:52 Speaker 3
+Così con un click puoi cambiare il ruolo in un attimo, altrimenti devi fare tutta una serie di cose.
+00:15:00 Speaker 1
+Tornando quindi alle funzionalità che vogliamo per il nostro HQ
+00:15:06 Speaker 1
+Oltre al lavoro del DB, bisogna guardare le funzionalità che ci sono già.
+00:15:13 Speaker 1
+Imagina che quelle che ci sono vanno replicate.
+00:15:19 Speaker 4
+Cosa vogliamo che faccia l'HQ? Cosa vogliamo che faccia il backoffice di guida MT, che sarà due robe separate, come abbiamo detto? Come vogliamo che interagisca il totem con il DB e tutto il resto?
+00:15:35 Speaker 4
+Queste cose qua secondo me sono quelle. Sappiamo bene cosa vogliamo che faccia? Sì o no?
+00:15:43 Speaker 1
+Secondo me deve fare quello che già fa adesso, senza rompersi.
+00:15:48 Speaker 1
+Perché come funzionalità utente le ha tutte
+00:15:54 Speaker 1
+Giusto?
+00:15:55 Speaker 1
+Come funzionalità utente le ha tutte. Hai il monitoraggio delle macchine, tutti i report possibili e immaginabili sugli incassi, sullo status e sui dati. Ce li hai tutti grezzi e anche la capacità di aggregarli. Poi sono brutti da vedere.
+00:16:14 Speaker 1
+Però sulla UI ci lavoriamo dopo. In termini di no
+00:16:19 Speaker 2
+Questa è un'applicazione VB sei che viene gestita da remoto con il terminal service emulato in HTML 5 e sembra una bellissima web.
+00:16:31 Speaker 1
+Ecco, ad esempio sta roba va smontata.
+00:16:37 Speaker 1
+Però se tu parli di funzionalità secondo me ci sono.
+00:16:42 Speaker 1
+Chiaramente ti dico i report, che è la funzionalità che io operatore. Poi c'è tutta la parte di gestione del magazzino, ma te ne racconto una: questa dei report, a parte che è intricato arrivarci.
+00:16:58 Speaker 1
+I report si vedono, ma li devi solo scaricare.
+00:17:02 Speaker 1
+Li vedi qui, però così non sono.
+00:17:06 Speaker 1
+Sono report, devi scaricarteli in Excel, elaborarli. Mi piacerebbe una roba un po' più dashboard figa, ma questa è una funzionalità un po' più. Il dato c'è, capito? È un layer, quello che ti dico io di presentazione, che è fondamentale per venderlo perché così non si vende.
+00:17:24 Speaker 1
+OK, però non mi cambia la sostanza che c'è sotto.
+00:17:29 Speaker 3
+Il primo step è replicare tutte le funzionalità in un'applicazione robusta e manutenibile che usate voi.
+00:17:37 Speaker 1
+Poi però dobbiamo riguardare anche la UX un attimino per renderla un po' più moderna, fruibile. La vedo pur essendo l'unica cosa che mi interessa veramente.
+00:17:52 Speaker 1
+È il secondo piano, deve stare in piedi, non si deve rompere con tutti i temi che dicevamo, va riscritta perché poi c'è un tema di hard stop, giusto? Che abbiamo ad un certo punto, c'è sempre questa cosa.
+00:18:06 Speaker 2
+Potrebbe succedere che si blocca tutto. Non ho mai capito cosa vuol dire che si spengono i server. Hanno tutto? No, quello che intendi, quello che dici, sembra abbia parlato UB6. Si porta sugli OCX. Fra poco potrebbero essere dismessi completamente. Da tre anni quando è stato che vi ha mandato? Cinque anni ha detto: guardate che io.
+00:18:35 Speaker 2
+No li spengo quando mi pare. Piace quelli che sono qui. Sono qua soltanto perché, infatti, ogni tanto succede che si spegne qualcosa e il programma improvvisamente che ieri andava oggi non va più. Oggi smette di andare. È quella la fretta che abbiamo. Poi la UX bella, in questo senso, ci pensiamo dopo. Smette di andare con errori da fantascienza. Una mappatura anche delle cose che.
+00:19:00 Speaker 1
+Però scusami se lui lavora adesso, dividendo un attimo i compiti su questo progetto, se lui dovesse iniziare a lavorare alla parte di analisi e redesign.
+00:19:17 Speaker 1
+Del DB bisogna comunque fare un redesign dell'architettura in generale.
+00:19:33 Speaker 3
+Questo funziona ancora su Access.
+00:19:36 Speaker 2
+Questo era nato su Access e poi su CQSR.
+00:19:43 Speaker 3
+Guarda, anche no, nel senso che capiamo cosa bisogna fare, dopodiché mettiamo su lo stack, perché comunque ormai è difficile avere, a meno di non usare un'applicazione desktop in server pura
+00:19:55 Speaker 3
+Non si ha un solo sistema di sviluppo, si ha uno stack di cose che cooperano e quindi bisogna vedere cosa va fatto, capire. Almeno a grandi linee.
+00:20:07 Speaker 3
+Come lo vogliamo fare? Dopodiché, sappiamo che strumenti utilizzare.
+00:20:12 Speaker 2
+Che stack mettere in piedi e cosa possiamo tenere in piedi che già funziona.
+00:20:23 Speaker 2
+Sì, no
+00:20:27 Speaker 1
+Aspetta, perché loro poi adesso, in parallelo, sono anni che lavorano a tante altre cose che ci ruotano intorno e che.
+00:20:34 Speaker 1
+Sono già pronte per interfacciarsi con un linguaggio più moderno, una volta che questo verrà.
+00:20:40 Speaker 3
+Mi diranno.
+00:20:44 Speaker 1
+Quindi andiamo a pezzi.
+00:20:47 Speaker 1
+La fase di analisi, che è la prima da fare, finisce con un output. Cosa otteniamo alla fine del suo lavoro di analisi, di tangibile?
+00:20:57 Speaker 3
+Un'analisi produce un documento.
+00:20:59 Speaker 3
+Come prima cosa, Word, quello che è, sì, pdf
+00:21:03 Speaker 3
+È più leggibile un documento scritto in linguaggio naturale.
+00:21:09 Speaker 3
+Che spiega con diversi livelli di dettaglio quello che vogliamo fare.
+00:21:16 Speaker 1
+Ok, aspetta, io vorrei anche alla fine dell'analisi
+00:21:21 Speaker 1
+Una stima della fase successiva.
+00:21:24 Speaker 3
+Se l'analisi è completa
+00:21:28 Speaker 3
+Possiamo avere una completa stima dei costi. Più l'analisi è incompleta, più incompleta sarà la stima. Se ci sono delle zone in cui non sappiamo come procedere o non sappiamo se le vogliamo, quelle non verranno stimata. Questo è banale, però va comunque detto. Anche a livello di dettaglio con cui decidiamo di fare le cose, cioè se effettivamente diciamo che questo flusso funzionale va da qui a qui e fa queste cose. Se succede questo, bene.
+00:21:59 Speaker 3
+Se invece facciamo questa cosa e la descriviamo in un linguaggio naturale con un paragrafo, invece che con quattro pagine, chiaramente è più difficile fare la stima.
+00:22:10 Speaker 3
+La classica stima di dire: 'io ti descrivo questo, questa cosa che bisogna fare in quattro o cinque parole.'
+00:22:20 Speaker 3
+Che stima di tempi si può avere?
+00:22:22 Speaker 3
+Come quello che mi chiede adesso per dire no, se tu me lo chiedi adesso la stima di quanto possa costare questa cosa qua, non so neanche esattamente qual è il suo perimetro.
+00:22:29 Speaker 1
+No, io non voglio da adesso, non voglio la stima della fase due, però vorrei che adesso
+00:22:37 Speaker 1
+A valle di questa riunione, dimmi tu se hai gli elementi per dire.
+00:22:42 Speaker 1
+Su questo progetto magari mi serve una minima documentazione, ti servirà qualcosa. Ti faccio un preventivo per due mesi di lavoro miei.
+00:22:56 Speaker 1
+AX euro l'ora per X giorni a partire dal giorno Y, perché ora sono occupato, anche un piano di tempi veri. Perché?
+00:23:06 Speaker 1
+Perché ci serve anche un po' di tempi veri da capire e mi serve non solo l'impegno tuo, visto che collaborate anche il tempo loro, perché a me interessa il costo totale dell'operazione. Ok, mio papà sentimento cos'è che ha detto che sono investito già 2 milioni in tutti gli anni di lavoro in questo progetto?
+00:23:33 Speaker 1
+Ok, tutto dall'inizio, tutto compreso.
+00:23:37 Speaker 3
+Quindi, ha avuto anche un ritorno questo investimento?
+00:23:40 Speaker 1
+No, i 2 milioni sono andati a fondo perduto. Non ha un ritorno economico. Sarà lo 0,01 possiamo dire.
+00:23:50 Speaker 1
+Non ha avuto ritorno.
+00:23:52 Speaker 3
+Questo sistema funziona.
+00:23:53 Speaker 1
+Bravissimo, ma non è vendibile.
+00:23:55 Speaker 3
+Vabbè, non è vendibile, ma ha fatto funzionare l'azienda. Dico no, mi sono perso.
+00:24:01 Speaker 1
+Poi me lo dice, non serve a far funzionare questa azienda.
+00:24:04 Speaker 1
+Fa funzionare quelle dei nostri clienti, ma come ti ho detto, non l'ha mai venduto.
+00:24:10 Speaker 3
+Sì, OK, ha funzionato soltanto come service, funziona come servizio per entrare
+00:24:15 Speaker 1
+Ci serve per controllare le nostre operazioni.
+00:24:20 Speaker 3
+La svolta. Ecco, questo voglio dire, non è vero che proprio è zero
+00:24:24 Speaker 1
+No, perché avremmo speso di meno se dovessimo solo controllare le nostre sale, spendevamo di meno a prenderci quello del competitor
+00:24:32 Speaker 1
+Non avremmo speso due milioni.
+00:24:35 Speaker 3
+Va bene, quindi credimi
+00:24:36 Speaker 1
+Non ha reso niente finora. Ok, finora.
+00:24:43 Speaker 1
+E però con tutto quello che è stato fatto fino ad ora
+00:24:51 Speaker 1
+Ci crediamo tutti che possiamo ancora riconquistare una parte di mercato, magari ok, perché il mercato è stato tappezzato per il momento da competitor.
+00:25:05 Speaker 1
+Magari ci crediamo che ci sia ancora spazio per il nostro prodotto, se è valido, se è solido.
+00:25:13 Speaker 1
+Possiamo ancora provare a venderlo.
+00:25:16 Speaker 3
+Ok, io sono un tecnico però potrei suggerire di fare anche un'analisi svuota a questo punto su quello che è appunto il rapporto tra quello che noi adesso non abbiamo ma vogliamo e quello che hanno già i competitor per capire dove possiamo spingere una cosa piuttosto che un'altra.
+00:25:32 Speaker 1
+In termini di funzionalità?
+00:25:34 Speaker 3
+In termini di funzionalità, di appeal e di interfaccia, non lo so.
+00:25:37 Speaker 1
+Li conosciamo i prodotti dei competitor?
+00:25:41 Speaker 4
+Possiamo dirti come lo usano. L'unica cosa, a parte il Coil pagamenti, che fa parte per tutta la parte di gestione delle sale dei ticket di WMT è quel programma. È partito e arrivato in piedi in Italia perché.
+00:26:10 Speaker 4
+Ogni cliente che. Vorrei che. No, il pulsante qua no, perché non va bene. Vorrei che facesse così. Ci abbiamo ascoltato tutti.
+00:26:20 Speaker 4
+Abbiamo dato retta a tutti, perché Tiziano ha detto che non potevamo. Facendo così, siamo riusciti a battere una certa cosa. Con Coiles, sarebbe bello che fosse la stessa cosa.
+00:26:38 Speaker 3
+Quindi da capire cosa significa
+00:26:40 Speaker 4
+Però perché già adesso qualcuno ha detto ma qua fa così, ma non mi piace che è un competitor.
+00:26:49 Speaker 1
+Partiamo da una posizione un po' svantaggiata. Adesso abbiamo perso terreno rispetto al primo
+00:26:55 Speaker 4
+Noi dobbiamo cercare di fare qualcosa, ovviamente, o non si perdono perché non vogliono.
+00:27:03 Speaker 4
+Raccogliamo le briciole? Può darsi. Ma non è detto.
+00:27:06 Speaker 1
+Non è detto, magari viene fuori che abbiamo.
+00:27:09 Speaker 4
+Però bisogna dire che deve essere secondo me molto personalizzabile
+00:27:17 Speaker 4
+Questo sì, in tutti i sensi.
+00:27:18 Speaker 2
+C'è già un piccolo livello di customizzazione che gli altri non ti fanno. Gli impianti Saccò sono tutti uguali.
+00:27:23 Speaker 4
+I nostri sono tutti diversi
+00:27:26 Speaker 3
+Per dire.
+00:27:28 Speaker 2
+Già adesso.
+00:27:31 Speaker 3
+Questo aggiunge comunque un vincolo ulteriore, nel senso che se sappiamo che dobbiamo fare delle personalizzazioni, bisogna capire almeno quelle che abbiamo già fatto e come le dobbiamo implementare. Se dobbiamo implementare un framework che faccia queste cose, cioè che permetta di personalizzare ciò.
+00:27:57 Speaker 3
+Vabbè, comunque va bene
+00:27:58 Speaker 1
+Quindi torno alla mia domanda: ti serviranno degli elementi in più rispetto a questa mezz'ora di chiacchiera?
+00:28:05 Speaker 3
+Molti elementi in più, perché devo comunque vedere la parte del database, devo vedere il progetto nella sua totalità, almeno a grandi linee.
+00:28:15 Speaker 3
+Io stimo che con una decina, una quindicina, massimo una ventina di ore di interviste, forse anche basta una quindicina.
+00:28:26 Speaker 3
+Almeno con loro due
+00:28:28 Speaker 3
+Dovrei avere la possibilità di capire quanto serve per fare un'analisi dettagliata.
+00:28:35 Speaker 3
+Un primo step piccolino, di poche ore, per vedere quanto serve per fare.
+00:28:41 Speaker 1
+45 ore totali?
+00:28:43 Speaker 3
+Potrebbero bastarci.
+00:28:45 Speaker 3
+Ditemi voi, secondo voi in quanto tempo potete descrivermi tutto in queste due ore.
+00:28:54 Speaker 2
+Devi anche parlare con lei perché lei ti dà il punto di vista del cliente.
+00:29:03 Speaker 2
+Mentre noi possiamo darti il nostro punto di vista, che è più tecnico.
+00:29:08 Speaker 2
+Lei invece affronta anche tutta l'assistenza, l'interfaccia con il cliente, il modo di pensare di Elmac.
+00:29:17 Speaker 2
+Il motivo per cui vent'anni fa è stata sviluppata una certa cosa in quel modo.
+00:29:22 Speaker 5
+Ma sì
+00:29:26 Speaker 1
+Ma tutto storico.
+00:29:28 Speaker 2
+Ma non serve farlo tutti assieme, nel senso che tu parli un po' con me per 5 ore, 5 ore con Antonio e.
+00:29:40 Speaker 5
+Se vogliamo mantenerle ancora, se c'è il resto al mercato inglese perché là ci sono delle funzionalità che è l'esempio che ha dato Fabrizio alla pro list. Certo.
+00:29:51 Speaker 2
+Ok. Particolari nate per quel mercato.
+00:29:54 Speaker 5
+Quindi se invece decidiamo no, quella roba rimane così, non contiamo, è fissa lì. Il programma è questo, rimane qua, ci fermiamo qui e da qui ne parliamo da qua.
+00:30:06 Speaker 2
+Ma nelle prime 10 ore ti segni anche queste informazioni perché non è la microanalisi, è capire di cosa stiamo parlando.
+00:30:13 Speaker 3
+Per fare la microanalisi, sapete di cosa parliamo almeno?
+00:30:20 Speaker 5
+Secondo me, prima fare la riunione 15x3 non sarà mai 15x3. Sarà sempre per uno. Forse se vedo meglio di prendere in mano.
+00:30:30 Speaker 5
+Tutta la parte che Ante aveva iniziato anni fa e metterla in bella calligrafia
+00:30:38 Speaker 5
+Presentare qualcosa di più. Da lì iniziamo ad aggiungere.
+00:30:42 Speaker 3
+No, c'è già una descrizione.
+00:30:44 Speaker 1
+Insomma, nel progetto.
+00:30:45 Speaker 2
+Sì, c'è già una descrizione di tutto il DB.
+00:30:48 Speaker 3
+Il DB serve relativamente, il progetto sarebbe completarlo.
+00:30:51 Speaker 1
+Perché è incompleto
+00:30:53 Speaker 5
+Perché se vado a interrogarlo le cose non lo fanno, però è un punto di.
+00:31:01 Speaker 5
+Quindi possiamo riprendere Tobi per i cambi che non conosciamo.
+00:31:08 Speaker 1
+Non ce li ricordiamo. Però non devi fare l'analisi, stai dicendo mi servono.
+00:31:12 Speaker 3
+Poche ore mi servono per capire la dimensione del progetto che ancora non mi è nota. Potrebbe essere un progetto in cui, per l'analisi, ci vogliono 100 ore come 200.
+00:31:23 Speaker 3
+Di più no, perché l'analisi ha più di.
+00:31:27 Speaker 3
+Eccessiva, però, per fare un'analisi dettagliata e avere una stima di costi, compreso anche sapere quali sono gli strumenti da usare, eccetera, secondo me 100-150 € mi vanno via.
+00:31:41 Speaker 3
+Così al naso magari meno la stessa quantità di ore che poi usi per l'analisi, cioè la preanalisi. No, la preanalisi metti che mi servono una 10-15 ore. Devo parlare con qualcuno per avere la dimensione del problema. Se poi ho anche addirittura già qualche documento che mi dice, intanto come è fatto il database. Ma io non posso fidarmi del database perché è una delle cose che dobbiamo rifare. Per cui andarsi a fidare ciecamente il DB mi serve comunque che qualcuno mi dica.
+00:32:10 Speaker 3
+In realtà il prodotto deve funzionare così. Quello che facciamo noi è questo, non è solo quello.
+00:32:16 Speaker 6
+Quindi, riassumendo, ci sarebbe lo step zero o di preanalisi di 10 ore.
+00:32:21 Speaker 3
+Supponiamo che ti dà come output quanto deve essere grossa la fase
+00:32:31 Speaker 6
+Dove la fase uno del progetto avrà un output, un'architettura e ciò che è, con una successiva stima dei costi per la realizzazione di uno step 2.
+00:32:40 Speaker 2
+Anche se siamo in grado di arrivarci. Corretto? Esatto.
+00:32:44 Speaker 2
+Ok.
+00:32:45 Speaker 2
+Perché se mi aspetto anche di no, avete intrapreso una strada che è un buco nero come prima.
+00:32:54 Speaker 3
+Quindi vabbè, le prime ore
+00:32:57 Speaker 3
+Le prime ore sono poche e quello è il vero fondo perduto. Difficile nelle prime 10 ore capire se il progetto è realizzabile. Onestamente lì conviene investire qualcosa di più e fare analisi. Se non altro avete un documento poi che sarà un documento di 10, 10 no, 102103100 pagine, non so che descrive il progetto e lo faremo insieme, anche perché ovviamente chi meglio di voi conosce.
+00:33:27 Speaker 1
+L'avvocato del diavolo, secondo quello che lui ha detto mio papà ha sempre chiesto, secondo me, e che forse vi critica sempre che vi manca, anche se non è vero. Secondo me però me lo critica, è che l'hai detto tu stesso, la Gianina fa la voce dell'operatore del cliente.
+00:33:46 Speaker 1
+Bisogna per fare questo progetto che funzioni. Essere tutti vicini a qualche operatore, a qualche realtà, nel senso non va bene fare le tecniche
+00:34:02 Speaker 1
+Però se non capisci, ci vorrà sempre troppo per spiegarlo, quindi non lo so come.
+00:34:11 Speaker 1
+Andando anche nei nostri locali, che tu dici? È una delle casistiche, però anche tu stesso, no, dai, non è neanche un brutto contesto.
+00:34:24 Speaker 2
+Però bisogna.
+00:34:29 Speaker 1
+Secondo me bisogna vederlo in azione in magazzino.
+00:34:32 Speaker 3
+Sì, perché poi se fai tutto un castello di cose che alla fine la gente non le usa così e non si trova.
+00:34:38 Speaker 2
+Quindi è successo l'altro giorno nell'ultima installazione abbiamo scoperto che hanno trovato un giro nel fare una certa operazione diversa da quella che era stata pensata, che poteva dare problemi.
+00:34:54 Speaker 2
+Anche no, se accendi il cervello, ma bisogna pensare che gli utenti non accendono sempre il cervello, per cui non lo so, bastava fare così e funzionava tutto.
+00:35:05 Speaker 2
+Ma quella è l'esperienza che abbiamo in questi anni, tutto sommato abbiamo raccolto.
+00:35:09 Speaker 1
+Ok, però ecco, mi raccomando, non deleghiamo alla sola Gianina di sapere come funziona il mercato, perché ormai voi siete dentro e ti invito, Piero, se farai parte del progetto, a essere, cioè bisogna viverlo, no, la vita un po' dell'operatore
+00:35:28 Speaker 2
+Ma ci sono cose che io non capisco e inorridisco, e anche lui ogni tanto inorridisce, però chiedendo. Hanno un senso, perché è stato pensato in quel modo. È stata intrapresa questa strada perché c'era questa necessità.
+00:35:49 Speaker 2
+Quindi posso capire che è una cosa che mi fa inorridire invece.
+00:35:52 Speaker 1
+Sulle cose che non hai mai saputo c'è lei.
+00:35:56 Speaker 1
+Però in generale.
+00:35:58 Speaker 3
+Qualcosa saprai.
+00:35:59 Speaker 2
+Sì, ormai ne conosco.
+00:36:05 Speaker 3
+La domenica.
+00:36:08 Speaker 3
+Infatti noi il 90% delle volte in Blue Next abbiamo l'assistenza che ci dice come fare le cose.
+00:36:14 Speaker 1
+Però è vero.
+00:36:16 Speaker 3
+Loro dicono come sviluppare perché sono loro che capiscono qual è il problema.
+00:36:21 Speaker 1
+Ok, siamo andati magari troppo dietro ai clienti a fargli troppe customizzazioni, però comunque gli devi stare. Devi se paga, pagano, pagheranno. Però magari comunque bisogna passare prima. È come vorrei farti pagare questo sistema a pezzetti, a servizi monolitico.
+00:36:50 Speaker 2
+È una cosa importante anche per come andiamo a farlo, perché se io devo fare in modo che si accendano solo alcune cose a chi ha pagato e che si spengano quando smettono di pagare, bisogna saperlo prima. È una buona cosa.
+00:37:04 Speaker 1
+Io credo provo a rispondere, dimmi se rispondo giusto.
+00:37:08 Speaker 1
+C'è una fetta di mercato, la preponderante in Italia.
+00:37:16 Speaker 1
+Non è a canone, è a investimento. Pagano tutto il software, ma non lo pagano 'as a service', ma subito.
+00:37:28 Speaker 1
+Però l'hardware se lo comprano o glielo possono far comprare.
+00:37:35 Speaker 5
+Allora, quello che ti ha raccontato tuo papà
+00:37:39 Speaker 1
+Prendi una parte.
+00:37:39 Speaker 5
+Una parte, ok? Perché io, anche lui ha visto un preventivo di.
+00:37:45 Speaker 5
+E com'è? Una pagina chiedete a Barbara indirizzata a Zanetti.
+00:37:52 Speaker 6
+E cos'è? Emma cosa gli ha fatto dentro?
+00:37:56 Speaker 5
+Il rumore è stato fatto nella fotografia in un momento. Ok. Non ho capito. Al cliente non conta niente, vi viene fornito tutto?
+00:38:08 Speaker 1
+Però, aspetta, gli viene fornito in che senso? Software.
+00:38:10 Speaker 4
+Ma non è il canone
+00:38:11 Speaker 6
+Non c'è niente. Ci sarà un abbonamento come pagano? Il pagamento successivo non lo conosco.
+00:38:16 Speaker 5
+Ho visto il preventivo, non conosco il canone annuale o come lo dividono, so solo che l'Intercard fino a 5 anni fa, che ne parlava ancora con Gabrino, sono 1000 sterline all'anno.
+00:38:35 Speaker 6
+Sì, però un canone ci vuole. Ci sarà una startup fee, mi immagino, poi non è un canone, una maintenance, qualcosa per forza.
+00:38:41 Speaker 5
+Manutenzione, server, gestione, aggiornamenti, extra di, non lo so, qualche oretta di extra
+00:38:49 Speaker 5
+Non è una customizzazione, niente, perché comunque non è fatta.
+00:38:56 Speaker 5
+Sa qua ha iniziato a fare.
+00:38:58 Speaker 1
+Invece quell'altro che avevamo sentito era un software israeliano dell'azienda Nyx dei POS. Loro facevano tutto a service. Tu non ti compri niente, noleggi tutti i pezzi che ti servono in base alle dimensioni della sala e hai tutto, tutto cloud, tutto così fatto.
+00:39:18 Speaker 1
+È una realtà completamente diversa, quindi dobbiamo studiare anche il pricing e la proprietà del software.
+00:39:26 Speaker 2
+Nel senso che il concetto di qua è sempre chi compra, ha comprato e diventa proprietario delle cose.
+00:39:34 Speaker 2
+Attenzione, perché quando diventi proprietario è di quello che hai preso in quel momento. Se c'è qualsiasi roba diversa
+00:39:41 Speaker 1
+Non è quello che hai preso in quel momento.
+00:39:44 Speaker 3
+No, il software non si può comprare.
+00:39:47 Speaker 1
+Su quello sui moduli accendibili e spendibili e spegnibili ci possiamo ragionare.
+00:39:56 Speaker 2
+Anche se accoda i moduli che accendi e spegni, perché vai nel sito dove c'è scritto.
+00:40:05 Speaker 2
+Sono tutte cose che vengono aggiunte anche al preventivo iniziale.
+00:40:10 Speaker 6
+Si possono pensare anche a delle funzionalità.
+00:40:12 Speaker 5
+Perché è ovvio che adesso abbiamo un esempio
+00:40:20 Speaker 1
+Il globo, che è il vecchio sistema, devi da pari quello che.
+00:40:23 Speaker 5
+Vabbè, ma quello poi i vecchi come li migriamo?
+00:40:26 Speaker 3
+E come le funzionalità.
+00:40:27 Speaker 2
+La migrazione è una delle cose importanti da fare.
+00:40:31 Speaker 2
+Non dobbiamo perdere i clienti e le transazioni che hanno effettuato.
+00:40:37 Speaker 2
+Anzi niente. Quasi niente.
+00:40:38 Speaker 3
+Quasi niente, perché ci sono alcune cose che i log possiamo anche perderli.
+00:40:42 Speaker 2
+Per un ritardo come oggi? Sono serviti i log.
+00:40:45 Speaker 5
+Bisogna capire se ci sarà o meno.
+00:40:47 Speaker 2
+Se continuerà ad esserci
+00:40:48 Speaker 4
+Come oggi o no.
+00:40:56 Speaker 4
+Se servirà il backup.
+00:41:01 Speaker 4
+Adesso va a prendersi i dati server.
+00:41:08 Speaker 2
+Quella cosa che hai implementato adesso
+00:41:13 Speaker 1
+Abbiamo affrontato un mondo.
+00:41:21 Speaker 1
+Ok, va bene, torniamo all'obiettivo di oggi. Hai, Piero, quello che ti serve per fare le tue valutazioni? Noi vorremmo iniziare a lavorare, no? Ok, ma hai capito di cosa si tratta e cosa vorremmo da te?
+00:41:35 Speaker 3
+Adesso mi prenderò una birra con Antonio e Fabrizio al bowling alle 04:30.
+00:41:46 Speaker 2
+No, apre dopo.
+00:41:49 Speaker 3
+In questi giorni ci prendiamo una birra, in maniera informale, faremo due ore di chiacchierate a fondo perduto e poi riesco a capire. Mi diranno anche loro quali sono gli interlocutori con cui dovrò interloquire.
+00:42:07 Speaker 3
+Dopodiché faccio un piano disponibilità. Sì, ho del tempo da dedicare e faccio un piano disponibilità e vediamo come proseguire.
+00:42:19 Speaker 1
+Sicuramente economico anche di tutto, mi raccomando, perché dobbiamo essere più precisi e navigare meno a vista, ma perché è la nostra ultima chance di renderlo.
+00:42:36 Speaker 1
+No, vabbè, però poteva mollare a gennaio quando si è proposto Tigapo, questi cloud based si sono proposti come.
+00:42:50 Speaker 1
+Per darvi il software, noi l'avremmo distribuito in Italia.
+00:42:54 Speaker 1
+Il che voleva dire smettere di investire nel nostro prodotto, continuare solamente a fare un po' di assistenza fino a che andava a morire, magari sostituirlo e darci ad un altro business, tornare a fare solo rivendita di giochi. Già a gennaio mio papà ha scelto di non fare quella strada, quindi vuol dire che ci crede, no? Però.
+00:43:15 Speaker 1
+Ci crede? Fino a che lo vede, secondo me dobbiamo dare un'accelerata tangibile.
+00:43:22 Speaker 4
+Dovremmo fare, ne ho già fatti troppi.
+00:43:27 Speaker 1
+Ecco, noi come forze interne
+00:43:31 Speaker 1
+Come vedi c'è un business da mandare avanti e abbiamo Giannina
+00:43:38 Speaker 1
+Mauro, Toby, il nuovo ragazzo che è appena entrato, letteralmente l'altro giorno.
+00:43:46 Speaker 1
+Come forze del team di fatto no e loro due, quindi bisogna un po' bilanciare il tempo. Abbiamo questo nuovo ragazzo che è volenteroso, però è appena entrato, quindi non so quanto si possa utilizzare. Però magari per rivedere i documenti ci siamo, magari un pochino noi che possiamo portare qualche punto di vista business, ma questi è la OK. Ok, il contesto va bene.
+00:44:17 Speaker 1
+Ci aggiorniamo presto. Grazie di essere venuto. Dove lavori tu adesso?
+00:44:29 Speaker 3
+Allora dai, io comunque ho.

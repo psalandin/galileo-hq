@@ -1,0 +1,2819 @@
+00:00:06 Speaker 1
+Da tutta la chiacchierata che abbiamo fatto finora emerge intanto che c'è una necessità, che è quella di capire quali sono i dispositivi dell'ecosistema. Ovviamente a me interessa quali sono i dispositivi che comunicano con altri dispositivi.
+
+00:00:27 Speaker 1
+Che non significa soltanto dispositivi che comunicano attraverso protocolli strani con il database
+
+00:00:32 Speaker 1
+Perché anche un lettore di codici a barre è un dispositivo e va trattato, soprattutto se va usato.
+
+00:00:42 Speaker 1
+Quindi cerchiamo di definire adesso, e voi siete più bravi di me perché conoscete il sistema, che cosa c'è a livello di device e poi vediamo come comunicano adesso e come vogliamo che comunichino dopo.
+
+00:01:05 Speaker 2
+Va bene, primo device è il lettore di codice a barre.
+
+00:01:21 Speaker 1
+È attaccato dove?
+
+00:01:22 Speaker 2
+Vabbè, monitor tastiera, gli saltiamo come deve fare
+
+00:01:26 Speaker 1
+Quelli li saltiamo bene, quindi cerchiamo di dare un ordine gerarchico ai dispositivi.
+
+00:01:30 Speaker 2
+Benissimo, la prima cosa che fa il sistema è andare a cercare se trova il suo lettore di barcode collegato e definisci sistema win MT il programma.
+
+00:01:41 Speaker 1
+Quindi stiamo parlando di un programma che gira su un PC,
+
+00:01:45 Speaker 1
+Quindi non è nella nostra visione futura Win MT, magari è la cassa.
+
+00:01:52 Speaker 2
+Potrebbe essere la cassa. In questo momento Win MT è il sistema monolitico, è il programma monolitico che gestisce tutto. Quindi se stiamo descrivendo questo,
+
+00:02:00 Speaker 2
+Descriviamo lo stato attuale.
+
+00:02:02 Speaker 1
+Quindi abbiamo un'istanza di Win MT che gira nella cassa e tu mi stai descrivendo quella.
+
+00:02:07 Speaker 2
+Ci sarà sempre solo un'istanza perché non possono girare due istanze contemporaneamente?
+
+00:02:11 Speaker 1
+Due casse nella stessa sala?
+
+00:02:15 Speaker 2
+Sì, due istanze nello stesso PC.
+
+00:02:20 Speaker 1
+Vabbè, certo, ho capito. Sì, bene.
+
+00:02:24 Speaker 1
+Per vari motivi. Se voglio avere due istanze della stessa nella stessa sala, devo avere due PC, devi avere due PC, va bene?
+
+00:02:34 Speaker 2
+Win MT, la periferica principale che vado ad adoperare è appunto il lettore di barcode.
+
+00:02:39 Speaker 1
+quindi è importante,
+
+00:02:40 Speaker 2
+È importante. Se non c'è il lettore di barcode, appare un messaggio d'errore all'inizio e chiede di andare a fare la configurazione del sistema.
+
+00:02:51 Speaker 2
+Quindi di andare a collegare questo lettore di barcode.
+
+00:02:54 Speaker 1
+Prima collegalo e dopodiché configuralo perché se collegato.
+
+00:02:58 Speaker 2
+Esatto chiaramente.
+
+00:03:03 Speaker 2
+L'altro device che viene sempre installato nel sistema, nella macchina dove c'è in MT, è una stampante collegata in seriale o via usb.
+
+00:03:17 Speaker 2
+Solito è una Custom perché da anni ormai vendono soltanto. Quindi è una stampante di quelle da termiche da 80 classiche, quelle che usiamo anche noi per la sagra. Esatto. Ok. E possono esserci anche altri tipi di stampante, ma in quel caso vengono usati driver di Windows per stampare, quindi il lo spooler classico. Mentre le stampanti Custom, essendo seriali, vengono pilotate direttamente dal programma.
+
+00:03:46 Speaker 2
+Programma che apre la porta e va a scrivere direttamente.
+
+00:03:50 Speaker 1
+È una richiesta formale di qualche tipo oppure si possono pensare altre soluzioni? Per esempio, noi con il programma della saga usiamo un driver di stampa e usiamo Windows.
+
+00:04:04 Speaker 2
+Per dire, attualmente la scelta di Elmac è fare questo tipo di accesso anche per riuscire ad utilizzare. Perché vengono utilizzati dei comandi a basso livello della stampante per stampare i loghi o altre cose. Ovviamente si riesce a fare anche quei driver di Windows. Va bene, poi vediamo perché poi driver di Windows e le casse sono Linux non servono più. Non serve, ma veniamo dopo a vedere come migreremo.
+
+00:04:34 Speaker 3
+Sovra porci e le Custom vengono usate anche all'interno dei totem e siccome abbiamo già riscritto tutta la gestione dell'hardware, quindi le torri di QR, le stampanti, gli rfeed, tutte queste cose qui è già tutto fatto su quel fronte. Il totem gira come una.
+
+00:05:01 Speaker 3
+Era un figlio di WIn MT Adesso lo stiamo portando completamente sotto Linux.
+
+00:05:10 Speaker 1
+Il che significa che però se vogliamo usare la stessa tecnologia nella cassa, dobbiamo avere o una cassa Linux o uno strato intermedio.
+
+00:05:18 Speaker 3
+Le casse le abbiamo già,
+
+00:05:21 Speaker 3
+Tutto il codice è scritto in Python, quindi funziona tanto su Linux quanto su.
+
+00:05:29 Speaker 3
+Windows, ho detto la cassa, ma in realtà intendevo l'engine, il motore del totem c'è già ed è fatto e già tutti quanti sui driver che funzionano via seriale barra usb sotto Linux, ma vanno anche sotto Windows.
+
+00:05:48 Speaker 1
+Va bene, quindi però un tocco,
+
+00:05:52 Speaker 1
+Un tocco GMT sarà scritto in Python, bisogna vedere cosa fa.
+
+00:05:57 Speaker 1
+Magari lo isoliamo perché è già fatto,
+
+00:06:01 Speaker 3
+È già isolato ed è completamente.
+
+00:06:06 Speaker 1
+E come comunica con l'esterno?
+
+00:06:08 Speaker 3
+Con MPTT?
+
+00:06:09 Speaker 1
+vabbè, con un protocollo,
+
+00:06:14 Speaker 1
+Una è una specie di client di qualche tipo.
+
+00:06:17 Speaker 3
+Insomma, non serve più un client. La cassa, il motore che parla con tutto l'hardware, è un server.
+
+00:06:27 Speaker 1
+È un server all'interno del totem, a me interessa quando si va fuori dal totem diventa un client. Quando si va fuori dal totem, a meno che tu non contrarrai il suo motore, ogni pc avrà il suo micro server che gira all'interno. Microserver isolato scritto in python che serve a gestire le periferiche di base. Poi il resto si vedrà, il resto è Win MT.
+
+00:06:59 Speaker 1
+Che appunto suppone le periferiche già gestite in qualche modo. Quindi c'è questo motore che si mette lì in ascolto di Win MT, cioè di una parte di Win MT, di un front end che forse scriveremo in footer.
+
+00:07:17 Speaker 1
+Il quale finalmente è lui che parla con qualcuno che scrive nel DB, perché ancora qua nel DB non ha scritto nessuno.
+
+00:07:27 Speaker 2
+Nessuno scrive ancora,
+
+00:07:28 Speaker 1
+L'amico in Python non scrive direttamente nel DB.
+
+00:07:37 Speaker 3
+Adesso ho costretto lui, Fabrizio, a farmi delle API perché il totem attuale, quello vecchio, scrive dentro al DB.
+
+00:07:48 Speaker 1
+Quello nuovo no, quello nuovo no.
+
+00:07:51 Speaker 3
+Io voglio uno strato di API.
+
+00:07:54 Speaker 3
+E si smazzano tutte le transazioni.
+
+00:07:57 Speaker 1
+Quindi abbiamo la cassa che ha il lettore di barcode.
+
+00:08:05 Speaker 1
+La stampante.
+
+00:08:09 Speaker 2
+Vuoi sapere anche la situazione delle vecchie versioni oppure andiamo direttamente sul futuro?
+
+00:08:15 Speaker 1
+Io andrei sul desiderata, cioè quello che devo fare io, cosa dovrà fare dopo. Mi dici quello vecchio fa così, così lo riconosco nel codice, non è male come idea.
+
+00:08:24 Speaker 2
+Quello vecchio è in grado di leggere i vecchi lettori a banda magnetica con la strisciata.
+
+00:08:31 Speaker 2
+È in grado di riconoscere le stampanti, ce le sono le mangiaticcet.
+
+00:08:40 Speaker 1
+Quindi che la cassa si collega fisicamente attraverso
+
+00:08:44 Speaker 2
+Attualmente la cassa tramite una multiseriale si collegano fino a quattro mangiaticket e il programma WinMT.
+
+00:08:53 Speaker 2
+Configura un suo figlio che si chiama MT-Link, cioè lancia un task, gli configura un task e poi lancia un task che è MT-Link che va a leggere e a scrivere.
+
+00:09:07 Speaker 1
+Che fa a metà di casa?
+
+00:09:17 Speaker 3
+Non lo so, credo che basti premere.
+
+00:09:21 Speaker 3
+Vabbè, vado avanti io.
+
+00:09:25 Speaker 2
+La Allora,
+
+00:09:33 Speaker 3
+La cassa a ogni cassa possono essere collegate fino a quattro mangia ticket in via seriale.
+
+00:09:45 Speaker 1
+Saranno gestite sempre dal.
+
+00:09:49 Speaker 3
+Questo non esiste. Sì, saranno gestite.
+
+00:09:53 Speaker 1
+Poi se colleghiamo le quattro mangiaticket alla cassa fino a che le gestiamo in questo modo.
+
+00:09:59 Speaker 3
+Allora, sulle schede nuove della mangiaticket è stato implementato una schedina, un SP32, perché l'obiettivo è portarle a diventare macchine di rete.
+
+00:10:15 Speaker 2
+Vai a vedere sulla cassa.
+
+00:10:18 Speaker 3
+Non si mette in pausa, Fabrizio, sennò non andiamo avanti.
+
+00:10:27 Speaker 3
+Vabbè, comunque abbiamo questo SP 32 che serve per metterla in rete, quindi riusciremo ad eliminare la connessione seriale e possiamo parlarci come device di rete. Il protocollo usato è sempre l'MQTT.
+
+00:10:44 Speaker 1
+Più che altro mi interessa chi parlerà.
+
+00:10:48 Speaker 1
+Con la mangia ticket, non solo in che protocollo, nel senso che cosa quindi desiderata è che questo motore Python si occupi anche di questo?
+
+00:10:59 Speaker 3
+Probabilmente sì, nel senso che non so l'allora.
+
+00:11:10 Speaker 3
+Servirà comunque un motore che permetta alla mangia ticket di scrivere quello che fa all'interno del database.
+
+00:11:18 Speaker 1
+Quindi la mangiaticket potrebbe essere un pezzo a sé stante dell'ecosistema che comunica via rete e ha bisogno di un suo.
+
+00:11:28 Speaker 1
+In qualche modo comunica via rete con qualcuno che scrive nel DB.
+
+00:11:36 Speaker 1
+Quindi abbiamo la cassa con queste periferiche e anche una mangiaticket che non è una di quelle, nel senso che non è fatta come quelle, perché da sola comunica con un ente che ancora non conosciamo
+
+00:11:48 Speaker 1
+Che si occuperà di scrivere il database. La comunicazione tra questa mangiaticket e questo ente sarà fatta tramite un altro broker di HQTT.
+
+00:11:58 Speaker 1
+Il broker di sala starà su un server che non ha niente a che vedere con la cassa in sé.
+
+00:12:04 Speaker 1
+Che sarà il server che ospita anche il DB.
+
+00:12:09 Speaker 1
+Poi altri dispositivi dell'ecosistema della sala.
+
+00:12:12 Speaker 1
+Beh, immagino che ci siano i giochi.
+
+00:12:15 Speaker 3
+No, ti manca ancora il lettore RFID, che è la versione da cassa delle BE che poi vediamo sui giochi.
+
+00:12:26 Speaker 1
+Ma il lettore RFID vive da solo? Vai sul tavolo con un lettore RFID lì?
+
+00:12:31 Speaker 3
+È collegato via seriale al pc che parla, che ha in pancia WinMT.
+
+00:12:39 Speaker 1
+Quindi una periferica della cassa adesso. Sì, mi interessa descriverlo, ma parlerai in NQTT con il broker di cassa.
+
+00:12:49 Speaker 3
+Palla in seriale.
+
+00:12:51 Speaker 3
+Vabbè, palla in seriale attraverso Win MT della cassa serve per leggere e scrivere le card.
+
+00:12:59 Speaker 1
+Abbiamo un desiderata per quanto riguarda quello che con chi parlerà o no?
+
+00:13:05 Speaker 3
+Allora, in un'ottica di mettere tutto quanto in rete, cercando di sgravare il lato delle seriali, questo oggetto si potrebbe far parlare in rete.
+
+00:13:19 Speaker 3
+Il firmware nuovo che sto scrivendo lo fa già, quindi io potrei eliminare il cavo seriale e sempre utilizzando MQTT arrivare a parlare con WinMT.
+
+00:13:33 Speaker 1
+Quindi la cassa che ospita WinMT, che è un client comunque nel senso dal punto di vista di quello che va a scrivere sul DB, parla con l'RFID, il quale parla comunque con la cassa.
+
+00:13:45 Speaker 1
+Non parla da solo con il DB.
+
+00:13:49 Speaker 1
+E non parla neanche da solo, devo capire se farlo parlare solo con la cassa o farlo parlare comunque con un API che va sul DB.
+
+00:13:59 Speaker 3
+Tecnicamente, come oggetto collegato alla cassa parla solo esclusivamente alla cassa. Tu appoggi la card, la leggi, la scrivi e là finisce.
+
+00:14:10 Speaker 1
+Ed è la cassa che dice appoggialo. Quindi è giusto che sia la cassa che si prende i segnali. Diciamo il collegamento ha senso, ma non ha senso.
+
+00:14:19 Speaker 3
+Non ha senso che sia un oggetto indipendente.
+
+00:14:21 Speaker 1
+Quindi la RFID è proprio una periferica.
+
+00:14:24 Speaker 1
+Non può funzionare, anche se è una periferica di rete, però non può funzionare da sola.
+
+00:14:30 Speaker 1
+Va bene. Gli RFID sono collegati anche altrove, cioè ai giochi, per esempio.
+
+00:14:37 Speaker 3
+Sto pensando se c'era Android collegato alla cassa, ma mi sembra di no.
+
+00:14:42 Speaker 3
+Mi sembra di no.
+
+00:14:43 Speaker 3
+Poi gli altri lettori RFID che sono le BE sono le macchinette collegate al singolo gioco.
+
+00:14:52 Speaker 1
+Quindi c'è il gioco.
+
+00:14:55 Speaker 1
+Che comunque è una gran parte fondamentale spero dell'ecosistema perché siamo qui per fare giochi.
+
+00:15:01 Speaker 1
+C'è il gioco, un bussolotto che ha tutta una parte di gioco che non ci frega niente.
+
+00:15:07 Speaker 1
+Poi c'è una B e una BE, giusto dentro il gioco.
+
+00:15:10 Speaker 1
+Il gioco parla con la B, la BE parla con la BE e la BE parla con il mondo esterno.
+
+00:15:14 Speaker 3
+Giusto? Quindi l'MVTT che è installato sul server di sala.
+
+00:15:21 Speaker 1
+La BE parla con tutte le sue periferiche, quindi la RFID, quello che frega la gettoniera
+
+00:15:28 Speaker 3
+Giusto? La BE ha in pancia soltanto un display per far vedere dei messaggi, un'infilata di led
+
+00:15:36 Speaker 3
+Un po' di memoria nel quale si salva i propri stati e un lettore scrittore RFID col quale noi leggiamo e scriviamo sulle card dei giocatori.
+
+00:15:49 Speaker 3
+La BE è collegata con un cavo seriale alla B.
+
+00:15:54 Speaker 3
+La B è quella che intercetta tutto l'I/O del gioco,
+
+00:15:59 Speaker 3
+Quindi si mette nel mezzo tra il gioco da una parte e dall'altra parte. C'è la B, c'è il gioco da una parte, dall'altra parte c'è la gettoniera.
+
+00:16:11 Speaker 3
+C'è l'emettitore di ticket.
+
+00:16:15 Speaker 3
+Quindi per come è pensata oggi la B
+
+00:16:19 Speaker 3
+L'ABI cosa fa?
+
+00:16:21 Speaker 3
+Prende l'output del gioco che ad esempio vuole erogare dei ticket
+
+00:16:28 Speaker 3
+Li prende e li riflette sull'emettitore di ticket fisico, quello che butta fuori la carta.
+
+00:16:39 Speaker 3
+In questo modo noi possiamo staccare l'emettitore di ticket,
+
+00:16:45 Speaker 3
+Il gioco continua a pensare di avere un emettitore attaccato perché è la BI che lo sta emulando, il gioco è felice. Perché se i giochi stacchi l'emettitore di ticket si arrabbiano tantissimo
+
+00:16:59 Speaker 3
+Si bloccano e dicono "io devo mettere ticket e se mi cavi non vado".
+
+00:17:05 Speaker 3
+Il contrario per la gettoniera.
+
+00:17:08 Speaker 3
+La gettoniera che di solito nel 99% dei casi va a impulsi,
+
+00:17:13 Speaker 3
+Metto moneta, scatena impulso, l'impulso arriva dentro la BE
+
+00:17:18 Speaker 3
+La BE, scusami, l'impulso arriva dentro la B, la B lo riflette verso il gioco.
+
+00:17:25 Speaker 1
+Vabbè, la B è un'interfaccia tra il gioco,
+
+00:17:28 Speaker 3
+In questo modo posso staccare la gettoniera e quando tappo con la mia card.
+
+00:17:37 Speaker 3
+La B dice alla B "Oh, guarda che mi hanno dato un gettone" e iniettiamo il gettone dentro il gioco.
+
+00:17:44 Speaker 1
+Ecco, tutto questo però bisogna capire che cosa gira internamente e cosa va salvato
+
+00:17:52 Speaker 1
+Sia internamente, per quando non c'è la possibilità di comunicare con la sala, sia ovviamente in comunicazione con la sala. Il gioco, se non è collegato alla sala, si spegne o continua a funzionare? Parlo alla sala, non al cloud.
+
+00:18:11 Speaker 3
+La BE non è collegata alla sala.
+
+00:18:13 Speaker 1
+Allora, il bussolotto del gioco comprende,
+
+00:18:16 Speaker 3
+Sono indipendenti, però la BE è attaccata al gioco.
+
+00:18:18 Speaker 1
+La BE è attaccata al gioco in questo senso. Quindi dicono, allora,
+
+00:18:22 Speaker 3
+Se la BE non va,
+
+00:18:24 Speaker 3
+Ci deve essere un momento in cui la BE parla col resto della sala perché ogni BE associata a un gioco va configurata per andare con quel gioco. Beh, certo, perché i giochi possono avere parametri differenti per far andare la gettoniera, per parlare con la gettoniera, far andare l'emettitore di ticket. Ok? Va bene. Quindi c'è un momento in cui la sala va a dire alla BE
+
+00:18:51 Speaker 3
+Questo è il gioco, questi sono gli impulsi, questi sono i time out, tutta una serie di informazioni.
+
+00:18:57 Speaker 1
+Immagino. In condizioni normali è chiaro che la comunicazione c'è sempre tra la via e la sala.
+
+00:19:01 Speaker 3
+Questa è obbligatoria almeno una volta, per capirsi. Poi, quando siamo collegati, le informazioni che viaggiano sono: ho ricevuto il tap di una card, questa è la card.
+
+00:19:15 Speaker 3
+Sarà il server che va a dire quanti soldi ci sono nella card
+
+00:19:20 Speaker 3
+A briscola.
+
+00:19:21 Speaker 3
+Per il sistema scelto da Ernoc, cioè di salvare anche sulla card queste informazioni, viene fatto un confronto tra la card e il server.
+
+00:19:32 Speaker 3
+In modo da sapere se siamo allineati o meno,
+
+00:19:35 Speaker 3
+Con tutta una serie di procedure poi di riconciliazione in caso di problemi,
+
+00:19:45 Speaker 1
+E a posto. chi si occupa di questa riconciliazione?
+
+00:19:48 Speaker 3
+Il server.
+
+00:19:50 Speaker 3
+Che fa i confronti e va a dire alla BE ok la card va bene ma indietro oppure la card non va bene.
+
+00:20:00 Speaker 1
+Ecco, questo avviene come? La BE manda un flusso di informazioni. La BE di che tipo?
+
+00:20:05 Speaker 3
+La BE dice semplicemente al server quello che ha letto dalla card.
+
+00:20:12 Speaker 3
+Il server va a vedere lo storico delle transazioni che ha in pancia relativa a quella card e con una serie di cose che dopo ti spiegherà meglio Fabrizio perché le ha fatte lui
+
+00:20:24 Speaker 3
+È in grado di dirti se quella card, ad esempio, è stata clonata, non è scritta da tempo
+
+00:20:31 Speaker 1
+Ha tutta una serie di problematiche che sono di controlli che vanno comunque codificati, è un flusso.
+
+00:20:40 Speaker 3
+Buona parte dei problemi di questo flusso sono dovuti a una scelta progettuale fatta.
+
+00:20:48 Speaker 3
+All'inizio, per la quale si è scelto di far partire immediatamente le partite non appena veniva tappata la card, non appena la BE leggeva una carta.
+
+00:21:03 Speaker 3
+E' una castronata perché se poi la BE non riesce a scrivere le proprie informazioni sulla card, iniziamo a perderci progressivi
+
+00:21:12 Speaker 1
+Imposti. Questa cosa si può evitare? Cioè si può ritornare.
+
+00:21:17 Speaker 3
+Il nuovo flusso del firmware non è questo va eliminato.
+
+00:21:25 Speaker 3
+Il nuovo flusso sarà tappo la card, leggo la card, dico al server: ci sei? Mettiamo che vada bene, ci parliamo
+
+00:21:34 Speaker 3
+Si iscrive la card.
+
+00:21:37 Speaker 3
+Una volta che ho verificato che la card è sana, faccio partire il gioco. Fino a quel momento l'utente non fa niente, è costretto a installarlo.
+
+00:21:46 Speaker 3
+Stiamo parlando di 400 millisecondi,
+
+00:21:49 Speaker 1
+Per cui non.
+
+00:21:50 Speaker 1
+Se invece il server non c'è, cioè non lo vede?
+
+00:21:54 Speaker 3
+Se il server non c'è, invece le informazioni vengono salvate tanto nella memoria della BE barra B. Questa è una cosa che devo ancora ben capire perché non mi è chiaro, codice brutto e qui non me lo devo gestire.
+
+00:22:14 Speaker 3
+E viene aggiornata la scrittura all'interno della card. Quindi quando la card va alla cassa, ad esempio, la cassa è sempre collegata.
+
+00:22:25 Speaker 3
+Siamo attaccati al filo, a quel punto là è la cassa che si riconcilia con le cose, ci sarà un momento in cui la BA torna online,
+
+00:22:35 Speaker 3
+E manda tutto il suo stream di informazioni, cioè tutta la sequenza di partite che ha fatto al server.
+
+00:22:44 Speaker 1
+Io sto giocando, ho tappato la be con la carta senza server
+
+00:22:50 Speaker 1
+Poi faccio le mie cose, vado in cassa e la be si collega al server, cioè ci sono due riconciliazioni diverse all'interno della card, c'è un progressivo che segna l'incremento delle partite.
+
+00:23:09 Speaker 3
+Una card va avanti perché metti che tutte le macchine siano offline.
+
+00:23:18 Speaker 3
+Si presenta la cassa con un numero di progressivo maggiore rispetto a quello che ha in pancia il server.
+
+00:23:25 Speaker 1
+Per noi la vuol dire che la cassa è più avanti, la card è più avanti,
+
+00:23:29 Speaker 3
+Quindi è buona.
+
+00:23:31 Speaker 1
+vabbè,
+
+00:23:33 Speaker 3
+Concettualmente è buona.
+
+00:23:36 Speaker 1
+Ci sarà prima o poi qualcuno che dice sono state giocate.
+
+00:23:40 Speaker 3
+Il giorno dopo tornano là le macchine, arrivano al server,
+
+00:23:45 Speaker 3
+Tutte le giocate,
+
+00:23:47 Speaker 3
+Delle informazioni dalle BE che dicono: guarda ho giocato qua, ho giocato là.
+
+00:23:53 Speaker 3
+E queste vengono scritte come righe all'interno del database, ma a posteriori.
+
+00:23:57 Speaker 1
+Per cui la card, quando riconcili la card, da quando porti la card in cassa e le BE sono ancora scollegate, che cosa succede a livello di informazioni?
+
+00:24:07 Speaker 1
+Cosa viene portato dalla card al server, perché dal server alla card non si può portare niente. Questo stand è vecchio.
+
+00:24:18 Speaker 3
+Va avanti tu Fabrizio, perché.
+
+00:24:20 Speaker 3
+Aspetta un attimo se vuoi ti rispondere.
+
+00:24:24 Speaker 1
+Perché io tengo il telefono serio.
+
+00:24:26 Speaker 1
+Lo so. Un attimo, io non ho clienti, non ho gente.
+
+00:24:32 Speaker 1
+Quindi.
+
+00:24:34 Speaker 1
+Tu sei interrogabile adesso.
+
+00:24:36 Speaker 3
+Una gestione familiare molto.
+
+00:24:38 Speaker 1
+Quando hai finito,
+
+00:24:43 Speaker 1
+Quando io tappo la card sulla cassa e le vie sono ancora scollegate, che tipo di informazioni girano sulla cassa? Io vado in cassa, la cassa è sempre collegata al server, ma le vie non è collegata al server per qualche motivo. Io tappo la card, cosa succede?
+
+00:25:05 Speaker 2
+La cassa legge la card.
+
+00:25:07 Speaker 2
+Va a vedere la struttura interna per capire se ci sono cose da fare, se è rovinata o se deve ricostruirla.
+
+00:25:14 Speaker 2
+Perché talvolta succede che la situazione attuale abbia la card che è scritta male, proprio rovinata con dati incongruenti.
+
+00:25:26 Speaker 2
+Una volta letto, va acceduto al database,
+
+00:25:29 Speaker 2
+Va a verificare il cliente, fa un controllo sul cliente.
+
+00:25:33 Speaker 2
+Siamo d'accordo. Ci siamo, poi controlla che dentro nella card non ci siano dei ticket che sono stati registrati mentre tutto il sistema era offline
+
+00:25:42 Speaker 2
+Per cui non sono stati trasmessi direttamente dall'EBA verso il server, se li trova va a popolare il database con i nuovi ticket, va a scrivere sulla card che ha fatto questa cosa, quindi azzera un contatore specifico.
+
+00:26:01 Speaker 1
+A questo punto comincio a far vedere i dati del cliente. Non mi sono spiegato. Il server non sa ancora di tutto quello che ha fatto la ba. Il server non sa un cazzo perché la B continua a saperlo e continua a saperlo. Io c'ho la card, ma sulla card è scritto tutto quello che è scritto sulla B. È scritto anche sulla card. No, sulla card ci sono scritti i saldi e un progressivo che è maggiore di quello che è il server, che è sempre il famoso progressivo.
+
+00:26:31 Speaker 2
+Allora andando io a controllare sul database l'ultimo movimento fatto, io so per certo che chi carica sulla card deve lavorare può scrivere sulla card, quindi quando carico dei crediti.
+
+00:26:49 Speaker 2
+E posso scrivere sulla card. Devo anche poter scrivere sul database, altrimenti non faccio quell'operazione.
+
+00:26:57 Speaker 1
+Quindi la BE non fa questo quando è scollegata?
+
+00:27:00 Speaker 2
+Non scrive sulla card? Se la BE scarica non carica, quando faccio dei movimenti di carico, quindi carico soldi all'interno della card e incremento il progressivo devo farlo assolutamente collegato al server, per cui scrivo nel database un record dicendo ho caricato delle cose con quel progressivo. Questo è un dettaglio importantissimo.
+
+00:27:27 Speaker 2
+Potendo solo scaricare i sistemi offline scaricano e incrementano questo progressivo. Quando io torno sulla cassa con la mia card e vado a leggere il progressivo, se questo progressivo è maggiore.
+
+00:27:46 Speaker 2
+Di quello che ho trovato nel database, sono sicuro di aver messo nell'ultima ricarica che ho fatto e anche l'ultimo saldo che c'è dentro la card. Questo saldo non può essere minore, è maggiore.
+
+00:28:00 Speaker 2
+D'accordo, c'è un controllo per cui io vado avanti.
+
+00:28:05 Speaker 1
+Quindi in realtà a parte questa, a parte la sistemazione delle card messe in mano
+
+00:28:09 Speaker 2
+Posso continuare a caricare.
+
+00:28:11 Speaker 1
+Di fatto io ancora non ho scritto niente,
+
+00:28:15 Speaker 1
+Sul database né sulla card in questo momento se a meno che io non abbia fatto una cosa l'ho scritta te l'ho detto prima i ticket quelli che vengono registrati in offline e sono scritti direttamente sulla card quindi tu parli di carico come carico dei soldi carico dei ticket invece è un'altra cosa che vengono registrati sulla card e la card li manda al database quando io mi mandata
+
+00:28:41 Speaker 2
+Viene appoggiata alla cassa o comunque viene appoggiata a un device che è collegato al database in qualche modo. Non siamo in linea, poi la BS si collega. La BS si collega e cosa fa a questo punto? Comincia a inviarmi tutte le transazioni che non è riuscita a inviarmi, compresa quella dei ticket. No, perché non le memorizza le transazioni dei ticket. Le scrive soltanto dentro nella card perché questa cosa semplicemente perché c'è uno spazio limitato sulle card.
+
+00:29:11 Speaker 2
+Per come gestiamo i ticket noi, ogni 10-20 ticket viene inviata l'informazione sul server dicendo: con questa informazione dico che questa è la card che ha giocato, questo è il numero di ticket che sta vincendo, questa è la macchina dove li sta vincendo.
+
+00:29:30 Speaker 2
+Quindi durante l'erogazione dei ticket vengono inviati tantissimi record.
+
+00:29:35 Speaker 2
+Che vengono bufferizzati dal sistema, poi quando la macchina, la BEA ha deciso che sono ticket virtuali
+
+00:29:46 Speaker 2
+Se sono cartacei esce il pezzo di carta e prendiamo tutto un altro giro, parliamo degli ET.
+
+00:29:56 Speaker 2
+Vengono bufferizzati,
+
+00:29:58 Speaker 2
+C'è una tabella temporanea, perché ha dei record temporanei.
+
+00:30:03 Speaker 2
+Dove vengono scritte tutte queste transazioni assegnate alla macchina, utente, eccetera, numero di ticket, fino a quando la BE ha deciso che ha finito di erogare. Come fa a capirlo che ha finito di erogare? Sì, se per 10 secondi non ricevo ticket, OK, mando un'altra informazione dicendo guarda che questo ho finito. A questo punto il server riceve quest'informazione, mette assieme tutti questi ticket e scrive un unico record nella tabella tickets.
+
+00:30:34 Speaker 2
+Quindi da buffer passa a ticket con i dati che servono.
+
+00:30:38 Speaker 1
+Il buffer è sul database.
+
+00:30:40 Speaker 2
+Sul database c'è questo buffer, c'è questa tabella.
+
+00:30:43 Speaker 1
+Quindi io dalla BE invio queste informazioni e vengono scritte in buffer.
+
+00:30:47 Speaker 2
+Allora vengono inviate, vengono ricevute su MQTT, il server ascolta bla e scrive in un buffer bla finché funziona buffer per evitare di riempire di record inutili.
+
+00:30:59 Speaker 1
+Ma sì, perché li riceve un po' alla volta.
+
+00:31:01 Speaker 2
+Li riceve un po' alla volta.
+
+00:31:03 Speaker 1
+Da 1, da 5, dipende da come gli gira il protocollo.
+
+00:31:08 Speaker 2
+Se uno vince 500 ticket e mi manda 200 righe di transazione, alla fine diventa un'unica riga dicendo che.
+
+00:31:14 Speaker 1
+Certo, ma chi è che decide quante righe vengono mandate?
+
+00:31:19 Speaker 2
+A caso nel gioco.
+
+00:31:21 Speaker 2
+Ti ha detto, quando dopo 10 secondi la BE sente.
+
+00:31:29 Speaker 2
+Gioco non ha più, non sta più inviando ticket,
+
+00:31:32 Speaker 1
+Chiude la chiude e manda a una chiusura di chiusura,
+
+00:31:36 Speaker 2
+Dice ok adesso ho finito.
+
+00:31:39 Speaker 2
+Questo serve anche perché talvolta possono spegnere la macchina completamente, staccare la corrente a tutto mentre stiamo facendo queste cose. Io nel frattempo ho memorizzato nel buffer, quando ritorna sulla corrente normalmente i giochi cosa fanno?
+
+00:31:56 Speaker 1
+A quel punto il buffer.
+
+00:31:58 Speaker 2
+Dell'emettitore di ticket comunque abbiamo due buffer, abbiamo il gioco di per sé che tiene un suo contatore dicendo questi sono i ticket che ho già inviato. Ci sono io che mi memorizzo tutti i ticket che ho già ricevuto. Il server, quello è il famoso buffer di cui stavamo parlando.
+
+00:32:20 Speaker 2
+Macchina si riaccende, la sala riparte, il gioco si accorge che aveva ancora dei ticket da inviare, non ha finito le operazioni e comincia di nuovo a ritrasmettere. Finito dopo 10 secondi, la eccetera lì. Io mi memorizzo ancora ste cose, faccio la riconciliazione e scrivo un unico record in tickets. Va bene questo, mentre è per quanto riguarda i tickets.
+
+00:32:50 Speaker 2
+All'interno abbiamo la BI che è un sistema che memorizza i contatori progressivi, per cui c'è sempre un contatore progressivo di tickets.
+
+00:32:59 Speaker 2
+Anche in questo caso la BI invia tramite la BI questa informazione in un'altra tabella che va a finire si chiama ICS dati dove vengono memorizzati di volta in volta un record con i numeri progressivi data, ora, numero.
+
+00:33:16 Speaker 2
+Con tutti i vari contatori, ne abbiamo 9 che registriamo.
+
+00:33:21 Speaker 1
+I contatori di cosa?
+
+00:33:23 Speaker 2
+I contatori delle operazioni che sono all'interno della macchina.
+
+00:33:30 Speaker 2
+Tipo il contatore meccanico delle monete e/o gettoni, il contatore meccanico dei ticket.
+
+00:33:36 Speaker 1
+Quindi c'è anche la gettoniera?
+
+00:33:39 Speaker 2
+Volendo c'è anche la gettoniera, è tutto opzionale.
+
+00:33:43 Speaker 2
+Però supponiamo che ci sia tutto, abbiamo.
+
+00:33:46 Speaker 2
+Abbiamo un contatore delle monete, il contatore meccanico dei ticket, abbiamo il contatore elettronico delle monete, cioè quello che misuro sul segnale della gettoniera, quindi quando va su e giù il segnale memorizzo che è passata una moneta l'impulso.
+
+00:34:03 Speaker 2
+Abbiamo gli impulsi del lettore di banconote se ci fosse un lettore di banconote collegato, abbiamo l'impulso dei ticket, cioè oltre al contatore meccanico misuro l'on/off dei ticket, quindi gli impulsi dei ticket e anche lì conto ticket.
+
+00:34:19 Speaker 2
+Poi abbiamo i contatori meccanici per i premi.
+
+00:34:24 Speaker 2
+Le macchine possono avere dei premi come sono le gru che hanno un contatore meccanico che va avanti. Oppure ci sono macchine speciali che ogni 100 ticket che mettono mi mandano fuori un impulso e lo contano e quindi devo contarlo a parte. Poi c'è un ultimo contatore, un penultimo contatore sempre per i premi, quindi abbiamo questi tre contatori ausiliari che posso assegnare o a premi o a ticket a seconda di cosa decido nel momento in cui faccio la configurazione e ho un ultimo contatore che mi misura quanti tap vengono fatti,
+
+00:35:01 Speaker 2
+Vengono registrati soltanto come numero di tap.
+
+00:35:07 Speaker 2
+L'ABN nel suo interno invece.
+
+00:35:10 Speaker 2
+Esattamente, tutte le transazioni che invia quando facciamo una partita, se non riesce ad inviarle, se le salva nella sua memoria interna. Quando va online, prende tutte queste righe e me le manda. Hanno un progressivo, queste righe, il famoso progressivo di cui abbiamo parlato prima. Per cui io riesco tramite il progressivo a metterle nell'ordine giusto, nella cronologia giusta. All'interno hanno anche una data e ora. Se mi arriva con la data e ora, vado a piazzare con la data e ora. Altrimenti, in base al progressivo, vado a piazzarle io assegnando una data e ora. Che effettivamente, se non sono sincronizzati, c'è il rischio di avere dei movimenti che si sormontano un po'.
+
+00:36:01 Speaker 2
+Non si sormontano perché con il progressivo vado
+
+00:36:04 Speaker 1
+Sì, vai a guardare gli ordini per progressivo e alla fine
+
+00:36:07 Speaker 2
+Visto che sono in ordine e li metti in ordine la data, togliendo qualche
+
+00:36:10 Speaker 1
+Vanno sempre ad aumentare, ma non si azzerano mai questi progressivi.
+
+00:36:16 Speaker 1
+E quanto grandi sono i contenitori dei numeri?
+
+00:36:20 Speaker 1
+Sono dei 32 bit?
+
+00:36:23 Speaker 2
+Sono 32 bit.
+
+00:36:25 Speaker 1
+Almeno due miliardi.
+
+00:36:28 Speaker 1
+Perché sennò, sarebbe già tutto andato.
+
+00:36:33 Speaker 1
+Va bene allora, e questo è un po' quello che succede dentro un gioco
+
+00:36:37 Speaker 2
+Insomma, questo è quello che succede dentro il gioco.
+
+00:36:41 Speaker 1
+Non credo ci sia altro in fondo,
+
+00:36:43 Speaker 1
+Siamo lì.
+
+00:36:46 Speaker 1
+In realtà tutto il gioco quindi comunica con il mondo esterno tramite la BE alla fine.
+
+00:36:54 Speaker 1
+E c'è un broker MQTT.
+
+00:36:56 Speaker 1
+All'interno del server di sala che di fatto è lui che recepisce tutti i messaggi e in qualche modo. Poi vedremo come parla con il database. Ok, poi non so se direttamente i broker è una cosa in grado di parlare col DB o cosa, ma questo lo vedremo. Appunto, lui fa qualcosa. Lui fa solo non chiama niente. Il server che ascolta il server.
+
+00:37:26 Speaker 1
+Di software che c'è all'interno che dobbiamo scrivere quello del server di sala che è la parte, diciamo così, server di MQTT. Anche lui è un client del broker, ascolta quei topic e ha un sacco di cose da fare.
+
+00:37:41 Speaker 1
+Mi sembra c'è altro all'interno della sala.
+
+00:37:46 Speaker 2
+Di MangiaTicker ne abbiamo parlato?
+
+00:37:48 Speaker 1
+Sì, i MangiaTicker no, emettitori.
+
+00:37:53 Speaker 1
+Erano giusto nei giochi, questi sono gli emettitori dei giochi. Il mangia ticket è un oggetto per conto suo collegato alla cassa, è quello che può anche essere. Ne abbiamo parlato. Sì, è quello che può essere collegato alla cassa oppure indipendente via serie A, via rete. Giusto, che quindi lui invia qualche cosa via rete a qualcun altro. Però a quel punto il mangia ticket, per essere indipendente, dovrà avere un client. Client che è dentro, attualmente è dentro la cassa, che è quello che devi smontare.
+
+00:38:27 Speaker 3
+Che attualmente parla il seriale con la Mangiaticket e la Mangiaticket quando mangia dei ticket va a dirlo a lui e lui lo scrive nel database.
+
+00:38:37 Speaker 1
+La funzionalità della Mangiaticket mi è chiara, nella versione più semplice mangia dei ticket e tira fuori il famoso scontrino ed è morta lì, al limite può dire io dico al database.
+
+00:38:49 Speaker 1
+Centrale, che ho fatto questa operazione?
+
+00:38:51 Speaker 2
+Sì, poi una cosa importante: quando emette uno scontrino, il database centrale dice che ha messo quello scontrino in modo che io non posso utilizzare quello scontrino due volte.
+
+00:39:03 Speaker 1
+Sì, l'hai emesso. Dài un, de, glielo scrivi, glielo leggi, eccetera. Insomma, oltre al fatto quindi che uno poi te lo ritira, ma se hai il classico dipendente connivente dice no, ma usalo di nuovo, perché non lo usi di nuovo?
+
+00:39:18 Speaker 2
+Non puoi non farlo. Se invece il cliente passa la propria card, la propria tessera, i ticket a sto punto sono già nominativi, vengono già dati alla card. Ovviamente come al solito non emette nessun biglietto. In quel caso scrive direttamente, ti dice e adesso è in cassa e basta. Questa cosa giusto, adesso ticket solo collegato alla cassa. Qui siccome sappiamo che la cassa è sempre collegata al server.
+
+00:39:45 Speaker 1
+È sempre collegato al server. In quella versione lì no, se no può andare in wireless potrebbe non essere collegato al server, quindi avrà una specie di BE, una specie di qualcosa.
+
+00:39:57 Speaker 3
+In realtà la scheda che fa da interfaccia tra la seriale della mangiaticket e la rete va sia in Wi-Fi che cablata, per cui meglio sarebbe se diventasse
+
+00:40:09 Speaker 2
+Anche perché la mangiaticket smette di funzionare quando non sente il proprio server.
+
+00:40:14 Speaker 1
+Questo è un vincolo tranquillo. Sappiamo che la Mangiaticket funzionerà solo collegata al server, quindi l'unica cosa che farà sarà comunicare col server.
+
+00:40:25 Speaker 1
+Come ancora non sappiamo, perché adesso lo fa tramite WinMT.
+
+00:40:31 Speaker 1
+Dopo dovrà farlo da sola.
+
+00:40:32 Speaker 2
+O tramite qualcosa, decidiamo.
+
+00:40:34 Speaker 1
+Nel senso, ci vuole un aggeggio che riesce a comunicare immagine in MQTT, perché è tutto in MQTT, con questo server. Con questo broker che gli dice, gli dà in pancia una cosa, ho fatto questo, e dopodiché lui saprà chi dirlo.
+
+00:40:50 Speaker 2
+Lui scatena degli eventi e qualcuno li ascolta.
+
+00:40:54 Speaker 1
+Ci siamo come ecosistema fisico?
+
+00:41:01 Speaker 2
+Abbiamo anche le applicazioni, ci sono delle applicazioni che girano in sala.
+
+00:41:06 Speaker 2
+C'è un'applicazione che simula una BE, è fatta con un palmare.
+
+00:41:14 Speaker 2
+E consente di leggere le card, di scrivere sulle card e scalare crediti ai clienti. Qual è lo scopo? Pensa che io abbia un parco giochi, ho una giostra dove non ho un lettore fisico ma voglio utilizzare e far pagare le partite tramite questo palmare.
+
+00:41:38 Speaker 1
+È un B alla fine che è collegato virtualmente a qualcosa invece che fisicamente a un gioco. Ci sarà comunque l'omino che ti fa passare se abbiamo delle sale dove ci sono dei minigolf.
+
+00:41:52 Speaker 2
+Quindi per fare la partita al minigolf tu passi la card e ti dice ok, te l'ha scalata e poi l'operatore tira le mazze e ti fa giocare.
+
+00:42:03 Speaker 2
+Quindi funziona perché chiaramente al minigolf all'esterno diventa un po' difficile.
+
+00:42:09 Speaker 2
+O le reti elastiche per capirci queste cose qui.
+
+00:42:11 Speaker 1
+Ecco vari tipi di giochi che rimangono un bussolotto,
+
+00:42:15 Speaker 2
+Non c'hanno un'alimentazione.
+
+00:42:16 Speaker 1
+Quindi è che va beh, chiaramente quella lì o è collegata o non è collegata.
+
+00:42:23 Speaker 2
+No, quella funziona nello stesso modo, nel senso che se è offline memorizza i dati e poi stessa procedura.
+
+00:42:30 Speaker 2
+Stesso principio, la stessa app è in grado poi se io mi loggo come operatore.
+
+00:42:36 Speaker 2
+È in grado anche di ricaricare, quindi funzionare come una cassa remota.
+
+00:42:40 Speaker 1
+Quindi devo ricevere i soldi
+
+00:42:44 Speaker 2
+Li li metto dentro nel taschino e registro che viene registrata l'operazione. In questo caso funziona solo se è collegato al server.
+
+00:42:53 Speaker 1
+Come la cassa, cioè per ricaricare, per prendere soldi bisogna essere collegati al server.
+
+00:42:59 Speaker 1
+Insomma, gli unici movimenti che possono essere fatti offline sono quelli che fondamentalmente usano la card.
+
+00:43:06 Speaker 1
+Oppure dispensano.
+
+00:43:07 Speaker 2
+C'è una seconda app che è l'app per il manutentore del sistema e l'app per il manutentore consente di andare a mettere online/offline delle macchine.
+
+00:43:24 Speaker 2
+Consente di andare a verificare le operazioni che fa un cliente e andare a leggere il.
+
+00:43:33 Speaker 2
+Cosa ha fatto? Mostra l'operazione del cliente e dà la possibilità all'operatore, ad esempio, di dare dei crediti gratuiti, delle partite gratuite oppure dei ticket.
+
+00:43:45 Speaker 2
+Rimborsare dei ticket, fare dei rimborsi.
+
+00:43:49 Speaker 2
+Con la stessa app che è sempre del manutentore, il manutentore può andare a caricare i premi sulle gru e gestire il magazzino delle gru e i movimenti di carico.
+
+00:43:59 Speaker 1
+La gru come funziona? Funziona come gli altri giochi?
+
+00:44:02 Speaker 2
+Le gru funzionano come gli altri giochi, essenzialmente hanno dentro una B e una B, a seconda di dove sono posizionate per legge possono funzionare con le card o soltanto con le monete, in Italia solo con le monete.
+
+00:44:17 Speaker 2
+Però le gru fanno un'operazione, qua vincono dei premi.
+
+00:44:22 Speaker 2
+Questi premi hanno, se sono stati caricati all'interno del micro database della gru,
+
+00:44:28 Speaker 2
+Sono valorizzate a valore medio. Perché la gru non mi dice che premio esce, mi dice che è uscito un premio. Quindi quando esce il premio riusciamo a valorizzare anche lo scarico del magazzino, quindi dire che è stato scaricato un premio nella gru e dare un valore a questo premio.
+
+00:44:48 Speaker 1
+Il micro database della gru non è nella gru, in realtà.
+
+00:44:51 Speaker 2
+Nel nostro database parla di micro database perché è un micro magazzino, non un micro database. Scusa, è un magazzino vero e proprio, è un vero e proprio magazzino legato. Sappiamo anche che dovrebbe essere gestito come un magazzino, sennò poi si incazzano in elmac perché non sanno più cosa c'è dentro e cosa c'è fuori, cosa vale. Gli strumenti ci sono se non vengono gestiti nel modo corretto e il flusso va per conto suo. Va bene offline chiaramente. Allora ovviamente quando vado a fare il carico, lo scarico delle gru devo essere online perché altrimenti non riesco a scrivere sul DV e quindi lì mi avverte, mi dice l'applicazione. Non va, segnala la stessa cosa può farla anche con i distributori di premi. Infatti mancava il distributore di premi come elemento dell'ecosistema. No, però anche lui mi sembra abbastanza semplice.
+
+00:45:48 Speaker 2
+Distributore dei premi e ha tramite questa app viene gestito il carico e scarico eccetera semplicemente aggiorno sul database le informazioni poi sul distributore c'è un lettore quando viene appoggiata la card o letto il back della card viene interrogato il server il server risponde con i dati e quindi numero di cliente e il numero di ticket.
+
+00:46:18 Speaker 2
+I dati che ci interessano e quanti ticket hai a disposizione.
+
+00:46:21 Speaker 1
+Che premi puoi prendere?
+
+00:46:24 Speaker 1
+Scegli tra questi premi che puoi prendere, schiacci il bottone, viene fuori e dopo di che ti scarica la card.
+
+00:46:29 Speaker 2
+Nella versione più sofisticata dà anche informazioni, tutti i dati del premio, foto, tutta una serie di informazioni.
+
+00:46:37 Speaker 2
+Nella versione più semplice c'è l'applicazione che ha fatto Antonio,
+
+00:46:44 Speaker 2
+Parla con il database, vale EPA, eccetera. Le applicazioni dei cinesi chiedono soltanto il numero di ticket che ha quella card come informazioni.
+
+00:46:58 Speaker 2
+Una robe diverse una usa un EPI e non ha senso che funzionino offline questi affari?
+
+00:47:06 Speaker 1
+Non possono funzionare offline perché è tutto quanto.
+
+00:47:10 Speaker 2
+Questo non possono assolutamente.
+
+00:47:14 Speaker 2
+Che funzionano offline sono soltanto i giochi
+
+00:47:16 Speaker 1
+In sostanza.
+
+00:47:19 Speaker 1
+Perché?
+
+00:47:20 Speaker 2
+Perché è l'unica cosa che dà reddito in quel momento, quindi è meglio che funzionino sempre in qualche modo.
+
+00:47:31 Speaker 3
+C'è in mezzo a tutto questo mistone ci sono poi le varie combinazioni che fa Elmac che è una delle tante che sta girando adesso, è avere una sala con solo Mangiaticket e il Pre-Zub.
+
+00:47:48 Speaker 1
+Pre-Zub sarebbe il disperso di premi.
+
+00:47:55 Speaker 3
+Inizia a diventare problematico perché la Mangiaticket non sta parlando con nessuno
+
+00:48:01 Speaker 3
+Quindi emette uno scontrino con dentro dei ticket
+
+00:48:06 Speaker 3
+Tu vai dal Pre-Zub,
+
+00:48:10 Speaker 3
+Predab legge lo scontrino, lo capisce, ti dice che hai tot ticket ma da nessuna parte c'è qualcuno che gestisce il fatto che tu li consumi dopo.
+
+00:48:20 Speaker 3
+Quindi c'è il rischio potenziale.
+
+00:48:22 Speaker 1
+Ma dietro che il Predab deve essere collegato è il budget ticket che non deve essere collegato necessariamente adesso. Il Predab è collegato per la cassa adesso.
+
+00:48:34 Speaker 3
+Sì, ma può funzionare anche stand alone senza nessuno di attaccato.
+
+00:48:39 Speaker 3
+E adesso parlando,
+
+00:48:41 Speaker 3
+Adesso parlando, sta venendo la mangia ticket funziona in due modi: o collegata o completamente stand alone.
+
+00:48:49 Speaker 3
+Una cifra, un numero, una lettera, adesso non mi ricordo il formato del codice che butta fuori lo scontrino che dice soltanto se è online o offline. Però non dicendo niente a nessuno, quegli scontrini devono essere consumati in qualche maniera. Sì, però ne sono li, consuma lui al suo interno nel senso che quando io faccio il regim di uno scontrino, lui si segna che quel numero l'ha utilizzato, quindi non me lo fa riutilizzare, l'ho utilizzato per.
+
+00:49:19 Speaker 1
+Anche parzialmente magari però.
+
+00:49:20 Speaker 2
+Allora emette un altro scontrino diverso.
+
+00:49:22 Speaker 1
+Brucia quello? brucia.
+
+00:49:25 Speaker 1
+Immagina che.
+
+00:49:26 Speaker 2
+Quando? Chi? Anche il cinese. Il prezzo. Il cinese non fa proprio niente del genere. Sì, lo fa.
+
+00:49:32 Speaker 3
+Dovranno farlo, ma in questo momento.
+
+00:49:34 Speaker 2
+No lo fa con nella versione lo configuri in modalità del tronic e lo fa.
+
+00:49:40 Speaker 2
+Bene. Io ho provato.
+
+00:49:45 Speaker 2
+Siccome sono compatibili del tronic i numeri che manda fuori la nostra Mangiaticket, Deltronic è un produttore di Mangiaticket.
+
+00:49:52 Speaker 2
+Americano, uno dei primi che ha fatto queste cose.
+
+00:49:56 Speaker 2
+Cosa succede? Lui prende, legge lo scontrino, legge la quantità di ticket.
+
+00:50:01 Speaker 2
+Brucia quello scontrino, cioè si scrive al suo interno, nel suo database, che sia online o cosa non mi interessa. Comunque se lo scrive da qualche parte,
+
+00:50:14 Speaker 2
+Poi.
+
+00:50:16 Speaker 2
+Se il cliente prende un premio,
+
+00:50:19 Speaker 2
+Lo consuma e dà un ticket di resto.
+
+00:50:24 Speaker 2
+Se il cliente non prende il premio, resta di tutto. Non è successo niente, non ha bruciato niente. Posso ripassare il mio ticket.
+
+00:50:32 Speaker 2
+Hai il tuo ticket in mano.
+
+00:50:35 Speaker 2
+Così funziona in questo momento. Qual è il problema che hanno portato avanti?
+
+00:50:41 Speaker 3
+Solo se online. Se offline non scrive.
+
+00:50:47 Speaker 1
+Vabbè, questa è una cosa da verificare. Sono problemi che in questo momento.
+
+00:50:52 Speaker 2
+Vabbè, non è neanche un problema mio, perché il nostro sì, non è un problema nostro. Non è un problema nostro. Fine.
+
+00:51:01 Speaker 1
+Tanto in una sala comunque c'ho solo il display. Essere, immagino, oppure posso essere più alto anche di più? No, perché il problema è questo, no? Io ti do uno scontrino, intanto lui se lo mangia lo scontrino. Se ne hai due devi essere connesso, oppure non vai da nessuna parte. Sono sconnessi. Vado da uno, vado dall'altro. Però senza scontrino sono felice come una Pasqua. Certa questo tipo di controllo. Però vabbè, possiamo metterlo in piedi. Possiamo anche metterlo in piedi, però bisogna capire come. Non è un problema nostro in questo momento. Ok, perché comunque se sono tutte e due scollegati.
+
+00:51:37 Speaker 1
+O dici devono essere collegati, magari fai una configurazione tale per cui se non è collegato non funziona, deve essere collegato alla salva di sala.
+
+00:51:48 Speaker 2
+I nostri amici cinesi sostengono di aver trovato un algoritmo per cui, se sono A e B sono staccati che non si parlano, lo vedono come.
+
+00:51:55 Speaker 1
+O ti mangi lo scontrino fisicamente, te lo mangi, tu lo devi mettere dentro.
+
+00:52:02 Speaker 3
+Gli amici cinesi ti hanno anche detto che il loro sistema
+
+00:52:05 Speaker 1
+Funziona se e solo se sono collegati. Non funziona niente standalone. Va bene, meglio così. Abbiamo da scrivere abbastanza bene una sala. Insomma, no sopra la sala c'è appunto il cloud. Allora cosa succede ad oggi dopo un numero x di minuti parte.
+
+00:52:34 Speaker 2
+Un programma schedulato.
+
+00:52:37 Speaker 1
+C'è una sincronizzazione che fa la sincronizzazione. Questo è un capitolo a parte. Noi supponiamo che in qualche modo ogni database di sala è sincronizzato con un database analogo nel cloud.
+
+00:52:49 Speaker 1
+Bene, c'è altro? Sì, ovviamente nel cloud tu puoi gestire anche al contrario le cose.
+
+00:52:58 Speaker 2
+Sì, allora nel cloud cosa posso fare io? Posso andare a controllare.
+
+00:53:04 Speaker 2
+I clienti possono andare a controllare l'andamento della sala e vedere quanti ticket, quanti premi e cosa hanno venduto.
+
+00:53:13 Speaker 2
+All'inizio si parla di ticket di premi perché il 90% delle sale che usano il cloud sono vecchie sale per cui non hanno le ECL ma hanno.
+
+00:53:28 Speaker 2
+Hanno il sistema tradizionale per cui non vengono gestite transazioni monetarie, ma soltanto i ticket.
+
+00:53:36 Speaker 2
+Quindi i premi vengono caricati fisicamente nel magazzino, i premi vengono scaricati facendo il redim di ticket.
+
+00:53:44 Speaker 1
+Però c'è anche il carico dei soldi.
+
+00:53:48 Speaker 2
+Non c'è il carico dei soldi nelle vecchie sale.
+
+00:53:52 Speaker 2
+I soldi vengono gestiti a parte in un altro modo.
+
+00:53:57 Speaker 2
+Ci sono dei cambia monete. Tu infili le soldi nel cambio monete e cambia monete ti dà fuori dei ticket oppure ti dà da fuori delle monetine. Tu metti le monete dentro. Tu metti le monete fisicamente dentro i giochi o metti i gettoni. Non c'è nessun movimento dei gettoni. L'operatore tira fuori la cassettina coi gettoni se vuole. Conta i gettoni se vuole. Ha un una gestione dove posso dire che quella macchina ha incassato questi gettoni in quel momento. A mano a mano, cioè devo registrarmi a mano l'operazione. Ok, quindi ci sono ancora delle sale che fanno così. Ci vuole normalmente non fanno. Allora sta registrazione non la fanno. La fa solo chi la faceva. Solo l'elmac nelle sale dove erano a noleggio.
+
+00:54:53 Speaker 2
+Per cui avevano una volta al mese.
+
+00:54:59 Speaker 2
+Allora ti ho detto prima che ci sono i contatori meccanici, ogni macchina ha un contatore meccanico.
+
+00:55:05 Speaker 2
+Alla fine del mese mi registro il numero scritto sul contatore meccanico. Torno dopo un mese,
+
+00:55:13 Speaker 2
+Mi rileggo quel contatore, vado a registrarmi che ho letto quella macchina e ho letto quel contatore.
+
+00:55:20 Speaker 2
+Sì, il contatore dell'Enel e faccio il conto per differenza.
+
+00:55:26 Speaker 2
+I ticket vengono gestiti dalle mangia ticket e dalle tessere registrate nella sala.
+
+00:55:34 Speaker 2
+Ho la tessera, la tessera di Piero, la tessera di Fabrizio, la mangiaticket mi segna tramite la seriale, fa tutto il giro di cui abbiamo parlato prima e registra i ticket all'interno della tabella tickets.
+
+00:55:49 Speaker 2
+Quando un ticket viene consumato, quindi viene scambiato il ticket per un premio
+
+00:55:57 Speaker 2
+NP ticket per un premio, viene registrata l'operazione e quindi vengono tolti.
+
+00:56:01 Speaker 1
+Un semplice acquisto o fondo tramite ticket di una cosa.
+
+00:56:04 Speaker 2
+Vengono tolti i ticket, vengono scalati e poi vedremo nel dettaglio come vengono scalati i ticket perché non è che viene bruciato tutto il record, viene tolta la differenza.
+
+00:56:23 Speaker 1
+Al limite si può fare una cosa un po' più sofisticata, si crea un movimento di ticket, c'è sempre la possibilità di recuperare la situazione.
+
+00:56:32 Speaker 1
+Perché quando cambia un record cosa c'era prima non lo so.
+
+00:56:36 Speaker 1
+Se invece fai un record movimento.
+
+00:56:38 Speaker 2
+Perdo cosa c'era prima non lo so.
+
+00:56:42 Speaker 2
+Se ci fossero i movimenti sarebbe stato più facile ricostruire tante cose.
+
+00:56:47 Speaker 2
+Adesso viene scalato il movimento e viene scritto nel famoso, prima abbiamo visto un contatore
+
+00:56:55 Speaker 2
+Quel campo binario.
+
+00:56:58 Speaker 2
+No, quel campo dove.
+
+00:57:00 Speaker 1
+La stringa di bit, però.
+
+00:57:01 Speaker 2
+Sì, quella stringa di bit.
+
+00:57:02 Speaker 1
+Solo uno a zero in ogni valore, però non puoi metterci uno.
+
+00:57:07 Speaker 2
+Sì, ma c'è scritto che questo è stato già utilizzato per fare sta cosa.
+
+00:57:12 Speaker 2
+Vabbè, e viene scalato, cioè io ho il.
+
+00:57:15 Speaker 1
+Valore di quanto vale quel ticket quindi quel record di ticket Vale 1000 ticket e poi ne un altro di quanti ne ho consumati di questi 1000 ne ho consumati 300 c'è piccolo virt Beh questo qua lo cambiamo faciamo un sistema di movimenti in modo che sappiamo sempre cosa succede Insomma è abbastanza banale da fare però questo riguarda comunque operazioni in sala Insomma che poi vengono operazioni in sale che poi vengono replicate e non tanto vengono replicate viene replicato tutto il DB è chiaro che
+
+00:57:45 Speaker 2
+Se DB in Cloud è una copia DB in sala viene un'altra tabella che aggiorno è la tabella dei movimenti di magazzino. Questo posso farlo da remoto, quindi posso caricare degli articoli, renderli disponibili, valorizzare gli articoli e gestire dei movimenti. Ok, carico, chiamiamolo così perché quando lo faccio lato Cloud ovviamente.
+
+00:58:14 Speaker 1
+Poi come avviene dal punto di vista del flusso dei dati dato cloud? Perché tu scrivi su un database che dopo un quarto d'ora viene sovrascritto
+
+00:58:23 Speaker 2
+No?
+
+00:58:24 Speaker 2
+Può essere un problema. Allora cosa succede in questo momento?
+
+00:58:31 Speaker 2
+Dato cloud si può preparare una lista dei premi che possono essere consegnati alla sala.
+
+00:58:42 Speaker 1
+Viene creato un file mdb che contiene. Viene messo in un campo. Sulla sala arriva un messaggio: Guarda che c'è un file mdb dentro un campo da per te. Insomma, alla fine è un protocollo di comunicazione, protocollo. Ma c'è però. Sì, alla fine lo faremo diverso perché non è inutile continuare così credo.
+
+00:59:12 Speaker 2
+Dovremmo ripensarlo in qualche modo. Ecco questo qui viene portato come questo mdb viene spedito in che modo l'mdb o viene mandato tramite una chiavetta. Quindi quando ti molto differito, poco pratico quando oppure viene precaricato all'interno del database.
+
+00:59:39 Speaker 2
+Viene caricata questa immagine del fan.
+
+00:59:42 Speaker 1
+Sì, però il database viene riscritto dopo?
+
+00:59:45 Speaker 2
+Non viene riscritto qui,
+
+00:59:47 Speaker 2
+C'è una tabella apposita per questo tipo di operazioni.
+
+00:59:53 Speaker 1
+Perché in effetti non è una copia integrale, non è un backup e restore, è una serie di trigger per cui ci sono alcune tabelle, alcuni campi che non sono triggerati.
+
+01:00:04 Speaker 2
+E quindi no, ma se viene triggerato, comunque il trigger è furbo. Nel senso che io scrivo qui e viene trasmesso poi nella sala. E il record, alla sala, poi farà delle cose con questo record.
+
+01:00:20 Speaker 2
+È bidirezionale, la sincronizzazione è assolutamente bidirezionale.
+
+01:00:24 Speaker 1
+È un buono a sapersi perché comunque bisognerà.
+
+01:00:30 Speaker 2
+Visto che non possiamo usare quel protocollo. Infatti un'altra cosa che fa questo discorso della bidirezionalità è che io posso, lato Cloud, definire delle nuove macchine se abbiamo tutto il sistema ECL. Quindi con CS macchine io posso modificare delle macchine, creare dei nuovi record, modificare dei record che poi vengono sincronizzati direttamente sulla sala.
+
+01:00:59 Speaker 1
+Questo crea effettivamente dei problemi.
+
+01:01:02 Speaker 1
+Vabbè che le macchine sono poche, però devi cominciare a usare degli UID per i cosi
+
+01:01:10 Speaker 1
+Per le chiavi primarie, perché non puoi usare degli ID normali per incrementarti. Se incremento io, incrementi tu.
+
+01:01:16 Speaker 2
+Possiamo usare anche l'ID perché il protocollo di sincronizzazione lo gestisce.
+
+01:01:22 Speaker 1
+Tu crei una macchina qua, io che la macchina qua se lo facciamo con l'ID siamo legati.
+
+01:01:29 Speaker 1
+Perché tutti e due partono dallo stesso numero e tutti e due usano lo stesso ID per due cose diverse, quindi quello non si può fare, bisogna trovare un modo di farlo.
+
+01:01:39 Speaker 2
+Allora l'utilizzo degli UID ci ha creato dei problemi, comincia a crearsi dei problemi notevoli, quella cosa che vi ho scritto.
+
+01:01:46 Speaker 1
+Sì, me lo sono letto e ho capito effettivamente, perché siccome tra l'altro gli UID sono random, non c'è nessun algoritmo che il database può sfruttare.
+
+01:01:55 Speaker 2
+Per costruire i suoi alberi quindi ogni volta potenzialmente smerdiamo un sacco di nodi e ogni tanto succede e quando succede ci troviamo dobbiamo aspettare ma la cosa tragica è che aspettiamo tutti finché queste cose.
+
+01:02:18 Speaker 1
+Non ho idea di come funzionano, ma ce li ha io. Andrei altrove, onestamente. Userei gli ID e userei un sistema diverso. Poi bisogna capire quante informazioni devono essere gestite, al contrario, cioè dal cloud alle macchine e non alla sala. Secondo me, poche sono la configurazione del fare un pacchetto e fare una comunicazione proprio.
+
+01:02:48 Speaker 1
+Che l'avevamo già pensato a suo tempo e io direi che ci conviene pensarlo e riproporlo come concetto, cioè il backup sarà chiamiamolo backup. La sincronizzazione del DB sarà unidirezionale come sincronizzazione del DB. Poi, se io voglio fare qualcosa sulla sala, in realtà lo faccio sulla sala direttamente attraverso un protocollo di comunicazione, quale che sia, adesso non mi interessa, in cui il server di sala.
+
+01:03:17 Speaker 1
+Va bene, si trova qualcosa. Vieni informato sul fatto che c'è una serie di cose da fare, che sono le configurazioni. Io praticamente avrò il mio pannello di configurazione della macchina bello figo che rispecchia il database invece di scrivere sul db locale. Ce l'ho per cui tutta la cosa che posso leggere va bene. Mi devo creare una mia immagine, lavorarci sopra, impacchettare le richieste e via.
+
+01:03:46 Speaker 1
+Quel punto va a finire in sala e posso anche replicarle direttamente nel mio db. So che l'informazione è volatile perché prima o poi verrà sincronizzata dalla sala. Però ho il vantaggio che non c'è veramente una creazione bidirezionale di id. Ecc. perché io ti dico 'creami un id', non ti creo un id, ti dico 'creami un id alla sala', la sala lo crea. Se intanto qualcuno ha già fatto un'altra macchina sarà un d più uno e poi quando mi torna mi fanno il busto.
+
+01:04:17 Speaker 1
+E quindi dopo la sincronizzazione mi riporterà una macchina in più, quella che è stata in sala con l'altro ID.
+
+01:04:26 Speaker 1
+Va bene, però sono sempre degli ID, quindi l'indice cluster è per ID ed è una scheggia.
+
+01:04:33 Speaker 2
+Poi tutto lì.
+
+01:04:36 Speaker 1
+Bisogna fare i test comunque, perché ci sono tanti motivi per cui dopo i 2 milioni di record si possono vedere i rallentamenti.
+
+01:04:42 Speaker 1
+Però in genere è quello che sono indici e poi c'è tutta la manutenzione dei clienti che hanno più sale e tutte quelle cose lì, insomma ci saranno. Ci sono già per esempio queste informazioni sulla parte di cappello di HQ di molti sale che dovrebbero esserci.
+
+01:05:05 Speaker 2
+Stavamo andando a vedere.
+
+01:05:10 Speaker 1
+Apriamo intanto l'MD che vi ho passato così vediamo un attimino. Scusa, non sono abituato a vederla perché io ce l'ho anche mio. Adesso lo guardiamo.
+
+01:05:45 Speaker 1
+Mi sembra che le abbia centrate le zone. Stiamo leggendo la traccia che aveva preparato Claude.
+
+01:06:07 Speaker 1
+Per capire un attimino cosa sappiamo già
+
+01:06:10 Speaker 1
+Parla di un dominio con 8 zone funzionali provvisorie,
+
+01:06:15 Speaker 1
+Che dovrebbero essere identità e ruoli, ci sono sempre le entità attive e quelle passive, come al solito gli operatori con qualche ruolo diverso.
+
+01:06:27 Speaker 1
+Clienti e card, tutta la zona del cliente della tessera.
+
+01:06:33 Speaker 1
+Anche lì bisognerà decidere la struttura, cioè se ha sempre un cliente o una card oppure se un cliente può avere più card. Poi c'è il problema dell'assegnazione, perché io mi ricordo che parlavamo anche di card, il papà che ha 5 card dà ai figli.
+
+01:06:50 Speaker 3
+Siccome ci sarà anche, c'è già, ma non è ancora arrivato dove vorremmo, una web app dalla quale tu vedi, puoi ricaricare la tua casa, puoi vedere che cosa hai giocato.
+
+01:07:05 Speaker 1
+Diciamo che da casa può farsi queste cose,
+
+01:07:08 Speaker 3
+Ad esempio, essendo però collegata,
+
+01:07:12 Speaker 3
+Essendo il rapporto uno a uno, card persona diventa card persona web app che la finisce.
+
+01:07:20 Speaker 3
+Se tu hai dei bambini, dei figli, 5 volte 5 mail diverse, 5 di tutto, primo, secondo, sono minorenni, quindi si apre un baratro. È meglio avere una persona, una web app e sotto gli a cascata tutti i borsellini che rappresentano il CAD.
+
+01:07:42 Speaker 1
+Mi va bene, direi che va bene. Non so cosa intendeva Cloud per valore a circuito chiuso, tu l'hai capito onestamente. Aspetta che sto cercando, l'ho letto ma non lo trovo più. Allora circuito chiuso. Vediamo se magari dopo ce lo dice: macchine e telemetria, d'accordo; premi e magazzino, d'accordo; promozioni che c'è tutto il discorso delle promozioni, delle cose a tempo, dei compleanni di tutta quella roba lì. Allora Reportistica e gestione multisala,
+
+01:08:14 Speaker 1
+Appunto, che sarebbe di fatto la parte di HQ che non c'è in UMT concettualmente, perché l'UMT lavora su una sala sola.
+
+01:08:21 Speaker 3
+Insomma, le promozioni possono coinvolgere anche cose che
+
+01:08:26 Speaker 3
+Non ci sono scritte qua da nessuna parte. Possono essere non so, Redemption, cosa del genere. Tipo tu sei iscritto alla tua web app il giorno X, grande promozione: vieni qua con la tua card, ti regaliamo un 500 ticket.
+
+01:08:43 Speaker 3
+Sono cose che lì non ci sono, sarebbero fighissime da fare.
+
+01:08:46 Speaker 1
+Quelle sono sì cose interessanti basta preparare il flusso.
+
+01:08:51 Speaker 3
+Sì esatto.
+
+01:08:54 Speaker 3
+Poi che ci sia qualcuno dall'altra parte della barricata che capisca di che cosa stiamo parlando
+
+01:09:01 Speaker 1
+A parte quello,
+
+01:09:03 Speaker 3
+Cioè la web app è nata con l'obiettivo di portare il cliente a usufruire della sala, offrendogli anche delle promozioni.
+
+01:09:14 Speaker 2
+Anche per caso tenendo un canale di comunicazione tu lo fai tramite da noi è nata semplicemente visto che c'è l'altri gli altri ce ce l'hanno possiamo dire anche noi che ce l'abbiamo uguale perché è stata Vabbè però lì c'è la possibilità che l'altro fa così lo facciamo così identico.
+
+01:09:36 Speaker 1
+Senza che questo mi sembra una cosa alla Tiziana
+
+01:09:39 Speaker 2
+Senza capire perché.
+
+01:09:42 Speaker 1
+Jessica magari c'ha un minimo di idea economica di più e quindi magari lì lei capisce qualcosa di meglio. Ecco, va bene.
+
+01:09:55 Speaker 1
+Dettaglio dei flussi: ecco, la cessione, la censimento dei flussi ancora non c'è.
+
+01:10:03 Speaker 1
+Spero che l'analisi del codice mi dia.
+
+01:10:06 Speaker 1
+Una mano, però lì è la parte centrale.
+
+01:10:11 Speaker 1
+Adesso noi siamo qui a fare la prima parte, da 10-15 ore, siamo già arrivati a 8 mi pare in tutto,
+
+01:10:20 Speaker 1
+È la terza riunione, più due ore ho speso io, prima era il lavoro, poi tre ore l'altra volta, tre ore qua, tre, sei, sette. Ho speso 2-3 ore, quindi siamo a 10 ore circa solo mie e poi ce ne sono alcune vostre. E quindi fra un po' bisognerà probabilmente con un'altra riunione arrivare a capire almeno l'ordine di grandezza di quanti sono sti flussi.
+
+01:10:47 Speaker 1
+Perché poi complessi o non complessi, va bene, ce ne saranno di più complicati e di meno complicati, ma i flussi in sé sono, cioè c'è un valore medio insomma che si può applicare e quindi il numero di flussi darà un'idea comunque della
+
+01:11:02 Speaker 1
+Durata dell'impegno nell'analisi. Ok. Anche perché comunque l'analisi iniziale, l'analisi generale che non sarà comunque tecnica, non è la scrittura del codice. Deve semplicemente dire ok. Questo deve fare più o meno questo. Dove più o meno non vuol dire più o meno vuol dire dal punto di vista concettuale deve fare questo. Anzi, dal punto di vista logico perché Claude mi ha suggerito che ci sono questi tre livelli: concettuale, logico e fisico.
+
+01:11:31 Speaker 1
+Concettuale è così,
+
+01:11:34 Speaker 1
+Proprio spiegarlo abbastanza a grandi linee, quindi un flusso lo spieghi con due righe, tre righe. Il modello è quello, le entità sono quelle, sono solo logiche. Non sappiamo ancora come scrivere nel database, per dire, però quelle ci sono. Il livello fisico è quello in cui specifichi le chiavi e le procedure, il codice che c'è qui da sopra.
+
+01:11:57 Speaker 3
+Sto chiacchierando con te, però mi sto rendendo conto che ti manca un altro elemento. Sei concentrato duro su INMT, ma in realtà manca completamente tutto quello che fa il server suo, che fa una montagna di cose in questo giro.
+
+01:12:12 Speaker 2
+Ma quello te lo posso documentare?
+
+01:12:15 Speaker 1
+Però intanto vediamo che cos'è,
+
+01:12:19 Speaker 1
+Sospendiamo questa analisi della traccia e dimmi intanto.
+
+01:12:25 Speaker 2
+Un minuto, che cos'è questa cosa? Questo gettone, cosa fa? Dove si mette? Questo oggetto è nato per ricevere da via MQTT tutto il flusso delle schede BE, quindi tutti i dati delle macchine e andare a infilare queste informazioni dove già le leggeva WinMT, quindi andare a scrivere.
+
+01:12:55 Speaker 2
+Nel DB tutte le tabelle delle operazioni, quindi delle uscite che vengono fatte, delle partite e dei ticket che vengono erogati.
+
+01:13:11 Speaker 1
+Un po' quasi tutto quello che succede.
+
+01:13:13 Speaker 1
+Quello che succede al di fuori della cassa alla fine.
+
+01:13:16 Speaker 2
+Quello che succede al di fuori della cassa e anche il
+
+01:13:25 Speaker 2
+I contatori, quindi per ogni macchina, ti ricordi i contatori progressivi e tutte le operazioni di transazione.
+
+01:13:34 Speaker 2
+Poi ha cominciato a fare qualcosa di più, ha cominciato a parlare anche con l'app della cassa, la cassa remota di cui abbiamo parlato prima, per fare una rica e quindi ha cominciato a scrivere anche le operazioni di rica.
+
+01:13:51 Speaker 2
+Poi la stessa applicazione ha cominciato a gestire anche la Power API per il totem e per la web app.
+
+01:14:04 Speaker 2
+Prima per le web app,
+
+01:14:06 Speaker 2
+Quindi fare delle operazioni tipo capire se il cliente può esistere, chi è il cliente, tutti gli altri del cliente, dammi tutte le transazioni.
+
+01:14:17 Speaker 2
+È eleggibile per le promozioni, lo promuoviamo, non lo promuoviamo, quindi vado a cambiare lo stato del cliente.
+
+01:14:25 Speaker 2
+Poi ha cominciato anche a gestirsi tutta la programmazione delle schede fisiche.
+
+01:14:32 Speaker 2
+Quindi vedere come devo configurare la scheda, assegnare la scheda ad un gioco e andare a spiegare.
+
+01:14:40 Speaker 1
+Come assegnare la scheda di un gioco.
+
+01:14:42 Speaker 2
+Allora la scheda nota. Le schede nascono come agotiche, non sanno niente, hanno solo un cadre. Se sono vergini, non sono configurate con nulla. Stessa cosa vale per la scheda B, quella che ha vinto all'interno del gioco. Ma la per scheda cosa intendi? La card, la no, la card la B, quel pezzo di Saro lì.
+
+01:15:13 Speaker 2
+Lo vuoi attaccare un gioco e ha dei valori iniziali che sono dentro nella configurazione. C'è la configurazione iniziale che va gestita, poi va assegnata questa scheda a un record del database che corrisponde alla macchina, in modo che poi tutte vengano allineate le operazioni. Questo lo fa il sistema.
+
+01:15:42 Speaker 1
+Questo è il mio aggeggio. Che differenza c'è tra questo tuo aggeggio e quello che abbiamo chiamato il broker MQTT?
+
+01:15:48 Speaker 2
+Perché MQTT scambia soltanto messaggi.
+
+01:15:52 Speaker 2
+Scambia topic e per loro.
+
+01:15:55 Speaker 1
+Quindi questo tuo aggeggio parla con il broker MQTT anche lui?
+
+01:15:59 Speaker 2
+Parla anche il mio con il broker MQTT.
+
+01:16:06 Speaker 3
+Un servizio che sta là.
+
+01:16:07 Speaker 1
+No, ho capito adesso.
+
+01:16:09 Speaker 1
+Quello è un embrione di quello che dobbiamo fare, in fondo, una parte di quello che dobbiamo fare come gestione della sala
+
+01:16:16 Speaker 3
+Giusto? Quello suo gestisce tutto il coinless.
+
+01:16:21 Speaker 1
+Comunque scrive un database.
+
+01:16:24 Speaker 1
+Quindi è una parte di quello che dobbiamo fare qui.
+
+01:16:29 Speaker 1
+È l'interfaccia attualmente l'interfaccia che fa espone pi e scrive nel database e aspetta e legge perché fa le operazioni sul database. Ricordo abbiamo detto che alla fine tutto deve essere fatto attraverso un oggetto. Così anche la cassa non va a scrivere direttamente. È un'applicazione frutter che va a cosa consumare. Delle attualmente l'applicazione frutter parla con questo qui.
+
+01:16:56 Speaker 2
+Scrivere no la cassa è Win MT. Allora Win MT alcune cose le demanda già ha cominciato a domandarle che avete già cominciato. Bisogna riscriverlo perché sta per morire il sistema di sviluppo è chiaro che ma questo è già scritto. Questo è compilato in Java. È scritto B tuo dici mio è già te.
+
+01:17:17 Speaker 1
+Bisogna anche decidere di minimizzare il numero di sistemi di sviluppo e di linguaggi, perché sennò più le diversifichiamo e più abbiamo rogne. Questo è un. Allora, se riusciamo a riscrivere. ha resistito a 30 anni con un RP che poi cambiava. Perché? Perché usa sempre lo stesso sistema di sviluppo, non cambia mai e quindi si consolida tutta quanta una conoscenza.
+
+01:17:44 Speaker 1
+Se cominciamo a ramificare facciamo la fine del mescat.
+
+01:17:49 Speaker 1
+Che lui non so se lo conosce molto sì che alla fine è tornato a lavorare nella fabbrica del suo papà perché con le sue innovazioni. Ma sì, questo lo faccio così, questo faccio così, questo faccio cosà. Ti ricordi, poi ti perdi con la gestione di tutto, poi ti perdi e lui si è perso. Aperta, chiusa, va bene. Quindi vabbè, quello lì sì, lo documentiamo ma secondo me.
+
+01:18:17 Speaker 1
+Sono scelte che possiamo fare tutti,
+
+01:18:20 Speaker 1
+Farlo in Java può essere pericoloso per certi aspetti,
+
+01:18:22 Speaker 3
+Insomma c'è da capire dal mio punto di
+
+01:18:26 Speaker 3
+Secondo me è un oggetto che va frammentato, perché fa troppe cose tutte assieme.
+
+01:18:33 Speaker 2
+Perché ogni tanto si schianta per qualche motivo.
+
+01:18:35 Speaker 3
+Si schianta, già è una brutta persona, perché si schianta il processo, ma in realtà continua ad andare, non capisci che si è schiantato.
+
+01:18:46 Speaker 1
+Che sia brutto.
+
+01:18:47 Speaker 3
+E soprattutto se andiamo avanti, cioè quando abbiamo abbracciato una filosofia,
+
+01:18:55 Speaker 3
+Io adesso la faccio facile, non so niente di quel sistema.
+
+01:18:59 Speaker 3
+È in Basic che non conosco, Basic è convertibile in Java.
+
+01:19:03 Speaker 1
+Tra l'altro non è neanche già sbraconato perché è recente.
+
+01:19:08 Speaker 2
+C'è un framework,
+
+01:19:10 Speaker 3
+Però lo sa usare soltanto lui. Quindi se io ho bisogno di un API, ad esempio, che sto facendo per il totem, devo domandare a lui. Lui sta facendo altre 50 cose.
+
+01:19:19 Speaker 1
+Quindi fermo.
+
+01:19:21 Speaker 1
+Lì è un altro. Il problema della prossima riunione sarà definire i sistemi di sviluppo, le competenze e i linguaggi e anche le cose.
+
+01:19:30 Speaker 3
+E capire quanto questa cosa va spezzettata.
+
+01:19:34 Speaker 1
+Ad esempio un sistema microservice spezzetta già tutto.
+
+01:19:38 Speaker 3
+Abbiamo messo in piedi tutta la gestione del POS con il POSandro e i suoi autoservizi. Questa è un'entità che vive per conto proprio là, ma parla con
+
+01:19:50 Speaker 3
+Win MT usando i socket con la versione nuova di Win MT parla già in MQTT usando esattamente lo stesso dialetto per cui non è che bisogna reinventarsi niente i protocolli sono quelli. Un suo database per i cazzi suoi tutte le sue cose. Questo database poi non è si scrive accessibile da nessuno se non è accessibile interrogando le pi che tu non vuoi usare. Ma ci sono quindi quali pi? Nessun pi risponde. No. Quindi lui il Po Sandler espone già delle FBI dalle quali tu puoi avere tutte e quante le informazioni sulle transazioni che ci sono.
+
+01:20:27 Speaker 3
+È che non vi è mai interessato questa roba, però c'è e ci serve perché comunque il totem si rompe a metà strada tra una transazione. L'unico che sa la verità è il Po Sandler.
+
+01:20:41 Speaker 3
+abbiamo inserito tutta una serie di acrofi per cui mi te dico, ti te se, allora te me confermi
+
+01:20:51 Speaker 3
+Andrebbe supplicata.
+
+01:20:54 Speaker 1
+Va bene, stavo dicendo che il dettaglio di flusso è importante perché devono sapere quanti sono.
+
+01:21:04 Speaker 1
+L'altro punto è appunto architettura.
+
+01:21:08 Speaker 1
+La prossima riunione dobbiamo assolutamente cercare di definire abbastanza bene l'architettura per sapere cosa usiamo dopo.
+
+01:21:19 Speaker 1
+Per forza, perché siccome non è fissa,
+
+01:21:24 Speaker 1
+Si muove.
+
+01:21:25 Speaker 1
+Si può fissare?
+
+01:21:26 Speaker 1
+Sì, è fissa la cacchia. Io l'ho fissata.
+
+01:21:31 Speaker 1
+E' passato due ore d'inferno e si poteva fare diversamente.
+
+01:21:36 Speaker 1
+Sì, ho detto si può fissare. Perimetro tecnico e fuori perimetro vanno bene, fuori perimetro c'è il firmware, fuori perimetro c'è comunque.
+
+01:21:48 Speaker 1
+No, in realtà la comunicazione tra dispositivi e server di sala è vero che è compito della BE, però la parte di sala è compito della sala, quindi comunque in realtà è vero che la BE è abbastanza a posto.
+
+01:21:59 Speaker 1
+Però potrebbe dover essere un attimo.
+
+01:22:01 Speaker 2
+Ma è riferita la BE.
+
+01:22:04 Speaker 1
+Va bene, però la stiamo riscrivendo
+
+01:22:07 Speaker 3
+Ma è fuori da questo contesto.
+
+01:22:09 Speaker 1
+Sì, però se la riscrivi a questo punto, giustamente, se noi sappiamo anche quali sono.
+
+01:22:14 Speaker 1
+Qual è la struttura, almeno, dell'API che noi mettiamo a disposizione dell'Abe.
+
+01:22:20 Speaker 1
+Va bene, cassa e totem riscritti probabilmente in Flutter, su API del server Laravel. Che qui pensavamo a Laravel come server, ma è puramente.
+
+01:22:30 Speaker 1
+Perimetro funzionale, vediamo cosa ha scritto il nostro amico.
+
+01:22:34 Speaker 1
+Allora, sapere quante delle otto zone entrano nell'analisi, buona idea. Allora, HQ backoffice, al 100% direi che entra nell'analisi.
+
+01:22:44 Speaker 1
+Va bene. Qui dice separa la kaku dal backoffice. Credo che come backoffice intendesse anche tutte le pipe. Diamo la parte di configurazione, cioè sì, la configurazione che sta in se io sono nella sala e sto intervenendo sulle macchine.
+
+01:23:06 Speaker 2
+Sono l'operatore, ho bisogno di poter fare delle operazioni sulla macchina, quindi fermare la macchina, metterla in sospensione, fare dei test, riprendere ma mettere in HQ la configurazione di sala.
+
+01:23:21 Speaker 2
+Ti prego, no in HQ non mettiamo la configurazione. Definiamo quello back office è una cosa, dice l'HQ è un'altra. L'unica cosa che potremmo.
+
+01:23:36 Speaker 2
+È comoda perché tante volte quando pianifichi la costruzione di una sala definisci prima che macchine vuoi andare a mettere e quindi trovarsi. Sì, precaricati le definizioni delle macchine è una cosa comoda perché secondo me non è così scontato che siano due robe separate. Non so chi ha detto 'robe' quella volta. Sarà stato uno di noi. Non so perché HQ.
+
+01:24:04 Speaker 1
+Allora in questa concezione HQ è un'altra cosa ancora, cioè non è una cosa remota e basta. Non è che HQ è perché è remoto. Remoto può essere HQ, ma può essere anche, appunto, la configurazione. Può essere un backoffice. Credo che con HQ qui si stia intendendo. È stato fatto come discorso il giorno 7 tutta quel castello di cliente che si vede le sue sale, che ha i suoi dashboard.
+
+01:24:35 Speaker 1
+Che ha le sue cose. Incidentalmente però in HQ bisogna anche configurarla questa cosa, per cui se io do al cliente
+
+01:24:44 Speaker 1
+Vediamo subito, io ho un cliente che può avere 10 sale, è lui che si arrangia a costruirsi le sale?
+
+01:24:51 Speaker 1
+Chi le costruisce le sale?
+
+01:24:54 Speaker 2
+Nel mondo ideale in teoria il cliente potrebbe
+
+01:25:02 Speaker 2
+Alla fine ho visto che lo fanno anche gli altri fornitori. I nostri concorrenti fanno la stessa cosa, cioè l'installazione della nuova sala. La configurazione dell'ambiente te la fa chi ti vende il software e chi te lo HQ e backoffice sono due cose che sono state messe assieme lì perché vivono nel club.
+
+01:25:30 Speaker 1
+Quel back office. Sicuramente c'è un back office di sala
+
+01:25:36 Speaker 1
+Però sicuramente Elmac potrebbe dire: io voglio da casa mia, dalla Elmac configurare la sala.
+
+01:25:42 Speaker 1
+Per dire, senza andar lì sempre e solo. Quindi quella è un'operazione di back office remota. Ci sono due modi di fare la remota, mi collego alla sala, probabilmente adesso fanno così, Team Viewer, oppure mi collego al server globale.
+
+01:25:58 Speaker 2
+Dico serve globale che ho questa macchina in questa sala.
+
+01:26:01 Speaker 1
+Mi collego anche alla sala invece che col TeamViewer. Lì dipende dai problemi di sicurezza. Potrei collegarmi alla sala nel senso che la sala mi espone la web app.
+
+01:26:14 Speaker 1
+In fondo voglio dire perché no?
+
+01:26:21 Speaker 2
+Sfruttando la MQTT potremmo farlo perché noi abbiamo già messo in piedi tutto un protocollo che
+
+01:26:28 Speaker 3
+API utilizzando MQTT senza dire niente nel server di sala.
+
+01:26:35 Speaker 2
+Una delle cose carine della MQTT è che i due broker, io ho un broker nella sala e un broker messo in remoto nell'HQ
+
+01:26:44 Speaker 2
+Questo broker di sala è in grado di inviare e ricevere delle informazioni perché loro continuano a farsi un ping. Però comincia ad essere un po' lunga.
+
+01:26:55 Speaker 1
+La web app che tu ti colleghi dalla Elmac, per dire, ti colleghi direttamente dal cloud.
+
+01:27:00 Speaker 2
+Allora io posso dirti che abbiamo detto che lato server, cioè lato in sala, nel micro server di sala, c'è un sistema, un server che espone delle IPA.
+
+01:27:11 Speaker 1
+Un web server, anche alla fine, il back office lo fai anche volendo con un web server?
+
+01:27:17 Speaker 2
+Con un web server, sí.
+
+01:27:19 Speaker 1
+Dobbiamo deciderlo per carità perché potrebbe anche darsi che laravel lavora solo quello per la configurazione è tutto un web server tu lo vedi appunto questo è un web server a tutti gli effetti è diverso dire che usa un'applicazione frontend di flouter che si collega all'API per configurare e ha tutta la sua pagina però in realtà fa solo quello oppure hai un'applicazione chiamiamola laravel cioè un web server tradizionale anche se sempre MVC eccetera
+
+01:27:48 Speaker 1
+E quindi io mi collego a https://nome dove https://nome non è un frontend, è proprio l'applicazione che gestisce direttamente l'accesso ai dati. Quindi puoi collegarti in TeamViewer, ti puoi collegare a un web server dentro la sala oppure a un'altra cosa che non ho capito. Però bene il giro che fai a quel punto.
+
+01:28:14 Speaker 2
+Per alcune API, cioè se fosse soltanto configurazione oppure ho preparato una configurazione e dire al web server di Sara di scaricarsi la configurazione, questo lo possiamo fare usando tranquillamente l'MQTT.
+
+01:28:28 Speaker 1
+Però la configurazione come la prepari? Dove la prepari?
+
+01:28:31 Speaker 2
+La prepari sul database, da qualche parte nel cloud.
+
+01:28:37 Speaker 2
+La preparo nel cloud.
+
+01:28:40 Speaker 2
+Un messaggio che dice "Guarda che è pronta!" È la parte back office di HQ, diciamo così. "Ho pronta la nuova macchina, tiratela giù e rispondimi anche con il nuovo ID della macchina." Tutti quelli che non sono dentro la sala lavorano direttamente in HQ.
+
+01:28:57 Speaker 2
+Per fare non tutto, ma certe cose.
+
+01:29:00 Speaker 1
+Per fare alcune cose, ma poi puoi fare tutto volendo, pian pianino, tu costruisci il messaggio giusto, glielo spari e quello lo fa.
+
+01:29:10 Speaker 3
+Allora l'applicazione web, quella per gli utenti finali, in realtà usa già questo tipo di giro
+
+01:29:17 Speaker 1
+Cioè c'è un server web pubblico che è sul cloud.
+
+01:29:23 Speaker 3
+Tu ti colleghi e ti carichi nel tuo cellulare la PWA, l'applicazione web.
+
+01:29:28 Speaker 3
+Username, password per dire se è già registrato
+
+01:29:33 Speaker 3
+L'applicazione web VMQTT parla col Broker quello pubblico nell'internet c'è anche un broker di sal prende questo messaggio sa che deve mandarlo a quella data sala l' mqtt di quella data sala perché è configurato così il rapporto tra i due Broker mqtt è questa la magia che fa mqtt. Ok.
+
+01:30:07 Speaker 1
+L'applicazione. Quand'è che capisce qual è la sala?
+
+01:30:14 Speaker 1
+Dipende dal web.
+
+01:30:15 Speaker 2
+Come costruisce il topic, quando lo inviti.
+
+01:30:17 Speaker 1
+Dipende dal cliente che si collega. Io mi collego.
+
+01:30:20 Speaker 3
+È l'applicazione web che va a chiamare via MQTT il broker.
+
+01:30:29 Speaker 3
+Costruendo il topic in un certo modo. Quel topic identifica la sala con cui devo andare a parlare.
+
+01:30:38 Speaker 2
+I due broker sanno allora sono due sono 100 uno più 99 sale 1 più 99 anche 1000 in quel momento stai parlando con solo con la sala e ancora non mi hai detto perché sto parlando con una sala specifica perché l'applicazione costruisce quando manda il messaggio il topic sarà costruito dicendo che io appartengo a quella sala quindi
+
+01:31:05 Speaker 1
+È in funzione della username e della password, o di qualcos'altro, ma in funzione di qualcosa della rotta. Che altre informazioni abbiamo dato finora?
+
+01:31:16 Speaker 2
+Mi sono appena fatto la login. Tu hai scaricato lui ha detto un genitore un consumatore che ha appena fatto la login perché si è registrato e ha fatto la login. Tu appartieni ma non hai un'unica web app. Hai tu fai quando fai la login e io ti do a disposizione l'informazione di dove andare a fare la login dove scaricare la diciamo che scegli la sala. Scegli la sala non è proprio così ma scegli la sala. Si ma se cosa farla bisogna saperlo. Il QR che ti ho dato ti fa scegliere la sala dentro al QR c'è scritto cioè l'applicazione web. La prima volta viene caricata.
+
+01:32:03 Speaker 3
+Alla sala non è che tu sei qua adesso e decidi di andare a una sala di Milano. Ok, tu sei dentro in sala, fai la scansione in QR. Quel QR inietta dentro l'applicazione web tutte le informazioni di quella sala. Cambi sala e un altro QR.
+
+01:32:26 Speaker 1
+E lei che l'applicazione del telefono che c'ha sto quello in pancia e sa che non è che è un segreto, non riesco a vedere come un giro va bene comunque è d'accordo.
+
+01:32:44 Speaker 2
+I due broker si parlano, quindi a questo punto sì, so con chi devo parlare. Il broker di sala parla con servizio di Fabrizio, scrive le cose, le rimbalza, rifanno il giro contrario e la web ti dice: va bene, perfetto. La magia è che appunto lo fanno connettendosi, cioè tra di loro senza aprire, e poi si parlano in questo modo. Va bene comunque una qualche tipo di informazione.
+
+01:33:14 Speaker 1
+Di infarinatura su come funziona proprio l'ambaradan perché comunque qui ci può essere un firewall che chiude tutto perché è in uscita la connessione e parla. Sì, sono l'unico a esporre veramente delle porte, è quello per forza e gli altri sono tutti client suoi. Così abbiamo il vantaggio che blindiamo la sala.
+
+01:33:44 Speaker 1
+Sì, benissimo, attraverso il cloud si fa tutto e poi anche la sala è un client. Un po' come succede per tutto, anche il coso condizionatore collegato a Internet, anche lui è un client.
+
+01:33:57 Speaker 2
+Allora, ad oggi non è proprio così, perché in questo momento i Win MTI si attaccano direttamente alla SQL.
+
+01:34:09 Speaker 1
+Sì, immagino anche lui, anche quello in Galileo, immagino l'HQ si attacca direttamente al database. Sì, vabbè, quelle sono cose che poi dobbiamo cambiare facendo gli strati, ma quello non preoccupa. Insomma, qua vedo funzioni deprecabili,
+
+01:34:28 Speaker 1
+Chi decide cosa si abbandona? Sistema quattro utenti, conteggi manuali, Mistal, quando?
+
+01:34:39 Speaker 2
+Il sistema a quattro utenti,
+
+01:34:42 Speaker 2
+Abbandoniamolo già, è il fatto di dividere uno schermo in quattro parti e utilizzare quattro lettori di barcode con la stessa applicazione, con la stessa istanza.
+
+01:34:54 Speaker 1
+Quindi quello sarebbe un sistema di interfaccia per
+
+01:34:57 Speaker 2
+Per avere sullo stesso computer più sullo stesso computer riuscire a servire quattro clienti contemporaneamente ma finché dai via a premi può funzionare quando devi fare una ricarica di una card è morto cioè non può più funzionare è troppo complesso intanto ha poco senso perché comunque se l'operatore è uno si incasina secondo me un'altra cosa questo sistema è per gestire l'ICL
+
+01:35:28 Speaker 2
+Non credo che utilizzeranno poi questo nuovo GWIN MT per le sale che usano l'easy e quindi fanno soltanto vendita di ticket.
+
+01:35:38 Speaker 1
+Allora questo è un altro discorso.
+
+01:35:41 Speaker 2
+Sessione di premi coi ticket.
+
+01:35:44 Speaker 1
+Intanto bisogna capire una cosa però, se queste sale antiche, chiamiamole così, sono collegate al cloud.
+
+01:35:51 Speaker 2
+Tante no.
+
+01:35:53 Speaker 1
+Basta che sia una e sei fregato. Nel senso che devi continuare a mantenere due Cloud. Allora perché i due sistemi non sono compatibili, non sono compatibili. Lo sei meglio di me, quindi dovrai mantenere finché le sale sono scollegate dal Cloud. È la sala che se ne frega. Se però ci sono, cioè, almeno un caso in cui ci sono più sale collegate assieme dal Cloud, bisogna che ne parliamo bene di questa cosa.
+
+01:36:19 Speaker 2
+La politica di Emma che finora è stata ok: chi ha acquistato da me il software ed è tuo per sempre, ti faccio manutenzione tutta la vita e ogni volta che mi domandi qualcosa te lo faccio gratis. Sono in grado di fartelo se tu decidi di chiudere quel cloud, tutti il discorso dei backup delle cose.
+
+01:36:47 Speaker 1
+A decadere perché hai il tuo programma che gira soltanto allora c'è una pratica commerciale da fare guidata da un problema tecnico perché quel sistema di backup smetterà di funzionare e quindi io credo che comunque un qualche tipo di conversione ci vuole.
+
+01:37:05 Speaker 2
+E allora, se faremo la conversione, bisogna pensare anche a queste piccole sale che non avranno tutto il sistema sofisticato di ACL delle cose, avranno soltanto la vendita.
+
+01:37:16 Speaker 1
+L'utilizzo semplicemente di definire quali sono i flussi di queste sale e come implementarli.
+
+01:37:25 Speaker 1
+Allora il software lo fai lo stesso? Sì. Implementi, cioè, utilizzi 10 api su 1000, va bene, è più semplificata. Allora bisogna pensare a quello che già c'è. Si tratta semplicemente di avere dei flussi diversi, probabilmente più semplici. Probabilmente in alcuni casi ci sono già, sicuramente non sono ECL. Appunto, ma quindi sono anche più semplici, sia scontrini ticket e in questo caso c'è solo un utente.
+
+01:37:57 Speaker 2
+Le sale che noi chiamiamo Easy sono sale dove tutti i ticket convogliano su un unico utente anonimo, l'ID Zero. Sì, cosa succede? Non serve neanche avere l'utente perché solo i bigliettini di carta arrivano lì. Ti do un premio: 4 vale 10.
+
+01:38:20 Speaker 2
+Dici ticket, scrivo 10 e ti scarico 10 e ristampo l'altro scontrino.
+
+01:38:26 Speaker 1
+Una differenza per fine.
+
+01:38:28 Speaker 1
+Puoi registrare questa operazione nel server di sala e basta.
+
+01:38:32 Speaker 1
+Tanto sono tutti scontrini, anche da noi.
+
+01:38:36 Speaker 1
+In impresa quando gestisci uno scontrino, c'è un cliente, perché ci serve sempre, perché gli scontrini sono dei documenti, da noi c'è un cliente dell'intestazione che è un cliente interno e basta. Gli scontrini,
+
+01:38:47 Speaker 2
+Non sono anonimi.
+
+01:38:50 Speaker 1
+Che problema c'è? Si tratta di versione semplificata delle stesse cose,
+
+01:38:55 Speaker 1
+E quindi converrebbe comunque avere un cloud solo, un sistema solo di gestione della sala. Dopo la politica commerciale di far pagare un fee per l'upgrade,
+
+01:39:06 Speaker 1
+Oppure dire vabbè, oppure te ne stai per conto tuo e non fai più niente con noi e non avrai più backup. Insomma, se non gliene frega niente, sono ca*i loro, voglio dire.
+
+01:39:20 Speaker 1
+Non so poi appunto perché la politica di Elmac se era quella di ti do, ti vendo dopo tutto tuo. Vabbè, non so poi i clienti di questo tipo, se c'è ancora un rapporto di manutenzione, cioè vai lì, cambi i giochi, qualcosa, un contratto di assistenza? Non lo so, dipende,
+
+01:39:40 Speaker 2
+Non lo so perché nel senso di tutti i colori, ma non è esula da quello che ci stiamo dicendo.
+
+01:39:46 Speaker 1
+Sì, certo, è una cosa puramente commerciale. Variante di cliente, vediamo cosa c'è scritto. Quante configurazioni vanno analizzate? Proprietario, gestore Albarella, noleggio Urbano, integrazione con software terzo Vicenza, mercato inglese. Esiste un elenco delle personalizzazioni già fatte? Questo è un tema da affrontare il prima possibile per capire.
+
+01:40:11 Speaker 1
+L'altra domanda è: tutte queste personalizzazioni in fondo sono già dentro WinDT? No, tutte dentro lo stesso quindi mi interessa relativamente.
+
+01:40:19 Speaker 1
+Saperlo che sono personalizzazioni, però comunque vada una delle possibilità è gestire tutte le personalizzazioni tramite indicatori, tramite interruttori.
+
+01:40:32 Speaker 1
+Sembra più complicato ma in realtà dovendo rifare da zero un prodotto così, che comunque non è così tentacolare come un ERP, cioè un ERP noi abbiamo la tabella dei parametri di sistema che ha 600 campi.
+
+01:40:50 Speaker 1
+Campi? Sì, perché è fatta in maniera vecchia ancora.
+
+01:40:53 Speaker 1
+Io per tanti anni ho provato l'ultimo rush che ho fatto in OIT, sono arrivato al 17 e siamo al 26, insomma al decimo anno, e ogni anno, periodicamente, quasi due o tre volte l'anno, spingo per ricostruire un sistema di parametri in cui non hai tanti campi, hai tanti record e ciascuno ha un valore.
+
+01:41:16 Speaker 1
+Un valore, un tipo, tutta una serie di aggeggi, per cui tra l'altro non devi fare una variazione del DB ogni volta che ha un parametro. Chiaramente il codice cambia, però almeno il database no. E da noi il problema del cambiamento di database c'è perché quando devi rilasciare una versione su una versione DB diversa. Noi abbiamo tutti i meccanismi di barre consequenziali che guardano, eccetera. Perfetto, da 30 anni che gira come un orologio. Però comunque ci impedisce di fare determinate modifiche e soprattutto a grossi clienti.
+
+01:41:49 Speaker 1
+Perché se hai il cliente che ha 25 milioni di righe di documento, se devi fare qualcosa sulla riga documento t'ammazza
+
+01:41:55 Speaker 1
+Hai capito?
+
+01:41:56 Speaker 1
+Quindi ci sono problemi del genere. Comunque abbiamo 600 campi per analisi sistema, 400 campi nel profilo documento, cioè tutti 5 milioni di righe. Cazzo, ci sono clienti così,
+
+01:42:08 Speaker 1
+Penso a Brazale, Tescoma, Eurotae, gente che ha veramente.
+
+01:42:13 Speaker 1
+Miliardi di cose insomma così vabbè comunque ciccia per cui sì usare dei parametri invece di finestre personalizzate protocolli procedure personalizzate da attivare solo in certi casi lì lo studiamo insomma ecco ma quello non è che mi preoccupi se tutte le versioni tutte le persone sono già incluse in Win MT.
+
+01:42:42 Speaker 1
+Vabbè non è un grosso problema, probabilmente è già stato fatto come sistema di parametri.
+
+01:42:49 Speaker 1
+Noi invece abbiamo anche 200 personalizzazioni che sono fork.
+
+01:42:54 Speaker 1
+Si basano sullo stesso standard e hanno qualche libreria diversa e lì sono proprio cose compilate solo per loro
+
+01:43:01 Speaker 1
+Perché stiamo parlando di applicazioni on-premise.
+
+01:43:05 Speaker 1
+Quindi ci sono delle versioni di WinMT che sono dei fork, compilati.
+
+01:43:13 Speaker 1
+E sono andate lì ma non esiste più il fork perché praticamente non c'è più sorgente di quello che è stato fatto questo è brutto perché io posso rifare soltanto quello che so noi possiamo rifare solo quello che sappiamo insomma ecco per cui queste cose che non si sa dove sono non si sa cosa sono possiamo rifarle se sappiamo almeno come sono fatte a grandi linee certo però non abbiamo il codice che ci supporta
+
+01:43:41 Speaker 1
+Allora, altri dispositivi, oltre a casse totem, quali altri font dei dispositivi troviamo? Gru, visti. Pre-Hub, visti. Distributori? Cos'è un distributore?
+
+01:43:53 Speaker 1
+Forse è un Pre-Hub?
+
+01:43:56 Speaker 2
+Distributori automatici. Di che cosa?
+
+01:43:59 Speaker 2
+Allora, è una specie di gru, solo che non è una gru e tu butti la moneta, ti apre, ti do il panino. È come Pre-Hub.
+
+01:44:12 Speaker 2
+È una vending machine.
+
+01:44:15 Speaker 1
+Quindi tratta direttamente soldi per cose?
+
+01:44:18 Speaker 2
+È in grado di farlo?
+
+01:44:20 Speaker 2
+Esatto, quello che hai visto.
+
+01:44:24 Speaker 1
+POS, come gestiamo i POS in questo ecosistema? Per adesso sono collegati.
+
+01:44:31 Speaker 1
+Che però ne abbiamo parlato molto,
+
+01:44:33 Speaker 2
+C'è un sistema già che dialoga.
+
+01:44:37 Speaker 3
+Parla di un servizio centrale che va installato nel server di Sara, che è quello che parla poi col WinMT, con la cassa o coi totem.
+
+01:44:48 Speaker 1
+Il POS, è proprio il POS per pagare con la carta di credito, quindi è un POS, è un vero POS. E quindi lui parla direttamente con le banche?
+
+01:44:59 Speaker 3
+Lui parla con i servizi che parlano poi con i POS.
+
+01:45:07 Speaker 1
+Ma il POS parla con i servizi che parlano con i POS?
+
+01:45:10 Speaker 3
+No, il POS andre è un servizio che sta nel server di sala e parla con la cassa e con i totem.
+
+01:45:21 Speaker 3
+Poi i POS parlano con i POS connessi via seriale USB.
+
+01:45:31 Speaker 3
+Hanno bisogno di un loro servizio,
+
+01:45:34 Speaker 3
+Il loro servizio.
+
+01:45:36 Speaker 3
+Va in cerca del POS e dice ok, parliamoci, dall'altra parte si collegano direttamente col POSSANDER. Quindi la catena è.
+
+01:45:46 Speaker 1
+Il POS parla col servizio,
+
+01:45:47 Speaker 3
+Il servizio parla con il POSSANDER, il POSSANDER parla con la cassa o con il totem.
+
+01:45:56 Speaker 3
+Questa è la catena. Perché te l'ho detta? Perché adesso ci sono anche POS che vanno direttamente in rete, quindi quelli Sì, che parlano direttamente con il possandre
+
+01:46:07 Speaker 1
+Però parlano con il possandre.
+
+01:46:09 Speaker 2
+Noi parliamo solo col possandre e abbiamo sempre nello stesso dialetto
+
+01:46:16 Speaker 1
+Forse ho capito però qual è il problema. Il problema non sono questi post fighi che parlano direttamente, sono quelli che lo fanno attraverso l'INMT, perché l'INMT dobbiamo scriverlo noi di nuovo.
+
+01:46:27 Speaker 2
+Ma WinMT parlerà sempre con possandre,
+
+01:46:31 Speaker 3
+Sempre e solo una lingua sola. È possandre che si occupa di parlare con tutti gli altri.
+
+01:46:36 Speaker 1
+Anche quelli legati fisicamente così in realtà fanno l'altro giro.
+
+01:46:40 Speaker 1
+Quindi il problema è, cioè il tema è WinMT, visto che è quello che dobbiamo rifare, che è anche una cosa un po' articolata, deve parlare anche con questo affare, con questo possandre, e vabbè, è un server alla fine.
+
+01:47:00 Speaker 1
+Ma anzi ancora meno Antonio che si collegano con la banca allora quello che ho detto io prima era giusto il POS si collega direttamente con la banca per i pagamenti Sì è ovvio No è ovvio non si può fare prima mi avete detto di no tu hai detto hai il possandro che paga con la banca no No, allora io prima ho detto è il POS che parla con la banca. No, è il POS che parla col pulsante. L'ho capito, allora è il pulsante che parla con la banca,
+
+01:47:26 Speaker 2
+Perché qualcuno con la banca.
+
+01:47:27 Speaker 1
+Quindi il POS parla con tutti e due con la banca e quando ha parlato con la banca che ha autorizzato la transazione approvata, dirà a questo POS che la transazione è stata approvata.
+
+01:47:43 Speaker 1
+Però io non me ne preoccupo per ora di questo, perché WinMT non ci parla direttamente con il POS, WinMT non parla direttamente con i servizi di pagamento.
+
+01:47:53 Speaker 1
+Sono previsti servizi di pagamento per le ricariche?
+
+01:47:59 Speaker 2
+Antonio, perché nella nuova versione che stiamo facendo,
+
+01:48:03 Speaker 2
+Sì, neanche col POS Sander parlo direttamente col mio servizio locale e gli dirò fatti pagare.
+
+01:48:12 Speaker 2
+Adesso il totem come funziona?
+
+01:48:17 Speaker 2
+Quindi il.
+
+01:48:21 Speaker 2
+Flutter chiama Possandler?
+
+01:48:24 Speaker 3
+Il totem.
+
+01:48:27 Speaker 2
+Flutter non è Flutter, il motore non è. Il motore parla con Possandler, il pipe.
+
+01:48:35 Speaker 1
+No, quello che abbiamo detto.
+
+01:48:38 Speaker 2
+Ma WinMT parla col motore, non parla con.
+
+01:48:44 Speaker 2
+Ma stiamo dicendo con chi deve parlare WinMT? Col motore?
+
+01:48:58 Speaker 1
+Siamo sempre lì. WinMT, che cos'è?
+
+01:49:01 Speaker 1
+WinMT adesso fa tutto, dopodiché noi dobbiamo.
+
+01:49:05 Speaker 2
+Il client della casa,
+
+01:49:07 Speaker 2
+La casa scritta in flutter con chi parla? Col motore.
+
+01:49:12 Speaker 1
+Quindi se sbatte i che sia possandro quello dice il motore ha fatto fatti pagare corretto Sì distributore del suo po per via del POS che ha lì dici in quel senso quando la cassa usa il POS Ok certo sta andando a un livello di dettaglio Maggiore perché abbiamo detto prima Sì è la cosa della settimana prossima cioè proprio le connessioni tra i vari
+
+01:49:40 Speaker 2
+Comunque sia, avete cominciato lui fare ogni tanto bisogna capirlo perché sì, adesso abbiamo capito. Tanto ce lo stiamo ricordando qui. Sì, lo scopo del motore è astrarre il più possibile in modo che chi sta dall'altra parte, che sia Win MT, chiamiamolo che vogliamo come vogliamo, parla con questo motore. Già, già, il pulsando in sé ha un livello di estrazione altissimo perché abbiamo.
+
+01:50:09 Speaker 3
+Quattro lingue diverse che parlano, i POS, noi ci parliamo con tutti. Quindi prima Willem &T lo faceva fisicamente via seriale
+
+01:50:19 Speaker 3
+Facendo tutti i pastrocci che faceva.
+
+01:50:24 Speaker 1
+Sì, è chiaro che la prossima volta parliamo di questo.
+
+01:50:28 Speaker 1
+Invece moduli commerciali però là ce ne freghiamo proprio, non ce ne frega un cacchio del fatto che ci sono moduli attivati per licenza. Intanto lo facciamo questo sistema. Chiaramente è modulare e quindi poi sarà abbastanza semplice tradurlo in L'unica cosa che dobbiamo ricordare è che non nella fase 1, quindi non nella fase di analisi, ma nella fase di sviluppo
+
+01:50:51 Speaker 1
+Andremo a dire tutto ciò che può essere richiesto dall'esterno avrà una guardia e basta. E dopodiché la guardia farà il suo cazzo e gli dice: "Guarda che non hai la licenza per fare roba è morta lì." Fonti disponibili blocco C.
+
+01:51:07 Speaker 1
+Il fattore che sposta di più la stima è l'accesso al codice. Adesso il codice ce l'abbiamo,
+
+01:51:13 Speaker 1
+Quindi il codice sorgente di WinMT, tecnicamente se non altro, visto che è disponibile, dovrebbe saperci dire anche tutte le puttanate dei jolly, di questo e di quell'altro
+
+01:51:24 Speaker 1
+Posto che il povero Klonda riesca a capirci veramente qualcosa. Di solito sì, è il suo pane il codice.
+
+01:51:32 Speaker 2
+Diventerà un po' matto sulla Formula 1.
+
+01:51:36 Speaker 1
+Non riesce a gestirle, non so neanche che la formula uno.
+
+01:51:39 Speaker 2
+No adesso si riesce a gestirle, se la apre e scrive.
+
+01:51:46 Speaker 1
+Codice del servizio di sala dotnet del sincronizzatore del totem della webhop installatori.
+
+01:51:54 Speaker 2
+Ce l'abbiamo volendo,
+
+01:51:56 Speaker 2
+Posso procurarvelo? No, ve lo tiro fuori.
+
+01:52:02 Speaker 1
+Una delle cose che facciamo la volta prossima sarà appunto vedere di capire chi c'è e chi comunica con chi.
+
+01:52:10 Speaker 1
+Perlomeno nella nostra wishlist e anche in che linguaggio o con che metodo.
+
+01:52:17 Speaker 1
+L'altra cosa sarà capire cosa c'è adesso e che cos'è, quindi mappare quello che c'è adesso con la nostra desiderata. Dovremmo spezzare un po' le cose e vedere di chiarirci le idee.
+
+01:52:31 Speaker 1
+Del totem, in effetti, non è che ci serva il codice
+
+01:52:35 Speaker 1
+A me basta soltanto sapere a noi per questo che è per questa, per questo obiettivo, basta sapere il totem di cosa ha bisogno alla fine.
+
+01:52:45 Speaker 3
+Beh, il codice del totem non sta a chiuderlo, non ha senso.
+
+01:52:50 Speaker 1
+Beh, tu hai scritto parte del codice del totem,
+
+01:52:55 Speaker 3
+No? Scusa, ho confuso la mangia ticket in assembly, sì, il totem sì. Ma non ha senso guardarlo.
+
+01:53:04 Speaker 1
+Ha senso soltanto una volta che abbiamo un bussolotto che comunque non dobbiamo scrivere noi adesso, però dobbiamo sapere di cosa lui ha bisogno, in modo che glielo possiamo fornire.
+
+01:53:14 Speaker 1
+Come parla. Documentazione esistente, quello che abbiamo, abbiamo e se arriverà dell'altro, meglio.
+
+01:53:24 Speaker 1
+Gru e Report, documenti di Tovita, su Google Docs, documentazioni di Fabrizio SHQ, Gru e Report, descrizione del DB iniziata anni fa, quando si possono avere? Le abbiamo, ci mancano ancora soltanto i database ed eventualmente altro software che può esserci utile, quindi fondamentalmente questo servizio di sala. Poi è chiaro che va MQTT in qualche modo dovrà essere descritto
+
+01:53:55 Speaker 1
+Però non è così fondamentale, credo, per la necessità di descrivere la struttura dati. La struttura dati vive indipendentemente dal fatto che MQTT fa il broker.
+
+01:54:07 Speaker 1
+Quello lì invece,
+
+01:54:10 Speaker 1
+Quello scritto in Java, è fondamentale.
+
+01:54:12 Speaker 1
+Forse quel .NET è quello?
+
+01:54:16 Speaker 1
+Di cui no, c'è un'altra cosa,
+
+01:54:18 Speaker 3
+Quello lì è il sincronizzatore,
+
+01:54:21 Speaker 3
+Lui lì si riferisce al sincronizzatore,
+
+01:54:24 Speaker 1
+Non me ne frega niente. Invece questo è importante secondo me, questo è importante cosa quello e quindi bisogna darglielo in pasto
+
+01:54:33 Speaker 3
+Però la lingua che parla,
+
+01:54:38 Speaker 3
+Quella lui dovrebbe tagliare il condono ombelicale,
+
+01:54:42 Speaker 2
+Dovremmo riscrivere e parlare.
+
+01:54:46 Speaker 3
+Non so esattamente cos'è quello ma come noi comunichiamo vogliamo rifarlo, ripensarlo. Anche perché 'schifo fa cagare', detta proprio così è dispersiva e non va bene. Lì c'è un sacco di cose inutili. Comunicazione, perdonami, tra chi e chi? In questo momento stiamo parlando tra il suo servizio, quello lì e lbe ok.
+
+01:55:13 Speaker 1
+È una parte fondamentale.
+
+01:55:14 Speaker 3
+È una parte fondamentale che si trova.
+
+01:55:16 Speaker 1
+Però va pariparo con la scrittura della
+
+01:55:18 Speaker 3
+Se la fai vedere da lì,
+
+01:55:22 Speaker 1
+No, non va bene. Quello è male.
+
+01:55:26 Speaker 2
+Questa parla è pensata per le vie attuali, cioè invocare la lingua che è male.
+
+01:55:33 Speaker 1
+Quindi da quello bisogna solo prendere una copertura funzionale
+
+01:55:38 Speaker 1
+Però l'implementazione sarà da rifare.
+
+01:55:43 Speaker 1
+Non va bene, no. Gli do l'impasto, questo e gli dico così. Basta dirgli questo, cioè le informazioni sono altri database. Serve un database installazione grande, il DB del Cloud HQ per vedere la struttura multisala, firmer e protocolli. Vabbè, vedremo. Appunto, più che il firmer di protocolli. Ne abbiamo già parlato. Tanto chiedo conferma a Toby su come gestiscono quando creano.
+
+01:56:12 Speaker 2
+Potrebbe il cliente assegnargli più sale.
+
+01:56:15 Speaker 3
+Potrebbe essere che mentre Piero fa l'analisi, se va avanti con tutta sta storia
+
+01:56:22 Speaker 3
+Disegniamo il dialetto con cui vorremmo parlare, con cui vorremmo che le vie nuove parlassero col servizio nuovo.
+
+01:56:33 Speaker 3
+Va bene che poi ce lo fracchi dentro e vediamo che sia coperto con questa funzione.
+
+01:56:39 Speaker 1
+Vediamo un attimo che ci fanno delle domande, chiarimenti tecnici.
+
+01:56:45 Speaker 1
+Domanda numero uno, questo DB è di una sala reale o di laboratorio? Il DB che ha analizzato finora è di laboratorio. Ci daremo una sala reale e anche poi l'HKU. Chi sono i peer di LocalSync e WinMTSync?
+
+01:57:02 Speaker 1
+Stiamo parlando della sincronizzazione?
+
+01:57:06 Speaker 1
+Cosa il peer allora sono semplicemente il database, diciamo così, che sta in sala e quello che sta nel cloud.
+
+01:57:14 Speaker 1
+OK, va bene.
+
+01:57:16 Speaker 1
+Cosa è successo il 22 maggio del 2026 alle 16:35? Nel tuo database sono state cancellate 100 e rotti mila record.
+
+01:57:27 Speaker 1
+Quindi onestamente niente, nel senso che quel database è un database di test
+
+01:57:32 Speaker 2
+Tutte le cose sono finte.
+
+01:57:34 Speaker 1
+Va bene, quindi bene. Quindi per questo motivo conviene avere un database reale perché ti dà anche un modo di capire cosa succede nel tempo. Il DB cloud è uno per sala unico, ovviamente c'è un DB per sala replicato nel cloud e poi c'è un DB di cappello che servirà a gestire le varie cose. Mi dice soltanto quali sono i DB che devo aprire. Il DB cappello non fa nient'altro, c'è scritto cliente. Sì, però dovrà fare delle operazioni. Cioè se io, appunto, ho una scheda che mi sono iscritto in una sala, però voglio cercare in un'altra sala, ma devo poterlo fare nel futuro. Sì, no. E mi sembrava che fosse una richiesta. No, che se io ho multisala, la card deve funzionare su tutte le sale di quel cliente.
+
+01:58:24 Speaker 1
+C'è qualcosa che bisogna dire: io sono una card e va detto alla card. Mi ricordo che abbiamo parlato anche di questo, che c'erano dei bit della card che mi davano la possibilità di dire io valgo non solo per una sala, ma per un gruppo di sale.
+
+01:58:43 Speaker 1
+Poi probabilmente ci sarà qualcosa da chiarire all'interno del database HQ che sincronizza in qualche modo le cose.
+
+01:58:54 Speaker 3
+In realtà era stato definito un codice all'interno della card con un valore in più che io ho detto che è il gruppo che ci permette di mettere, ma in realtà doveva servire a qualcosa di misterioso perché non c'è scritto neanche nel codice.
+
+01:59:11 Speaker 3
+Il terzo bit, Z1, da nessuna parte c'è scritto quello.
+
+01:59:19 Speaker 2
+Semplicemente perché è il codice della macchina che viene installata.
+
+01:59:24 Speaker 3
+Va bene,
+
+01:59:26 Speaker 2
+Ma sulla card non serve a niente.
+
+01:59:29 Speaker 1
+Va bene, vedremo di capirlo.
+
+01:59:32 Speaker 1
+Cosa significano Nimp 146 e 9997 e Nimp in transcard?
+
+01:59:41 Speaker 1
+Leggendo i dati è venuta fuori questa domanda. Nimp da qualche parte nella documentazione.
+
+01:59:48 Speaker 2
+Nimp a seconda della tabella ha un significato diverso.
+
+01:59:54 Speaker 2
+Ed è documentato anche nei file di Antonio Google.
+
+02:00:06 Speaker 1
+Va bene, come si generano i contatti?
+
+02:00:09 Speaker 2
+Antonio me l'ha documentato che i punti di domanda io ci ho aggiunto il significato.
+
+02:00:12 Speaker 1
+Allora qui c'è il discorso della strategia delle chiavi. Che altro è interessante sapere come si generano ID contatto e ID Long che è un nome bruttissimo per capire forse come son fatti. Cioè lui ha bisogno di sapere chi come li genera in modo da poter prendere in prendere ultimo la somma. Uno è un contatore normale se prendi ultimo e sommi uno in un in una sto pros a livello di isolamento 3 fa tutto lavoro.
+
+02:00:47 Speaker 2
+Se lo fa fuori qui succedevano cose strane, adesso un po' meno.
+
+02:00:54 Speaker 1
+Vabbè, comunque bisognerà capire come vengono generati adesso,
+
+02:00:57 Speaker 2
+Capire il contatto tra l'altro intero
+
+02:01:02 Speaker 1
+Quindi aveva il limite delle lunghezze e ho visto anche che sicuramente non è stato possibile definire una grande integrità referenziale perché spesso la presunta RI, cioè il fatto che ci sia, sono due campi di tipo diverso.
+
+02:01:16 Speaker 2
+Uno stringa e l'altro.
+
+02:01:18 Speaker 1
+Vabbè, questo lo evitiamo chiaramente e via. I campi jolly sono documentati abbastanza.
+
+02:01:25 Speaker 1
+Non l'hai fatta tu quella parte lì, l'ha fatta qualcuno prima di te.
+
+02:01:32 Speaker 1
+Vabbè, capisco che ragionare in assembler delle volte ti porta a questo tipo di follia
+
+02:01:38 Speaker 1
+Però.
+
+02:01:40 Speaker 2
+Andava bene quando c'era veramente solo la sempre quando devi ragionare in 20 campi quando aveva all'inizio aveva pochissima roba era una cosa nata per fare e poi è sempre cresciuta di più e non è mai stata rivista No diciamo che 15 anni fa andava rivista quando hanno cominciato a fare le sale importanti
+
+02:02:09 Speaker 1
+Adesso lo rivediamo tipo card è il livello della card? Il 39 per cento di Platinum è reale? Mi ricorda che c'è stato quel casino che il Platinum è il default e quindi il default viene fuori per tutto e Platino vuol dire che fai cose diverse da Silver. Comunque è vero che il Platinum è il default, quindi se uno sbaglia qualcosa e ti lascia il default, il default è zero e platino però.
+
+02:02:37 Speaker 2
+Poi è stato deciso che il default è Silver.
+
+02:02:39 Speaker 1
+È una cosa che si può cambiare, nel senso che io posso nel database scrivere che la colonna è 3.
+
+02:02:47 Speaker 2
+Esatto, tu dovresti.
+
+02:02:50 Speaker 1
+Una delle varie cose sarà il 2,3, 1.
+
+02:02:54 Speaker 2
+Sì, nella definizione della tabella fine.
+
+02:02:58 Speaker 1
+Speriamo che ci sia un certo tipo di ordinamento,
+
+02:03:01 Speaker 1
+Cioè dei numeri corrispondano a in modo che tu puoi dire vai vado in uno crescente calando di uno.
+
+02:03:07 Speaker 1
+Oppure sono random i valori
+
+02:03:10 Speaker 1
+Quindi 0123,
+
+02:03:14 Speaker 3
+Cioè sono messi in modo per cui se domani vuoi aggiungerci un altro metallo prezioso per fargli fare qualcos'altro,
+
+02:03:22 Speaker 2
+Deve essere quattro.
+
+02:03:24 Speaker 1
+Vabbè, questo è importante, perché allora dovremmo costruire un workflow su questo tipo di su questo campo che prescinde dal valore del
+
+02:03:35 Speaker 3
+Il numero vero e proprio puoi ordinarlo perché immagino che comunque questi numeri rimangono così. Stiamo parlando di rifare il database. Rifare il database per me vuol dire potenzialmente anche cambiare la struttura delle card. Quando si parte con questa cosa nuova si cambia quello che c'è scritto nelle card e si parte da zero e poi si cresce. Le card vecchie non vengono mai ingrandite.
+
+02:04:04 Speaker 1
+Bisogna già pensare a un sistema di conversione delle card,
+
+02:04:08 Speaker 1
+In modo che io tappo e questa è una card vecchia, adesso te la converto
+
+02:04:15 Speaker 1
+Te la cambio, no, te la converto.
+
+02:04:18 Speaker 1
+Prendo tutto quanto e io ti converto la card. Adesso questa è una card nuova. La prossima volta che lui fa il tap, questa è una card nuova. Ovviamente questo è. Una chicca, diciamo così, nel senso che è una piccola cosa da fare abbastanza avanti, però sì, questo ci consente di rivedere tutto,
+
+02:04:39 Speaker 1
+Ma forse non tutto. Questo dovrete dirmelo voi, cioè cosa delle card non può essere fatto in maniera arbitraria, perché è vero che voi scrivete le card, però siccome da lì, da fuori o dalla cassa o dal cloud o da dove si configurano le case in qualche modo, bisognerà che il database.
+
+02:04:59 Speaker 1
+Se lo cambiamo, cambiamo la struttura delle carte, senza però inibire la possibilità che le carte funzionino ancora. Insomma, per dirlo, perché so che i dati sono pochi, lo spazio è poco e quindi poi c'è la B, non gliene frega niente delle card.
+
+02:05:16 Speaker 1
+Quindi tutte le cose veramente legacy, veramente brutte, perlomeno persino dalle card. Quindi questo è una cosa che possiamo sistemare velocemente.
+
+02:05:26 Speaker 1
+Vabbè, il piano di manutenzione degli indici non c'è e sarà una cosa sistemistica da fare più avanti.
+
+02:05:32 Speaker 1
+Allora l'amico qui ha già fatto una stima che è un po' preoccupante
+
+02:05:38 Speaker 1
+Nel senso che la forbice è da 240 a 450 ore di analisi.
+
+02:05:44 Speaker 1
+Va bene, 450 ore sono 12 settimane a tempo pieno.
+
+02:05:53 Speaker 1
+Però la sua stima è spesso pessimistica. Sia di analisi che di sviluppo. Ciononostante è un progetto grosso, non è una puttanata ed è, lo sappiamo, ma è meglio ripetercelo, è gravato dal fatto che non solo la documentazione è opinabile, ma anche, appunto, spesso c'è poco criterio nella scrittura del codice proprio per l'utilizzo di variabili, i campi con interpretazioni diverse a seconda magari del valore di un'altro campo, immagino, e cose di questo genere districare questo.
+
+02:06:26 Speaker 1
+Rende più difficile la cosa, perché non è così facile.
+
+02:06:30 Speaker 2
+Dobbiamo cercare comunque di semplificare, cioè cercare di potare quelle che sono i rami non più utilizzati del programma, che non ha senso utilizzare.
+
+02:06:44 Speaker 2
+Mi viene in mente la divisione in quattro dello schermo, lì serve veramente?
+
+02:06:51 Speaker 2
+No, loro devono dircelo questo.
+
+02:06:54 Speaker 2
+È così fondamentale: sono spalmati qui,
+
+02:06:58 Speaker 1
+Sono spalmati lì, sono spalmati nel codice.
+
+02:07:01 Speaker 1
+Qui abbiamo appunto la stima da validare, che ci sono appunto pacchetti di lavori del censimento per la torre dei flussi, che è quello che in teoria dovremmo cominciare a fare subito.
+
+02:07:11 Speaker 1
+Però lui mi dà già un bel po' di ore da fare, insomma perché sono così tanti che contarli tutti non è mica facile e non è così facile trovare i flussi dal codice decodifica dai campi jolly, 40 ore perimetro multisala e decodifica dei campi jolly, una settimana di analisi.
+
+02:07:43 Speaker 1
+Quanto ci avete messo a cominciare a districare la cosa?
+
+02:07:48 Speaker 1
+Una settimana?
+
+02:07:50 Speaker 1
+Facile che ci vuole una settimana solo.
+
+02:07:51 Speaker 2
+Ci è voluto un anno per capire un attimo.
+
+02:07:56 Speaker 1
+Certo, avendo l'IA, avendo il codice, perché non l'hai scritto tutto tu il codice di WinMT.
+
+02:08:02 Speaker 2
+No, infatti dovevo andare a leggere e chiedere quando c'era Toby, c'è stato un periodo per un anno, Toby non c'era.
+
+02:08:10 Speaker 2
+Era in pensione, quindi mi sono vabbè.
+
+02:08:15 Speaker 1
+Questa quindi è una stima che comunque i tre fattori che pesano di più sono in ordine: l'accesso al codice, il numero reale dei flussi vedi che è sempre lì e il perimetro multisala.
+
+02:08:29 Speaker 1
+Nel senso che va fatto e basta.
+
+02:08:31 Speaker 1
+E infatti il censimento è la cosa più grossa. Alla fine vediamo gli esiti e vediamo cosa siamo riusciti a fare.
+
+02:08:39 Speaker 1
+Allora, esiti attesi a fine riunione
+
+02:08:44 Speaker 1
+Accesso al codice sorgente sì, no e quando? L'accesso al codice sorgente di Win MT ce l'abbiamo già adesso.
+
+02:08:51 Speaker 1
+L'accesso al codice sorgente di B for J ce lo possiamo avere presto, forse anche stasera
+
+02:08:58 Speaker 1
+Stimolando Fabrizio opportunamente.
+
+02:09:01 Speaker 1
+L'accesso al codice Dotnet di questa cosa che ancora non so esattamente cosa sia e cosa faccio, bisogna chiedere domani.
+
+02:09:09 Speaker 1
+Non c'è problema da questo punto di vista, se riusciamo entro un paio di giorni, tre massimo, ad avere questo non è male. Elenco delle zone e dei dispositivi dentro e fuori perimetro. Allora questo elenco dovrebbe arrivare in gran parte come riassunto di questa riunione, perchéné abbiamo parlato nell'ultima, convalidiamo adesso verranno fatti degli ovviamente e degli am.
+
+02:09:38 Speaker 1
+Ordine di grandezza dei flussi per zona,
+
+02:09:42 Speaker 1
+Anche lì siamo sempre là,
+
+02:09:44 Speaker 1
+Quello no, non ce l'abbiamo. Non abbiamo né ancora un ordine di grandezza dei flussi, non sappiamo se sono 102, 100 o 500. Sicuramente è uno di questi tre,
+
+02:09:57 Speaker 1
+Ma non è detto che sia + 100+500. La vedo grande.
+
+02:10:03 Speaker 1
+Date per documenti esistenti e per un secondo DB. Tutti i documenti disponibili li abbiamo già adesso.
+
+02:10:10 Speaker 1
+Alcuni di questi documenti, che sono quelli delle tabelle scritte in Google Docs, sono in fase di aggiornamento da parte di Fabrizio, però non ci è dato di sapere quanto e come verranno aggiornati.
+
+02:10:24 Speaker 1
+Quindi intanto le prendiamo così come sono e cerchiamo di fare luce sul resto attraverso il codice.
+
+02:10:35 Speaker 1
+Invece per il secondo DB, cioè il database di sala reale e il database HQ, eventualmente a parte che no, adesso non ci serve quello delle licenze, ce ne possiamo fregare. Per questi due database dovrebbe passare qualche giorno, il tempo tecnico di andarseli a prendere e di portarli da qualche parte. Insomma, se sono 400 giga quelli di Fabrizio, può anche pensare che lui li mette là e poi me li scarico.
+
+02:11:03 Speaker 1
+Una in una macchina locale tanto 400 GB è lo spazio di Fabrizio ma il database sarà 10 GB. Fabrizio hai idea di quanto grande sarà il database? Quello che mi passi 10-15 GB, cose così ok. Quindi è radicalmente basso rispetto a non si carica sull'Express. Il motivo per cui non si carica sull'Express è perché è troppo grosso. Questo è veramente un palo nel culo. Perché io ho l'Express, siamo sicuri neanche l'Express gli ultimi,
+
+02:11:34 Speaker 1
+Perché gli ultimi Express fino a 10 giga e basta.
+
+02:11:38 Speaker 1
+E come si fa? Mi devi dare l'accesso al database,
+
+02:11:41 Speaker 2
+Mo ti do l'accesso a un database, infatti è una cosa che mi è venuta in mente adesso.
+
+02:11:52 Speaker 1
+Grande ma sì è abbastanza grande abbastanza grande magari non la 6-7 Giga metti No pensavo quello di quadrativo Allora il problema grave dei milioni di record quello dove ho avuto sto problema grosso però al 99% abbiamo capito qual è il problema che ci sono le chiavi Random grandi Random e ciò.
+
+02:12:19 Speaker 1
+Tra l'altro, in questo caso sarebbe stato meglio mettere la chiave primaria non clustered, se si può, ma non so se si può in un server, perché se è clustered, vuol dire che tu devi mettere in ordine per chiave.
+
+02:12:31 Speaker 1
+E quando generi le chiavi che non sono ordinate, tu ogni volta vai a fare così. Quindi ogni inserimento è mortale.
+
+02:12:37 Speaker 1
+Perché se hai l'inserimento qui, dove qui sono 5 e qui sono 90, devi spostare 90 di uno e poi scriverti il tuo record. Quindi fare un lavoro di scrittura nel database che è pazzesco. Quindi quel problema si risolve con l'ID.
+
+02:12:55 Speaker 1
+Fine.
+
+02:12:57 Speaker 1
+Dopo capire perché è stato reso necessario con questa architettura non usare l'ID ma usare un GUI di questo tipo è un tema.
+
+02:13:08 Speaker 2
+Perché Access faceva così quando creavi la tabella.
+
+02:13:12 Speaker 3
+È tutto figlio di Access.
+
+02:13:14 Speaker 1
+Mi sta dicendo che non c'è un motivo valido per averlo fatto? No, è che è registrato, quindi non si può.
+
+02:13:25 Speaker 2
+Sono stata brava ultimamente.
+
+02:13:29 Speaker 1
+Va bene, allora, quindi quel problema, no, perché c'è anche un chiaramente un problema legato a che cosa deve migrare da una sala a un'altra. Forse niente, perché se noi risolviamo il problema del backup del database.
+
+02:13:45 Speaker 1
+In modo che non ci siano mai cose che vengono fatte qui e anche qui contemporaneamente.
+
+02:13:50 Speaker 1
+Ma quando fai qualcosa qui, lo chiedi a lui tramite un it, non hai più il problema degli ID uguali,
+
+02:13:56 Speaker 1
+Quindi puoi usarli lì.
+
+02:13:58 Speaker 1
+Non devi neanche dire che ogni record abbia anche l'identificativo di qual è il database in cui è stato generato. Nel multisala credo che l'unico problema vero sia l'aggregazione delle card.
+
+02:14:13 Speaker 1
+Il fatto che una card possa giocare su più sale.
+
+02:14:16 Speaker 1
+Va bene, però questo una volta che lo risolvi sulla card, gli dai l'autorizzazione.
+
+02:14:21 Speaker 3
+Un problema che potrebbe esserci in multisala è la distinzione della valorizzazione dei ticket, perché è vero che sono multisala, ma una delle varie teorie che ho sentito è che se io vinco dei ticket nella sala A,
+
+02:14:37 Speaker 3
+Poi vado nella sala B, è lo stesso gruppo, magari non è che ritiri i premi coi ticket vinti in A nella sala B.
+
+02:14:47 Speaker 3
+Questo potrebbe essere una rogna, però da capire.
+
+02:14:49 Speaker 1
+Questa è una cosa da capire, sai cosa? È un vincolo commerciale importante, cioè bisogna che qualcuno ci dica cosa si può e cosa non si può fare.
+
+02:14:58 Speaker 3
+È chiaro insomma.
+
+02:15:00 Speaker 1
+Questo però da un punto di vista tecnico è soltanto una questione di permessi.
+
+02:15:06 Speaker 1
+Però giustamente tu dici io vado in un'altra sala, come faccio a sapere cosa posso fare?
+
+02:15:13 Speaker 1
+Questo è un tema,
+
+02:15:15 Speaker 3
+Cioè il ticket inizia a portarsi dietro anche dove è stato generato.
+
+02:15:20 Speaker 1
+Questo non è un problema, perché il ticket viene scritto quando viene generato in una sala, nel momento della sala.
+
+02:15:29 Speaker 1
+Però tu dici, io sono qua, ho la mia card, io ho un totale ticket
+
+02:15:36 Speaker 3
+Giusto? Non è dentro la card, è dentro la sala.
+
+02:15:39 Speaker 1
+Sì, però se sono offline.
+
+02:15:43 Speaker 1
+Bisogna capire appunto cosa può fare allora se per esempio tu dici quando sono offline non posso ritirare premi non so adesso com'è tu lo possa fare scusate stavo controllando a partire da un certo numero di ticket io posso prendermi un pupazzetto anche se il dispensatore del pupazzetto è offline vado alla cassa.
+
+02:16:10 Speaker 1
+La cassa non è online. Riformula la domanda. Sì, vado alla cassa online perché sappiamo che la cassa online ok. Il problema è che dicevamo: ok, io ho preso, io ho 100 ticket. La risposta è no, cioè non ti farai dare niente del prezzab. Dal mio punto di vista non può funzionare se non è commesso in qualche modo. No, ma la purtroppo la connessione è di tipo diverso e giustamente non funziona se non è collegato a un server di sala.
+
+02:16:45 Speaker 1
+Però se io voglio impedire o regolamentare il fatto che un ticket guadagnato in una sala può essere sospeso in un'altra
+
+02:16:53 Speaker 1
+Io devo sapere sempre dove sono stati guadagnati questi ticket.
+
+02:16:57 Speaker 2
+Allora ce l'abbiamo. Se tu guardi la documentazione del multisala,
+
+02:17:01 Speaker 1
+Allora parlo a livello concettuale, chiaramente devo essere collegato al cloud perché devo essere collegato alle altre sale.
+
+02:17:09 Speaker 1
+O no? O hai un sistema?
+
+02:17:11 Speaker 2
+Sì, abbiamo un sistema. Quando sei scollegato dalle altre sale, cosa succede? Ti faccio consumare soltanto i ticket che hai acquisito in questa sala.
+
+02:17:20 Speaker 1
+Quindi di quelli perché sei collegato al server della tua sala. Qui sembra buono. Il tema è se io non vedo le altre sale che trovo, non vedo il cloud.
+
+02:17:30 Speaker 2
+Non ho tutti i miei ticket a disposizione,
+
+02:17:32 Speaker 1
+Solo quelli che se non li avessi mai presi lì, restano là. Questa è una buona cosa perché è facile da realizzare. Quello che è ancora da capire è quando io sono qui, voglio vedere i ticket delle altre sale.
+
+02:17:47 Speaker 2
+Allora, io ho messo in piedi una funzione che va a chiedere a tutte le altre sale i ticket e vengono restituiti in tempo reale.
+
+02:18:00 Speaker 1
+Quello alla fine è il nostro consiglio, perché va a prendere i vari DB.
+
+02:18:06 Speaker 1
+Di quel cliente, la mia sala fa parte di un gruppo di sale, tutte le sale del mio gruppo,
+
+02:18:13 Speaker 1
+Per ogni gruppo ho l'elenco, il mio è così, tutti gli altri sono cosà e siamo a posto.
+
+02:18:18 Speaker 2
+E va bene. Ce l'hai nel database? Se vai a vederla esiste già, cioè la trovi già nel tra le storie procedure.
+
+02:18:24 Speaker 1
+Sì, ma è una sto preciso che non sta nel database di sala.
+
+02:18:28 Speaker 2
+Anche nel database di sala.
+
+02:18:30 Speaker 1
+Perché lui va a guardare, però c'ha un database nel cloud.
+
+02:18:34 Speaker 2
+Quello lì che mi devi dare collegato che ha delle informazioni in più che sono i dati, quali sono tutte le altre iniziali collegate che poi comunque è un'informazione replicata nel record 101 campo dopo ti dirò.
+
+02:18:53 Speaker 1
+Che pezzo del codice sa che è questo tipo di RMT? No, è sempre WinMT, quindi tutto sommato bene o male.
+
+02:19:00 Speaker 1
+Dati per documenti esistenti, abbiamo capito. Mi darai entro qualche giorno questi due dB.
+
+02:19:05 Speaker 1
+Uno da 6-7 GB e non di più, e un altro che è quello di HQ che sarà piccolo comunque.
+
+02:19:11 Speaker 2
+Ti faccio lanciare anche tutta la documentazione del mio servizio in modo.
+
+02:19:17 Speaker 2
+In parte ce l'ho già,
+
+02:19:22 Speaker 1
+In modo che io abbia comunque la possibilità di capire completamente cosa fa il tuo servizio.
+
+02:19:29 Speaker 2
+Perché dentro c'è sono i vari MD che ha creato già Claude,
+
+02:19:32 Speaker 3
+Quindi ce l'ho tutta,
+
+02:19:35 Speaker 1
+Fai un coso, dopodiché gli do il passo prima agli MD. Hai capito tutto, vuoi il codice, fai tutto assieme, no, fatto un giro del codice e vedi un po' se gli MD ti tornano.
+
+02:19:49 Speaker 1
+Va bene. Allora, un'altra delle cose che non abbiamo visto sono le date delle visite nelle sale.
+
+02:19:56 Speaker 1
+Che bisogna capire quanto ci serva, ti ricordi che si parlava di fare un giro a Rubano oppure un giro a Vicenza eccetera?
+
+02:20:07 Speaker 1
+Bisogna capire a cosa ci serve prima
+
+02:20:09 Speaker 3
+A parte vedere le cose come funzionano.
+
+02:20:13 Speaker 2
+Dei brasiliani.
+
+02:20:16 Speaker 1
+Sta settimana non posso. No quella dopo perché allora c'è la dopo anche perché sono la serata la nazionale di accoglienza pellegrina venerdì 30. Giovedì ha parto anche giovedì nel 29 il compleanno di Federico è duro e muro c'è sempre qualcosa brasiliani arrivate a vedere e vediamo novembre il mese dei brasiliani no qualcuno più che altro aveva detto che il 21
+
+02:20:50 Speaker 1
+Ottobre ci sarebbe stata una scadenza reale di tutto questo documento di pre-analisi, è troppo poco ovviamente perché il 21 e dopodomani non abbiamo la possibilità.
+
+02:21:01 Speaker 1
+Jessica aveva detto che ci arriva il documento. Certo sì perché secondo lei è così facile. Vabbè se voi dite io posso anche scrivere una cosa
+
+02:21:13 Speaker 1
+Una piccolissima mail di report.
+
+02:21:21 Speaker 1
+Per dire alla direzione dove siamo arrivati, cosa stiamo facendo, il tempo che ci stiamo mettendo e perché. D'accordo, e poi vabbè, insomma, perché adesso, come adesso, secondo me ci vorranno almeno altre due riunioni, come pensavo, le famose 10-15 ore. 15 che 10? Perché beh, sono ancora tante. Insomma, la prossima una di sicuro, poi vediamo se con una riusciamo effettivamente.
+
+02:21:49 Speaker 1
+Contare i flussi bene, se no adesso io posso chiedere a Claude di vedere se riesci a capire quanti e quali flussi ci sono.
+
+02:22:02 Speaker 3
+Sono fatti quei documenti lì
+
+02:22:04 Speaker 1
+Tu trovi alcuni sì,
+
+02:22:07 Speaker 1
+In case stables,
+
+02:22:10 Speaker 3
+Però flussi sì,
+
+02:22:15 Speaker 1
+Boh.
+
+02:22:17 Speaker 1
+Ciao, sì, il problema è quello lì, comunque capire cosa bisogna fare alla fine. Poi schietto è capire cosa si deve fare. Insomma, ecco, capirlo in maniera analitica è l'unico modo per poter dare delle stime vere, sennò si deve andare a best effort e Dio te la mandi buona.
+
+02:22:39 Speaker 1
+Però adesso best effort non si fa niente.
+
+02:22:46 Speaker 1
+va bene, di che hai idea che intanto chi usa questa cosa?
+
+02:22:52 Speaker 1
+Io non sono shutdown perché c'ha Linux, non c'ha l'orologio qua, guarda 20 e 43 e speriamo bene.

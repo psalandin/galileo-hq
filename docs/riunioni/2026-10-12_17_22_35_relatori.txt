@@ -1,0 +1,1604 @@
+[00:00:00] Antonio: Io ho provato a chiedere manualistica, visto come ho detto applicativo, ho visto un documento risalente da E.R.
+
+[00:00:12] Fabrizio: Geologiche
+
+[00:00:12] Piero: fa, di WinMT mi sta
+
+[00:00:14] Antonio: dicendo, l'idea era di mettere boccia di bottega con il manuale da una parte, WinMT dall'altra, e vedere cosa mancava,
+
+[00:00:24] Fabrizio: ci metterà 8
+
+[00:00:27] Piero: mesi, vabbè non c'era niente, allora perché abbiamo una marca che
+
+[00:00:31] Antonio: ancora non conosciamo, quindi lasciamo
+
+[00:00:46] Piero: perdere queste ipotesi che non dobbiamo
+
+[00:00:48] Antonio: arrangiarci, va bene, allora
+
+[00:00:51] Fabrizio: io ho dei documenti qua, che è scritto Tobi, soprattutto per la parte vecchia, perché la parte dove ho messo le mani io, ti posso dare delle risposte su NMT, cosa fa, cosa fa, sui lavori, su HQ. Tutte le zone nuove che ho fatto io, più o meno c'è qualche documento, quindi qualcosa ti si può. Va bene. Ti posso dare. Qui dovremmo anche decidere poi quali sono le parti deprecabili del programma, perché ci sono cose che i vecchissimi clienti continuano ad usare, ma poi sarà Giannina che ci deve... Vabbè, ma quello è un'altra cosa insomma.
+
+[00:01:40] Piero: Per ora vorrei che affrontassimo una cosa dal punto di vista veramente globale, cioè che cos'è lo schema Galileo.
+
+[00:01:47] Fabrizio: Posso cominciare a fare un disegno che dopo tu sopora qui e...
+
+[00:01:51] Piero: Certo, poi ci diamo agli altri, scansioniamo e via.
+
+[00:01:59] Fabrizio: Mi bella di scrivere poi. Ok, allora... Allora... Mettiamo al centro WinMT?
+
+[00:02:08] Piero: Vabbè, stai facendo dal punto di vista... No, allora, mettere al centro WinMT cosa vuol dire? Visto che dobbiamo riprodurre WinMT, giusto? Perché anche HQ di fatto è WinMT buttato sul cloud con dei trucchi, vuol dire poco mettere al centro WinMT. Noi sappiamo già che WinMT è al centro,
+
+[00:02:28] Antonio: perché è quello
+
+[00:02:28] Piero: che dobbiamo rifare.
+
+[00:02:29] Antonio: Allora WinMT si
+
+[00:02:31] Piero: può definire che si suddivide in zone concettuali? Sì. Proviamo a vedere se si riesce a dividerlo in da 3 a massimo 7-8 zone concettuali. Scrivete pure.
+
+[00:02:48] Fabrizio: Vediamo. Ecco, per inciso, se
+
+[00:02:53] Piero: riuscirò ad avere accesso di qualche tipo alle basi dati e o anche a codice, non sarebbe male, perché se abbiamo il codice sorgente, abbiamo una cosa che si può provare a fare, appunto, è dire alle nostre amiche Claudia di fare qualcosa. Sì, partirei volentieri da HQ come concetto, non tanto come... cioè se l'HQ può essere visto anche direttamente da WinMT dentro... ci faccio vedere rapidamente
+
+[00:03:42] Fabrizio: le differenze, perché ci
+
+[00:03:44] Piero: sono delle differenze...
+
+[00:03:46] Fabrizio: Allora, analog in, chiede un po' di cose, va a confrontare, come WinMT parla anche con...
+
+[00:03:58] Piero: si va
+
+[00:03:59] Antonio: a verificare che ci
+
+[00:04:00] Piero: sono collegati, si accede al database locale, quindi questa è la parte di sala...
+
+[00:04:08] Fabrizio: si andano a cercare gli utenti
+
+[00:04:11] Piero: all'interno di una tabella. Ah, quindi gli utenti sono predefiniti nel senso che tu non puoi scrivere il tuo nome utente, deve essere uno di quelli, deve essere uno di questi. Ma questa è una regola che potremmo anche tranquillamente continuare ad avere. Però a questo punto vuol dire che l'utente in realtà con cui il programma si collega al database è un altro. L'utente con cui si collega è
+
+[00:04:35] Fabrizio: assolutamente un altro, è sempre lo stesso, perché questo qui è un SA, che si attacca in locale al database, al SQL Server che è di sala in locale.
+
+[00:04:54] Piero: Vuoi mantenere questo approccio? Non vuoi mantenere questo approccio? Ne discutiamo un'altra volta perché tanto si può. Questo
+
+[00:05:03] Fabrizio: possiamo anche mantenere
+
+[00:05:04] Piero: perché non è... Al di là di quelle che sono le credenziali, nel senso, scusami, quelli che sono i diritti di accesso, che quindi non puoi mai usare SA, c'è un problema relativo al fatto che se nel database tu hai i classici audit, vedi sempre solo SA nel diritto, a meno che tu non
+
+[00:05:24] Antonio: faccia tutta una
+
+[00:05:25] Piero: conchiglia, cosa che farà uno, certo, però se uno comincia a fare delle cose da SQL, tanto per capirci è chiaro che lì a quel punto è solo S/A o anche niente, se non ci sono i trigger aperta, chiusa, però è un problema di ordine molto diverso. Non sarà S/A, sarà qualcos'altro, ma useremo sempre un utente di accesso, abilitato in lettura e scrittura su un particolare database, solo quello intanto.
+
+[00:05:52] Fabrizio: Esatto, nel caso dell'accesso in sala viene fatto anche tramite le card e le feed che sono collegate all'utente, quindi o alle carte usando il mercolio, poi vedremo cosa significa, per adesso
+
+[00:06:07] Piero: non mi interessa,
+
+[00:06:09] Fabrizio: allora io accedo, qui sono in sala, la prima cosa che mi fa vedere normalmente è tutto l'elenco dei premi disponibili nella sala in quel momento, mi
+
+[00:06:20] Piero: sembra che stiamo partendo già un po' troppo sullo specifico, l'elenco dei premi,
+
+[00:06:25] Fabrizio: allora,
+
+[00:06:28] Piero: aspetta che arriviamo, perché
+
+[00:06:30] Fabrizio: quando c'è la gestione premi, gestione degli utenti, dei clienti, quindi come...
+
+[00:06:44] Piero: La gestione premi, cos'è una grafica di articoli alla fine? È una grafica di articoli legata a... A una gecenza in un magazzino, che è il magazzino della sala.
+
+[00:06:54] Fabrizio: Quindi c'è una gestione del magazzino della sala. Poi abbiamo una gestione di reportistiche varie. Ci sono le reportistiche legate alle sale che non sono dotate di ECL.
+
+[00:07:26] Antonio: Poi definiremo che cos'è l'ECL.
+
+[00:07:30] Fabrizio: L'ECL è il sistema di coinless di pagamento, coinless di ELVAC perché questo pacchetto include tutto, è un unico pacchetto monolitico quindi che tu sia dotato di coinless, non hai coinless, hai la modalità super easy Un programma
+
+[00:07:48] Piero: che lavora parametri
+
+[00:07:50] Fabrizio: Ok, quello non mi spaventa C'è tutta una serie di reportistiche sui ticket. Le prime che vediamo sono soprattutto relative alla gestione dei ticket, perché inizialmente il progetto era partito soltanto per gestire il conteggio dei ticket che fanno le mangia ticket. E quindi gestiva soltanto ticket, consentiva di scaricare ticket in modo totalmente anonimo. Successivamente sono stati aggiunti gli utenti e le tessere degli utenti, quindi i clienti, non gli utenti, i clienti e le relative tessere e quindi i ticket sono diventati da ticket generici salvati su un pezzo di carta a ticket nominativi salvati sulle card dei clienti.
+
+[00:08:48] Piero: A contanti e a qualcos'altro, una
+
+[00:08:52] Fabrizio: specie di wallet. Poi con l'ICL si è aggiunto anche il wallet vero e proprio alla carne al cliente, ci sono anche i movimenti contabili di denaro, quindi il carico, lo scarico. Abbiamo la gestione del magazzino, abbiamo degli utility per la gestione degli operatori. Non avendo il PC con tutti i device spenti, quindi quando cerca di aprire le porte seriali muore.
+
+[00:09:30] Piero: Cosa c'entra la gestione degli operatori?
+
+[00:09:32] Fabrizio: Perché nella tabella, nella forma WB6 che gestisce gli operatori c'è la possibilità di usare sempre per il codice direttore ok adesso che non la vediamo non è una possibilità quindi è un obiettivo la pistola
+
+[00:09:52] Antonio: fantastico vabbè beh c'è motivo per
+
+[00:09:56] Piero: cui va rifatto è una merda
+
+[00:09:59] Fabrizio: ok poi ad esempio vedo qui raccolta card, la raccolta card è una gestione di un particolare tipo di giochi quindi è un altro piccolo mondo all'interno del gestionale e qua dovremmo vederlo poi intanto vediamo sui titoli adesso ti
+
+[00:10:33] Piero: seguo poi fra un po abbiamo
+
+[00:10:38] Fabrizio: la voce di setup quindi c'è tutta la configurazione che si divide tra impostazione configurazione del sistema quindi della macchina fisica dove siamo impostazioni generali del sistema coinless se abbiamo abilitato il coinless e poi questa è una sala sola questa è una sala sola e impostazione del sistema a quattro utenti deprecato lo buttiamo ad accesso vabbè gli inglesi allora gli inglesi hanno voluto questa cosa vuol dire che con un pc con un sistema che usa un task solo un utente dividono lo scherzo il programma si divide in quattro schermi colleghi fisicamente quattro pistole se quando quattro lettori di barcode ma di
+
+[00:11:32] Piero: barcode per come nei colleghi sulle seriali porto usb come seriali o porta usb emollazione tastiera e lo stesso dipende da senso perché non te puoi fare quattro tastiere sperando che ci sono c'era e non
+
+[00:11:51] Fabrizio: ci sono quattro tastieri in questo caso il sistema funziona soltanto col lettore quindi guarda se
+
+[00:11:57] Piero: il lettore è emulazione tastiera perdonami è una tastiera qui non è in emulazione tastiera la domanda è emulazione tastiera o no no è solo seriale e quindi ciascuna c'è la sua porta e fa le sue cose
+
+[00:12:12] Fabrizio: e quindi si splinta in quattro e
+
+[00:12:14] Piero: quindi giustamente si riescono a fare quattro cose con tantissimo.
+
+[00:12:21] Fabrizio: Ha generato tanto caos ovviamente.
+
+[00:12:25] Piero: Comunque questa è
+
+[00:12:26] Fabrizio: un'attica implementazione ma non è strettamente...
+
+[00:12:30] Antonio: Non ho capito perché quando ho fatto il code, adesso li usano tutti i lettori in una emulazione tastiera. Chi è che andava probabilmente con Claudiano mi ha detto: "sì, guarda che sta roba fighissima che abbiamo fatto, in realtà funziona soltanto con Linux". Perché Windows non è in grado di distinguere quale tastiera sta mandando l'input. Lo puoi fare, ma faccio aggregato le cose in modo che apri un filtro, vabbè, è tutta una storia infinita, ma non c'è nessun compito.
+
+[00:13:07] Fabrizio: Andiamo a vedere la parte CL che è quella che ci interessa in particolare, perché...
+
+[00:13:12] Piero: Sì, forse è quella che interessa a te in particolare, però attualmente per capire il perimetro di tutta la cosa credo che sia l'ultima cosa da vedere. Però vediamo in 5 minuti l'ECL, intanto stiamo registrando.
+
+[00:13:27] Fabrizio: Allora, l'ECL ha tutta una serie di funzionalità per creare, gestire le card, duplicare le card, cancellare le card, creazione e gestione delle macchine, vediamo se tenerla qui o usare, c'è già un sistema tramite l'API, possiamo creare macchine. Ma se le API sono robuste, se
+
+[00:13:50] Piero: sono d'altra parte, se sono fatte bene, si possono anche... C'è una gestione
+
+[00:13:54] Fabrizio: delle promozioni, tipo il compleanno, adesso non... Manuare, devo rispondere di due secondi... Una gestione si chiamano campagne promozionali, quindi il compleanno è una campagna promozionale, quindi posso fare a prezzi speciali, eventi e cose a registrarli, posso gestire gli eventi veri e propri, quindi gli eventi sono pensati quando io prendo una sala e la chiudo e... Non leggo direttamente tutta la sala e quindi collego tutto quello che succede all'interno, sconti e quant'altro avvengono in quel periodo e legati a quell'evento. Abbiamo la gestione degli EP Avra, cioè il fatto di poter cambiare il costo delle partite in certi periodi di tempo. Al pomeriggio delle due o tre ti sconto del 20 per cento le partite che fai solo se sei un utente figo gli altri utenti pagano normalmente. Tutta una serie di dettagli che poi vedremo. Le due ave le blacklist perché le card possono essere messe per chi cerca di hackerarmi mentre le card le blacklist posso vedere quanti ne ha. Recuperare le card serve per recuperare i dati, i rapporti, abbiamo la gestione della cassa simile alle chiusure di cassa di un supermercato oppure di una banca dove io vedo cosa è stato fatto fino alla chiusura di cassa precedente, ho fatto e posso decidere di stampare dei documenti, fare la chiusura, stampare il documento di chiusura, fanno firmare volendo all'utente e gestire così. L'utente in questo caso è un operatore? L'operatore. E vedere nel dettaglio cosa è stato, chi ha caricato, cosa ha caricato e anche cosa fanno i vari totter che fanno questi incassi in modo automatico. Il totter è un po' un'altra entità che dobbiamo aggiungere.
+
+[00:16:20] Piero: Sì, che hai usato prima ancora di dirmi cos'è, quindi stiamo
+
+[00:16:25] Fabrizio: andando a far farlo adesso. Sto guardando quello che vedo. Allora, il rapporto delle macchine è quello che viene usato qui e anche viene usato molto in HQ. Cos'è il rapporto delle macchine? È il conteggio di tutti i contatori, mi consente di sapere cosa fa in un certo periodo di tempo, cosa incassa quella macchina come numero di partite e quanti ticket ha emesso durante quel periodo e quanti premi nel caso di una gru ha emesso, in modo da poter valorizzare e fare poi gli opportuni reti per sapere quanto mi sta rendendo la sala in questo momento, giorno per giorno, periodo per periodo. Allora, altre reperte, i movimenti sulle card, questo qui serve per andare a vedere sulle varie card che tipo di operazioni sono state fatte, quindi chi ha fatto le ricariche, quando e come, serve soprattutto per fare analisi da parte degli amministratori di sistema o dei supervisor che possono controllare nel caso ci siano movimenti. Anomali e quindi andare a verificare passo passo cosa sta succedendo. Abbiamo la gestione dei crediti di servizio, cioè sapere i crediti di servizio sono la possibilità che hanno gli operatori nella sala di far fare delle partite gratuite in caso di problemi a chi ha avuto dei problemi. Quindi io posso conteggiare queste cose. Rapporti vari, amministratori, rapporti vari, è una gestione di report, questo l'ho fatto io, quindi poi potrei avere tutti i dettagli, dove posso avere consultazioni dei vari database e varie cose. La stessa cosa vale per i rapporti
+
+[00:18:40] Antonio: relativi agli amministratori. Questa è
+
+[00:18:44] Fabrizio: la gestione dei modelli, poi ti spiegheremo cos'è
+
+[00:18:47] Antonio: creare un modello all'interno del sistema.
+
+[00:18:51] Fabrizio: Questo l'abbiamo detto nel rapporto delle card. Quando vado a selezionare, torniamo adesso alla gestione dei clienti, quindi posso selezionare anche senza scannerizzare, andando a cercare un cliente per nome, cognome, eccetera, e andare a vedere i dettagli, cioè quel cliente cosa ha fatto, quindi quanti ticket ha guadagnato, le vincite, cioè che premi ha ritirato, qui per definizione di vincite non sono i ticket, ma i premi che tu hai riscosso con i ticket.
+
+[00:19:27] Piero: I ticket sono quelli che porti a casa, poi i ticket li spendi e hai delle vincite. Ma i movimenti che non si sa cosa sono, i movimenti di che cosa sono?
+
+[00:19:38] Fabrizio: I movimenti cosa sono? Sono i carichi e gli scarichi che vengono fatti in credit in bonus nelle card.
+
+[00:19:47] Piero: Quindi sono movimenti, non c'entra niente con il magazzino, sono movimenti di soldi? Sono movimenti di soldi.
+
+[00:19:53] Fabrizio: Come si fa a muovere il magazzino qui è relativamente semplice perché quando sono nella tabella delle vincite io posso selezionare un cliente, trovo a cercare un cliente che abbia dei punti così te lo faccio anche vedere, allora chi può essere che ha punti qua? 79409, quindi qui
+
+[00:20:34] Piero: c'è uno zero che è rimasto lì perché No,
+
+[00:20:42] Antonio: 79, dopo dovrei cancellarlo Basta comincia a
+
+[00:20:46] Piero: capire perché sono stati spesi due milioni a fronte di un ritorno zero Ma questo è un altro mondo, ma
+
+[00:20:54] Antonio: questa è la parte che funziona Ah, ecco
+
+[00:20:57] Piero: appunto, va bene Perché lampeggia?
+
+[00:21:03] Fabrizio: Lampeggia per dirmi che sto lavorando su quel client Perché i
+
+[00:21:08] Antonio: lampeggi sono qualche fondante di tutto Se
+
+[00:21:12] Fabrizio: non vede lampeggia, se non vede lampeggiare, Tiziano Se
+
+[00:21:15] Antonio: non c'è qualcosa che lampeggia, non facciamo
+
+[00:21:18] Piero: un'applicazione desktop Non facciamo
+
+[00:21:21] Fabrizio: un'applicazione desktop
+
+[00:21:23] Piero: Non facciamo un'applicazione web Va bene, allora
+
+[00:21:26] Fabrizio: sto selezionando dei premi in base ai ticket dei miei disponibili cosa faccio? Faccio scarica premi e a sto punto avviene la magia, cioè mi toglie i punti dalle ticket del cliente e va a fare i movimenti a magazzino quantità negative vai andiamo avanti oppure se non posso fare le quantità negative perché ha un flag in questo caso non mi fa neanche selezionare il premi allora a grandi linee questo è quello che fa la cassa poi la cassa mi dà anche la possibilità di caricare le card e fare dei movimenti di cassa andare a consultare ma quello è un dettaglio la gestione delle cl
+
+[00:22:11] Piero: che sono soltanto dei flussi e use case da vedere uno di mille use case da
+
+[00:22:17] Fabrizio: fare
+
+[00:22:19] Piero: Sì, andiamo a vedere l'HQ, andiamo a vedere l'HQ, che forse è meglio, che è un'altra cosa, è proprio un programma
+
+[00:22:29] Fabrizio: diverso E' un programma diverso che usa molte delle forme che sono state già create, mi dice che va
+
+[00:22:40] Antonio: bene allora HQ cosa
+
+[00:22:44] Fabrizio: fa lavora nel cloud sulla coppia del db va bene quindi lo stesso di b viene replicato pari pari su cloud e su cloud cosa succede su cloud e viene creata una sessione di terminale remoto, tu ti loghi con un username Windows, lo username Windows è legato ai permessi che hai tu per accedere ai vari database, loro preparano a mano una tabella che è questa qui che dice che l'utente logato in questo momento, allora qui decide che tipo di tabelle puoi vedere tu come utente quelle sono tabelle scusa database, che tipo di database, quindi io qui di sviluppo vedo i vari locali, ogni locale è collegato a un database locale con sala dici? ogni sala?
+
+[00:24:01] Piero: sai locale vuol dire anche computer locale no
+
+[00:24:05] Fabrizio: sala,
+
+[00:24:07] Piero: sala, sala, sala ogni sala quindi quella lì è
+
+[00:24:10] Fabrizio: una sala, HGK Roma è una sala tu vedi HGK GK va bene se l'utente è logato è da HGK in una tabella definiamo che lui possa vedere HGK Marcianise, Meda, Roma, Torino
+
+[00:24:22] Piero: questo è logato come super figo?
+
+[00:24:25] Fabrizio: io sono lo sviluppatore
+
+[00:24:27] Antonio: quindi mi sono creato tutto quello che
+
+[00:24:31] Fabrizio: voglio ma non basta quello che voglio io per cui io mi faccio le mie tabelle bisogna anche poi che lato server Giannino che peraltro autorizza il utente con cui si è un dettaglio allora abbiamo una sala che conosciamo tipo un po' di movimenti allora filtro eccetera qui c'è la prima dashboard è istruttivo per me vai tranquillo qui mi vede una dashboard che mi dice quanti ticket sono stati messi in quella sala, quanti premi sono stati consegnati, quanti clienti ho attivo in questo momento e poi tutti i conteggi relativi al sistema ECL, il coinless. Gli utenti che non hanno il coinless vedono ovviamente soltanto le prime tab, se vuoi scattarti una foto dopo te la memorisci e la associ. Lo puoi fare prendo upload, da
+
+[00:25:57] Piero: qua tu puoi scattare, non so cosa sta facendo, devo fare il cambio automatico della modalità di registrazione.
+
+[00:26:20] Antonio: Non lo voglio neanche io,
+
+[00:26:22] Fabrizio: aggiungi foto, scatti la foto della schermata, ok, adesso lui la collega a quello che stiamo dicendo, allora proviamo
+
+[00:26:44] Piero: anche questo, da
+
+[00:26:47] Fabrizio: qua, ho qui sotto un report, con questo filtro per periodo riesco a vedere lo stato dell'andamento e questa è una cosa che va mantenuta perché piace da un idea di qual è l'andamento della sala e delle macchie. Quando c'è l'ACL vediamo anche il report e l'incassi, se non c'è l'ACL vediamo soltanto i grafici relativi e ticket ovviamente, per cui fa comunque entrambe le cose, dopo possiamo provare a collegarci a una sala che non è l'ACL e vediamo la differenza. E' il rapport che abbiamo visto prima in WinMT, relativo al rapport giornaliero dei ticket a mese, dei premi a mese, quindi qua mi dice... Questa mensile? Ok, si, perchè è filtrato per mese. Ma bene, questi cosa sono?
+
+[00:27:59] Piero: I codici dei premi.
+
+[00:28:01] Antonio: Ah premi.
+
+[00:28:03] Piero: Qui non mi dice, mi dice. Questi sono premi che sono stati dati? Premi che sono stati dati a fronte di ticket
+
+[00:28:09] Fabrizio: mangiati, a fronte di ticket mangiati, perchè qui per chi non ha l'ECL non c'è nessun collegamento tra. Eh, sono solo contatti, sono scontrini, sono scontrini, sono scontrini, sono scontrini in carta. Quindi a questo livello serve solo per sapere gli scontrini, sai anche le varie mensa ticket, le macchine che ti parlano e ti dicono quanti scontrini stanno emettendo. C'è, ci sono delle esportazioni e varie cose. Poi abbiamo la gestione dei premi che è la gestione di magazzino remota. Cioè sempre la sala, ma gestita remotamente sulla copia del DB. Sulla copia del DB. Io posso modificare qui sulla copia, poi viene replicato ovviamente le mie modifiche in automatico vengono
+
+[00:28:58] Piero: replicate sulla sala. C'è senso a modificare una cosa da remoto sul coso, cioè perché gli dici che arriva il camion o un po' di cose, perché non ha senso modificare, cioè creare dei movimenti di sala. È male. Da qui non ha senso, non è che è male, non ha senso, giusto?
+
+[00:29:14] Antonio: Quando uno usa i ticket
+
+[00:29:17] Piero: per prendere un premio in sala sarà un movimento di sala, nel senso che avviene nella sala, giusto? Non avviene nel cloud di base, cioè se tu sei a 5.000 km di distanza che cazzo non sai di quello che succede col pupazzetto, giusto? Sì, quindi il pupazzetto viene tirato via a fronte di ticket mangiati e in sala, inserita. Quindi chi comanda questo tipo di movimenti sarà la sala, non il cloud, tecnicamente.
+
+[00:29:47] Fabrizio: Qui, poi c'è
+
+[00:29:48] Piero: un documento che te lo
+
+[00:29:50] Fabrizio: spiega bene, è possibile che l'amministratore prepari dei file che vengono spediti poi nella sala con i premi. Succede questo, io sono qui e decido che premi voglio mandare nella sala e quanto devono pagare. Appunto, perché mandi il camion con della roba. Nel momento, nel momento in cui arriva in sala, l'operatore della sala può spacchettare questa cosa, quindi aprirla e dire confermare i vari premi che sono arrivati nella sala. Ok, va bene, questa è una
+
+[00:30:27] Piero: cosa che facciamo anche in class, una spunta dopo, cioè tu prepara un documento che arriva della roba, a noi ce lo spedivano tipo a Zanichelli, ma dà la bolla alla fine, no? Prendi la roba, vera, e spunti la bolla.
+
+[00:30:45] Antonio: Questo è carino per gli inglesi, però con Giannino l'altro giorno vi ho chiesto per capire perché lì hanno una gestione unica di un magazzino nel centrale, poi da lì a cascata vi ramano in tutte quante le sale, no? E quindi...
+
+[00:31:02] Piero: Quindi c'è anche un magazzino che
+
+[00:31:04] Antonio: non appartiene a
+
+[00:31:06] Piero: nessuna sala, quindi mi stai dicendo.
+
+[00:31:08] Antonio: Per gli inglesi sì, solo che viene fatto.
+
+[00:31:11] Piero: Se
+
+[00:31:11] Fabrizio: l'abbia uno, che ce
+
+[00:31:13] Piero: l'abbiano 100, quando lo devi fare lo fai per tutti, cioè lo metti a disposizione di qualunque e metti a disposizione. Va bene.
+
+[00:31:24] Fabrizio: Vabbè, gestione di movimenti, di carico e scarico. Sono tabelle distinte, quindi non c'è una tabella carico e scarico, no?
+
+[00:31:34] Piero: Finora sono tabelle distinte, è un discorso che poi sia una brutta cosa, è un altro discorso, dovrà essere fatto in maniera diversa, è un altro discorso ancora, e questa è la tua valuta, non mi interessa cosa c'è adesso a livello delle tabelle,
+
+[00:31:49] Fabrizio: ok, quindi, quindi, tu ci
+
+[00:31:52] Piero: sono i carichi e scarichi, hai detto, dove i carichi sono, come abbiamo detto, che arriva il camion con i pupazzetti, io
+
+[00:31:58] Fabrizio: carico nel magazzino, vado a fare dei movimenti di carico, sì, ho appena detto, è il camion
+
+[00:32:04] Piero: con i pupazzetti che arriva, giusto? No, penso di no, cosa vuoi caricare un magazzino ancora?
+
+[00:32:12] Fabrizio: Scriver nei movimenti di carico, cioè tu da qua carichi per conto di, cioè? Come se tu mettessi,
+
+[00:32:21] Antonio: ti arriverà il pupazzetto, giusto?
+
+[00:32:24] Fabrizio: Il ti arriverà, no, non è neanche il ti arriverà, qualcosa è, cazzo, qualcosa deve essere, se no,
+
+[00:32:31] Antonio: che cazzo sta a questo carico? Lo carico
+
+[00:32:36] Fabrizio: nel magazzino, faccio il carico, come
+
+[00:32:39] Antonio: se fosse una grafica del magazzino? No, neanche? No, le grafica
+
+[00:32:45] Piero: vediamo se me le fa fare, sì. La grafica la copriamo, sappiamo cos'è? Siamo belli che freschi, definisci degli articoli, punto.
+
+[00:32:54] Antonio: Qua potrebbe non essere così. Allora, il pupazzetto inizia e esiste.
+
+[00:33:02] Fabrizio: Probabilmente sia quella del pupazzetto.
+
+[00:33:05] Antonio: Cioè il fatto
+
+[00:33:07] Fabrizio: che io precarico i movimenti, mi fa file mdb e poi questo viene contemporaneamente un anagrafe.
+
+[00:33:15] Piero: Allora, il file mdb lo dimentichiamo, parliamo per concetti? Se poi tu vuoi ricostruire.
+
+[00:33:21] Antonio: No, questo è il nostro canale. Stato, noi siamo in Veneto,
+
+[00:33:25] Piero: le bestemme le possiamo dire, quindi ho un file mdb che viene mandato e quella è la classica. la classica bestemmia dal punto di vista informatica, ma vediamo,
+
+[00:33:39] Fabrizio: ti do anche, ci dovrebbe essere della documentazione qua, al di là di
+
+[00:33:45] Piero: quello che
+
+[00:33:46] Fabrizio: dopo verrà, finiamo
+
+[00:33:48] Piero: visto che è il concetto di carico del magazzino, che cosa vuol dire?
+
+[00:33:53] Fabrizio: Ecco qua il preordere, eccolo qua, vedi che c'è il bottoncino, no no, allora questo qua
+
+[00:33:58] Antonio: che ho fatto io carico vuol dire che qua mi
+
+[00:34:00] Fabrizio: consente sul magazzino della sala da me da remoto anche se la roba è qua non è ancora in sala e quindi la sala se la trova disponibile ma
+
+[00:34:11] Antonio: non ce l'ha non ce l'ha ma no perché
+
+[00:34:13] Piero: se arriva uno che dice voglio prendere questo si è disponibile ma non mi sembra una cosa molto figa
+
+[00:34:19] Fabrizio: se riesco a inserire lì vuol dire che mi scrive perché qui c'ho il discorso del preorder come si usa non lo so posso
+
+[00:34:33] Antonio: andare là, ho 100 ticket, voglio lo sento, pin che pallen, lo preordino ma c'è ma non c'è, c'è anche la
+
+[00:34:43] Fabrizio: possibilità di avviarli va
+
+[00:34:45] Piero: beh, mi sembra una gestione un po' qua è il magazzino devo riguardarmelo meglio va bene, non sanno stare
+
+[00:34:57] Fabrizio: non s'è il carico, è una cosa non s'è il carico è quella che lavora come office dentro il magazzino quindi a lei è alto errore che
+
+[00:35:06] Antonio: venga cambiando qualcosa no che venga cambiando qualcosa perché sta cosa dei file che girano le chiave di te è bellissima no,
+
+[00:35:14] Piero: non è bellissima a me
+
+[00:35:16] Antonio: questa è la
+
+[00:35:19] Fabrizio: gestione, la situazione dei clienti quindi anche da quà, da remoto, posso andare a vedere le grafiche dei miei clienti, vedere informazioni, gestire la classifica, dettaglio clienti e anche modificare i dati dei clienti vedi la, eccolo qua, la stessa forma che abbiamo visto su 1000MT, la stessa forma, quindi dov'è? Vedi i ticket 20, vedi i movimenti, ticket cosa sono stati conteggiati. Allora, abbiamo i bottoni che sono posizionati tutti in un modo uno di verso l'altro, quindi se tu vedi nelle varie maschere, una cosa un po' così, non è uniforme la modalità con cui sono stati posizionati dove c'è spazio è stato messo. Allora la lista approvata è quella degli inglesi, che cos'è
+
+[00:36:40] Piero: una lista approvata?
+
+[00:36:42] Fabrizio: Ti do un documento che ti spiega che cos'è la lista approvata.
+
+[00:36:50] Antonio: Prover List era quella roba che ti stavo dicendo prima, cioè il centro di tutto che distribuisce gli orsacchiotti in giro, va a dire sala per sala quali sono i premi che possono ordinare. Ok? Quella è una lista di orsacchiotti approvati. Quindi ad esempio a te in sala A ti danno soltanto i rosa approvati per te i rosa, nella sala B sono i verdi, per te sono i verdi.
+
+[00:37:24] Fabrizio: Qui entriamo nella voce CL che riprende essenzialmente le maschere che abbiamo visto dall'altra parte con la possibilità di fare... Il rapporto che abbiamo visto prima, la maschera con il conteggio delle macchine, cosa ha incassato eccetera, ok, con tutta una serie di dettagli che tanto adesso non ci interessa vedere, poi abbiamo... Questo non viene più usato, erano i conteggi manuali, cioè gli operatori andavano a leggere fisicamente macchina per macchina i ticket e i crediti incassati su dei contattori meccanici che c'erano delle macchine e poi andavano lì a registrarli a mano periodicamente. Ma quando non
+
+[00:38:40] Antonio: c'era la telemetria era quel modo che avevi pensato a fare cosa facevano la macchina.
+
+[00:38:51] Fabrizio: Allora dove eravamo rimasti? Sempre a... Questi sono i movimenti sulle card, stessa forma che abbiamo vista prima, quindi mi dice card per card cosa è successo, il totale di quello che è stato passato, speso, numeri e dettagli. Abbiamo questo rapporto delle card, abbiamo fatto la modifica delle macchine esistenti, quindi la configurazione dell'arber presente nella sala fatta nella moto e qui posso andare a vedere le chiusure di cassa, consultare quello che hanno fatto, non posso chiudere il mio ambiente nella cassa, vedo quello che hanno fatto i miei operatori e gestisco qual è la situazione nel periodo, qual è la possibilità di filtrare per il periodo, quindi consultazione essenzialmente, HQ fa consultazione, HQ fa configurazione della macchina, in questo caso mi consente di creare delle macchine che poi andranno ad essere installate, adesso abbiamo aggiunto anche la possibilità che l'operatore in sala, proprio l'installatore, ha un'app, anzi una web app con la quale può anche lui configurare e creare macchine direttamente dalla sala, confluisce tutto quanto qui, quindi. Ma la web app si collega all'HQ o si collega alla sala? La web app è collegata
+
+[00:41:13] Piero: al server di
+
+[00:41:16] Fabrizio: sala, è in un altro modo di fare la stessa cosa, HQ non fa nient'altro che preparare l'avvere delle macchine che poi viene replicato, mentre quando lo fa in sala va anche a fare dei test direttamente sulla macchina, tipo la configurazione, la scrittura dei firmware e altre cose. Che ha poco senso far fare da HQ, perché se io non so qui in questo momento chi c'è da mangiare? No,
+
+[00:41:39] Piero: da remoto non capire
+
+[00:41:41] Fabrizio: cosa si può fare, ma... Tecnicamente lo posso anche fare, bellichioso, o lo faccio a sala chiusa, ma se la sala è aperta. Beh no, certo. Ma ti pare che lo fanno a sala chiusa? No, lo fanno anche quando la sala è aperta, perché quando la sala è chiusa non ce ne sono nessun senso. Andrebbe vietato da remoto, cioè finché negli orari di apertura da remoto tu non puoi toccare, puoi solo consultare.
+
+[00:42:07] Piero: Le macchine adesso ti danno da qualche parte un audit di quello che stanno facendo, cioè la macchina è accesa, la macchina sta funzionando, per cui al di là degli orari, puoi dire questa macchina io non te la configuro perché questa modalità qui non la posso configurare, punto. Anche da remoto, vabbè, poi ci potrebbero succedere, insomma, fai tutto da capire come facciamo a configurare da remoto, vedi, perché bisogna fare una richiesta di sala direttamente.
+
+[00:42:33] Fabrizio: Mi sta dicendo che questa macchina in questo momento è spenta, anzi che è spenta da 180 giorni, vuol dire che l'anno qualcuno deve disinstallarla, mentre questa è spenta da 21 ore, quindi ieri l'anno spenta e oggi probabilmente quando aprono la sala si riapre,
+
+[00:42:54] Antonio: queste sono quelle nuove probabilmente
+
+[00:42:55] Fabrizio: perché adesso stanno facendo un'installazione di nuove macchine in questo momento, in questa sala, in questa sala, ma questa è la produzione, non è in testa, si si, sono in produzione, va bene, si si
+
+[00:43:07] Piero: si, per sapere, ma
+
+[00:43:10] Fabrizio: anche qua, va bene, ai vari filtrini, le cose, ho cliccato su robe che non ci sono, magari ci metto qualcosa che si sa bene meglio. Allora, qui abbiamo la gestione delle gru, che è tutta una cosa che ho fatto io, dopo attirerò tutta la documentazione, ti darò tutta la documentazione di sta roba qua, sono un tipo particolare di macchine che danno dei premi con un valore importante anche, perché vedi queste consegneranno 17, 13, 23 euro, cioè ogni volta che vince il premio, sono 23 euro di costo, un pazzetto che costa, no no, consegneranno pazzetti comunque, no no, però io li valorizzo,
+
+[00:44:05] Piero: no no, certo, certo, esatto, Cioè invece di farti vincere dei ticket, poi i ticket ti converti, ci compi i pazzetti, questa qui...
+
+[00:44:14] Fabrizio: No, sì, sì, quella degli schietti da fuori, il pallone, sì, o quello che è. Ce ne sono in varie configurazioni, ovviamente, o la palla, il coso, e con vari valori, ma noi ce ne fregiamo tutti di questo, e finché non dobbiamo configurarlo, non ci fregiamo Poi, dettaglio inutile, la configurazione come si esce la grupa, la possibilità di cancellare dei dati, che andrei a eliminarla Te ne
+
+[00:44:45] Antonio: frega un pochino per il fatto che non è collegata la configurazione della gru, a questa cosa qui, quindi che valori dei premi e c'è altro problema. Va la 1, configura la gru, c'è un pallone da 50 euro, qua ti scrivono che il pallone vale 5, per me vale 5, peccato.
+
+[00:45:08] Piero: Allora, dietro la gru, comunque al di là di questi problemi, ci sono pupazzetti o premi di tipo diverso?
+
+[00:45:15] Fabrizio: Allora, nella vecchia gestione non lo sapevano, perché avevano solo un campo, nella vecchia gestione non lo sapevano, adesso ho fatto una gestione dove tu carichi e io ti calcolo il valore medio, dei premi che non posso sapere cosa tira fuori. non so io la domanda è proprio pensare
+
+[00:45:43] Antonio: super fighe che ho detto adesso non ti dicono che cosa è stato noto che non possono sapere nè che loro.
+
+[00:45:51] Piero: perché comunque il valore della... perché tirano su un pazzetto non è abbastanza alto dalla...
+
+[00:45:57] Fabrizio: ma allora, discriminante per la gru, la regola sarebbe che tu carichi la gru con lo stesso tipo di premi. con
+
+[00:46:10] Piero: valore magari diversi ma stesso valore dello
+
+[00:46:14] Fabrizio: stesso valore perché anche tu configuri la gru in modo che perché non è che quelle gru sono delle macchine perfette sono fatte sono perfette nel senso che sono fatte per tarate per dare solo un 30 per cento 40 per cento quindi più imposti quanto vale il mio pallone 50 euro lei sa che se l'hai messa al 33 per cento ogni 150 euro incassati ti può dare un premio se lo dà prima comunque arriverà a 200 euro finché arriva alla percentuale giusta infatti è per quello che ti perdono, che casca posso raccontarmi quello che vogliono ma sono configurate così. Ovviamente con il sistema di telemetria loro e con una cosa che abbiamo messo in piedi io potrei in teoria sapere abbastanza da remoto cosa fanno tutte le gru anche se non sono predisposte per comunicarmi questa cosa.
+
+[00:47:18] Piero: Lo scrivono nel database di SARA, tu leggi il database di SARA in qualche modo se è a posto. Ecco la sincronizzazione adesso è fatta quando avviene la sincronizzazione?
+
+[00:47:33] Fabrizio: La sincronizzazione avviene ogni 5 minuti, ogni 5 minuti è schedulato un software scritto in .NET che scatena, chiama i trigger i trigger sul database vanno a scrivere una tabella, per ogni tabella da sincronizzare c'è un'altra tabella con il log di quello che viene fatto, ho caricato questo capo, ho caricato questo record, scrive tutto quanto e questo lo fa il trigger, poi c'è questo sincronizzatore che va a leggere questa tabella di sincronismo, la confronta con l'analoga tabella che trova su cloud e fa le operazioni, sa, questo record lo devo scrivere di la, poi di la mi ha detto, le metti in ordine cronologico e scambia e fa tutti i movimenti su e giù.
+
+[00:48:30] Piero: Ok, e questo sarà uno dei temi?
+
+[00:48:34] Fabrizio: Questo è un tema delicato perché è abbastanza complesso.
+
+[00:48:38] Antonio: Adesso sono storicizzati i valori e i premi no?
+
+[00:48:45] Fabrizio: Infatti perché io ho creato una
+
+[00:48:50] Antonio: tabella di cash.
+
+[00:48:52] Fabrizio: Cosa succede? Man mano che escono i premi, escono i ticket eccetera, noi abbiamo dei contatori che mi dicono adesso è successo questo, sempre incrementali, quindi mi dirà a un certo punto nella mia tabella vado a vedere data di inizio, data di fine, se trovo la differenza dal primo e l'ultimo record è
+
+[00:49:16] Antonio: 15, vuol dire
+
+[00:49:17] Fabrizio: che sono 15 cose, queste 15 cose vado a valorizzarle con cosa, col valore medio attuale del premio, poi io prendo il tutto e me lo salvo in una cache, dicendo la gru oggi ha incassato questo e ha dato fuori quello, ma
+
+[00:49:40] Piero: beh, d'accordo, perché? direttamente a tutti i movimenti, cioè la gru ti dice ho buttato fuori qualcosa, non cosa, ma
+
+[00:49:50] Fabrizio: allora posso anche farlo, però c'è il discorso che domani, allora oggi è successo questo, poi domani arrivano, mi svuotano completamente la gru e ci buttano dentro un premio che vale il doppio, stessa
+
+[00:50:07] Antonio: macchina del mondo,
+
+[00:50:09] Fabrizio: la riempiono
+
+[00:50:10] Antonio: con dei premi che valgono
+
+[00:50:12] Fabrizio: il doppio, quindi se ieri il premio valeva 5 euro, oggi il premio vale 50 euro. Quindi non posso valorizzare...
+
+[00:50:20] Piero: Ma no, certo vai, infatti parlo di...
+
+[00:50:22] Fabrizio: O lo metto nel record del movimento, quindi ogni record di movimento valorizzo anche, metto il valore, adesso non c'è, c'è solo il contatore progressivo, quindi se lo valorizzerà risolto il problema e non devo più...
+
+[00:50:39] Piero: Sì, vado a ricordarsi che quando carichi le macchine però quando carichi una gru dovrei dirvi qualcosa. Cioè, dirgli adesso sto caricando premi da 50 euro.
+
+[00:50:48] Fabrizio: Allora devi farlo fisicamente sulla macchina stessa, sul gru, e poi devi farlo anche sul database dicendo guarda che adesso ti ho messo i premi da 50 euro. Ho messo qua dentro 500 popazzetti
+
+[00:51:02] Piero: da 50 euro.
+
+[00:51:02] Fabrizio: Quante volte lo fanno nel momento in cui succede questa cosa? Mai, lo fanno dopo due giorni, tre giorni, una settimana, perché anche se hanno la possibilità tecnica di farlo, anche con l'app, in locale, quindi non viene fatto. Ma nel frattempo continuano ad andare fuori a funzionare. E quindi poi non sei
+
+[00:51:26] Piero: più un cazzo. E poi non sei più un cazzo. E non è che con la cash risolvi.
+
+[00:51:30] Fabrizio: No, ma con la cash ho la possibilità poi di ricostruire, mi accorgo,
+
+[00:51:37] Antonio: ah, ma quando hai cambiato, la settimana scorsa?
+
+[00:51:39] Piero: Allora
+
+[00:51:40] Fabrizio: sì, questo è
+
+[00:51:41] Piero: un altro discorso, io ho un elenco di movimento in cui dici in ogni momento cosa va fuori, cioè ogni momento va fuori un pezzo. Il valore non lo so, se però io so che in quel giorno lì ho fatto questo carico, da lì in poi posso dire che... se poi so che in questo giorno ho fatto questo carico allora cambio da qui in poi e vado avanti così in maniera incrementale, questa è una cosa che effettivamente può risolvere tanti problemi, insomma, e li risolve
+
+[00:52:14] Fabrizio: anche dopo volendo, con la cash sono riuscito a ricostruire queste cose, è che tante volte non me la capiscono, cioè più che cash
+
+[00:52:22] Piero: hanno la risoluzione dei movimenti, quindi tu registri tutti i movimenti, non sai quanto è valore, i movimenti di uscita hanno un valore che dipenderà da quando sono stati fatti i carichi, anche se i carichi li metti dopo, allora finché non li metti non sai, quando li metti sai. A me arrivano
+
+[00:52:43] Fabrizio: continuamente dei sciluri dicendo, ah, zero, non ha fatto niente, hai caricato, ti sei ricordato, ah, no. Allora, ok, il sistema
+
+[00:52:56] Piero: quando voglia fare i tuoi grafici. Domandina, a parte che, vabbè, stiamo un po' andando fuori dal seminario di quello che dovrebbe essere oggi, ma non importa, domandina, quando è che vengono fatti questi casi, in maniera arbitraria, quando la macchina si svuota, quando la macchina non è vuota, io cambio la roba, la roba cambia, dove la metto? Cioè, qualcuno registra il fatto che ha cambiato questa roba?
+
+[00:53:22] Fabrizio: Possono anche andare, io registro i movimenti di scarico e scarico e vado a scriverli nel record, scrivere i movimenti di carico e scarico nella gestione di magazzino. Questo però implica che il premio sia stato precedentemente registrato, che i codici a barre che hanno i premi corrispondano, o il codice, perché se non lo trovano...
+
+[00:53:50] Piero: In teoria potrebbero caricare e scaricare i singoli cupazzini con il codice a barna, odito in teoria potrebbero, però non lo fanno. Certo che impiantare un sistema che non usa nessuno che senso ha? Cioè se poi non usano niente di tutto ciò. C'è chi lo usa, ma... Mi spiego? Lo so, sì. Comprendo tutto, però ci vorranno dei paletti prima o poi di qualche giorno? Però mi vengono
+
+[00:54:23] Fabrizio: lì
+
+[00:54:23] Piero: a spaccare il cappello in
+
+[00:54:25] Fabrizio: due dicendo: ma guarda, perché questa qua doveva dare 1.247 euro di resa e me ne dà 300? Perché? Oppure... perché?
+
+[00:54:34] Piero: Ma si può vedere, ti dice: guarda, ci sono tutti questi movimenti qua che sono ignoti perché nessuno ha mai fatto il carico.
+
+[00:54:39] Antonio: Nel report si dice, allora se lo dici prima che te lo
+
+[00:54:44] Piero: mandi, già è qualcosa, il concetto è avvisare.
+
+[00:54:49] Fabrizio: Bisogna andare anche a leggersi i report che esistono e capire cosa significa e invece di sbraitare e cominciare a dire...
+
+[00:54:55] Piero: Allora chi sbraita avrà letto un numero, avrà letto un report, una pagina di qualcosa, se in quella pagina è anche scritto guarda che questo numero deriva da questo fatto, almeno lo sa già.
+
+[00:55:08] Fabrizio: Una delle cose importanti che valutano loro è... qui è ticket perché dovevo usare sto campo qui perché non l'abbiamo spazio, quindi 15 vuol dire che sono usciti 15 premi.
+
+[00:55:20] Piero: Ah ok, questi non sono ticket, sono Pupazzetti, sono Pupazzetti, sono parentesi quadri perché sono Pupazzetti, i ticket non vedono le parentesi quadri. Va bene, qualcuno brucerà l'inferno fino a poi.
+
+[00:55:33] Fabrizio: Vuoi fare una foto?
+
+[00:55:41] Piero: Ok, quindi questo vuol dire che sono stati prelevati da questa gru e ancora una gru. Quindi ci puoi pazienti di quel tipo lì, non so, in quel giorno?
+
+[00:55:52] Fabrizio: Nel periodo, nel mese in questo caso, dal 12 settembre al 12 ottobre, ha prelevato 15 paquet. Quindi ha incassato 1.116 euro.
+
+[00:56:07] Piero: Cosa vuol dire incassato? Perché uno mette dei soldi sulla gru. Ok. Perfetto, ha incassato, quindi sono i soldi stati messi e poi c'è un controvalore di premi usciti. Di premi usciti. Che sarebbe 3,45. 3,45 che è calcolato con il valore non è meglio. Non sarebbe neanche male se
+
+[00:56:30] Fabrizio: la gente registrasse i carichi. Bisogna trovare un sistema di fargli registrare i carichi in modo anche facile e gestibile da più parti. Quindi o davanti alla gru o comunque... Un altro strumento che gli manca è, o che è un po' faraginoso secondo me, ma te lo farà vedere Giannina, il fatto di precaricare le cose, cioè io che sono l'ufficio, che gestisco tante sale, so che premi ti mando, so cosa ti mando, preparo già i codici a bar in modo che l'operatore che è lì inquadra il barcode e ti preme quanti pezzi metto, 5, 5, ok, ma se invece di mettermi il barcode A mi mettono il barcode B, per quel premio, ma perché quel pallone non aumenta questo codice, questo e l'altro codice, perché non corrisponde alla fattura di acquisto, ma la bisogna creare delle regole e poi cercare di guidarli con le regole in qualche modo. Il problema è
+
+[00:57:39] Piero: che io temo una cosa adesso così, visto anche quello che mi stai descrivendo, noi possiamo anche imporre tutti i paletti che vogliamo, tipo tu spari il codice a barre, provi a metterlo in quella cosa e gli guarda non lo puoi fare perché non ce l'hai per dire no perché lui lo fa lo stesso, la gente se ne può fregare comunque di tutto, il loro
+
+[00:58:07] Fabrizio: concetto è la gru deve incassare soldi quindi intanto butto dentro i premi, magari stai perdendo soldi, tanto succede perché si dimenticano di aver configurato, mettono un premio da 50 euro. Prima la gru era configurata sapendo, convinta di
+
+[00:58:27] Piero: avere un premio da 5 euro. La gru dipende anche dalla configurazione della gru che ti deve dare la possibilità di tirare via i premi sul serio, meno volte se valgono di più perché deve totalizzare dei soldi prima di darti dei premi.
+
+[00:58:40] Fabrizio: Lo stesso vale con le
+
+[00:58:41] Piero: Redemption, le macchine che danno fuori i
+
+[00:58:43] Fabrizio: ticket, anche lì se configuri la macchina. Questa eroga montagne di ticket, adesso con la telemetria puoi rendertene conto e dire "oh,
+
+[00:58:54] Piero: mettiamola a posto". Voglio dire, sono cose tipo quelle che succedono nei casinò, solo nei casinò è possibile fare una cosa del genere: gli sparano, oppure lo mandano via, lo caccia di malo modo, hai capito? Girano un po' più l'olio di famiglia. Sì, certo. Il problema è che bisogna capire che tipo di vincoli riesce a far rispettare a questa gente perché se non veramente non c'è nulla su cui ti puoi basare hai una fonte di verità che è zero e non ne vai fuori con tutti gli accoglimenti che puoi fare non ne vai fuori se non
+
+[00:59:27] Antonio: hai dei problemi collaterali tipo lo stesso codice a barra che viene fuori su 4 premi diversi perché i produttori cinesi se ne sbattono del...
+
+[00:59:42] Fabrizio: La mia impressione non è che il produttore cinesi se ne sbatte, ma semplicemente io acquisto quel premio da 4 fornitori diversi, quello che mi conviene di più. Ma poi per comodità, visto che l'ho già caricato ieri con l'altro qua di Ciabare, scrivo soltanto 27, ok?
+
+[01:00:02] Piero: Siamo sempre lì, cioè dai delle informazioni sbagliate
+
+[01:00:06] Fabrizio: al sistema e ti speri che dopo... Ah ecco, è a monte questa cosa il problema, quindi o gli diamo un altro... Io l'ho vista fare così da Giulia che dopo mi diceva a me la qualcosa, ma perché...
+
+[01:00:20] Antonio: Ah, Giulia faccia cacao, Giulia è quella che gestisce un magazzino di Ermac, che vende i prodotti sull'e-commerce, quindi quello che esce dal venduto di Ermac in teoria dovrebbe essere compliant con quello che ci stiamo dicendo. Quindi da qualche parte c'è un buso, nel senso che ti do un prodotto, c'è il codice barre, qua dentro c'è quel prodotto con quel codice barre, con quella foto e quella descrizione.
+
+[01:00:53] Fabrizio: Rapporto Unione, questa è una cosa pensata e che usano soprattutto gli inglesi, vuol dire poter prendere, ti ho detto prima che a te posso, adesso non lo lancio qui perché io ovviamente ho locali eterogenei, quindi io sono proprietario di 5 locali. Che hanno tutti e 5 il mio sistema. Voglio avere una situazione generale, ad esempio, quanto ho un magazzino in questo momento, è sparso in giro per tutti i locali, quindi questo mi fa questa cosa, mi gestisce il rapporto generale, poi mi consente di fare anche l'inventario e poi di spammare l'inventario, ottenere l'inventario fatto dagli operatori nelle sale e andare ad aggiornare. Non esiste quando faccio un movimento di inventario, a quanto risulta a me vado nel record, quindi non traccio da nessuna parte, guarda che adesso ho cambiato il saldo a 97, lo scrivo 97 sul record della quantità dell'articolo.
+
+[01:02:22] Piero: Martello e scalpello per le palle?
+
+[01:02:25] Antonio: Quindi non c'è
+
+[01:02:26] Piero: un movimento, lo facciamo. Questa è una cosa da pensare, da fare. No, questa è una cosa basilare, non può neanche pensarla, deve essere scolpita nella pietra, nei cromosomi, di chi scrive il software gestionale, ovviamente. Lo so. Ma è trasparente, adesso è a 96, poi io ti credo un documento di rettifica appunto. La
+
+[01:02:47] Fabrizio: spiegazione del perché è nato così perché tu vai a vedere in certe sale cosa hanno,
+
+[01:02:56] Piero: hanno
+
+[01:02:57] Fabrizio: premio da 5 ticket, premio da 10 ticket, premio da 50 ticket, premio da 47 ticket, quantità, quantità, quantità, quantità,
+
+[01:03:06] Piero: benissimo,
+
+[01:03:07] Fabrizio: scarica, scarica, scarica, scarica, poi arriva un'altra cosa, un altro articolo, codice a barre, frega niente del codice a barre, è sempre un premio da 5 ticket, quanti ne abbiamo adesso qua dentro lo scatolone 27, va bene vado la schigo 27 ok, non mi interessa quanti ne ho dati via, non mi interessa, cioè,
+
+[01:03:33] Piero: allora, se a uno non interessa proprio niente smetti di usare il software e siamo tutti contenti, se invece c'è qualcuno a cui interessa bisogna guardare, e lì, anche questo è il dettaglio, ma diciamolo, così almeno viene registrato, bisogna guardare qual è il modo con cui loro dichiarano le cose, loro dicono in questo scatolone, non mi ne frega cosa c'era prima, ma adesso ci sono 30 cose,
+
+[01:04:00] Antonio: o bene, io scrivo 30 da
+
+[01:04:00] Piero: qualche parte, il sistema deve capire che cosa, che adesso lì ci sono 30 cose, se lui sa che prima ce n'erano 15, fa un documento di rettifica e dice, ne ha aggiunte 15 punti. Il problema è che capire il suo scatolone cos'è, insomma. Perché è un po' strano uno scatolone lì per terra, così, che non frega niente a nessuno, insomma, immagino che ci siano dei porti.
+
+[01:04:25] Fabrizio: Questa è una sola in produzione, zucchetto.
+
+[01:04:33] Piero: Codice, codice, descrizione, costo, ticket. 0,25 è cosa? Da euro? Il costo, 25 centesimi, quindi un ticket è un centesimo? Sì. Ok, piano piano piano. Va bene, tanto se... Va bene, questo che cosa è? Questo cosa sto vedendo in un magazzino. Sto vedendo in un magazzino di... Quindi c'è da qualche parte un enorme scaffalone che contiene tutte queste cose, mi stai dicendo. In teoria, si.
+
+[01:05:16] Fabrizio: Ok. Qui mi ha scritto delle quantità,
+
+[01:05:20] Antonio: se io vado qui vedo che ho
+
+[01:05:21] Fabrizio: 13 milioni di magazine, ma è poco probabile.
+
+[01:05:30] Piero: Comunque dobbiamo ricordarci che noi non possiamo farci quasi niente quando gli operatori non vogliono usare il sistema. Questa è una cosa da chiarire.
+
+[01:05:42] Fabrizio: Vediamo i movimenti, quindi fatti il filtro da... Andiamo a vedere.
+
+[01:05:52] Piero: Prima giù. Questa è un movimenti, mi sta dicendo. Avevamo cominciato qua con carichi e scarichi, cosa significa carico e cosa significa scarico?
+
+[01:06:04] Fabrizio: Nessuno, quindi non ci sono né carichi né scarichi. Perché? Perché lui va direttamente qui, cambia questi
+
+[01:06:15] Piero: numeri e poi vuole avere ovviamente la statistica dei carichi e degli scarichi. Poi ha
+
+[01:06:20] Fabrizio: una statistica che è questa, ha la statistica dei premi vincite, quindi
+
+[01:06:31] Piero: ci sono delle cose che vengono scritte automaticamente, almeno quelli sono dati certi, tipo quando una gru butta fuori un po' pazzetto, la gru da qualche parte scrive uno, perché è male, è sempre meglio di mente, almeno le conti
+
+[01:06:59] Fabrizio: non ce li
+
+[01:07:00] Piero: abbiamo, poi capire cosa, il tuo discorso, va bene, poi per esempio ci sono delle, quando tocco dopo lui ci mette a fare tutti i conti, ci sono mica delle statistiche, cioè tipo se io sono, se è un mese che io non sto, che io non ho, un carico, su un portazione, ha senso? Che per un mese? No. Dobbiamo parlare con loro? No, non è il carico fisico, è di quel carico dichiarato. Io sono lì, ho caricato 100 pezzi.
+
+[01:07:37] Antonio: Supponiamo di sapere che la GRU... Comunque a uscire c'è qualcosa
+
+[01:07:52] Piero: che non va a capire. Anche questo si potrebbe cominciare a capire,
+
+[01:07:58] Fabrizio: cioè
+
+[01:07:59] Piero: se io so che già si parla di sapere che in un certo momento la GRU è vuota, va
+
+[01:08:04] Fabrizio: bene,
+
+[01:08:05] Piero: ok, adesso se
+
+[01:08:08] Fabrizio: esce
+
+[01:08:08] Piero: della roba prima o poi deve entrare, quindi magari possiamo anche fare degli alert e dire oh, qua
+
+[01:08:15] Fabrizio: continua
+
+[01:08:16] Piero: a uscire roba che non hai mai messo dentro, dimmi il giorno la quantità e il valore lì ci sono le dashboard secondo me che
+
+[01:08:24] Fabrizio: possono aiutare molto perché
+
+[01:08:28] Piero: almeno questo potrebbe essere un modo per sensibilizzare gli operatori non per costringerli perché comunque gli operatori continuano a prendere lo stipendio uguale anche se non fanno cazzo quella discorso cioè non c'è nessuna ecco dobbiamo
+
+[01:08:43] Fabrizio: tener conto che ci sono due topologie di clienti ci sono le aziende strutturali dove c'è un padrone che ha dei dipendenti che ha una o più sale
+
+[01:08:55] Antonio: e quindi vuole vedere le cose fatte bene in un certo modo
+
+[01:08:59] Fabrizio: c'è anche chi le vuole proprio fatte bene bene nel senso che se il dipendente da restituisce soldi ai clienti e non corrispondono gli scala dello stipendio ecco
+
+[01:09:10] Antonio: questo è un buon modo per fare in modo
+
+[01:09:12] Fabrizio: che lo scrivono tutto infatti a vicenza sono fa le mani non le sbagliano una quando succede qualcosa subito ti avvisano ma qua perché gli fanno il culo così ok poi ci sono quelli che sono proprietari della sala quindi è il proprietario tra l'altro che è seduto lì è lui che gestisce direttamente la cosa e quindi ha già nella sua testa per cui lavora c'è chi vuole lavora chi lavora bene chi
+
+[01:09:41] Antonio: lavora meno bene a seconda della testa che ha
+
+[01:09:44] Fabrizio: perché tanto a lui basta contare però devi
+
+[01:09:51] Piero: sapere se sei in perdito o in guadagno, devi sapere se hai buttato fuori premi troppo costosi a fronte di... allora
+
+[01:10:02] Fabrizio: normalmente una sala al mare, il proprietario di una sala al mare si compra un appartamento all'anno, ogni due anni quando è sfigato, ogni tanto se ne vende a pensarlo in un investimento, questi investono 100-150 mila
+
+[01:10:23] Piero: euro, un altro discorso, un discorso da fare casomai è quello, se c'è appunto il cliente che non gliene frega niente di tante cose, l'importante per Helmac è capire dove è Helmac, può proteggersi in qualche modo, è quello che sia possibile, l'Helmac non gliene frega niente, il perpetrato una sala xy abbia tutte le sue statistiche se lui non le vuole lui non mette dentro i dati risultati bisogna capire questa cosa vuol dire per n
+
+[01:11:01] Fabrizio: che bene allora se poi c'è un canale c'è un'altra situazione no in teoria
+
+[01:11:08] Piero: non c'è nessun danno cerca
+
+[01:11:10] Fabrizio: se si vede vende
+
+[01:11:11] Piero: stessi pupazzetti te i vengono tappate nei paghi e dopo sono cacciato è quello che fai anche perché tanti se li
+
+[01:11:17] Antonio: comprano direttamente dai cinesi per i faticatori,
+
+[01:11:20] Piero: non importa.
+
+[01:11:21] Fabrizio: Poi c'è l'altro caso che è sollessale a noleggio, allora a noleggio di proprietà dell'Helmac oppure chi da a noleggio e utilizza il software dell'Helmac, allora quando dai a noleggio i giochi tu cosa succede? La proprietà è del Il noleggiatore invece è chi ha di solito la proprietà oppure prende in affitto dei locali e è un gestore, quindi Elmac come nel caso del bowling di Rubano cosa fa? I giochi fisici sono di Elmac, non tutti, una parte, una parte sono di proprietà direttamente del bowling, però convogliano tutti dentro qui perché gli utenti utilizzano tutte le macchine, quindi ci mancherebbe certo, quindi dobbiamo tenere conto di cosa
+
+[01:12:28] Antonio: producono e di cosa costano le macchine di
+
+[01:12:31] Fabrizio: Elmac, questo non è banale, è
+
+[01:12:34] Piero: chiaro, dobbiamo rendere conto di tutte le macchine, poiché sia di Elmac o no, è chiaro che
+
+[01:12:40] Fabrizio: questo cambia, e poi anche dopo vengono divise, quindi c'è un campo che dirà per ogni singola macchina quant'è la percentuale, perché non è una percentuale generale, è una
+
+[01:12:51] Piero: percentuale che può variare da macchina a macchina. Ah, perché il noleggio è anche percentuale invece che a prezzo? Sì, è in base, quasi se te
+
+[01:12:59] Fabrizio: lo sto spiegando, è in base all'incasso della macchina, una percentuale su incasso, quindi una quota resta al noleggiatore, una quota resta al proprietario della macchina.
+
+[01:13:14] Piero: Il problema è allora capire esattamente, ecco lì c'è un possibile danno, hai capito, bisogna trovare il modo, ma come vedo adesso c'è già, c'è un altro di capire quanto la macchina rende. Sì, che è corretto.
+
+[01:13:28] Fabrizio: E qui può esserci
+
+[01:13:29] Piero: un problema, perché finché si tratta di cose completamente virtuali è un discorso, se però tu cambia i pazienti che so dentro senza dire a nessuno la macchina sembra rendere meno qualche
+
+[01:13:44] Fabrizio: volta è successo che il tecnico dell'Elma che è andato nella sala a fare manutenzione e ha trovato e quello con un po' più di testa si accorta perché qua ci sono i palloni del mondiale che costano 15 euro sulla macchina che è tarata a 5 euro perché Elmac era convinta di dare via premi a 5 euro, dopo, dopo, dopo, dopo, te ne accorzi quando comincia a fare conti con le fatture, ma chi fa conti con le fatture non ci si può, ogni tanto ha delle difficoltà con la
+
+[01:14:27] Piero: aritmetica, quindi, va beh, perché questo è un tema un po' delicato, insomma no, tu ce n'è
+
+[01:14:36] Fabrizio: una brava, ma una anche non un po' così ferrata sulle cose, ogni tanto che scampai, quindi ti viene a chiedere anche cose
+
+[01:14:44] Piero: strane un po' una rogna questa comunque, come fai a controllare queste cose? beh è difficile, è difficile però a ritrovi che interesse ha per esempio quello della sala, a noleggio, a dirti che sta mettendo dentro 5 o 50 euro di niente, anzi lui avrebbe interesse a fregarti
+
+[01:15:04] Fabrizio: insomma dipende però se mette i premi tuoi, perché poi se metti i premi tuoi lo sai, perché gli avendo i tuoi premi ti faccio un esempio, a Monte Carlo hanno come dei premi anche le playstation, la playstation
+
+[01:15:23] Antonio: è un bel premio due anni
+
+[01:15:27] Fabrizio: fa a un certo punto non tornarono a più i conti perché io ti ho consegnato 10 playstation adesso mi dici che
+
+[01:15:40] Antonio: hai bisogno di altre playstation
+
+[01:15:43] Fabrizio: ma a me risulta che non sono state date via neanche una perchè?
+
+[01:15:54] Piero: dov'è? ma le playstation le vende oppure le dai?
+
+[01:15:59] Fabrizio: le compra e le da, in quel caso erano i premi di proprietà di Helmac che vengono poi in teoria loro fanno un conteggio a fine anno, dividono quanti premi ti ho dato, quanti nei cosi, quanto hai, facciamo un inventario ma dopo viene fuori sempre un caos totale, vengono a me a chiedere una cosa che c'è, a me risulta che non hai dato via niente dei premi PlayStation, non è uscita neanche una, io ce le ho tutte qua 10 al magazzino perché eh ma l'abbiamo date via così e abbiamo scalato
+
+[01:16:36] Piero: il periodo, lo capiamo ma
+
+[01:16:39] Fabrizio: questo lo affronterai anche con Giannina quando te lo spiegherà un pochino però noi possiamo fare il sistema più bello del mondo se non lo
+
+[01:16:55] Piero: usi come va usato il problema è che se se il cliente non ha interesse a usarlo come usato anzi ha interesse a usarlo in un altro modo per fregarti
+
+[01:17:06] Fabrizio: si lì è difficile bisogna costringere il cliente ad usare e il cliente continua cosa fa si lamenta continuamente dicendo ma ci impiego troppo tempo a fare le cose bisogna capire quali sono le cose da
+
+[01:17:23] Piero: fare, misurare i tempi, una cosa che mi preoccupa di un'applicazione web è di tutte le interfacce con dei dispositivi locali, con lettori di codice a barre ma lì dovremmo fare,
+
+[01:17:40] Fabrizio: allora, alla cassa pensavamo di fare un programma attivo che gira lì, quello che si interfaccia perché qui un programma adesso?
+
+[01:17:49] Piero: Ah ok, quindi
+
+[01:17:51] Fabrizio: una parte destra, per
+
+[01:17:53] Antonio: una parte web, questa cosa qua, il
+
+[01:17:57] Fabrizio: fatto di andare a consultare, vedere, si va bene,
+
+[01:18:02] Antonio: dovremmo scoprire
+
+[01:18:04] Piero: adesso insomma, però bene, sono qui per parlarti,
+
+[01:18:09] Antonio: infatti si, WinMT, WinMT, concettualmente, hanno già tu, guardo, ok, ciao. Sono cose che tu puoi da fuori sala, non interagisci con niente,
+
+[01:18:22] Piero: HQ, HQ, HQ, HQ, HQ,
+
+[01:18:25] Antonio: HQ, HQ, è tutta roba web, tre quarti di quello che hai visto da HQ è dentro un minimo di T. Ma
+
+[01:18:37] Piero: beh, per caso, ma ovviamente, perché è la parte che non ha bisogno,
+
+[01:18:41] Antonio: perché è una parte consultiva, non interdisce con niente, che resta tale, per cui quella va bene.
+
+[01:18:49] Fabrizio: Allora, tutta gestione ticket, premi, clienti, per gli utenti, allora era andata bene così come stava, che fino a quello
+
+[01:19:06] Antonio: che hanno fatto, con
+
+[01:19:07] Fabrizio: l'aggiunta delle CL abbiamo aggiunto una cosa in più, che allora mentre prima i soldi si contavano contando le monettine, contando ti do oppure con i gettoni, ho un bel cambio monete, ho un bel cambio monete, ho un contatore fisico hardware che mi dice ho dato fuori, ho incassato, ho visto,
+
+[01:19:37] Piero: molto semplicemente, come
+
+[01:19:40] Fabrizio: ci dividiamo l'incasso, fermo a metà metà,
+
+[01:19:43] Piero: adesso è diverso, adesso
+
+[01:19:46] Fabrizio: diventa più puntalizzato, nel senso che posso cominciare a dividere bene, queste macchine sono mie, queste sono tue, di queste ti da una percentuale, di queste te ne da un'altra, posso pagarti soltanto su quello che hanno effettivamente incassato le macchine, sui crediti che sono entrati, vi spiego meglio, un client, io arrivo, mi faccio la mia card personale, ci carico dentro 10 euro, me ne vado e non spendo, allora qualcuno ha a disposizione, quindi il nolleggiatore, quello che è dentro la sala, o il proprietario della sala, ha a disposizione questi soldi, però io a Fabrizio ho la possibilità di spenderli quando voglio all'interno di quella sala, a un certo punto decido che vado a giocare, poi se un giorno dopo, un mese dopo, non importa, vado e comincio ad usare, uso 5 di quegli euro.
+
+[01:20:49] Piero: E le
+
+[01:20:50] Fabrizio: lì che cominciano a
+
+[01:20:51] Piero: maturare, insomma, uno spostamento di soldi. In quel momento
+
+[01:20:57] Fabrizio: matura, matura per noi, matura anche per l'agenzia dell'entrata, perché in teoria devi
+
+[01:21:04] Piero: capire in quel momento. Tu hai semplicemente preso dei soldi e ti sei insieme a un'altra
+
+[01:21:11] Fabrizio: parte, l'importante è quello che non posso più ricambiarli, trasformarli di nuovo in un euro, perché lì diventa un risco riciclaggio. Anzi, ho un capsule. Tra l'altro me l'ho chiesto, ho fatto Cartier, ricordi che aveva impiantato tutta la storia per fare questa cosa che doveva fare anche il reso dei clienti che vogliono la stessa cosa. Mai inviato, mai chiesto da nessuno, cioè non hanno mai una...
+
+[01:21:42] Antonio: Cioè chi ti dà indietro la carta e tu dove si dà indietro i soldi, questa è la teoria. Ma non è così perché...
+
+[01:21:51] Piero: No, perché non puoi, perché sennò anche...
+
+[01:21:54] Fabrizio: Poi, quello che è trasformato in... Lo devi usare.
+
+[01:21:59] Piero: Punti per fare...
+
+[01:22:00] Fabrizio: No, in caso no, le
+
+[01:22:01] Antonio: regole diverse, allora sì. Diventa un'altra cosa.
+
+[01:22:07] Fabrizio: Allora, vai a giocare, in quel
+
+[01:22:11] Piero: momento io traccio che stai giocando, come se hai messo i soldi, invece hai messo dentro l'AIA, hai appoggiato la card. Benissimo, allora in
+
+[01:22:20] Fabrizio: quel momento le macchine cominciano a conteggiare, ovviamente, so quanti ticket hai messo, posso assegnare a questi ticket la tua carta, oppure darteli fuori su carta e dopo tu vai sulle mangia ticket, appoggi la tua carta, fai leggere i ticket, la mangia ticket e la mangia ticket te li ricarica nella carta, caricare nella carta non significa metterli nel pezzo di plastica, significa caricarli nel database associato a tu di utente poi c'è tutto il
+
+[01:22:49] Piero: tema, vanno anche nella carta
+
+[01:22:54] Fabrizio: allora quando sono fuori linea cosa succede? abbiamo due situazioni, la situazione delle sale che hanno gli erogatori di ticket cartacei allora, la sala, la mangia ticket si accorgi che non sei in linea, quindi quando la mangia ticket è offline, ti stampa uno scontrino è offline
+
+[01:23:24] Piero: rispetto al server di sala proprio, quindi anche all'interno della sala c'è questo aspetto rispetto
+
+[01:23:33] Fabrizio: alla sala, no no, si rispetto alla cassa
+
+[01:23:37] Piero: o per lei è il server ma nel senso è il server o la macchina è collegato
+
+[01:23:44] Fabrizio: c'è un servizio che genera in questo momento nel client, che parla con le magiatiche e ne vanno a che questa qui ogni volta che contano qualcosa vanno a scrivere "ho contato" se prima gli hai detto "chi sei" ho contato per Piero, se non gli dici "chi sei" ti stampa un bigliettino, che puoi fare "redeem" quando vuoi, "pottenne la tasse" quando le macchine, allora, se la sala invece è in ticketless o parzialmente in ticketless perchè, per non fargli mancare niente è anche ibrido, nel senso che c'è il cliente che preferisce ticket e un altro cliente che preferisce scrivere ticketless dove il cliente
+
+[01:24:34] Antonio: intende quello che va a giocare proprio quello che va a giocare può farsi questa scelta
+
+[01:24:39] Fabrizio: allora, quando abbiamo la situazione ibrida cosa succede? tu giochi, la macchina, il gioco, eroga i ticket e invece di far girare il sistema che abbiamo dentro noi invece di far uscire la carta, cosa fa? ti comincia a trasmettere verso il server dicendo che i ticket che stanno uscendo sono di Piero ok man mano che escono,
+
+[01:25:04] Antonio: di Piero, di Piero, di Piero
+
+[01:25:07] Fabrizio: se non riesce a fare questa operazione, se li tiene in memoria e ti chiede alla fine di appoggiare la card in modo da scriverli sul pezzo di carta è il famoso campo che ti confonde sempre perchè c'è il campo ticket all'interno del record del RFID lì vengono messe i ticket
+
+[01:25:29] Antonio: che non sono stati mandati i due che hanno il ticket, uno è per il ticket "less", l'altro è un contatore di ticket
+
+[01:25:42] Fabrizio: allora questo è il contatore di ticket "less" è se sei un flag, se la card, se la partita la fai fare in ticket "less" fai fare con il ticket cartacei dovrebbe essere la lunghezza che ti
+
+[01:25:58] Antonio: fa la differenza quando
+
+[01:26:00] Fabrizio: appoggio alla magia ticket la mia card lui fa riconcilia cioè si accorge che dentro la card ci sono dei ticket che sono rimasti in sospeso e gli assegna a Piero, cioè dice al server ok scrivili per Piero perché tutti i ticket noi li troviamo sempre e solo nel database stessa cosa avviene quando vado con la mia card dentro al totem o vado sul lettore che c'è alla cassa la prima cosa che fa è controlla quando legge la card ci sono dei ticket
+
+[01:26:38] Piero: non ancora trasmessi
+
+[01:26:40] Fabrizio: non ancora trasmessi perché le macchine erano offline e allora vado a scrivere questa informazione all'interno del database perché i ticket sono tutti scritti nel database i crediti invece sono scritti sia nelle card e si dividono in crediti veri e bonus
+
+[01:27:05] Piero: se metti 10 euro ti
+
+[01:27:09] Fabrizio: do 3 euro di bonus che però non sono soldi quindi quando faccio i conteggi per l'agenzia d'entrata non devono essere conteggiati quando spendo sulle macchine bonus sono bonus contano in generale però devo capire che non ho speso gli euro che ho incassato quindi anche nella divisione contano da una parte per sapere se la macchina è configurata bene perché il gioco non sa un cazzo non sa che tu stai usando bonus o stai usando soldi per veri il gioco tarato per dare più o meno il 20% o un certo numero di ticket in base alle partite anche quello conta e tu quando vai a vedere i tuoi report devi vedere una certa proporzione tra le partite che fa quella macchina quindi i soldi che incassa e quanti ticket stai mettendo come la Glu come le altre cose le macchine possono anche funzionare con i soldi veri quindi con le monete in quel caso anche noi lo sappiamo vengono registrati da parte questa informazione e viene valorizzata nella card sono scritte queste due cose, quando faccio le partite comunque vado a scrivere anche nel database che Piero in quel momento supergioco ha fatto questa partita il sistema gli ha prelevato questi euro o questi bonus e anche va assieme euro e bonus prelevati per fare quella partita se lo scrive aggiorna la card perché la card è solo saldo ovviamente non c'è tutta la lista perchè lo spazio è poco se la card
+
+[01:29:20] Piero: è solo saldo come facciamo mettere nella card il numero di ticket? anche quello fa parte del saldo e dice il numero
+
+[01:29:28] Antonio: di ticket non ancora ho messo è un saldo
+
+[01:29:31] Fabrizio: in quel caso tra l'altro non so dirti su che macchina gli hai mentre quando gli trasmette un line so dirti che hai vendi quindi poi
+
+[01:29:40] Piero: ci sono dei movimenti che diventano anonimi dal punto di vista della macchina, non sai più che è quella macchina lì non so più che è quella macchina lì non so più che è quella macchina lì non sto dicendo adesso che si possa e che non si possa fare, però c'è il problema che perdi le informazioni sulla resa di quella macchina
+
+[01:29:58] Fabrizio: no, perché la macchina comunque ha una scheda all'interno che registra tutti, io so sì perché anche
+
+[01:30:05] Piero: la macchina potrebbe tenersi un buffer la macchina
+
+[01:30:08] Fabrizio: ha i suoi contatori interni, abbiamo 8 contatori all'interno mi ricordo ovviamente 8 contatori incrementali che dicono cosa sta facendo quella macchina quindi man mano che la macchina va avanti queste cose si incrementano e vanno avanti e ogni volta che fanno cose trasmettono il server quindi io registro in una tabella momento per momento cosa succede in tutti gli incrementi in un
+
+[01:30:39] Antonio: certo momento hai questi
+
+[01:30:41] Piero: contatti questi numeri potresti giocare per capire le differenze per capire da qui a qui quanto hai fatto poi potresti dire vabbè di questi qui ce ne sono totti che sono siccome era tutto online sai già che questi qui sono andati da questa macchina a queste carte in realtà no, quello no, no perché?
+
+[01:31:05] Antonio: no adesso, però potresti perché in realtà tu sai che una partita è stata fatta da una certa card quindi il contatore che sta tenendo conto dei ticket che escono fino alla prossima card è associato alla card che ha attivato la partita è come
+
+[01:31:25] Piero: uno stato che tu registri
+
+[01:31:27] Antonio: un blog esatto che però adesso non fanno e che a me piacerebbe fare da quel momento in poi tu i ticket sai di che card sono e di che gioco sono allora fammi un esempio
+
+[01:31:40] Fabrizio: pratico perché queste cose succedono spesso con le macchine che erogano intanto ti fermo e ti
+
+[01:31:46] Antonio: dico che avevo ragione io la card nel blocco 4 del settore 1 ha i punti offline e i punti non c'è un flagger che dice offline vengono salvate le quantità all'interno di un campo quindi non lo fa lui salva quando la via è offline salva nel campo punti offline ma potrebbe salvare anche il campo punti il totale di quella cal non lo usate però questa è la struttura non c'è un flag che dice questo è offline o non è offline è proprio un campo, offline o in tiro quindi se sono in
+
+[01:32:37] Piero: tiro metto quello in tiro se sono offline metto quello offline
+
+[01:32:40] Fabrizio: sì, forse è stato tolto perché facendo
+
+[01:32:47] Antonio: così, siccome switchi da un settore all'altro ci impuntanava tutto sono le magie dell'Aminferto che quando switchi da un settore all'altro dovresti decryptare il settore questo porta via tempo e fai un bel cacao come dicevo prima tu fai la partita, tappi, sai che è quella card lì però la partita metti che dura 10 minuti poi a un certo punto il gioco inizia a erogare il ticket oppure ti eroga in corsa a lui arriva il messaggio: ho buttato fuori il ticket 10, 4, 9, arriva a gruppi però non c'è
+
+[01:33:39] Fabrizio: niente che collega il ticket io
+
+[01:33:42] Antonio: bafferizzo questa operazione di solito tu non lo farei io mi arriva
+
+[01:33:49] Fabrizio: questa informazione ho una tabella temporanea che ho buffer dove mi segno che questa macchina e questo cliente stanno facendo noi si segna,
+
+[01:34:00] Antonio: ha cominciato una partita, ma i ticket intanto non ci vuole, arrivano dei ticket di quella macchina, gli ammbracca, ma la B.E. non gli sta dicendo che è vero questa cosa, perché è una rimposta,
+
+[01:34:17] Fabrizio: perché il gioco non mi dice che il ticket che sta erogando è legato a quella partita, arriva Fabrizio e fa "tap tap tap" e comincia a giocare, ok, arriva Piero e fa "tap",
+
+[01:34:40] Antonio: da quel momento in poi è Piero,
+
+[01:34:44] Fabrizio: da quel momento in poi è Piero, quindi se i ticket, allora supponi che la macchina cominci a erogarli i ticket dopo, perché gli erogano solo alla fine, questo non dipende da noi, dipende dai giochi, ogni gioco, Dio va a conto
+
+[01:34:59] Antonio: suo Menti che tu fai una partita, vinci mille punti, i punti escono in piedadino, ok, capita che uno sta lì davanti a vedere, passa un altro, inizia un'altra partita Per caso li abbiamo inibito,
+
+[01:35:13] Fabrizio: perché facevano così e quindi andavano a fregare i punti finchè sta erogando il sistema non ti consente di fare la partita successiva mi sembra logico a te perché poi ci sono i giocatori compulsivi che vanno sulle cose e vogliono poter giocare anche quando la macchina sta erogando perchè vogliono continuare.
+
+[01:35:51] Antonio: Se la casa è
+
+[01:35:56] Fabrizio: stessa la macchina allora continua a prendere
+
+[01:35:58] Antonio: la rettica che cosa, va ovvia questa cosa.
+
+[01:36:02] Fabrizio: Questa continua a derogare, poi se quando il sistema sente che per 10 secondi non vengono non vengono più erogati ticket, cosa fa? Manda al server un segnale dicendo "vara, la macchina si è fermata, io prendo quello che ha bafferizzato e vado a memorizzarlo e a segnarlo a Piero". Perché c'è un problema che se la macchina eroga 50 ticket e ne fa 3... L'erogazione fisica e poi il proprio ticket?
+
+[01:36:37] Piero: Oppure l'erogazione?
+
+[01:36:39] Fabrizio: L'erogazione rituale perché il gioco è sempre convinto di avere un erogatore fisico Quindi se metti anche un sistema estremamente veloce da errore perché non lo prendi Quindi bisogna... noi lavoriamo con i tempi come se ci fosse l'erogatore cartaceo Un po' più veloci se vuoi ma non più di tanto perché poi si mandano in errore i giochi e si sbagliano i conteggi cosa fa? Conta e mi avrebbe mandato decine perché all'inizio hanno cominciato a fare così e venivano fuori decine di migliaia di record Piero
+
+[01:37:19] Antonio: un ticket, Piero
+
+[01:37:21] Fabrizio: quattro ticket, Piero sette ticket, Piero due ticket e quindi anche qua veniva fuori tutta una gestione a un certo punto bisognava accorpare, allora appena accorpare ha partito ha fatto così un'altra cosa che è venuta fuori
+
+[01:37:34] Antonio: che ogni tanto mi
+
+[01:37:35] Fabrizio: spengono la corrente, mi spengono le macchine finché queste stanno... e allora con Tiziano che viene lì a provare a spegner la macchina mentre ti ricordo di tutte le prove fatte su questa cosa qui anche lì allora con la cache vedo che non c'è, quando sento, quando succede che spegni e riaccendi la macchina mi arriva l'ABE che mi dice ah sono stato appena riaccesa allora io mi trovo queste robe appese cosa faccio? compatto e do a piero i suoi punti e quindi scrivo un record se poi ne arrivano ulteriori va bene vengono anche numerizzati quindi abbiamo anche risolto parzialmente risolto abbastanza bene questo problema dei ticket persi che era una cosa relativa il vero problema è un altro sulla cosa stavamo dicendo i ticket, i buffer dei ticket e poi abbiamo le macchine quindi i contatori all'interno della macchina e quindi la BI che registra queste cose progressive anche lì la BI mi trasmette e tramite la BI tutte le informazioni e vengono salvate dall'altra parte e quello è l'incremento dei contatori poi la B.E. mi trasmette anche partita per partita, cioè quando Piero appoggia la card e mi dice cosa è successo a quel momento Piero ha appoggiato la card e ha fatto la partita attualmente c'è un problemino che è questo che quando appoggio la card e mi accorgo che c'è credito cosa fa la B.E. prima fa partire il gioco poi cerca di scrivere sulla card, poi mi trasmette le informazioni
+
+[01:39:32] Piero: al server sarebbe meglio prima
+
+[01:39:35] Fabrizio: scrivere e verificare, una volta che è verificato faccio partire la macchina se non sono riuscito a scrivere perché mi hanno fatto così troppo velocemente ha cercato di fregarmi e mi dico no Nino, non ho capito, riappoggiammi la card e quando me la riappoggia, se questa è rovinata, la rischivo bene, che è la cosa che fa, sta per fare il firmware di Antonio Ok,
+
+[01:40:01] Antonio: abbiamo visto che ieri hanno sull'emocento,
+
+[01:40:04] Fabrizio: è il cristiano rumore?
+
+[01:40:05] Antonio: Il cristiano rumore?
+
+[01:40:07] Fabrizio: Ah ok, no,
+
+[01:40:08] Piero: per fortuna non è pioggia quello, è un uomo
+
+[01:40:12] Fabrizio: vero l'ho scoperto l'altro ieri,
+
+[01:40:22] Antonio: l'ho scoperto l'altro ieri, l'ho scoperto
+
+[01:40:26] Fabrizio: l'altro
+
+[01:40:26] Antonio: ieri è un problema che c'è da sempre ma pare che sia stato scoperto l'altro ieri i totems
+
+[01:40:36] Fabrizio: che sono un'altra entità
+
+[01:40:45] Antonio: adottando delle cose
+
+[01:40:48] Fabrizio: perchè
+
+[01:40:49] Piero: adesso ci sarà tutto ciò che va a scrivere in un database il
+
+[01:40:54] Fabrizio: totem va a scrivere nel database fra un po' scriverà tramite l'API e le database cosa fa il totem? allora, glielo dici tu che io sono ancora
+
+[01:41:08] Antonio: con la secca ecco ok il totem permette di acquistare le carte appunto o via transazione economica o con soldi o di caricare le carte, i codici revention, cose del genere ma più fa altre operazioni con le carte, tipo trasformarti da un'altra insomma c'è tutta
+
+[01:41:42] Piero: una serie di utility, tu appoggi la card da quel momento in poi fai le cose che devi fare su tote con la tua card ovviamente quelle che puoi fare fai quelle che non puoi fare non fai
+
+[01:41:53] Antonio: esattamente va beh ma questo mi sembra abbastanza brava adesso esatto si rifunchia
+
+[01:41:58] Piero: la carta e poi
+
+[01:42:00] Antonio: quello che fa oggi il totem io mi sono capitato di fare visto che adesso sta facendo il totem è che lui si apre il database e scrive le cose direttamente dentro il database è brutto, va beh bisogna usare delle API e il tote nuovo utilizzerà le API per fare le sue cose ma
+
+[01:42:24] Piero: adesso le API che strato occupano? è un server Laravel?
+
+[01:42:31] Antonio: è tutto in pancia, è sul servizio che sta facendo tutto io sono qua che lo sto pillando perché iniziamo a spezzare queste cose in modo da evitare... avevo iniziato a spezzarle
+
+[01:42:48] Fabrizio: però adesso devo aggiornare dove ho spezzato tutto quanto
+
+[01:42:53] Antonio: adesso il servizio gestisce tutte queste cose, ho monolita così che ti è in pancia tutte quante, tutto, espo all'API che vanno a pubblicare sulla web app, espo all'API per il token, espo parla con le vie, configura le vie, con un sacco di cose, sembra bello spezzettarlo in entità distinte, ma comunque è uno degli oggetti del contendere, dovremmo parlare. E McStarr, in realtà non c'è molto altro da dire, l'unica roba del totem è solo chiusura di cassa, che anche quella quando svuotano la cassa ma perché il totem
+
+[01:43:40] Piero: è anche una gelia che riceve soldi?
+
+[01:43:43] Antonio: Eh ti ho detto prima, tu la carta la compri, o fai la transazione TOS, o meti dentro Ah, nel
+
+[01:43:51] Piero: totem, se pensi a un lettore di banconote e di monete, immagino solo
+
+[01:43:55] Antonio: di banconote Sì, è riuscito su piazza, la banconota ti dice: "Ok, mi ha dato 10 euro" Alla sera hanno la chiusura di cassa e queste vanno a scrivere un qualcosa dentro, sempre al nostro database Beh, questa è una procedura che una volta che sono i strutturi dati a conce, lo fanno e basta il problema è come al solito,
+
+[01:44:28] Piero: ci sono sempre i soliti due problemi con la struttura dati e il collegamento del tote con il server anche quello è aleatorio giusto?
+
+[01:44:41] Fabrizio: no, è collegato o è
+
+[01:44:46] Piero: collegato o non funziona? ma ecco qualcosa che si atterta, solo se è collegato, bisogna fare effettivamente una tassonomia dei dispositivi che sono o collegati o morti o quelli che o sono collegati o scollegati e non funzionano al stesso modo
+
+[01:45:03] Fabrizio: allora, quelli che possono funzionare in offline sono soltanto i giochi, perché anche la mangia ticket quando non senta il server manda fuori un messaggio
+
+[01:45:15] Antonio: io non posso mangiare ticket.
+
+[01:45:17] Fabrizio: Mangia
+
+[01:45:18] Piero: ticket è quella che ti fa lo
+
+[01:45:21] Fabrizio: scontrino, oppure ti
+
+[01:45:24] Piero: mette su nella
+
+[01:45:25] Fabrizio: camera no, l'unico sistema che puoi fare per far funzionare la mangia ticket in offline, quindi scollegata da server, è proprio aprirla, andare nella configurazione
+
+[01:45:36] Antonio: e dicendo "dai su tu vai offline",
+
+[01:45:37] Fabrizio: quindi
+
+[01:45:37] Piero: da quel momento in poi è sempre
+
+[01:45:39] Fabrizio: offline e manda solo scontrino di carta ok è
+
+[01:45:42] Piero: sempre offline metto solo scontrino di carta ma ha una memoria sua per cui dopo prima o poi lo dice a server ho fatto questo no
+
+[01:45:50] Fabrizio: è lo scontrino di carta, però se lo tiene cliente, il cliente deve venire alla cassa, la cassa appoggia la tua tessera poi leggo lo scontrino adesso ti ho dato i credit, i ticket oppure
+
+[01:46:02] Piero: addirittura vuoi in base... ok quindi la mangia ticket offline di fatto trasforma n ticket in un ticket però alla fine è sempre quello... è come se la mangia ticket fosse quella della cassa cioè quando funziona offline ti restituisce semplicemente un pezzo di carta che invece di andare a cassa e fargli contare mille ticket è scritto mille e chi è che ha mangiato i ticket in realtà è la cassa.
+
+[01:46:30] Antonio: Perdi la tracciabilità di quel ticket.
+
+[01:46:33] Piero: Perdi il fatto che quei ticket sono stati mangiati da quella mangia ticket in realtà?
+
+[01:46:39] Fabrizio: No, guardo anche chi li hai messi, non so se che gioco
+
+[01:46:42] Piero: li hai ripresi tutti i tuoi ticket, io gioco un gioco due, mi danno dei pezzi di carta. Ah, perché la mangia ticket quindi non è, allora, scusami, la mangia ticket online legge il ticket e sa anche addirittura quale gioco l'hai messo?
+
+[01:46:57] Fabrizio: No, no, no, no. Quando i ticket arrivano dalla mangia ticket
+
+[01:47:02] Antonio: non sanno da
+
+[01:47:04] Fabrizio: chi sono stati emessi. Perfetto.
+
+[01:47:10] Piero: Che sia offline o online, comunque vaga, la mangia ticket non sa.
+
+[01:47:17] Fabrizio: Quando io vado, arriva Piero e appoggio la sua card, posso dire che tu hai 1000 ticket, ma non ti so dire se li hai vinti in quella
+
+[01:47:26] Piero: macchina e quella
+
+[01:47:27] Fabrizio: macchina.
+
+[01:47:28] Piero: Ok, anche perché i ticket sono anonimi. Se io vinco 1000 ticket e li regalo a te, ti ho regalato 1000 ticket e quindi viene, sì, io ho effettivamente
+
+[01:47:42] Antonio: vinto 1000 ticket. E' un titolo al portatore.
+
+[01:47:44] Piero: Esatto, alla fine.
+
+[01:47:45] Antonio: E' un titolo di ticket.
+
+[01:47:47] Fabrizio: Quindi il fatto che io te li regala, vabbè, fine. E lì non posso saperlo. Quando invece siamo in modalità ticketless collegati e trasmetteremo. In quel momento posso dirgli tutto, mentre sulla macchina so che ha emesso dei ticket, non so a chi li ha dati.
+
+[01:48:09] Piero: Ok, e non sai da dove vengono perché i ticket sono anonimi, però sai che hai emesso top ticket. So che hai emesso
+
+[01:48:16] Fabrizio: top ticket, quindi questa macchina ha emesso 1000 ticket, che si è andati 100 a Piero e 900 a Fabrizio non lo so. Non so se siamo in ticketless, ho le due cose che dovrebbero corrispondere, cioè che la macchina conta 1000 e poi io vedo 100 dati a Fabrizio e 900 dati a Piero, lo so perché mi
+
+[01:48:38] Piero: sono stati trasmessi con nome e cognome. Perché ho messo dentro la tessera nella magia ticket, giusto?
+
+[01:48:43] Fabrizio: No, perché li ha trasmessi la macchina quando ha giocato.
+
+[01:48:47] Piero: Ah, la macchina direttamente, quindi non passi per la magia ticket? Il gioco può dire da solo che ha vinto e quanto e lo contabilizza online oppure offline, immagino, dobbiamo capire come.
+
+[01:49:08] Fabrizio: Offline mi contabilizza semplicemente.
+
+[01:49:13] Piero: Offline lo scrive sulla card e basta, quindi. Lo scrive sulla card. Però scrive soltanto. Se uno l'appoggia. Se uno non appoggia niente. Nella macchina offline.
+
+[01:49:26] Fabrizio: E niente che aspetta, qualcuno deve pure appoggia questa cosa.
+
+[01:49:30] Antonio: Tu tappi, parte la partita, macina, escono fuori i ticket, lei offline ti scrive 40 ticket. Tu non riappoggi, lei non li scarica, non ti riscrive sulla carta. Quindi il primo che arriva, prima si appoggia, se la che ticket. E poi...
+
+[01:49:50] Piero: Ah, ma quella non c'era la faccia. Oddio, in teoria, se tu hai appoggiato per giocare, sei tu che devi appoggiare per giocare.
+
+[01:49:58] Fabrizio: Potrebbe dire, no, non sei tu. Ho capito, ma se non sei tu,
+
+[01:50:03] Piero: vabbè, li bucci. Potreste accantonare con noi, in un buffer nel gioco?
+
+[01:50:14] Fabrizio: Ok, adesso non ci sono.
+
+[01:50:20] Antonio: Adesso stai a questa parola, è una cogliona che sta là, se mi lasciano spenta la
+
+[01:50:28] Fabrizio: cosa per un mese, lo
+
+[01:50:31] Antonio: gestirai. Se sei spenta, che cazzo, se spegne il computer, neanche il file di Word, li vedi. Oddio, se prendi quattro birre, forse. Vabbè, comunque, quello
+
+[01:50:44] Piero: è un tema che sia un piccolo tema da affrontare. Vabbè, invece la mangia ticket, mangia i ticket, mangia i ticket e restituisce uno scontrino.
+
+[01:50:59] Fabrizio: Oh, uno scontrino, perché poi anche decide tu a un certo punto di dire, boom, sta parlando scontrino. Normalmente quando siamo in ticket, quando abbiamo le card RFID, viene disabilitata la stanza. Dai i ticket
+
+[01:51:14] Piero: e dai anche la card a quel punto.
+
+[01:51:16] Fabrizio: Tu voti ticket, la macchina, raccontami, mostra i ticket e ti dice scontrino oppure appoggio la card.
+
+[01:51:24] Piero: Ok, è buono.
+
+[01:51:25] Fabrizio: Io appoggio la card, Felice, l'ho assegnata a Piero.
+
+[01:51:29] Piero: Se sono online faccio registrare questa cosa a server. Se sono fly stampo solo scontrino. Se sono fly stampo solo scontrino. Se sono fly stampo solo scontrino e non memorizzo. Se sono fly non posso.
+
+[01:51:42] Fabrizio: La magia ticket scrive errore server e si ferma e non fa niente di montare, i totem se non riescono a parlare col database, sono fuori servizio, finestre rosse sono fuori servizio, poi ci sono altre modalità di fuori servizio ma sono relative al totem, l'hardware, il
+
+[01:52:08] Antonio: server, un miliardo. Ho finito la carta per le ricevute, sei inceppato l'erogatore, è morto, se si tolga qui non riesco più a incassare i soldi, non parla di un po', c'è tanta roba, mille cose.
+
+[01:52:31] Piero: Comunque, se c'è anche un fuori servizio, che sia uno, lui si ferma, l'importante è quello, non sei costretto a bafferizzare operazioni per questo. Hai spiegato il redeem?
+
+[01:52:41] Antonio: Le ho detto solo che ci sono questi codici che puoi usare per ricaricare le card o per avere una card, o per cambiare il livello della card.
+
+[01:52:54] Fabrizio: Abbiamo, anche questa è una cosa interessante, le nostre card hanno 4 possibili livelli,
+
+[01:53:01] Antonio: spieghi al contrario,
+
+[01:53:04] Fabrizio: 4 possibili livelli. Abbiamo il Silver, che è il livello base, il Platinum, poi abbiamo Gold e poi abbiamo i compleanni. Cioè il Gold vale più del Platinum.
+
+[01:53:20] Piero: Il Gold è una cosa diversa.
+
+[01:53:24] Antonio: Ma no, sono associati a indici numerici. Il Platinum, che è più alto, vale 0, che casualmente anche il default delle carte, il gold vale 1, il silver vale 2, i compleanni 3.
+
+[01:53:46] Piero: Ma beh, sono indici
+
+[01:53:47] Antonio: comunque, non sono delle quantificazioni che ha valore. Siccome il default è 0, quando qua il sistema SIM puttana, il codice, per qualche motivo SIM puttana, improvvisamente tratta tutte la prima, che magari giocano gratis col gioco.
+
+[01:54:08] Fabrizio: Allora, prima l'abbiamo vista di sfuggita, ma l'abbiamo visto, io posso per ogni macchina decidere quanto vale una partita a seconda della card che hai tu in mano in quel momento. Quanto vale o quanto costa? Quanto costa la partita, scusami. E comportarmi e fare cose diverse. Allora, normalmente abbiamo il platinum, il silver e il platinum, che sono per le card normali. Tu quando inizi sei un utente silver e hai un prezzo, poi facendo delle cose puoi diventare platinum e quindi hai diritto a pagare meno le partite. Poi ci sono delle card speciali per i clienti speciali che abbiamo chiamato Gold, perché io posso creare, non so, faccio una festa e do via 100 card gold a tutti gli invitati. Ok. Le card gold potrebbero far fare... Sono prepagate di solito? O sono prepagate, quindi hanno un valore dentro, oppure addirittura consentono di giocare a valore zero. Vabbè, sì, perché
+
+[01:55:25] Piero: hai prepagato l'affare?
+
+[01:55:28] Fabrizio: Un'altra per tutto, sono su alcune giochi, ci consentono di fare delle cose per come erai. Poi, un'altra delle cose che fa il tote, io ho questa card in tasca, non la restituisco, me ne vado, finito il periodo dell'evento gold...
+
+[01:55:45] Antonio: non vai più, no,
+
+[01:55:46] Fabrizio: te la
+
+[01:55:46] Antonio: trasformo, in una carta normale, in silver,
+
+[01:55:51] Fabrizio: e comincia a pagare come tutti gli altri, quindi fa questa informazione, poi ci sono le carte compleanno, che anche loro hanno una tarifazione a parte, che poi accenderà o spegnere anche usando gli happy hour, quindi anche qui la carta compleanno, finito il compleanno, può essere ritrasformata, se tu vai al totem a pagare?
+
+[01:56:18] Piero: Questo lo compri, certo, il problema è che succede qualche credit, qualcosa, e tu trasformi tutte le card, le card che possono giocare gratis, è un peccato, dovrebbero finire tutte silver, ecco il default, detto tra noi, no?
+
+[01:56:36] Fabrizio: Platinum, cosa fa il sistema? Anche con il discorso dei compleanni, funziona leggermente, con le card compleanno fa una cosa leggermente, con le altre card prima ti fa fare la partita e poi ti scrive e scala su una card, nel caso del card compleanno cosa fa? Prima chiede al server posso fare la partita e poi te la fa fare perché dovrebbe chiederlo
+
+[01:57:09] Piero: comunque perché se non hai soldi con la card come fare? allora con il compleanno
+
+[01:57:14] Fabrizio: poi giocare anche con i crediti a zero,
+
+[01:57:17] Piero: certo, però comunque nelle carte ormai dovresti avere il credito, prima
+
+[01:57:21] Fabrizio: di
+
+[01:57:22] Piero: chiedere se è il credito, esatto, finito il compleanno, ah no, perché ok, il compleanno chiede sempre al server, il credito chiede la card, il compleanno chiede sempre il credito, prima
+
+[01:57:35] Fabrizio: di fare la trafila, che sarebbe quella corretta, infatti i compleanni funzionano solo se le macchine sono line offline completamente, piena server, anche perché ci sono delle regole che gestisce il server, tipo io posso decidere che se ti metto un videogioco a gratis ti faccio fare solo tre partite di fila, dopodiché vado all'altra parte, altrimenti uno si mette lì e occupa la macchina per troppo tempo, e tutta una serie di regole come i ticket che vengono emessi possono essere dati tutti quanti a chi ha pagato i compleanno questa qua è l'interfaccia che vedi che vede l'operatore è la più carina questa per configurare i giochi sì
+
+[01:58:22] Piero: ma finisci sì ma carina questa è nuova
+
+[01:58:29] Fabrizio: questa qua è nuova è stata fatta da poco ha una sua gestione bisogna integrarla, non
+
+[01:58:41] Antonio: rifarla bisogna integrarla quindi togliere quella che c'è dentro il 10 seconda e farlo
+
+[01:58:48] Piero: solo a fare solo questa però c'è un problema di trasferimento dati questa
+
+[01:58:53] Fabrizio: funziona con l'API per cui...
+
+[01:58:55] Piero: vabbè, d'accordo noi dobbiamo capire poi l'ecosistema che c'è già per capire l'ecosistema da cambiare, da mettere... Questa è un'altra cosa a fare,
+
+[01:59:05] Antonio: vabbè, perché prima di decidere
+
+[01:59:10] Piero: lo stack da usare nei vari casi bisogna vedere...
+
+[01:59:14] Fabrizio: No, c'è il telefono acceso,
+
+[01:59:17] Piero: vabbè, va bene, potremmo
+
+[01:59:20] Fabrizio: vedere i dettagli e poi queste cose qua, allora, un problema che era solo, gli raccontiamo del problema,
+
+[01:59:30] Antonio: aspetta, prima di raccontarti il problema, qui ho
+
+[01:59:33] Fabrizio: tutti i documenti di toby, queste me li mandi, così relativi, a tutto quello che li fai, gli dai in pasto, agli altri fai fare un sulto,
+
+[01:59:45] Antonio: ma in telegram
+
+[01:59:48] Piero: 10 si fa uno zippone, fa bene, si, si, si, va bene, possiamo solo RAR in ufficio tra l'altro. Vediamo se potete pulire intanto. Ho fatto la bottina?
+
+[02:00:14] Fabrizio: No.
+
+[02:00:16] Piero: Non ti mando? Ho finito di pulire. No, non l'ho fatta ancora. Una mese. Mi sa che è finita. Mi sa che è finita. Attività completata, tecnologia. Forza globale. 7:10, 15:00, 48 minuti. Lavaggio, 44 minuti. Dove mi ha messo il file documenti? Ah, stanno, sei tu. Almeno il database di HQ è consolidato. Cioè, fa più o meno quello che deve fare, perché poi c'è tutto il tema che noi abbiamo ancora toccato di HQ, che è appunto il raggruppamento delle sale, la gestione di chi compra le sale, io ho quattro sale, tu invece ne hai cinque, le tue, gestisci le sue sale. Magari sì, vorrei vederlo, studiando un attimo, in parte credo che sia documentato da quelle famose tabelle lì, che c'erano in Google Docs.
+
+[02:02:17] Fabrizio: Sì, c'è la tabella Google Docs, Gmd, che non li abbiamo fatti per le cose. Stavo confondendo l'ente bilaterale con...
+
+[02:02:30] Piero: Ma c'è un'app per desktop e cloud?
+
+[02:02:33] Fabrizio: Sì, puoi registrare direttamente o dalle applicazioni oppure dopo.
+
+[02:02:40] Piero: Cioè senza questa? Senza quella. Va bene. Fa altro? No. Accede anche alle registrazioni fatte da notte, no? A questo punto no, bisogna usarsi nel telefono.
+
+[02:02:56] Fabrizio: Ti apre il coso web cloud. Ah va bene, certo.
+
+[02:03:00] Piero: Va bene. Ok. Sì, non...
+
+[02:03:10] Fabrizio: Ti ho mandato questi documenti... e poi... ti mando queste due cose.
+
+[02:03:23] Piero: Come si è questa?
+
+[02:03:26] Fabrizio: Di cosa?
+
+[02:03:26] Piero: È nuova rispetto a quella che uso io. Di Topper?
+
+[02:03:30] Fabrizio: Non me la darai? Beh, la scarica è quella che scarichi.
+
+[02:03:38] Piero: Ah, quella Free? Perché una volta ci voleva la licenza?
+
+[02:03:44] Fabrizio: Adesso ti chiede soltanto.
+
+[02:03:47] Antonio: Non l'hai licenziata questa? A dire il vero, ne avevo una, poi non l'ho...
+
+[02:03:56] Piero: Ah, ti chiede questa all'inizio? No, vabbè, insomma, che si può fare?
+
+[02:04:01] Fabrizio: Poi, io avevo comprato la licenza per... Ecco, ma... Sì? Allora... Aspetta, mi sto perdendo qui, allora, cancello questo documento in punto raro dal pc di Tobi, qui, qui, qui, qui, ti spiega come funzionano, come
+
+[02:04:43] Antonio: funziona un po' di cose, perché
+
+[02:04:47] Fabrizio: sono riuscito a far girare, a far leggere, quindi MTT a Cloud, ma
+
+[02:04:53] Piero: l'ha già fatto, ma quindi, non del
+
+[02:04:56] Fabrizio: tutto, un pazzettino alla volta, adesso comincerà a farglielo documentare tutto, ma ci sono tantissime cose che sono, ti faccio vedere come parte quando parte il programma, perché ha tonnellate di variabili globali, ma proprio da una carne,
+
+[02:05:21] Piero: il sergente di MinMT, immagino una roba
+
+[02:05:25] Antonio: vecchia, tutte variabili
+
+[02:05:27] Piero: globali, nessuna separazione di responsabilità, non c'è niente, non c'è
+
+[02:05:34] Fabrizio: niente, ci sono anche oggetti utilizzati, che li aveva deprecati, non si diceva deprecati da Microsoft a suo tempo, quando VB6 era vivo, per cui se tu, guarda la formula, vedi questi? Questi sono i controlli ADOX, mamma mia, guarda quanti ce
+
+[02:06:04] Piero: ne sono, questo per adesso interessa meno, si c'è anche il tema di capire quale stacco usare per l'applicazione desktop,
+
+[02:06:17] Antonio: python, stiamo sperimentando, se
+
+[02:06:24] Fabrizio: vuoi python devi
+
+[02:06:27] Piero: usare Gt, Qt,
+
+[02:06:30] Antonio: ma io mi
+
+[02:06:31] Piero: sto trovando bene, qui dai sai un po', no, tutto vibe, fa lui, fa bene insomma, io gli dico cosa fare, come fanno, no, qui è giusto, lui mi fa, c'è tutto quanto,
+
+[02:06:45] Antonio: penso di sì, l'ho cominciato,
+
+[02:06:49] Piero: l'ho cominciato un paio di mesi fa, eh beh sì, io ho dato il passo al manuale, basta, partito, un po' quasi, no beh,
+
+[02:06:56] Antonio: comunque, al di là, se potete fare un esperimento assolutamente in vibe, su totem, fare l'interfaccia, fare l'AVT e fare l'AVT e fare l'AVT e fare l'AVT e fare l'AVT e fare
+
+[02:07:12] Fabrizio: l'AVT e fare l'AVT, perché? Perché no? È anche forse più semplice rispetto a Flutter, cosa, eh?
+
+[02:07:23] Antonio: Beh, tutto sottostrato di comunicazione, MQTT e compagnia, ho già tutte le mie librerie e lui non l'ha mai toccato, quindi tutto sommato mi vanno bene L'ho fatto io da testa mia, no? Sì, qualche cucetto da là, qualche fix, non l'ha mai toccato quelle strutture lì, ma anche tutta la parte davanti e quella è le due strade, o fa il design, mi hai fatto vedere anche il design, guarda,
+
+[02:07:57] Fabrizio: tanto per questo si qua,
+
+[02:08:00] Antonio: si spero che te lo trovo, mi hai
+
+[02:08:05] Fabrizio: fatto fare tutte le catenelle, un proof of concept, di come è, adesso si fa così,
+
+[02:08:14] Antonio: il mock, il mock, questo sarebbe cos'un totem, questo è il totem, era così, fai un buy card, vediamo Piero, questo è il tuo libro, perché non sta a fare cance, fai
+
+[02:08:36] Fabrizio: cance, fai cance, fai cance, riparti da te, è
+
+[02:08:40] Antonio: anche multilingua, quindi se vuoi puoi anche provarlo già in italiano, acquista card, ok, scegli un'offerta, questi sono token quindi, sì, quasi chiamano token, dimmi cosa
+
+[02:08:55] Piero: capisci, allora questo qui 5 euro ti danno 50 token, questo 10 euro te ne ha 110 perché hai un 10 di bonus e avanti così giusto, quindi qua con 100 euro invece di 1000 ne hai giusto 1400, ok, quindi dovrai sceglierne, scendiamo il 20 per dire, giusto, scelgo il 20, saldo, pari in contanti o pari col POS, ma beh, mi sembra normale, pari in contanti ci sarà da mettere nel tuo soldino, no? Partito, pari in contanti, inserisce, ecco, perfetto, per
+
+[02:09:32] Fabrizio: inserire per simularlo, ma ancora una volta hai i tasti, quanti soldi vuoi mettere?
+
+[02:09:39] Piero: Cosa hai le tasca? Fatemi dare 20 euro, se vuoi metto due da 10, dai.
+
+[02:09:46] Antonio: Due da 10, 5, 10, dovrebbe essere questo, non me ricordo... Sì, ok, 20, perfetto.
+
+[02:09:52] Piero: Cosa capisci? Allora, 20, hai inserito 20, perché mancano 10 euro da 30, ma io non volevo 20, perché devo fare... Quindi dicono, mancano 10 euro al bonus da 30 euro, io ho chiesto 20 euro, sono già al pagamento, non me ne frega un cazzo, allora mancano anche tot euro al bonus da 100. Perché tu sei
+
+[02:10:19] Antonio: un po' grignale, ma se tu non lo fossi, se fossi un sciamo di bambini, ci metto altri 10 euro, scatto su quello da 30. Era un modo per
+
+[02:10:32] Piero: instauriarti a metterne altri
+
+[02:10:36] Fabrizio: 10 euro, d'accordo. Supponi che tu hai solo i tuoi 20 euro, se lo
+
+[02:10:41] Piero: metto a questo, se lo metto a questo, quante card vuoi, una da 2,20, oppure due da 100, ah, cioè con
+
+[02:10:51] Antonio: due card, vabbè, i due fili, io a
+
+[02:10:55] Piero: dire, due da 110, conferma.
+
+[02:10:58] Antonio: Attendi qualche secondo, ti stai erogando la card, card,
+
+[02:11:07] Piero: vabbè, non è male,
+
+[02:11:19] Antonio: questa roba tu possa, metti che fai questa, o per fare col post, qua, qua è di alto avere più card, ci hai messo più soldi, ci hai messo una maschuga, esatto, va bene, va bene, qui c'è ricarica, allora questo si è aperto una discussione, che è durata a quanto, per ragione, puttanaia, perché era nato solo con un tasto grande, non c'era scritto acquistacard, era scritto let's play, non si capì un cazzo, c'è anche
+
+[02:11:58] Piero: qualcosa da fare,
+
+[02:11:59] Antonio: però hai davanti un totem con una bocchetta verde così che lampeggia e se la fissi ti brucia gli occhi e uno non capisce che potenzialmente può mettere lì la card, quindi abbiamo aggiunto il tasto, ricarica la card,
+
+[02:12:13] Piero: inserisci la card, però
+
+[02:12:15] Antonio: se tu avessi già inserito questo non l'avresti visto, e sei qua,
+
+[02:12:20] Piero: ricarica la card, scegli
+
+[02:12:22] Antonio: l'importo e il resto va, oltre al fatto che stai lavorando su una card, esiste, non escono, hai già un saldo, hai
+
+[02:12:30] Piero: già un saldo dove lo capisci, hai scritto saldo, non hai ancora fatto niente, hai un saldo, e personalmente
+
+[02:12:38] Fabrizio: gli esempi ci arrivano,
+
+[02:12:40] Piero: ecco, perché io non sono pratico, ma qui c'è un 125 TOC e poi 2100 ticket, cosa vuol dire, che nella tua
+
+[02:12:49] Antonio: card ci sono 2100 ticket, presi da altre giocate, se la card non vuoi, c'è scritto zero, e i 125 TOC di saldo cosa sono? i 125 TOC di saldo, i contropardi è uno di soldi che è dentro la card, che corrispondono alla riunione, la card, no no,
+
+[02:13:08] Fabrizio: non c'è corrispondenza tra i ticket,
+
+[02:13:09] Antonio: i ticket
+
+[02:13:10] Fabrizio: sono i ticket che hai vinto, e che non hai ancora, ah
+
+[02:13:13] Piero: no, quelli sono ticket vinti, e quelli sono soldi buoni per giocare, scusami, adesso ho capito, si si, ok, ok, non
+
+[02:13:19] Antonio: è finito, non è finito, Di cui 34 bonus?
+
+[02:13:24] Piero: C'è qualcosa che si muove, devo
+
+[02:13:27] Antonio: farlo che si muove di più, ah, questo qui sta pulsando,
+
+[02:13:33] Piero: ho visto sulla cosa che pulsa
+
+[02:13:36] Antonio: e
+
+[02:13:37] Piero: fuori, ah, e ti fa tutta la storia, ah, che bello, dai, carino,
+
+[02:13:41] Antonio: tutta, poi ci ha detto che nessuno vuole vederlo perché se non si capisce quali sono, si sono morsi,
+
+[02:13:50] Piero: ma è vero anche quello,
+
+[02:13:50] Antonio: però a me il giocatore, sapere che qua ti ho dato 20 euro in un post, e qua gli ho spesi, e qua oggettivamente dove sono arrivato, quello che ho fatto.
+
+[02:14:02] Piero: Tipo no, effettivamente questa è una cosa che la sala giochi, penso a livello di casino, non voglio invogliarti a sapere come butti dei soldi, insomma, perché sennò aumentano la consapevolezza del giocatore.
+
+[02:14:19] Antonio: Da D, se lo limiti a un numero congruo di movimenti, tipo Biese, a 10 ultimi movimenti, oppure dall'ultima ricarica metti.
+
+[02:14:31] Piero: Potrebbe anche
+
+[02:14:33] Antonio: essere così, sai, ho messo 20, queste ne sono giocate, sì, anche perché
+
+[02:14:42] Piero: comunque alla sala giochi, cioè non è un casino, quindi non sono, sì, comunque giochi, ti spendi, fai le partite e poi quello che vinci, vinci, sì, non è la stessa cosa, quindi ti
+
+[02:14:52] Antonio: rendi accreditare, ti rendi accreditare, ti rendi accreditare, c'è la card, c'è
+
+[02:14:58] Piero: 345 e poche, invece che 125, vabbè,
+
+[02:15:03] Antonio: grazie, ma no, è bello, tutto bene, c'è una settimana di lavoro, è un bel tema, l'interfaccia sono la
+
+[02:15:16] Piero: cosa più ostica, anche lì è uno dei temi di tutto questo progetto, sono l'interfaccia, perché bisogna trovare delle interfacce decenti, bisogna trovare delle icone giuste, bisogna trovare un sacco di robe e onestamente io non sono molto pratico in questo tipo di cose perché lavoro sempre dietro.
+
+[02:15:35] Antonio: Il problema qua è che A deve essere tutto un po' giocatore. Il contus e il
+
+[02:15:40] Piero: totem, questi backend qua, no, io parlo anche di questi. Sì, il totem va bene, ma no. Che altre interfacce ci sono verso gli utenti, verso i giocatori?
+
+[02:15:54] Antonio: Tutte le persone che non sono touch. Hanno la loro interfaccia
+
+[02:15:58] Piero: ma sono per conto loro. Il
+
+[02:16:00] Antonio: gioco è un gioco, avrà i
+
+[02:16:01] Piero: suoi pulsanti, i suoi led, le sue cose, le sue cinema.
+
+[02:16:06] Antonio: Le vie concorrenti sono tutte touch, quindi qualche tipo di interazione con gli utenti, c'è, non la so. Cosa è la vie concorrente, scusami? Le macchinette sulle quali tappi la carta, ok? Sì. Tutti gli altri le fanno touch, noi non abbiamo touch. Ah, ok. Dove se c'è l'interfaccia, dove c'è una roba così scopolosa.
+
+[02:16:31] Piero: Ah, l'interfaccia dell'ABE, quindi l'interfaccia dell'ABE, avete il progetto di fare così?
+
+[02:16:39] Antonio: Allora, no, adesso c'è con la roba, io disegno le interfaccine, apri la finestra con le cose. Prima, infatti no, stavamo ok.
+
+[02:16:49] Piero: Perché siamo qua facciamo un brainstorming.
+
+[02:16:51] Antonio: L'ABE, noi disegniamo, io disegno queste interfacce, vengono sparate dentro l'ABE, e l'ABE ti fa vedere quelle cose lì, perché sennò vivono tutti uffidissime.
+
+[02:17:04] Piero: Quindi ti fa vedere delle cose, però comunque l'interfaccia è su altri punti, che non so, sono buono, non so.
+
+[02:17:11] Fabrizio: Sono gli svg quelli disegnati. Ma che tipo di
+
+[02:17:14] Piero: touch ci vorrebbe per l'ABE? Ma che tipo di touch ci sarebbe per l'ABE?
+
+[02:17:20] Antonio: Quelle che abbiamo visto nell'ultima fiera sono applicate le dispositivi android, quindi proprio un telefono. Ma non mi
+
+[02:17:25] Piero: sono spiegato funzionalmente cosa bisogna fare con queste funzioni.
+
+[02:17:30] Antonio: Eh, quello era la cosa, non so che cosa si facciano.
+
+[02:17:34] Piero: Perché il totem era il totem, il touch, vabbè, però in fondo il totem era bene anche lui, no?
+
+[02:17:43] Fabrizio: Gli chiedono delle cose ogni tanto per interagire con poco l'operatore oppure con delle cose.
+
+[02:17:50] Antonio: Sì, probabilmente è un taglio che serve più a livello amministrativo di configurazione, però non vedete a finali non ci vedo attacciarli.
+
+[02:18:00] Fabrizio: Allora credo che uno gli chieda di fare delle cose.
+
+[02:18:05] Piero: Perché sul gioco cosa fai? Metti la card e poi cominci a giocare. Come buttare le spalle.
+
+[02:18:12] Antonio: La roba di Capo, ad esempio, che ha un concorrente, ma lì siamo su un altro livello, sono interattive le vie, perché una delle cose che facevano era in tempo reale e ti dicevano: ok, tu hai fatto due giocate qua, ma guarda che c'è l'altro utente, ti mostrano l'utente, che ha fatto 5 giocate più di te e ha preso più punti di te, quindi se tu fai questo, capito? C'è una gamification dentro l'interfaccia della macchinetta che ti sta giucciando i soldi che dovrebbe essere fatta per stimolarti a giocare di più.
+
+[02:18:49] Piero: Ah ok, invece che semplice. A parte gli
+
+[02:18:51] Fabrizio: animali che vanno a giocare, secondo me non guarda nessuno.
+
+[02:18:55] Antonio: Vista, esatto, stavo dicendo, visto il livello cerebrale della gente che frequenta questi posti, non
+
+[02:19:02] Piero: vale la pena.
+
+[02:19:04] Antonio: O sono troppo piccoli e quindi non capiscono niente, ma perché sono piccoli, o sono cresciuti e non sono cresciuti storti e quindi non capiscono un cazzo lo stesso. Per cui non capiscono
+
+[02:19:14] Piero: niente lo stesso e quindi alla fine... Ma questa è una cosa, secondo me, altra storia.
+
+[02:19:20] Antonio: Ah, una nuova figa, una nuova storia stessa.
+
+[02:19:23] Piero: Che poi vuol dire progettare un'interfaccia che conseglie altre cose.
+
+[02:19:27] Antonio: Io faccio un contesto, faccio un'interfaccia invece si potrebbe essere carino farla, però è una roba che devo fare a tempo. Ma di cosa parli?
+
+[02:19:37] Piero: No,
+
+[02:19:37] Antonio: questa qui, adesso la
+
+[02:19:39] Piero: prendo e la fai diventare B&D.
+
+[02:19:43] Antonio: Intanto l'ho fatta, no, no B&D, questa qui adotta, la prendo, da qui ho estratto il flusso che è quello che hai appena fatto tu con i titini. Da quello vado a costruire l'applicazione in flutte e faccio ricavare al caudiano la crona perché questa semplicemente mockup dopo da montata è troppo figo rispetto a quello che eravamo vittoria a fare, però da qui io ricavo. Ok. Ok. Tre strade potremmo avere questa, così com'è, WebSocket è già un'interfaccia che tml che gira. Il problema delle WebSocket è che hanno tutta una serie di ironiette tra cui però la commissione mentre sei collegato. Cosa è brutta, trasformarlo in un'applicazione flutte, quindi prodammano, consumimente, disegna, bravissimo, che è la cosa migliore, ogni cosa che fai
+
+[02:20:53] Piero: qualcosa o cambi stato interno, che vabbè, quando si tratta di fare qualcosa di serio, chiami delle API e basta.
+
+[02:21:01] Antonio: Esatto, che è quello che facciamo adesso, che andiamo a fare adesso. Terza, la strada dell'EQT, questo design fatto con l'EQT e basta, però è da provare. E' un po' per il WinMT, ecco, perché
+
+[02:21:19] Piero: per i totem è quello migliore, è quello di andare gli API, comunque. Anche la cassa
+
+[02:21:25] Antonio: così, perché il motore mi fa girare tutto il totem. Non è quello che ho scritto io, che va in cerca di tutte le seriali, ti dice ok, c'è attaccato il vettore di QR, c'è attaccato all'erogatore di card, c'è attaccato alla stampante.
+
+[02:21:40] Piero: Ah, il totem è tutta questa roba?
+
+[02:21:42] Antonio: Sì, sì, ci sto lavorando da più di sei mesi su questa roba, sempre inframmettata. Quindi questa è
+
+[02:21:51] Piero: solo una delle funzionalità del totem?
+
+[02:21:53] Antonio: Sì, questa è soltanto l'interfaccia del totem. Sotto c'è il motore che parla con tutti i pezzi aurora.
+
+[02:22:01] Piero: Sempre del totem.
+
+[02:22:02] Antonio: Del totem, ma anche della cassa, perché anche sulla cassa c'è accanto il vettore di QR, il vettore di RFID, la stampante. Ok. Quindi un unico motore che si sposta di qua di là, viene configurato in maniera diversa, parla sempre via MQTT, interfaccia.
+
+[02:22:22] Fabrizio: Ricordati dello scassettamento.
+
+[02:22:27] Antonio: Non mi ha detto prima. Ma lei è parlato. Non è parlato prima. C'è un problema di casa. Sì, non sarebbe brutto provare a farla. C'è un po' il problema della licenza volendo essere... Sì? Non puoi usarla. Non puoi usarla.
+
+[02:22:49] Fabrizio: Adesso ho pensato.
+
+[02:22:52] Antonio: Ah, è vero. Sì, ok. Potrebbe non essere un problema mio. Eh, nì.
+
+[02:23:01] Fabrizio: Perché? Perché c'è la figlia.
+
+[02:23:04] Antonio: E quando io glielo dico... Il compo di
+
+[02:23:07] Fabrizio: licenza, quando vede che costa...
+
+[02:23:09] Antonio: La tua licenza costa il 60.000 euro... Ostia! No, non so per 15.000 euro. Però costa la 60.000 euro. Eh sì, è un canone.
+
+[02:23:20] Fabrizio: Eh, ma ci fanno le cose sopra. Sì.
+
+[02:23:26] Piero: Non ci
+
+[02:23:27] Antonio: avevo mai fatto
+
+[02:23:29] Piero: caso, perché io lo uso solo per costo pensorza adesso, per cui vabbè, frega un cazzo, lo metto su G-Tab. Anzi, in realtà è già su G-Tab quello che c'è. Sì, va bene,
+
+[02:23:39] Fabrizio: puoi fare le
+
+[02:23:40] Piero: cose sopra.
+
+[02:23:40] Antonio: Vabbè, non è che non c'è che a casa, il problema è che se fai tu l'applicazione per la fiera, per la saga è un discorso. Qua e magari gli sti totem vanno a Londra, si cominciano a girare per il mondo, qualcuno può anche varsi.
+
+[02:23:58] Piero: Questo comunque è un altro tema allora.
+
+[02:24:01] Antonio: Però nessuno vede che il codice...
+
+[02:24:03] Piero: L'alternativa che tu dici sarebbe quella di fare l'interfaccia con Flutter, ma anche per quanto riguarda WinMT dici.
+
+[02:24:11] Antonio: La cassa, la cassa, non WinMT, la cassa.
+
+[02:24:15] Piero: Allora, cominciamo a capire cosa vuol dire WinMT, cosa vuol dire la cassa.
+
+[02:24:20] Fabrizio: Allora, WinMT è...
+
+[02:24:22] Piero: Perché sennò tocca fare una cosa completamente API.
+
+[02:24:25] Fabrizio: Configurazione, database...
+
+[02:24:28] Piero: Che era entrovi allo scopo di questa riunione, non era proprio in realtà. Solo fare quello, trovare i gruppi di cose... Ok, ho tre minuti per parlare.
+
+[02:24:37] Antonio: Esatto.
+
+[02:24:41] Fabrizio: Allora, il magazzino, tutto
+
+[02:24:44] Antonio: quello che si può fare, back
+
+[02:24:46] Fabrizio: office, statistiche, informazioni, quello si può fare via web. Ok. Che farlo fare tramite...
+
+[02:24:53] Antonio: Anche perché, ripeto, c'è la fissa di HQ che adesso la figlia ha la fissa dei cruscotti, dei dashboard, delle robe che assurde che mi ha fatto vedere che non c'erano. Quelle tutte piene di gravici che entrano su un cazzo, a lei piace un tanto, quindi vuole arrivare lì. Quello lo fa via web e lo fa a chi di qua e di là. A me una
+
+[02:25:17] Piero: volta facciamo una volta sola. La logica di calcolo l'avrei fatto comunque una volta sola. Cioè non voglio avere appunto qualche cazzo di applicazione che si tiene la logica nel client e dopo viene replicata dall'altra parte. Sarebbe meglio se ci si riesce a fare una cosa così, certo che è più difficoltoso da fare, nel senso che vuol dire che tutta l'interfaccia, che sia Qtio, che sia Flutter, o Flutter che sia, deve continuamente parlare al server, insomma. E questo è un po', bisogna essere veloci, è un po' un caos, insomma, chiaramente fare un'applicazione nel client server tradizionale
+
+[02:26:02] Antonio: è molto molto più semplice.
+
+[02:26:04] Piero: Casamai, beh... è così il problema. Nel senso che ora fai tutta la servizio, API, se no replichi il codice nella logica, capito?
+
+[02:26:25] Antonio: Sì, nel senso che se tutta la parte di presentazione è solo web, non è che devi esplorare l'API per fare...
+
+[02:26:36] Piero: Beh, allora, se però devi poter fare delle cose via web che fai anche sulla...
+
+[02:26:42] Antonio: Eh, bisogna dividerle e capire che cosa serve soltanto lì. Devo fare la greca che piace al capo, la fai soltanto web perché la mostri soltanto lì, giusto? Il mio problema
+
+[02:26:57] Piero: è appunto la logica che devi implementare. Il cassiere cosa deve fare?
+
+[02:27:04] Fabrizio: Ok. Dati dei crediti, vedere cosa hai fatto, se hai fatto partite, no, se ci sono problemi...
+
+[02:27:13] Piero: Oh, magari si può fare quasi tutto via web, è vero? L'unica cosa è che deve essere abbastanza l'attività. Perché tu dicevi, beh, se c'è un server web locale, Dio mio, quanto vuoi che sia lento un valore. E in l'anno. Dopo dipende da quanto bravi siamo a mettere a posto di bid, da quanto bravi siamo a fare le procedure...
+
+[02:27:38] Fabrizio: Comunque ci mette del tempo a fare anche per rendere delle cose...
+
+[02:27:43] Piero: Prendere un'altra roba... ma questa non è la cassa per dirlo... No, però abbiamo costruito una paglia... Comunque è vero che quello che dobbiamo fare è proprio isolare queste cose, capito adesso...
+
+[02:27:55] Fabrizio: Poi, sai che via web, comunque uno fa doppio clic, clic con il motore destro, seleziono, faccio tocco, mi scividenzia, faccio così.
+
+[02:28:09] Antonio: La cassa no,
+
+[02:28:15] Piero: allora il problema è
+
+[02:28:19] Antonio: che la cassa
+
+[02:28:20] Piero: no, bisogna
+
+[02:28:22] Antonio: definire i confini della cassa, quello
+
+[02:28:25] Piero: che fa la cassa, se la cassa fa poco, questa è un'applicazione, è anche un frontend flutter con delle API, se la cassa non fa 50.000 cose, vabbè insomma, dai premi, consulta le card,
+
+[02:28:38] Fabrizio: carica le card, da via delle card, vai a vedere la grafica del cliente per cambiare qualche dato, va a vedere la lista di cosa ha fatto il cliente per capire, ma beh, questo si può fare in operazione web, però
+
+[02:28:55] Antonio: c'è quasi tutta roba, togo e vedo, il problema
+
+[02:29:01] Fabrizio: è che la
+
+[02:29:03] Piero: cassa ha delle interazioni con delle periferiche locali, per questo motivo deve essere un'applicazione locale, un'applicazione desktop di qualche tipo insomma.
+
+[02:29:14] Antonio: No perché l'approccio che abbiamo preso con il sistema gestisce tutto l'hardware, l'hardware si deve essere attaccato dove sta girando il motorino, però molto nello parli nello in QTT, per cui tu potenzialmente puoi avere uno serverino per accadere cose, però non ha senso perché avere il lettore RFID qua e la cassa a 200 metri non ha senso, ma potenzialmente puoi sparpagliarlo, eh vabbè
+
+[02:29:49] Piero: lì dovrei spiegarmi l'architettura,
+
+[02:29:52] Antonio: è figliissimo perché quel giorno che aveva fatto la prima volta la demo del prezzato il capo che era, il lettore del card era in fondo, micro monitor touch è qua, l'altro tocco della cosa è qua, la stampante era dietro attaccata a un totem e tutto quanto si parlava in rete e il capo non capiva niente ovviamente è figo quindi tu
+
+[02:30:12] Piero: mi stai dicendo che c'è un motore che non è neanche interfaccia, un motore basta che gestisce le periferiche e
+
+[02:30:19] Antonio: gestisce le
+
+[02:30:21] Piero: periferiche cosa vuol dire API su MQTT? Lui le consuma o le crea? Cioè o le serve? Lui le serve. E quindi tu hai un monitor con la cassa, fai una richiesta a un coso il quale controlla anche l'altore che hai comunque qua ma tanto lo credo.
+
+[02:30:40] Fabrizio: Scatena, attenzione, MQTT non è come le API che per incitare interno e aspetto, io posso anche stare lì ad aspettare su MQTT un evento, quindi quando viene letto tu leggi il barcode, il serverino sente che è stato letto un barcode, spara un evento su MQTT, la
+
+[02:31:02] Piero: cassa che è lì che aspetta riceve l'evento. Ma non lo deve
+
+[02:31:10] Fabrizio: richiedere, in tanti casi, in
+
+[02:31:15] Piero: tanti casi sì, in tanti casi
+
+[02:31:18] Fabrizio: no, dipende, perché se sto chiedendo di pagare col posto, ovviamente prima ho richiesto al sistema di attivarmi il posto, di fare delle cose, ma col lettore appoggio la carta, tolgo la carta, sono 20, ho appoggiato la carta, faccio delle cose, tolgo, boh, chiuso, ho finito la mia transazione. Sì, sì, certo.
+
+[02:31:38] Piero: Vabbè, quello è un altro discorso, ci sono eventi a 5, io voglio fare
+
+[02:31:42] Antonio: in modo che a quel punto l'applicazione Flutter
+
+[02:31:47] Piero: abbia uno stato diverso,
+
+[02:31:49] Antonio: avrà uno stato
+
+[02:31:50] Piero: interno a questo caso di applicazione, ecco, e
+
+[02:31:52] Antonio: quindi si mette
+
+[02:31:54] Piero: a fare delle altre cose, insomma, ecco, perché lei viene svegliata, in che modo? Ti continua a chiamare?
+
+[02:32:07] Fabrizio: Nel MQTT tu ti
+
+[02:32:07] Piero: connetti e stai sempre lì ad aspettare. Quindi anche l'applicazione è di fatto server? No, client.
+
+[02:32:14] Antonio: L'applicazione è... Non conosco il protocollo MQTT. Tu hai un broker che è il
+
+[02:32:20] Fabrizio: server MQTT, che sta lì e può
+
+[02:32:22] Antonio: essere qua o là, dove è qua. Tutti gli altri sono qui. Tutti gli altri sono qui.
+
+[02:32:26] Fabrizio: E il broker cosa fa?
+
+[02:32:28] Piero: Quando io voglio far partire la cosa, il robotino, in realtà mi collego a un server, il robotino si collega a un server che sarebbe il server MQTT, allora cosa fa in questo caso, in questo caso, bisognerà che migliorgisca di queste cose, tu
+
+[02:32:48] Fabrizio: hai l'MQTT che gira, il server MQTT ogni x millisecondi o secondi, come è configurato, fa un ping verso il device che è collegato, quindi il tuo device è lì che sta via da aspettare anche che qualcuno lo chiami,
+
+[02:33:06] Piero: per cui ci sono un lettore di schede, un lettore di schede di qualche tipo, uno o due dimensioni, va bene, non mi importa uno o più,
+
+[02:33:16] Antonio: stampanti, la stampante,
+
+[02:33:19] Piero: la stampante è una unità di rete, immagino, di
+
+[02:33:22] Antonio: che te quanti parli? Le stampanti più usano loro per gli scontrini sono stampanti, adesso le hanno usate in seriale, mi hanno fatto preparare l'implementazione in seriale, anche perchè il tote è il serie, anche perchè il tote è il seriale, si sono
+
+[02:33:40] Piero: seriali virtuali che ho il sb,
+
+[02:33:42] Antonio: si che è uno dei problemi per cui si schiava, come lo
+
+[02:33:46] Piero: studio, e sono
+
+[02:33:52] Antonio: anche stampanti di rete, si lo so, volendo, volendo, però, aspetta, cosa che non ho, vabbè, basta, Sì, una volta che ho letto, sì, però il 7MQTT,
+
+[02:34:05] Fabrizio: cioè, il lettore, come è
+
+[02:34:10] Piero: collegato, cioè, fisicamente, è wireless, che cazzo? C'è anche USB, quindi, no, ci sono delle cose USB attaccate al computer, che, incidentalmente, è anche quella della pasta, che,
+
+[02:34:28] Fabrizio: che, però, non è necessario, che sia un portone.
+
+[02:34:31] Piero: Quindi le periferiche dialogano con server MQTT e l'applicazione dialogano con server MQTT, punto, ok, quindi l'applicazione non deve gestire le periferiche, basta, no, no, no, tu
+
+[02:34:42] Antonio: puoi usare o un server MQTT in sala, o io preferisco usare una locale, useremo frutta, o noi abbiamo già un server MQTT di sala, che è quello che poi si interfaccia anche con l'esterno, sì, però in questo caso ci serve
+
+[02:35:00] Piero: osservare QTT locale, una
+
+[02:35:01] Antonio: macchina perché
+
+[02:35:02] Piero: deve lavorare fisica, qualcuno
+
+[02:35:04] Antonio: deve essere collegato fisicamente a fisica. Ho preferito scalare pesato, sgravare il servo di sala e mettere in un locale in modo, a prescindere che ci sia una rete, a musico, ci parliamo per noi, detta così.
+
+[02:35:18] Piero: Sì, sì, almeno lì funziona, dopo se non c'è la rete lui non può fare niente, non può fare
+
+[02:35:24] Antonio: cose verso il servo, quindi se
+
+[02:35:27] Piero: uno ha le torre di scheda, la card, non puoi caricare niente, nella rete comunque abbiamo visto che la cassa senza la rete concettualmente non può andare, quindi la si mette fuori servizio e basta. Viene fuori servizio.
+
+[02:35:40] Antonio: Io le ho magnifiche perché non ci servono neanche poi, perché sì.
+
+[02:35:50] Piero: Ma Dio, l'appetito viene mangiando, è una mangiativa
+
+[02:35:54] Antonio: che può parlare da un'appetito scomolgato in seriale alla cassa, c'è un'applicazione che va a 10, 20 metri di seriale per cavolo, si si, la, Tobi ha fatto un aggegino che gli permette di parlare in rete, però è tutto nelle mani del signore, messo in un protocollo, è sì, teorile.
+
+[02:36:24] Piero: Ma questo apre un altro tema comunque, quello appunto di come convivono queste cose in un ecosistema così ibrido, che bisognerebbe stabilizzarle prima, se no dopo ci facciamo male, però vabbè, io provo anche un'analisi top down, per cui vediamo a grandi linee, anche se non ho ancora capito a grandi linee, come posso dividere in blocchi, spero di riuscirci un po' per conto mio, se no vi chiederò Rumi. Perché siamo partiti veramente dalle ultime foglie, però in realtà non abbiamo visto quali sono i
+
+[02:36:59] Antonio: blocchi in cui suddivide l'analisi, insomma, mi
+
+[02:37:03] Piero: sono fatto un'idea, diciamo che si può partire dal concetto di cosa può essere messo web subito, e questo ha il suo senso. Mi servirà un database di
+
+[02:37:16] Antonio: una sala o di HQ, lo stack SQL Server, non
+
+[02:37:26] Piero: ho SQL Server
+
+[02:37:29] Antonio: ancora, li ho smessi tutti perché non servivano più un cazzo, sono senza SQL Server adesso.
+
+[02:37:35] Piero: Con Postgres. La sacra lo sto facendo con Postgres che comunque è abbastanza robusto e solido
+
+[02:37:43] Antonio: perché le rivela. Il labo giro su Postgres che è abbastanza grosso per poter dire che è un database solido. Diciamo che il vantaggio, per quanto
+
+[02:37:56] Piero: mi riguarda il vantaggio di SQL Server, sarebbe che comunque hai un TSQL come linguaggio che conosco ormai da vent'anni. Per cui mi muovo meglio rispetto a un TSQL che dovrei imparare tutto, però adesso c'è per esempio il problema che in questo momento non ho server a cui mettere, non ho la macchina a cui mettersi quel server, per cui no, no, a me dovrò farla in qualche modo, tra l'altro ho anche dismesso tutte le cose.
+
+[02:38:26] Fabrizio: No, non posso mettere sulla macchina quella dove abbiamo la VPN dove stiamo sviluppando adesso.
+
+[02:38:32] Antonio: Sì, con tutto il VPN che
+
+[02:38:38] Piero: ho da gestire, per fortuna adesso ne ho una di
+
+[02:38:41] Antonio: me che viene da gestire ma cercherò
+
+[02:38:47] Piero: di capire come installare intanto un server SQL senza dover spendere soldi, l'Express va bene, l'ultimo mi toccherà installare, si immagino. Ma io, perché Mauro è venuto con le ultime versioni. Con il suo ssms e via, insomma, certo, va bene.
+
+[02:39:11] Antonio: Ok, Tosi, adesso qua. Tenendo premuto, giusto?
+
+[02:39:18] Piero: Certo.
+
