@@ -1,6 +1,6 @@
 # Galileo HQ — Indice dei documenti di lavoro
 
-**Stato:** bozza · **Responsabile:** Piero · **Aggiornato:** 2026-10-25
+**Stato:** bozza · **Responsabile:** Piero · **Aggiornato:** 2026-10-26
 
 **Fase:** 0 (pre-analisi), in chiusura
 
@@ -45,11 +45,11 @@ Analisi del sorgente VB6 (copia del 24/07/2026, in `legacy/`, escluso dal reposi
 
 ## Codice del motore di sala B4J (`ecl2mqtt`, già `ecs2mqtt`)
 
-Analisi del sorgente B4J del motore di sala (versione 2.39.55, in `legacy/ecl2mqtt/`, escluso dal repository), divisa in sei zone più una sulla documentazione esistente. Ogni documento contiene flussi pesati, interlocutori, significato delle colonne, doppioni con WinMT, rischi e domande aperte.
+Analisi del sorgente B4J del motore di sala (versione 2.39.55, in `legacy/ecl2mqtt/`, escluso dal repository), divisa in sei zone, più una sulla documentazione esistente e una matrice trasversale di accesso ai dati. Ogni documento di zona contiene flussi pesati, interlocutori, significato delle colonne, doppioni con WinMT, rischi e domande aperte.
 
 | File | Zona |
 |------|------|
-| [`ecl2mqtt/ecl2mqtt-00-mappa.md`](ecl2mqtt/ecl2mqtt-00-mappa.md) | Mappa del progetto e **sintesi trasversale**: separazione da WinMT e doppioni, ecosistema, contributo al modello dati |
+| [`ecl2mqtt/ecl2mqtt-00-mappa.md`](ecl2mqtt/ecl2mqtt-00-mappa.md) | Mappa del progetto e **sintesi trasversale**: separazione da WinMT e doppioni, ecosistema, ciclo di vita e guasti, contributo al modello dati |
 | [`ecl2mqtt/ecl2mqtt-01-nucleo-mqtt.md`](ecl2mqtt/ecl2mqtt-01-nucleo-mqtt.md) | Nucleo, MQTT e protocollo ECL: catalogo dei topic, autodiscover UDP, ridondanza, `dbsettings.txt` |
 | [`ecl2mqtt/ecl2mqtt-02-db-winmt-1.md`](ecl2mqtt/ecl2mqtt-02-db-winmt-1.md) | Accesso al DB di WinMT, parte 1: macchine, happy hour, saldi, ticket, cassa mobile |
 | [`ecl2mqtt/ecl2mqtt-03-db-winmt-2.md`](ecl2mqtt/ecl2mqtt-03-db-winmt-2.md) | Accesso al DB di WinMT, parte 2: clienti da app, premi e PrizeHub, redeem, multisala, log del totem |
@@ -57,6 +57,7 @@ Analisi del sorgente B4J del motore di sala (versione 2.39.55, in `legacy/ecl2mq
 | [`ecl2mqtt/ecl2mqtt-05-api-rest.md`](ecl2mqtt/ecl2mqtt-05-api-rest.md) | API REST per totem, PrizeHub, app, partner, gru e Baytech; autenticazione |
 | [`ecl2mqtt/ecl2mqtt-06-backoffice-provisioning.md`](ecl2mqtt/ecl2mqtt-06-backoffice-provisioning.md) | Backoffice web, ciclo di vita delle schede, firmware, schermate |
 | [`ecl2mqtt/ecl2mqtt-07-documentazione-esistente.md`](ecl2mqtt/ecl2mqtt-07-documentazione-esistente.md) | La documentazione di Fabrizio in `fonti/ecl2mqtt/`: inventario, decisioni in corso, glossario, affidabilità |
+| [`ecl2mqtt/ecl2mqtt-08-matrice-accesso-dati.md`](ecl2mqtt/ecl2mqtt-08-matrice-accesso-dati.md) | **Matrice di accesso ai dati**: per ogni tabella chi legge e chi scrive (motore, WinMT, codice del DB, sincronizzazione) e i campi jolly con significati in conflitto |
 
 ## Riunioni
 

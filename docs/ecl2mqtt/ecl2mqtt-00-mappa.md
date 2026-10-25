@@ -1,6 +1,6 @@
 # Galileo HQ — ecl2mqtt 00: mappa del motore di sala `ecl2mqtt` (già `ecs2mqtt`)
 
-**Stato:** bozza · **Responsabile:** Piero · **Aggiornato:** 2026-10-25
+**Stato:** bozza · **Responsabile:** Piero · **Aggiornato:** 2026-10-26
 
 **Fonte:** sorgente B4J del motore di sala, versione 2.39.55 (`legacy/ecl2mqtt/`, escluso dal repository); documentazione di Fabrizio in `docs/fonti/ecl2mqtt/` · **Collegati:** `ecl2mqtt-01` … `ecl2mqtt-07` (analisi per zona), `docs/winmt/winmt-00-mappa.md`, `docs/db/db-08-dizionario-dati.md`, `sql/codice-db/`
 
@@ -56,6 +56,7 @@ Il codice è stato diviso in sei zone tecniche, più una per la documentazione e
 | [ecl2mqtt 05](ecl2mqtt-05-api-rest.md) | API REST | `FlutterKioskHandler`, `FlutterTicketsHandler`, `App*Handler`, `APIHandler`, `PartnerHandler`, `CraneHandler`, `cliente`, `clsElmacAPI` | 54 | 24 | 21 | 9 |
 | [ecl2mqtt 06](ecl2mqtt-06-backoffice-provisioning.md) | Backoffice, installazione, firmware, schermate | `Macchine*`, `InstallazioneNuovaMacchina`, `deviceprogrammer`, `biprogrammer`, `ScreenBuilder`, `GrigliaIO` | 46 | 19 | 15 | 12 |
 | [ecl2mqtt 07](ecl2mqtt-07-documentazione-esistente.md) | Documentazione esistente in `docs/fonti/ecl2mqtt/` | — | — | | | |
+| [ecl2mqtt 08](ecl2mqtt-08-matrice-accesso-dati.md) | Matrice di accesso ai dati (trasversale) e campi jolly | — | — | | | |
 | | **Totale** | | **240** | **83** | **102** | **55** |
 
 > **Attenzione.** I 240 flussi sono contati **per zona tecnica** e non sono ancora deduplicati. Lo stesso flusso compare in più zone: la cassa mobile, per esempio, è in ecl2mqtt 01 e ecl2mqtt 02. Molti flussi sono inoltre doppioni di flussi WinMT già contati in Analisi 01. Il lavoro fatto per WinMT (ricondurre i flussi alle zone concettuali, contare una volta sola e marcare duplicati, esterni e morti) va ancora fatto, e prima di allora i numeri non vanno usati per la stima.
@@ -219,9 +220,51 @@ flowchart LR
    - credenziali nel codice.
 7. **Riavvio remoto col nome vecchio.** Il comando `/eclcommand?command=restartservice` ferma il servizio con `nssm stop ecs2mqtt` (`funzioni.bas:155`). Il servizio attuale si chiama `ecl2mqtt`, quindi il riavvio remoto probabilmente non trova il servizio [D]. L'altra routine di riavvio, che usa `ecl2mqtt` (`ecs2mqtt.b4j:3960-3972`), non è chiamata da nessuno.
 
+### 4.4 Ciclo di vita e comportamento in caso di guasto
+
+`ecl2mqtt` è un **servizio Windows sempre attivo**, gestito da NSSM: un solo processo per server di sala, eventualmente affiancato da un secondo server in standby (§ 4.2, "Server secondario").
+
+Il lavoro periodico è a timer:
+
+| Intervallo | Attività |
+|---|---|
+| 5 s | Avanzamento delle code di programmazione e di aggiornamento firmware |
+| 30 s | Controllo della connessione al DB (`ecs2mqtt.b4j:3681`); ogni 11 cicli invio dell'orario alle schede |
+| 40 s | Happy hour, richiesta dei contatori, compleanni attivi |
+| 5 min | Chiusura delle sessioni di test mode scadute |
+| 30 min | Pulizia delle schede mai assegnate |
+
+**Stato proprio.** Il servizio tiene uno stato suo in tre posti:
+- **memoria**: dispositivi online, offline e in setup, code di programmazione, "install mode", throttle del PrizeHub, configurazione `Setup(101)` letta all'avvio;
+- **`dbsettings.txt`**: configurazione di sala;
+- **broker**: messaggi *retained* (stato del server, blacklist, card degli operatori, orario).
+
+Il dettaglio è in ecl2mqtt 01 § 4.d.
+
+| Situazione | Comportamento | Conseguenza | Evidenza |
+|---|---|---|---|
+| Avvio senza `dbsettings.txt` | Crea un file predefinito ed esce (codice −1) | Serve un intervento manuale | `ecs2mqtt.b4j:569-575` |
+| Avvio di un master declassato (`Primario = 0`) | Esce (−2) | Si riattiva solo a mano | `ecs2mqtt.b4j:417-424` |
+| Avvio con DB di sala non raggiungibile | 15 tentativi consecutivi, senza pausa perché lo `Sleep` è commentato, poi esce | Il servizio non parte senza DB di sala | `ecs2mqtt.b4j:439-451`; `DBwinmt.bas:108-125` |
+| Avvio senza configurazione ECL in WinMT (`Setup(101).AdmPass`) | Esce (−2) | WinMT deve essere configurato prima | `WINMtConfig.bas:255-272` |
+| Avvio con la porta HTTP occupata | Esce (−2): la interpreta come un'istanza già attiva | — | `ecs2mqtt.b4j:543-549` |
+| Broker caduto | Riconnessione ogni 5 s. Il *last will* `ServerOnline = 0`, retained, avvisa schede e WinMT | Le sottoscrizioni si fanno una sola volta, alla fine dell'autodiscover, e non si rifanno: dopo la riconnessione il servizio **non riceve più messaggi** [verificato: un solo chiamante, `Autodiscover.bas:101`; effetto D] | `ecs2mqtt.b4j:708-752`, `754-825` |
+| Broker non ancora connesso alla fine dell'autodiscover, circa 5 s dopo l'avvio | Le sottoscrizioni vengono saltate | Servizio "sordo" fin dall'avvio | `ecs2mqtt.b4j:756`, `811` |
+| DB di sala che cade durante il funzionamento | Le query falliscono, l'errore è registrato nel log e il flusso prosegue senza transazione | Scritture a metà su saldi e movimenti | ecl2mqtt 02 § 6 |
+| … e c'è da scrivere su `ecl_log` | `Scrivilog` termina il processo (−10). Con `mqtt_log = 1`, il valore predefinito, si scrive a ogni messaggio MQTT. Lo stesso succede se fallisce la lettura di `AdmPass` | In pratica il processo si ferma al primo messaggio dopo la caduta del DB. La ripartenza dipende dalla configurazione di NSSM, che non è nel materiale ricevuto | `DBcoinless.bas:3003-3017`; `DBwinmt.bas:5826` |
+| Eccezione non gestita | `Application_Error` restituisce `True` senza fare nulla: l'errore passa al gestore predefinito di B4J, senza log né avviso propri | Effetto sul processo da verificare [D] | `ecs2mqtt.b4j:3935-3937` |
+| Cloud irraggiungibile | Falliscono il blocco e il prelievo multisala (l'esito di `sp_last_trans` è comunque ignorato), l'installazione di macchine dal backoffice, il wizard dei modelli, la replica di firmware, immagini e lingue | Il gioco in sala continua. I messaggi MQTT verso il cloud si perdono, salvo che il bridge li accodi [D] | ecl2mqtt 03 § 6, 06 § 6.12 |
+| Riavvio del servizio | Lo stato in memoria si perde. Si ricostruisce dagli annunci delle schede, dai messaggi retained e dal flag `EcsMacchine.F0`; la configurazione `Setup(101)` viene riletta | Si perdono le code di programmazione e lo stato "pronto" delle schede | ecl2mqtt 01 § 4.d, 06 § 6.15 |
+| Server primario fuori servizio | Failover manuale da WinMT (`SLAVEFIND` e `/redundance/setprimary`): il secondario diventa primario. Il ritorno al master è manuale. All'avvio, un master che non raggiunge il secondario per 100 tentativi si spegne | La sincronizzazione dei DB fra i due server non è nel codice del motore | ecl2mqtt 01 § 3.e |
+| Riavvio remoto (`/eclcommand restartservice`) | Esegue `nssm stop` con il nome deprecato `ecs2mqtt` | Probabilmente non trova il servizio [D] | § 4.3, punto 7 |
+| Watchdog di WinMT | WinMT chiede `IsServerOnline` ogni 30 s. Dopo 60 s senza risposta disabilita la riconversione delle card e pubblica `watchdog/restart` | Nel motore nessuno ascolta `watchdog/restart` | ecl2mqtt 01 § 3.f |
+| Schede senza server | In modalità card la scheda gioca con il saldo sulla card e accumula i dati (Analisi 00 § 4). In modalità online (`GetCred`) la partita richiede il server | Le sale in modalità online dipendono dal server di sala anche per giocare [D] | ecl2mqtt 01 E01-13 |
+
 ---
 
 ## 5. Cosa aggiunge al modello dati
+
+La matrice tabella per tabella (chi legge e chi scrive, tra motore, WinMT e codice del DB) e l'elenco dei campi jolly sono in [ecl2mqtt 08](ecl2mqtt-08-matrice-accesso-dati.md).
 
 ### 5.1 Tabelle che solo il motore usa
 
