@@ -1,6 +1,6 @@
 # Galileo HQ — Analisi 00: prima lettura delle fonti
 
-**Stato:** bozza · **Responsabile:** Piero · **Aggiornato:** 2026-10-18
+**Stato:** bozza · **Responsabile:** Piero · **Aggiornato:** 2026-10-25
 
 **Fonti:** riunione esplorativa 07/10/2026 (trascrizione e sommario Plaud), riunione operativa 12/10/2026 (trascrizione con relatori), manuale WinMtSql (ELMAC II s.r.l.)
 
@@ -98,6 +98,8 @@ Trasversali a tutte le zone: **dispositivi e periferiche** (cassa, totem, lettor
 | **Dispositivo lettore card sul gioco** | Lettore su cui il cliente appoggia la card | Trascritto come "BI", "BE", "ABE", "vie": **nome da verificare** |
 | **Gru** | Macchina che eroga direttamente premi fisici | Il valore del premio dipende dal carico; usa un campo "ticket" per contare i premi |
 | **ECL** | Sistema coinless (cashless) Elmac | Abilitabile per sala; senza ECL si gestiscono solo i ticket |
+| **ECS** | Sistema di rilevamento dei contatori delle macchine (tabelle `EcsMacchine`, `EcsDati`, `EcsModuli`; `Setup.CodEcs`) | Nel motore di sala è la modalità "solo rilevamento dati", senza card RFID (`ApplicationMode`). Concetto distinto da ECL. Aggiunto il 25/10 |
+| **`ecl2mqtt`** | Motore di sala in B4J: gateway MQTT delle schede, provisioning, API per totem, PrizeHub e app (ecl2mqtt 00) | Nome attuale del servizio. **`ecs2mqtt`** era il nome della prima versione, deprecato ma ancora presente in file, cartelle e chiavi; `elc2mqtt` era un nome di cartella sbagliato (Fabrizio, 25/10) |
 | **Totem** | Chiosco self-service: acquisto e ricarica card, redeem | Accettatore banconote, POS, erogatore card |
 | **Cassa** | Postazione operatore | Ricariche, consegna premi, chiusure, consultazioni |
 | **Chiusura di cassa** | Riepilogo e chiusura del periodo per operatore | Anche per i totem |

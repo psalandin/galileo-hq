@@ -1,13 +1,16 @@
 # Codice SQL dei database di sala
 
-**Stato:** bozza · **Responsabile:** Piero · **Aggiornato:** 2026-10-23
+**Stato:** bozza · **Responsabile:** Piero · **Aggiornato:** 2026-10-25
 
-Codice di stored procedure, funzioni, viste e trigger estratto da `sys.sql_modules` dei due database analizzati in DB 07. È stato scritto dal team, soprattutto da Fabrizio: fa parte della struttura del sistema attuale e si versiona qui come riferimento per l'analisi. **Non è codice del nuovo sistema.**
+Codice di stored procedure, funzioni, viste e trigger estratto da `sys.sql_modules` dei database analizzati (DB 07, DB 09). È stato scritto dal team, soprattutto da Fabrizio: fa parte della struttura del sistema attuale e si versiona qui come riferimento per l'analisi. **Non è codice del nuovo sistema.**
 
 | Cartella | Database | Note |
 |----------|----------|------|
 | `test/` | `WinMtSqlDB` | Database di test, estratto il 23/10/2026 |
 | `prod/` | `WinMtSqlDBProd` | Produzione Central Park Rimini, copia del 14/07/2026, ricostruita il 03/06/2026 |
+| `clitest/` | `CliTest` | DB clienti centrale di un gruppo multisala, di test, sul server cloud (DB 09). Ricostruito il 25/10/2026 dall'esportazione Navicat `clitest.dbo.sql`: mancano le tre procedure `Clienti_bulk*` di Sync Framework, perché Navicat non esporta il tipo tabella `Clienti_BulkType` |
+
+Gli script Navicat esportati dal cloud (`clitest.dbo.sql`, `dbo.sql` di `GloboGameRemSrvc`, `Locali.sql` di `ElmacRemSrvc`) stanno nella radice della cartella e **sono esclusi da git** (`.gitignore`): contengono anche dati, in parte personali. Si versiona solo il codice estratto.
 
 In ciascuna cartella il codice è diviso in due gruppi:
 
@@ -31,4 +34,5 @@ Conteggi:
 - **Codifica della produzione.** In `prod/` le lettere accentate sono corrotte (`giÃ ` invece di `già`): è un difetto del database, non dell'estrazione (DB 07, § 6.3).
 - **Segreti rimossi.** `fn_calcHMAC` concatena al messaggio una chiave segreta scritta nel codice. In questa copia la chiave è sostituita da un segnaposto.
 - **Confronto tra i due rami:** `git diff --no-index sql/codice-db/test/applicativo sql/codice-db/prod/applicativo`.
+- **Caricare uno script Navicat** sull'istanza di analisi richiede due accorgimenti: `SET DATEFORMAT ymd` prima delle `INSERT` (il login ha lingua italiana) e la rimozione dalle `INSERT` delle colonne di tipo `timestamp` (`scope_info.scope_timestamp`, `<tabella>_tracking.local_update_peer_timestamp`), che SQL Server non accetta.
 - **Per rigenerare** il contenuto: `sql/queries/db-query-04-struttura.sql` per il catalogo, oppure un'esportazione di `sys.sql_modules` con `sql/esegui-query.ps1`. Prima di versionarlo, ripetere il controllo sui segreti.

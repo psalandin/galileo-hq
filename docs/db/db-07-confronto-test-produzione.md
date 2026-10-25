@@ -180,7 +180,7 @@ Le procedure `sp_redeem_*` esistono in due versioni:
 | Versione | Dove | Come restituisce l'esito |
 |----------|------|--------------------------|
 | Originale | Produzione | Parametro `OUTPUT @ErrKey`, usato da VB6/ADODB |
-| "Adattata per B4X/JDBC" | Test | Una riga di risultato, perché il motore B4J (`ecs2mqtt`, modulo `DBwinmt`) non gestisce i parametri OUTPUT |
+| "Adattata per B4X/JDBC" | Test | Una riga di risultato, perché il motore B4J (`ecl2mqtt`, già `ecs2mqtt`, modulo `DBwinmt`) non gestisce i parametri OUTPUT |
 
 Cambiano anche alcuni dettagli: il default di `@IdContatto`, `UsedBy = 0` trattato come NULL, i campi restituiti. Un client scritto per una versione non funziona con l'altra.
 

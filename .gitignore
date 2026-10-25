@@ -7,6 +7,11 @@
 *.ndf
 *.mdb
 *.accdb
+# script Navicat esportati dal cloud (struttura + dati, anche personali): si versiona solo il codice estratto nelle sottocartelle
+sql/codice-db/*.sql
+
+# --- Area di appoggio provvisoria, contenuto da decidere ---
+__park/
 
 # --- Archivi e materiale voluminoso ---
 *.zip

@@ -9,12 +9,14 @@ Analisi per la riprogettazione di WinMT e del sistema HQ: gestione cloud di sale
 | Cartella | Contenuto |
 |----------|-----------|
 | `docs/analisi/` | Documenti di analisi e di sintesi (`analisi-NN-…`) |
+| `docs/winmt/` | Analisi del codice sorgente di WinMT, una zona per documento (`winmt-NN-…`) |
+| `docs/ecl2mqtt/` | Analisi del codice sorgente del motore di sala B4J `ecl2mqtt` (già `ecs2mqtt`), una zona per documento (`ecl2mqtt-NN-…`) |
 | `docs/db/` | Analisi del database esistente: schema, catalogo, risultati delle query |
 | `docs/use-case/` | Un file per use case, a partire da `_modello-use-case.md` |
 | `docs/riunioni/` | Verbali, sommari e trascrizioni delle riunioni |
 | `docs/fonti/` | Materiale ricevuto e convertito in testo (es. manuale WinMT). Non si modifica |
 | `sql/` | Kit di query riutilizzabili sui DB di sala e di HQ (`queries/`), risultati (`risultati/`), script di esecuzione |
-| `sql/codice-db/` | Codice SQL (procedure, funzioni, viste, trigger) estratto dai DB di sala, applicativo separato da Sync Framework |
+| `sql/codice-db/` | Codice SQL (procedure, funzioni, viste, trigger) estratto dai DB di sala e del cloud, applicativo separato da Sync Framework |
 
 L'indice ragionato dei documenti è in [`docs/00-indice.md`](docs/00-indice.md).
 
@@ -30,7 +32,7 @@ L'indice ragionato dei documenti è in [`docs/00-indice.md`](docs/00-indice.md).
 
 ## Cosa non va nel repository
 
-- Dump e backup dei database (`.bak`, `.bacpac`, `.mdf`…): troppo grandi e contengono dati reali.
+- Dump e backup dei database (`.bak`, `.bacpac`, `.mdf`…, script Navicat con dati): troppo grandi e contengono dati reali.
 - Sorgenti di terzi ricevuti (WinMT VB6, motore B4J, motore .NET): conservati a parte.
 - Credenziali e stringhe di connessione: in file `.env` o `*.local.*`, esclusi da `.gitignore`.
 - Audio delle riunioni: si versionano solo trascrizioni e verbali.
