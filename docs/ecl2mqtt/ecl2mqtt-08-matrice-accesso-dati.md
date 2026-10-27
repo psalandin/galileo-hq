@@ -1,6 +1,6 @@
 # Galileo HQ — ecl2mqtt 08: matrice di accesso ai dati
 
-**Stato:** bozza · **Responsabile:** Piero · **Aggiornato:** 2026-10-26
+**Stato:** bozza · **Responsabile:** Piero · **Aggiornato:** 2026-10-27
 
 **Fonte:** sorgente di `ecl2mqtt` 2.39.55 (`legacy/ecl2mqtt/`) e di WinMT (`legacy/WinMTsql/`), codice SQL in `sql/codice-db/`, documenti WinMT 01–10 e Analisi 01 · **Collegati:** [`ecl2mqtt-00-mappa.md`](ecl2mqtt-00-mappa.md) (§ 3 e § 5), `docs/db/db-08-dizionario-dati.md`, `docs/db/db-09-clitest-clienti-multisala.md`
 
@@ -127,7 +127,8 @@ Sono elencate le tabelle che almeno un programma usa. Quelle di Sync Framework e
 - **Tabelle con tre scrittori** (motore, WinMT, codice del DB): `Clienti`, `TransCard`, `Tickets`, `Vincite`, `Premi`, `MovMag`, `MovOut`, `EcsMacchine`, `EcsDati`, `Operatori`, `Ospiti`, `promozioni_cards`. A queste si aggiungerebbe `CoinlessCards`, dove però la scrittura del motore è disattivata. Sono le tabelle del valore (saldi, movimenti, lotti di punti, vincite), del magazzino premi e della configurazione delle macchine: qui stanno i doppioni descritti in ecl2mqtt 00 § 3.3.
 - **Tabelle scritte solo dal motore**: schede, firmware, provisioning e schermate (`ecl_*`, `BEConfig`, `coinless_sbuilder_*`, `Coinless_sbuilder_page_provisioning`, `CoinlessImages`, `CoinlessLanguages`), telemetria grezza (`CoinlessDati`, `CoinlessDataBuffer`), `PrizeHubSlots`, `CraneCounterSyncLog`, `PartiteOspiti`, `AuditLog`, `ecl_log`. Nessuna è descritta in db-08: il significato delle colonne è in ecl2mqtt 04 § 4.3.
 - **Tabelle scritte solo da WinMT**: magazzino e anagrafiche (`Ordini`, `Fornitori`, `RiepInv`, `Vincite25`, `Abbuoni`, `TicketsCan`, `Owners`, `Differ`, `Mistral`, `Scocard`, `TipoRicaricheCompleanni`, `Logs`, `EcsErr`). In sala anche `Machines`, `Manuf` e `Type`, che il motore scrive invece nel DB di servizio cloud.
-- **Scritture fuori dalla sala**: oltre al catalogo dei modelli, il prelievo multisala scrive `Tickets` nelle copie cloud delle altre sale (DB 09 § 3).
+$1
+- **Aggiornamento 27/10 (sync 02).** La colonna Sync coincide con l'elenco scritto in WinMtProv, che nella versione 1.12 aggiunge `PrizeHubSlots`. WinMtProv è un quarto scrittore: la conversione multisala aggiorna l'identificativo del cliente in `Clienti`, `Abbuoni`, `Prenotaz`, `Tickets`, `TicketsCan`, `TickRep`, `TransCard`, `Vincite` e `Vincite25` (sync 02 § 6), e il menu dell'intervallo scrive `Setup(101).N0`.
 
 ## 3. Campi jolly e colonne riusate
 

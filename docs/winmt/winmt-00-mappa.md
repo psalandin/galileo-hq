@@ -1,6 +1,6 @@
 # Galileo HQ — WinMT 00: mappa del codice sorgente
 
-**Stato:** bozza · **Responsabile:** Piero · **Aggiornato:** 2026-10-25
+**Stato:** bozza · **Responsabile:** Piero · **Aggiornato:** 2026-10-27
 
 **Fonte:** sorgente VB6 di WinMT, copia del 24/07/2026 da `TOBY-DEV-VM` (`legacy/WinMTsql/`, escluso dal repository) · **Collegati:** `winmt-01` … `winmt-10` (analisi per zona), `docs/db/db-07-confronto-test-produzione.md`
 
@@ -163,6 +163,6 @@ Ciò che emerge mettendo insieme le dieci zone. I punti segnati **[verificato]**
 
 ## 7. Cosa manca
 
-- **Sorgenti degli altri componenti**: servizio .NET, HQ, PosHandler, totem. Il motore B4J (`ecl2mqtt`, già `ecs2mqtt`) è stato analizzato il 25/10 (ecl2mqtt 00–07). Scrivono le tabelle che WinMT non tocca e una parte di quelle che tocca: partite, ticket ticketless, gru, PrizeHub, contatori. Diverse procedure chiamate da WinMT esistono solo nel cloud (`sp_preleva_punti`, `sp_last_trans`, `sp_unione_card`, `sp_punti_cliente*`). Tutte, salvo `sp_unione_card`, stanno nel DB clienti di gruppo raggiunto con `CServer` (`Setup(101).T7`): versione di test `CliTest`, analizzata in DB 09.
+$1 Il 27/10 sono arrivati `ExecuteSync` e `WinMtProv`, gli strumenti della sincronizzazione sala–cloud (sync 00); manca ancora il componente che pianifica la sincronizzazione e ne scrive l'esito in `Setup`. Il motore B4J (`ecl2mqtt`, già `ecs2mqtt`) è stato analizzato il 25/10 (ecl2mqtt 00–07). Scrivono le tabelle che WinMT non tocca e una parte di quelle che tocca: partite, ticket ticketless, gru, PrizeHub, contatori. Diverse procedure chiamate da WinMT esistono solo nel cloud (`sp_preleva_punti`, `sp_last_trans`, `sp_unione_card`, `sp_punti_cliente*`). Tutte, salvo `sp_unione_card`, stanno nel DB clienti di gruppo raggiunto con `CServer` (`Setup(101).T7`): versione di test `CliTest`, analizzata in DB 09.
 - **Conferme dal team** sulle voci **D** (dedotte) e sulle domande aperte di ciascun documento di zona.
 - **Uso reale delle varianti** nelle sale: Golden, Easy, Albarella, Astoria, sistema 4 utenti, raccolte card. Serve a decidere cosa entra nel nuovo sistema.

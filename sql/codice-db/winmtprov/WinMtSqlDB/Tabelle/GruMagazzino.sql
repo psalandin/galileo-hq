@@ -1,0 +1,16 @@
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE dbo.GruMagazzino
+(
+    CodMac      VARCHAR(20) NOT NULL,
+    Enabled     BIT NOT NULL CONSTRAINT DF_GruMagazzino_Enabled DEFAULT (1),
+    CreatedAt   DATETIME NOT NULL CONSTRAINT DF_GruMagazzino_CreatedAt DEFAULT (GETDATE()),
+    UpdatedAt   DATETIME NOT NULL CONSTRAINT DF_GruMagazzino_UpdatedAt DEFAULT (GETDATE()),
+
+    CONSTRAINT PK_GruMagazzino PRIMARY KEY (CodMac)
+)
+GO

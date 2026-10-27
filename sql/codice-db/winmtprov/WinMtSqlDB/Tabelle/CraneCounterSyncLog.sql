@@ -1,0 +1,18 @@
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE dbo.CraneCounterSyncLog
+(
+    CodMac       VARCHAR(20) NOT NULL,
+    DataRil      DATETIME NOT NULL,
+    DeltaIn6     INT NOT NULL DEFAULT 0,
+    DeltaIn7     INT NOT NULL DEFAULT 0,
+    DeltaIn8     INT NOT NULL DEFAULT 0,
+    ProcessedAt  DATETIME NOT NULL DEFAULT GETDATE(),
+
+    CONSTRAINT PK_CraneCounterSyncLog PRIMARY KEY (CodMac, DataRil)
+);
+GO

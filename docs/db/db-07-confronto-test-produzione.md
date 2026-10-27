@@ -1,6 +1,6 @@
 # Galileo HQ — DB 07: confronto della struttura tra database di test e di produzione
 
-**Stato:** bozza · **Responsabile:** Piero · **Aggiornato:** 2026-10-23
+**Stato:** bozza · **Responsabile:** Piero · **Aggiornato:** 2026-10-27
 
 **Fonte:** `[WinMtSqlDB]` (test) e `[WinMtSqlDBProd]` (produzione, Central Park Rimini, copia del 14/07/2026), entrambi sull'istanza di analisi `ThinkCentre-2\SQLEXPRESS` · **Collegati:** `db-query-04-struttura.sql`, `sql/risultati/db-query-04-confronto-test-prod.txt`, `db-01-schema.md`, `db-06-produzione-02.md`
 
@@ -74,7 +74,9 @@ Quattro di queste tabelle in produzione hanno una **chiave primaria che nel test
 | `cache_dati_grafico_giornaliero` | `CodMac, DataRil` (le due colonne diventano NOT NULL) |
 | `ecl_DeviceProvisioning` | `macaddress` |
 
-> **Ipotesi.** Sync Framework richiede una chiave primaria su ogni tabella sincronizzata. Le chiavi sono state aggiunte per poter includere queste tabelle nella sincronizzazione, durante la ricostruzione del 03/06/2026. In produzione restano senza chiave primaria solo cinque tabelle, nessuna sincronizzata: `CoinlessDataBuffer`, `CoinlessDecodedData`, `Logs`, `debug_log` e `save_ciapett`.
+$1
+>
+> **Aggiornamento 27/10 (sync 03 § 2).** Le chiavi sono già negli script di riferimento distribuiti con WinMtProv, che coincidono con la struttura della produzione: la ricostruzione del 03/06/2026 è con ogni probabilità partita da quegli script. Il perimetro dei due scope è quello scritto in WinMtProv (sync 02 § 4).
 
 ### 4.2 Procedure di sincronizzazione non riallineate
 

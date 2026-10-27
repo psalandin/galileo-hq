@@ -1,0 +1,27 @@
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[EcsModuli](
+	[Id] [int] NOT NULL,
+	[MacAd] [varchar](50) NULL,
+	[ShortAd] [varchar](15) NULL,
+	[Abil] [bit] NULL,
+	[NImp] [int] NULL,
+	[F0] [bit] NOT NULL,
+	[T0] [varchar](100) NULL,
+	[N0] [int] NULL,
+	[D0] [datetime] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+ALTER TABLE [dbo].[EcsModuli] ADD  DEFAULT ((0)) FOR [F0]
+GO
+
+

@@ -1,6 +1,6 @@
 # Galileo HQ — DB 08: dizionario dei dati ricavato dal codice di WinMT
 
-**Stato:** bozza · **Responsabile:** Piero · **Aggiornato:** 2026-10-23
+**Stato:** bozza · **Responsabile:** Piero · **Aggiornato:** 2026-10-27
 
 **Fonte:** analisi del sorgente VB6 di WinMT (`docs/winmt/winmt-01` … `winmt-10`), verifiche sui database di test e di produzione · **Collegati:** `db-01-schema.md`, `db-02-catalogo.md`, `db-06-produzione-02.md`, `db-07-confronto-test-produzione.md`, `docs/analisi/analisi-01-catalogo-flussi-winmt.md`
 
@@ -93,7 +93,8 @@ Il codice stesso documenta i valori in un commento (`ModAddNew.bas:1091-1110`):
 | `MovOut.Fornitore` | Contiene il destinatario, non il fornitore |
 | `EcsMacchine.CntrLet8..15`, `CntrVal10..16` | Riusate per i parametri della scheda (erogatore, durate, relè, politica dei ticket) |
 | `Setup` | Una colonna cambia significato da riga a riga (101, 102, 110, raccolte). Molte colonne sono riusate per altro: `Passw`, `AdmPass`, `TotTick`, `ScoMan`, `MdbSaveInt` (= moltiplicatore "1 ticket = punti"), `SyncRes`. `Setup_Descriptions` contiene errori rispetto al codice |
-| `Operatori.Foto` | JSON con i limiti dell'operatore |
+$1| `Tickets.N1`, `TicketsCan.F0`, `TickRep.F0`, `Vincite25.F0`, `Abbuoni.F0` | **Aggiornamento 27/10 (sync 02 § 6).** Marcano la riga già convertita al formato di gruppo (`× 10000 + sala`) dalla conversione multisala di WinMtProv. In `Abbuoni` la conversione si applica a `Id`, che è l'operatore |
+| `Setup.N0` (101 e 110) | **Aggiornamento 27/10 (sync 00 § 2.3).** L'intervallo di sincronizzazione sta in due righe: WinMT usa la 110, WinMtProv e `sp_last_trans` del DB di gruppo la 101 |
 
 ### 2.3 `Tickets.MangiaT`: origine e storia del ticket
 

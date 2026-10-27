@@ -1,6 +1,6 @@
 # Galileo HQ — DB 03: risultati del kit di query 01
 
-**Stato:** bozza · **Responsabile:** Piero · **Aggiornato:** 2026-10-18
+**Stato:** bozza · **Responsabile:** Piero · **Aggiornato:** 2026-10-27
 
 **Fonte:** copia locale di `[WinMtSqlDB]` (dati fino al 15/10/2026), query Q01–Q10 · **Collegati:** `db-01-schema.md`, `db-02-catalogo.md`, `db-query-02.sql`
 
@@ -26,7 +26,9 @@ Questo documento corregge o precisa alcune affermazioni di DB 01, segnalate di v
 
 **Due scope** (Q03), `LocalSync` e `WinMtSync`, entrambi su Sync Framework **2.1** (`schema_info`). Nessuno dei due ha filtri: in ciascuno lo stesso insieme di tabelle viene sincronizzato per intero. L'XML in Q03 è troncato a 65535 caratteri e mostra 31 tabelle su 40; Q11 ricava l'elenco completo.
 
-> **Domanda.** Verso chi sincronizzano i due scope? Ipotesi: `LocalSync` tra le postazioni della sala o verso un micro server locale, `WinMtSync` verso il cloud.
+$1
+>
+> **Aggiornamento 27/10 (sync 00 § 2.1).** `WinMtSync` sincronizza la sala con la sua copia `DBnnnn` nel cloud; `LocalSync` il server primario con il secondario della sala (IP in `Setup(102).NRep3`). Entrambi gli scope sono preparati da WinMtProv.
 
 **I trigger del framework** (Q02) sono 3 per ognuna delle 40 tabelle e sono stati creati tutti il **04/02/2025**: la sincronizzazione è stata riprovisionata in quella data.
 

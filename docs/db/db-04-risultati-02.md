@@ -1,6 +1,6 @@
 # Galileo HQ — DB 04: risultati del kit di query 02
 
-**Stato:** bozza · **Responsabile:** Piero · **Aggiornato:** 2026-10-18
+**Stato:** bozza · **Responsabile:** Piero · **Aggiornato:** 2026-10-27
 
 **Fonte:** copia locale di `[WinMtSqlDB]` da `.bak`, query Q11–Q17 · **Collegati:** `db-03-risultati-01.md` (le correzioni sono segnalate qui), `db-query-03.sql`
 
@@ -27,7 +27,7 @@ Anche `TransCard` (Q15) contiene movimenti generati da postazioni di sviluppo (`
 Altri dettagli emersi da `Setup`:
 - `MName` ha sempre un `|` finale, un artefatto di formato;
 - le date `DataIni` e `DataEnd` (2021–2023) sono scadute ovunque: probabilmente non hanno più effetto;
-- l'ultima sincronizzazione `LocalSync` riuscita registrata dal Master risale all'**11/12/2024**, e una postazione segnala un fallimento il 13/05/2026.
+$1 **Correzione 27/10 (sync 00 § 2.3):** `Setup.SyncRes` non dice di quale scope si tratta. La riga 101 conserva l'ultimo esito scritto lì; oggi l'esito si scrive nella riga 110.
 
 ---
 
@@ -114,7 +114,7 @@ Q14 mostra che quasi tutti i valori hanno la forma corretta "prime 6 + ultime 4"
 ## 7. Domande per il team (aggiornate)
 
 1. Di quale sala è questo database, e perché contiene postazioni di sviluppo?
-2. Chi sono i peer di `LocalSync` e di `WinMtSync`?
+$1 **Risposta 27/10:** sync 00 § 2.1.
 3. Cosa è successo il 22/05/2026 alle 16:35? Le cancellazioni progressive di `TransCard` ed `EcsDati` sono volute?
 4. Lo storico cancellato è archiviato da qualche parte?
 5. `TipoCard` è il livello della card? Il 39% di Platinum è reale?

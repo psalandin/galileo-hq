@@ -1,6 +1,6 @@
 # Galileo HQ — Indice dei documenti di lavoro
 
-**Stato:** bozza · **Responsabile:** Piero · **Aggiornato:** 2026-10-26
+**Stato:** bozza · **Responsabile:** Piero · **Aggiornato:** 2026-10-27
 
 **Fase:** 0 (pre-analisi), in chiusura
 
@@ -57,7 +57,17 @@ Analisi del sorgente B4J del motore di sala (versione 2.39.55, in `legacy/ecl2mq
 | [`ecl2mqtt/ecl2mqtt-05-api-rest.md`](ecl2mqtt/ecl2mqtt-05-api-rest.md) | API REST per totem, PrizeHub, app, partner, gru e Baytech; autenticazione |
 | [`ecl2mqtt/ecl2mqtt-06-backoffice-provisioning.md`](ecl2mqtt/ecl2mqtt-06-backoffice-provisioning.md) | Backoffice web, ciclo di vita delle schede, firmware, schermate |
 | [`ecl2mqtt/ecl2mqtt-07-documentazione-esistente.md`](ecl2mqtt/ecl2mqtt-07-documentazione-esistente.md) | La documentazione di Fabrizio in `fonti/ecl2mqtt/`: inventario, decisioni in corso, glossario, affidabilità |
-| [`ecl2mqtt/ecl2mqtt-08-matrice-accesso-dati.md`](ecl2mqtt/ecl2mqtt-08-matrice-accesso-dati.md) | **Matrice di accesso ai dati**: per ogni tabella chi legge e chi scrive (motore, WinMT, codice del DB, sincronizzazione) e i campi jolly con significati in conflitto |
+$1
+## Sincronizzazione sala–cloud (`ExecuteSync`, `WinMtProv`)
+
+Analisi dei programmi .NET che preparano ed eseguono la sincronizzazione Sync Framework fra la sala, il suo server secondario e il cloud (sorgenti ricevuti il 27/10, in `legacy/`, esclusi dal repository), e degli script SQL di riferimento distribuiti con WinMtProv.
+
+| File | Contenuto |
+|------|-----------|
+| [`sync/sync-00-mappa.md`](sync/sync-00-mappa.md) | Mappa e **sintesi**: topologia degli scope `WinMtSync` e `LocalSync`, dove sta lo stato della sincronizzazione, rapporto con WinMT ed `ecl2mqtt`, catalogo dei flussi (11 attivi, 28 punti), rischi e domande |
+| [`sync/sync-01-executesync.md`](sync/sync-01-executesync.md) | `ExecuteSync` ed `ExecuteSyncSSH`: la sessione di sincronizzazione sala–cloud, varianti e build |
+| [`sync/sync-02-winmtprov.md`](sync/sync-02-winmtprov.md) | `WinMtProv`: provisioning, creazione dei DB cloud e secondario, perimetro delle 62 tabelle, conversione multisala degli identificativi |
+| [`sync/sync-03-script-sql.md`](sync/sync-03-script-sql.md) | Gli **script SQL di riferimento** dei DB di sala, coinless e di gruppo: coincidono con la struttura della produzione; cosa manca (trigger) e cosa è superato (DB di gruppo) |
 
 ## Riunioni
 
@@ -78,7 +88,7 @@ Analisi del sorgente B4J del motore di sala (versione 2.39.55, in `legacy/ecl2mq
 
 In [`../sql/queries/`](../sql/queries/): `db-query-01.sql`, `-02.sql`, `-03.sql` e le versioni `-prod`, riutilizzabili anche sul DB di HQ. `db-query-04-struttura.sql` estrae il catalogo completo della struttura di un database, per confrontare sale diverse, test e produzione, sala e HQ. I risultati sono in [`../sql/risultati/`](../sql/risultati/).
 
-[`../sql/codice-db/`](../sql/codice-db/) contiene il codice SQL di procedure, funzioni, viste e trigger dei DB di test e di produzione. Quello applicativo è separato da quello generato da Sync Framework (vedi il README della cartella).
+$1 `winmtprov/` contiene gli script di riferimento distribuiti con WinMtProv (sync 03).
 
 [`../sql/esegui-query.ps1`](../sql/esegui-query.ps1) esegue i kit da PowerShell senza SSMS. Legge server e credenziali dal file `.env` nella radice del repository, escluso da git.
 
@@ -86,11 +96,14 @@ In [`../sql/queries/`](../sql/queries/): `db-query-01.sql`, `-02.sql`, `-03.sql`
 
 - Codice sorgente di WinMT (VB6): **analizzato** (WinMT 00–10)
 - Documentazione varia, non esaustiva: da analizzare. Quella del motore B4J (`fonti/ecl2mqtt/`) è **analizzata** (ecl2mqtt 07)
-- Codice sorgente del motore di sala in B4J: **analizzato** (ecl2mqtt 00–06)
+$1
+## Materiale ricevuto il 27/10
+
+- Sorgenti di `ExecuteSync`, `ExecuteSyncSSH` e `WinMtProv` (.NET), con gli script SQL di WinMtProv: **analizzati** (sync 00–03). Gli script sono versionati in `sql/codice-db/winmtprov/`, senza segreti
 
 ## Materiale atteso
 
-- Codice di un motore .NET (ruolo da chiarire)
+- Il componente che pianifica la sincronizzazione e ne scrive l'esito in `Setup` (sync 00 § 7, domanda 1). `ExecuteSync` e `WinMtProv`, ricevuti il 27/10, non lo fanno
 - DB di produzione di HQ (cloud). Il DB di produzione della sala (`WinMtSqlDBNuovo`, 6,9 GB) è stato ricevuto
 - Trascrizione Whisper C++ della riunione del 19/10
 
@@ -101,4 +114,4 @@ In [`../sql/queries/`](../sql/queries/): `db-query-01.sql`, `-02.sql`, `-03.sql`
 - Fase 1: modello dati logico, flussi censiti e pesati, architettura definita, stima della fase 2 con variabilità fino al ±30%, due riunioni di revisione.
 - Fuori perimetro: firmware dei dispositivi. La comunicazione tra dispositivi e server di sala è affidata alla BE.
 - Cassa e totem saranno riscritti, probabilmente in Flutter, su API Laravel.
-- WinMT e il motore B4J condividono il database di sala come unico punto d'integrazione e implementano in parallelo molte regole (saldi, ricariche, bonus, premi, redeem, configurazione macchine), con differenze (ecl2mqtt 00 § 3).
+$1- La sala si sincronizza con il cloud tramite Sync Framework: lo scope `WinMtSync` replica il DB di sala nella sua copia `DBnnnn`, lo scope `LocalSync` replica il server primario sul secondario. Perimetro di 61–62 tabelle senza filtri, scritto in WinMtProv (sync 00 § 2).

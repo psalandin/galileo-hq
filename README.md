@@ -10,7 +10,7 @@ Analisi per la riprogettazione di WinMT e del sistema HQ: gestione cloud di sale
 |----------|-----------|
 | `docs/analisi/` | Documenti di analisi e di sintesi (`analisi-NN-…`) |
 | `docs/winmt/` | Analisi del codice sorgente di WinMT, una zona per documento (`winmt-NN-…`) |
-| `docs/ecl2mqtt/` | Analisi del codice sorgente del motore di sala B4J `ecl2mqtt` (già `ecs2mqtt`), una zona per documento (`ecl2mqtt-NN-…`) |
+$1| `docs/sync/` | Analisi della sincronizzazione sala–cloud e dei programmi .NET `ExecuteSync` e `WinMtProv` (`sync-NN-…`) |
 | `docs/db/` | Analisi del database esistente: schema, catalogo, risultati delle query |
 | `docs/use-case/` | Un file per use case, a partire da `_modello-use-case.md` |
 | `docs/riunioni/` | Verbali, sommari e trascrizioni delle riunioni |

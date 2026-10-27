@@ -1,6 +1,6 @@
 # Galileo HQ — Analisi 01: catalogo dei flussi di WinMT
 
-**Stato:** bozza · **Responsabile:** Piero · **Aggiornato:** 2026-10-25
+**Stato:** bozza · **Responsabile:** Piero · **Aggiornato:** 2026-10-27
 
 **Fonte:** analisi del sorgente VB6 di WinMT, documenti `docs/winmt/winmt-01` … `winmt-10` · **Collegati:** `analisi-00-prima-lettura.md` (zone concettuali, § 3), `docs/winmt/winmt-00-mappa.md`, `docs/db/db-08-dizionario-dati.md`
 
@@ -51,7 +51,7 @@ Questo documento è il **censimento dei flussi** che WinMT implementa oggi, pesa
 
 ## 3. Cosa il catalogo non contiene ancora
 
-- **Flussi di altri componenti.** Motore di sala B4J (`ecl2mqtt`, già `ecs2mqtt`), servizio .NET, totem, app clienti, HQ, PosHandler: scrivono una parte importante del database (contatori, partite, ticket ticketless, gru, PrizeHub) e non sono qui. 35 tabelle del database non sono mai toccate da WinMT (WinMT 00, § 4). I flussi del motore B4J sono censiti per zona tecnica in ecl2mqtt 01–06 (240 flussi, non ancora deduplicati né confrontati con questo catalogo: ecl2mqtt 00 § 2).
+- **Flussi di altri componenti.** Motore di sala B4J (`ecl2mqtt`, già `ecs2mqtt`), servizio .NET, totem, app clienti, HQ, PosHandler: scrivono una parte importante del database (contatori, partite, ticket ticketless, gru, PrizeHub) e non sono qui. 35 tabelle del database non sono mai toccate da WinMT (WinMT 00, § 4). $1 I flussi della sincronizzazione sala–cloud (`ExecuteSync`, `WinMtProv`) sono censiti in sync 00 § 4: 11 flussi attivi, 28 punti.
 - **Funzioni da dismettere.** Il catalogo le conta, perché esistono. Vanno marcate come tali nelle interviste: per esempio il sistema 4 utenti, già indicato per la dismissione il 19/10 (W05-04, W05-05), le varianti Albarella, Golden ed Easy, i trasferimenti via file `.mdb`.
 - **Varianti per cliente.** Diverse funzioni hanno rami per singole sale, attivati da `Setup.N14` (Astoria, Alba, Golden) o da costanti di compilazione. Sono contate dentro il flusso a cui appartengono, non come flussi a sé.
 

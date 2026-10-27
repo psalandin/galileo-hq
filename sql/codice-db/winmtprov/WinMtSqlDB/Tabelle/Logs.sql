@@ -1,0 +1,14 @@
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[Logs](
+	[IDPost] [int] NOT NULL,
+	[Data] [datetime] NOT NULL,
+	[LFile] [varbinary](max) NOT NULL
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+
+
