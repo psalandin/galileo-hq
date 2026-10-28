@@ -26,7 +26,7 @@ Questo documento corregge o precisa alcune affermazioni di DB 01, segnalate di v
 
 **Due scope** (Q03), `LocalSync` e `WinMtSync`, entrambi su Sync Framework **2.1** (`schema_info`). Nessuno dei due ha filtri: in ciascuno lo stesso insieme di tabelle viene sincronizzato per intero. L'XML in Q03 è troncato a 65535 caratteri e mostra 31 tabelle su 40; Q11 ricava l'elenco completo.
 
-$1
+> **Domanda.** Verso chi sincronizzano i due scope? Ipotesi: `LocalSync` tra le postazioni della sala o verso un micro server locale, `WinMtSync` verso il cloud.
 >
 > **Aggiornamento 27/10 (sync 00 § 2.1).** `WinMtSync` sincronizza la sala con la sua copia `DBnnnn` nel cloud; `LocalSync` il server primario con il secondario della sala (IP in `Setup(102).NRep3`). Entrambi gli scope sono preparati da WinMtProv.
 

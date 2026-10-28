@@ -24,7 +24,7 @@ Il database è della **salagiochi Central Park di Rimini** (impianto 196). `Setu
 
 Le operazioni di cassa e totem su card (Q15) vengono da **quattro sole postazioni**: `WINMTSQL` (111.741), `TOTEMECL-2` (9.307), `CASSA-MOBILE` (7.332) e `TOTEM-ECL-1` (6.120). Il totale, 134.500, coincide con gli "orfani" di Q05. In produzione non compaiono movimenti di postazioni di sviluppo. Togliendo il `|` finale, `CodMac` corrisponde a `Setup.MName` nel 94,5% delle operazioni (Q19). Il resto è quasi tutto `CASSA-MOBILE`, che non è censita in `Setup`.
 
-$1
+> **Ipotesi sui due scope.** `LocalSync` potrebbe sincronizzare i due `GALILEOSERVER` della sala, mentre `WinMtSync` porta i dati al cloud. Da confermare con il team.
 >
 > **Aggiornamento 27/10 (sync 00 § 2.1).** Confermata: `LocalSync` è la replica fra il server primario (`Setup(102).NRep2` = 192.168.169.50) e il secondario (`NRep3` = 192.168.169.60); `WinMtSync` sincronizza la sala con `DB0196` nel cloud.
 
@@ -82,7 +82,7 @@ I 252 valori di `LogTransazioniTotem.PAN` sono **tutti stringhe vuote** (Q14), e
 
 ## 6. Domande per il team
 
-$1 **Probabilmente sì** (sync 00 § 2.1): resta da confermare che i due nomi corrispondano ai due IP.
+1. Chi sono `GALILEOSERVER-1` e `GALILEOSERVER-2`? Sono i peer di `LocalSync`? **Probabilmente sì** (sync 00 § 2.1): resta da confermare che i due nomi corrispondano ai due IP.
 2. Quale host esegue oggi la sincronizzazione (postazione 110, senza nome)?
 3. Perché una macchina di sviluppo (`TOBY-DEV-VM`) è registrata nel database di produzione?
 4. Cosa significano i valori 2 e 3 di `TipoCard`?

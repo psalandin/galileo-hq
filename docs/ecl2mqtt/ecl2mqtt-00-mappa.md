@@ -347,7 +347,7 @@ Le domande complete sono nel § 7 di ogni zona. Queste condizionano il disegno.
 3. **Ticket automatici.** In modalità online girano sia la procedura sia il motore? Si verifica in produzione cercando lotti `MangiaT 8256` doppi per la stessa partita.
 4. **Multisala.** Quale regola `IdLong`/`IdContatto` vale? Il blocco "card usata da poco in un'altra sala" va applicato anche alle API?
 5. **Cloud.** Il cloud raggiunto con `elmaccloud` è lo stesso di HQ? Il mosquitto di sala è in bridge? Chi pubblica `ElmacAPI/*` e chi consuma `Errors/*`? In produzione `Connected` vale 0 o 1?
-$1 **Aggiornamento 27/10 (sync 00 § 3):** lo fa Sync Framework con lo scope `LocalSync`, preparato da WinMtProv; nel codice ricevuto si esegue solo a mano.
+6. **Ridondanza.** Come si sincronizzano i DB di master e slave ("ogni 60 secondi" secondo la documentazione)? Il codice del motore non lo fa. **Aggiornamento 27/10 (sync 00 § 3):** lo fa Sync Framework con lo scope `LocalSync`, preparato da WinMtProv; nel codice ricevuto si esegue solo a mano.
 7. **Configurazione delle macchine.** Il backoffice B4J diventa l'unico punto di configurazione, o resta in parallelo a WinMT?
 8. **Protocollo dei dispositivi.** CLAUDE.md mette fuori perimetro il firmware e affida alla BE la comunicazione tra dispositivi e server. Il lato server del protocollo ECL (topic, decodifica dei record, provisioning, OTA) si riusa così com'è o si riscrive? Serve la specifica del protocollo.
 9. **Totem.** Per quanto tempo il totem attuale (scrittura diretta nel DB) convivrà con quello nuovo (`/kiosk`)?

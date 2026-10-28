@@ -1,6 +1,6 @@
 # Galileo HQ — Sync 00: mappa della sincronizzazione sala–cloud (`ExecuteSync`, `WinMtProv`)
 
-**Stato:** bozza · **Responsabile:** Piero · **Aggiornato:** 2026-10-27
+**Stato:** bozza · **Responsabile:** Piero · **Aggiornato:** 2026-10-28
 
 **Fonte:** sorgenti ricevuti il 27/10 in `legacy/ExecuteSync/`, `legacy/ExecuteSyncSSH/` e `legacy/WinMtProv/` (esclusi dal repository); DB di test, di produzione e `CliTest` sull'istanza di analisi, in sola lettura · **Collegati:** [`sync-01-executesync.md`](sync-01-executesync.md), [`sync-02-winmtprov.md`](sync-02-winmtprov.md), [`sync-03-script-sql.md`](sync-03-script-sql.md), `docs/ecl2mqtt/ecl2mqtt-00-mappa.md`, `docs/db/db-09-clitest-clienti-multisala.md`
 
@@ -159,6 +159,7 @@ Stessa regola di peso di Analisi 01 (S = 1, M = 3, L = 8), applicata alla funzio
 6. **Il DB di gruppo** si installa ancora dagli script del 2023 (sync 03 § 3)? Dove sta la versione corrente?
 7. **I trigger applicativi** come si installano su una sala nuova e sul secondario?
 8. Quale intervallo vale davvero, `Setup(101).N0` o `Setup(110).N0`? Le due righe vanno tenute uguali a mano?
+9. **Aggiornamento 28/10.** In `CliTest` la tabella `Clienti` è sincronizzata con tre scope `SyncCliNNNN`, uno per sala (DB 09 § 1): chi li prepara e chi li esegue? WinMtProv non li conosce.
 
 ## 8. Effetti sui documenti precedenti
 

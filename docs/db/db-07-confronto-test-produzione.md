@@ -74,7 +74,7 @@ Quattro di queste tabelle in produzione hanno una **chiave primaria che nel test
 | `cache_dati_grafico_giornaliero` | `CodMac, DataRil` (le due colonne diventano NOT NULL) |
 | `ecl_DeviceProvisioning` | `macaddress` |
 
-$1
+> **Ipotesi.** Sync Framework richiede una chiave primaria su ogni tabella sincronizzata. Le chiavi sono state aggiunte per poter includere queste tabelle nella sincronizzazione, durante la ricostruzione del 03/06/2026. In produzione restano senza chiave primaria solo cinque tabelle, nessuna sincronizzata: `CoinlessDataBuffer`, `CoinlessDecodedData`, `Logs`, `debug_log` e `save_ciapett`.
 >
 > **Aggiornamento 27/10 (sync 03 § 2).** Le chiavi sono già negli script di riferimento distribuiti con WinMtProv, che coincidono con la struttura della produzione: la ricostruzione del 03/06/2026 è con ogni probabilità partita da quegli script. Il perimetro dei due scope è quello scritto in WinMtProv (sync 02 § 4).
 
